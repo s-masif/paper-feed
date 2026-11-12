@@ -53,7 +53,7 @@ TOPICS = {
     "conf": {
         "openreview": ["NeurIPS", "ICML", "ICLR"],
         "match": r"federat",  # kept if the title or abstract matches
-        "days": 730,
+        # no "days": conference papers stay while their conference is this year's or last year's
     },
 }
 
@@ -359,10 +359,16 @@ def main():
     else:
         print("OPENALEX_API_KEY not set: skipping OpenAlex, feed has arXiv papers only")
 
-    # A paper stays while it is within the time window of at least one of its topics.
-    cutoffs = {tag: (date.today() - timedelta(days=q["days"])).isoformat() for tag, q in TOPICS.items()}
-    papers = sorted((p for p in store.papers if any(p["published"] >= cutoffs[t] for t in p["tags"])),
-                    key=lambda p: p["published"], reverse=True)
+    # A paper stays while it belongs in at least one of its topics: dated topics keep their last N days,
+    # the conference topic keeps this year's and last year's conferences (same years as it fetches).
+    cutoffs = {tag: (date.today() - timedelta(days=q["days"])).isoformat() for tag, q in TOPICS.items() if "days" in q}
+    first_conf_year = date.today().year - 1
+
+    def keep(p):
+        return any(int(p["conf"].rsplit(" ", 1)[1]) >= first_conf_year if t == "conf" else p["published"] >= cutoffs[t]
+                   for t in p["tags"])
+
+    papers = sorted((p for p in store.papers if keep(p)), key=lambda p: p["published"], reverse=True)
 
     with open(OUT, "w") as f:
         json.dump({"updated": datetime.now(timezone.utc).isoformat(timespec="minutes"),
