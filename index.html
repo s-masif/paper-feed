@@ -64,7 +64,8 @@
     padding: .5rem .75rem; margin-bottom: .9rem;
   }
   .search:focus { outline: none; border-color: var(--theme); box-shadow: 0 0 0 .15rem rgba(181, 9, 172, .15); }
-  .filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+  .tab-info { color: var(--muted); font-size: .88rem; line-height: 1.5; margin: 0 0 1rem; max-width: 48rem; }
   .filters button {
     font: 400 .8rem Roboto, -apple-system, "Segoe UI", Arial, sans-serif; text-transform: uppercase;
     letter-spacing: .02em; color: var(--text); background: transparent;
@@ -156,6 +157,7 @@
     <button data-topic="nature-ai" aria-pressed="false">Nature · AI</button>
     <button data-topic="conf" aria-pressed="false">Top conferences</button>
   </div>
+  <p class="tab-info" id="tab-info" aria-live="polite"></p>
   <div id="feed"></div>
 </main>
 <footer>Papers from arXiv, OpenAlex and OpenReview. Venues limited to selected journals and conferences.</footer>
@@ -273,13 +275,24 @@ function render() {
   }
 }
 
+// What each tab shows. Keep in sync with TOPICS in fetch.py.
+const TAB_INFO = {
+  "fl": "Preprints from arXiv, plus published papers from Nature journals, IEEE Transactions and top AI, data and systems conferences, that mention federated learning, optimization, training, averaging, fine-tuning or FedAvg. Last 60 days, newest first.",
+  "fl-gnn": "Federated learning papers that also involve graphs: graph neural networks (GNN, GCN, graph attention), graph learning, subgraphs, knowledge graphs, and graph embeddings or representations. Same sources as Federated learning. Last 6 months, newest first.",
+  "nature-ai": "Machine learning and AI papers (deep learning, neural networks, language and foundation models, reinforcement learning) in Nature, Nature Communications, Nature Machine Intelligence, Nature Computational Science and Nature Human Behaviour. Any AI topic, not only federated learning. Last 60 days, newest first.",
+  "conf": "Federated learning papers accepted at NeurIPS, ICML and ICLR (from OpenReview, matched on title or abstract), plus AAAI and IJCAI papers found in the published-paper search. This year’s and last year’s conferences, grouped by conference.",
+};
+function showInfo() { document.getElementById("tab-info").textContent = TAB_INFO[topic] || ""; }
+
 document.querySelectorAll(".filters button").forEach(btn => {
   btn.onclick = () => {
     topic = btn.dataset.topic;
     document.querySelectorAll(".filters button").forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+    showInfo();
     render();
   };
 });
+showInfo();
 
 search.addEventListener("input", render);
 
