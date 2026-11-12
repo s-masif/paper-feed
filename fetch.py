@@ -106,7 +106,22 @@ CONF_FROM_VENUE = [
 ]
 
 
-def fetch_openreview(conference, year, pattern):
+def openreview_login(username, password):
+    """Log in to OpenReview's API (required since late 2026) and return a bearer token, or None."""
+    req = urllib.request.Request("https://api2.openreview.net/login", method="POST",
+                                 data=json.dumps({"id": username, "password": password}).encode(),
+                                 headers={**OPENREVIEW_HEADERS, "Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            return json.loads(resp.read())["token"]
+    except urllib.error.HTTPError as e:
+        print(f"OpenReview login failed (HTTP {e.code}): {e.read()[:200]!r}")
+    except (urllib.error.URLError, json.JSONDecodeError, KeyError) as e:
+        print(f"OpenReview login failed ({type(e).__name__}: {e})")
+    return None
+
+
+def fetch_openreview(conference, year, pattern, token):
     """(matching papers, number of accepted papers) for one OpenReview conference.
     Returns None if OpenReview could not be read, so the conference is retried next run."""
     venue_id = f"{conference}.cc/{year}/Conference"
@@ -115,7 +130,8 @@ def fetch_openreview(conference, year, pattern):
         params = urllib.parse.urlencode({"content.venueid": venue_id, "limit": limit, "offset": offset})
         body = b""
         try:
-            body = get("https://api2.openreview.net/notes?" + params, OPENREVIEW_HEADERS)
+            body = get("https://api2.openreview.net/notes?" + params,
+                       {**OPENREVIEW_HEADERS, "Authorization": f"Bearer {token}"})
             notes = json.loads(body)["notes"]
         except (urllib.error.URLError, json.JSONDecodeError, KeyError) as e:
             print(f"OpenReview {venue_id} failed ({type(e).__name__}: {e}); reply started with: {body[:150]!r}")
@@ -305,14 +321,18 @@ def main():
         for p in fetch_arxiv(q["arxiv"], q["arxiv_max"]):
             store.add(p, {tag})
 
+    or_user, or_pass = os.environ.get("OPENREVIEW_USERNAME"), os.environ.get("OPENREVIEW_PASSWORD")
+    or_token = openreview_login(or_user, or_pass) if or_user and or_pass else None
+    if not (or_user and or_pass):
+        print("OPENREVIEW_USERNAME/OPENREVIEW_PASSWORD not set: skipping NeurIPS, ICML and ICLR")
     for tag, q in TOPICS.items():
-        if "openreview" not in q:
+        if "openreview" not in q or not or_token:
             continue
         for year in (date.today().year, date.today().year - 1):
             for conference in q["openreview"]:
                 if f"{conference} {year}" in conf_done:
                     continue
-                result = fetch_openreview(conference, year, q["match"])
+                result = fetch_openreview(conference, year, q["match"], or_token)
                 if result is None:
                     continue  # failed: try again next run
                 papers, accepted = result
