@@ -8,21 +8,61 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import date, datetime, timedelta, timezone
 
-# Each topic has an arXiv query and an OpenAlex query. A paper matching several gets several tags.
+FEDERATED = ['"federated learning"', '"federated optimization"', '"federated training"',
+             '"federated averaging"', '"federated fine-tuning"', 'FedAvg']
+GRAPH = ['"graph neural"', 'GNN', 'GNNs', '"graph learning"', '"graph convolution"', 'GCN',
+         '"graph attention"', 'subgraph', '"knowledge graph"', '"graph embedding"', '"graph representation"']
+
+
+def arxiv_any(terms):
+    return "(" + " OR ".join("abs:" + t for t in terms) + ")"
+
+
+def openalex_any(terms):
+    return "(" + " OR ".join(terms) + ")"
+
+
+# Each topic has an arXiv query, an OpenAlex query, how many days of papers it keeps,
+# and how many of the newest arXiv papers to fetch per run. A paper matching several topics gets several tags.
 TOPICS = {
     "fl-gnn": {
-        "arxiv": 'abs:"federated" AND (abs:"graph neural" OR abs:"GNN" OR abs:"graph learning")',
-        "openalex": 'federated AND ("graph neural" OR GNN OR "graph learning")',
+        "arxiv": 'abs:federated AND ' + arxiv_any(GRAPH),
+        "openalex": 'federated AND ' + openalex_any(GRAPH),
+        "days": 180,
+        "arxiv_max": 500,
     },
     "fl": {
-        "arxiv": 'abs:"federated learning"',
-        "openalex": '"federated learning"',
+        "arxiv": arxiv_any(FEDERATED),
+        "openalex": openalex_any(FEDERATED),
+        "days": 60,
+        "arxiv_max": 100,
     },
 }
-ARXIV_MAX = 100          # newest arXiv papers per topic per run
-OPENALEX_LOOKBACK = 14   # days; journals and conferences reach OpenAlex with some delay
-OPENALEX_MAX_PAGES = 10  # 100 papers per page
-KEEP_DAYS = 60           # papers older than this drop out of the feed
+
+# Published papers are kept only if their venue matches one of these (case-insensitive regexes).
+# arXiv preprints are always kept.
+TOP_VENUES = [
+    r"^nature\b",                                            # Nature and Nature-family journals
+    r"\bieee transactions\b",
+    r"neural information processing systems|\bneurips\b",
+    r"international conference on machine learning(?! and)",
+    r"international conference on learning representations",
+    r"sigkdd|\bkdd\b",
+    r"aaai conference on artificial intelligence",
+    r"international joint conference on artificial intelligence|\bijcai\b",
+    r"\bweb conference\b|world wide web conference",
+    r"computer vision and pattern recognition",
+    r"international conference on computer vision(?! and)",
+    r"\binfocom\b",
+    r"international conference on data engineering(?! and)",
+    r"\bvldb\b|very large data bases",
+    r"\bsigmod\b",
+    r"web search and data mining",
+    r"information and knowledge management",
+    r"international conference on data mining(?! and)",
+    r"\bmobicom\b",
+]
+OPENALEX_MAX_PAGES = 100  # 100 papers per page; most are dropped by the venue filter
 OUT = "papers.json"
 NS = {"a": "http://www.w3.org/2005/Atom"}
 
@@ -44,10 +84,14 @@ def get(url):
         return resp.read()
 
 
-def fetch_arxiv(query):
+def is_top_venue(venue):
+    return bool(venue) and any(re.search(p, venue, re.I) for p in TOP_VENUES)
+
+
+def fetch_arxiv(query, max_results):
     params = urllib.parse.urlencode({
         "search_query": query, "sortBy": "submittedDate",
-        "sortOrder": "descending", "max_results": ARXIV_MAX,
+        "sortOrder": "descending", "max_results": max_results,
     })
     root = ET.fromstring(get("http://export.arxiv.org/api/query?" + params))
     papers = []
@@ -78,11 +122,11 @@ def abstract_from_index(inverted):
     return clean(" ".join(words[i] for i in sorted(words)))
 
 
-def fetch_openalex(query, api_key):
+def fetch_openalex(query, api_key, days):
     today = date.today()
     base = {
-        "search.title_and_abstract": query,
-        "filter": f"from_publication_date:{today - timedelta(days=OPENALEX_LOOKBACK)},to_publication_date:{today}",
+        "search.title_abstract_keywords": query,  # keywords also catch papers with no abstract
+        "filter": f"from_publication_date:{today - timedelta(days=days)},to_publication_date:{today}",
         "sort": "publication_date:desc",
         "per_page": 100,
         "select": "id,doi,title,publication_date,authorships,abstract_inverted_index,primary_location,open_access",
@@ -97,6 +141,8 @@ def fetch_openalex(query, api_key):
             doi = norm_doi(w["doi"]) if w.get("doi") else None
             loc = w.get("primary_location") or {}
             is_arxiv = bool(doi and doi.startswith("10.48550/arxiv."))
+            if not is_arxiv and not is_top_venue((loc.get("source") or {}).get("display_name")):
+                continue
             page = loc.get("landing_page_url") or w.get("doi")
             links = {}
             if page:
@@ -161,19 +207,20 @@ def main():
     for i, (tag, q) in enumerate(TOPICS.items()):
         if i:
             time.sleep(3)  # arXiv asks for 3 s between API calls
-        for p in fetch_arxiv(q["arxiv"]):
+        for p in fetch_arxiv(q["arxiv"], q["arxiv_max"]):
             store.add(p, {tag})
 
     api_key = os.environ.get("OPENALEX_API_KEY")
     if api_key:
         for tag, q in TOPICS.items():
-            for p in fetch_openalex(q["openalex"], api_key):
+            for p in fetch_openalex(q["openalex"], api_key, q["days"]):
                 store.add(p, {tag})
     else:
         print("OPENALEX_API_KEY not set: skipping OpenAlex, feed has arXiv papers only")
 
-    cutoff = (date.today() - timedelta(days=KEEP_DAYS)).isoformat()
-    papers = sorted((p for p in store.papers if p["published"] >= cutoff),
+    # A paper stays while it is within the time window of at least one of its topics.
+    cutoffs = {tag: (date.today() - timedelta(days=q["days"])).isoformat() for tag, q in TOPICS.items()}
+    papers = sorted((p for p in store.papers if any(p["published"] >= cutoffs[t] for t in p["tags"])),
                     key=lambda p: p["published"], reverse=True)
 
     with open(OUT, "w") as f:

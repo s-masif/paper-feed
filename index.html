@@ -161,7 +161,7 @@ fetch("papers.json", { cache: "no-store" })
   .then(data => {
     papers = data.papers;
     const when = new Date(data.updated).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
-    document.getElementById("updated").textContent = `${papers.length} papers from the last 60 days. Updated ${when}.`;
+    document.getElementById("updated").textContent = `${papers.length} papers. Updated ${when}.`;
     render();
   })
   .catch(() => {
