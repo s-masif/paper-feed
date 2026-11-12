@@ -47,11 +47,12 @@ TOPICS = {
                      "Nature Computational Science", "Nature Human Behaviour"],
         "days": 60,
     },
-    # DBLP only (free, no key): federated learning papers accepted at these conferences,
-    # this year and last year. DBLP terms are prefixes, so "federat" matches "federated".
+    # Federated learning papers accepted at top conferences, this year and last year.
+    # NeurIPS, ICML and ICLR come from OpenReview (free, no key, with abstracts).
+    # AAAI and IJCAI come from the OpenAlex searches above (see CONF_FROM_VENUE).
     "conf": {
-        "dblp": "federat",
-        "conferences": ["NeurIPS", "ICML", "ICLR", "AAAI", "IJCAI"],
+        "openreview": ["NeurIPS", "ICML", "ICLR"],
+        "match": r"federat",  # kept if the title or abstract matches
         "days": 730,
     },
 }
@@ -96,55 +97,53 @@ def norm_doi(doi):
     return doi.lower().removeprefix("https://doi.org/")
 
 
-DBLP_HOSTS = ["https://dblp.org", "https://dblp.uni-trier.de"]  # main site, then official mirror
-DBLP_HEADERS = {"User-Agent": "paper-feed/1.0 (+https://s-masif.github.io/paper-feed/)"}
+OPENREVIEW_HEADERS = {"User-Agent": "paper-feed/1.0 (+https://s-masif.github.io/paper-feed/)"}
+
+# OpenAlex venues that also go into the conference tab, with their short name.
+CONF_FROM_VENUE = [
+    (r"aaai conference on artificial intelligence", "AAAI"),
+    (r"international joint conference on artificial intelligence|\bijcai\b", "IJCAI"),
+]
 
 
-def dblp_search(params):
-    """DBLP search result as JSON, or None if every host gave a bad reply."""
-    for host in DBLP_HOSTS:
+def fetch_openreview(conference, year, pattern):
+    """(matching papers, number of accepted papers) for one OpenReview conference.
+    Returns None if OpenReview could not be read, so the conference is retried next run."""
+    venue_id = f"{conference}.cc/{year}/Conference"
+    papers, offset, limit, total = [], 0, 1000, 0
+    while True:
+        params = urllib.parse.urlencode({"content.venueid": venue_id, "limit": limit, "offset": offset})
         body = b""
         try:
-            body = get(f"{host}/search/publ/api?{params}", DBLP_HEADERS)
-            return json.loads(body)
-        except (urllib.error.URLError, json.JSONDecodeError) as e:
-            print(f"DBLP {host} failed ({type(e).__name__}: {e}); reply started with: {body[:150]!r}")
-            time.sleep(2)
-    return None
-
-
-def fetch_dblp(query, conference, year):
-    """Accepted papers at one conference in one year whose title matches the query."""
-    params = urllib.parse.urlencode({"q": f"{query} venue:{conference} year:{year}", "format": "json", "h": 1000})
-    data = dblp_search(params)
-    if data is None:
-        print(f"Skipped {conference} {year}: DBLP unavailable this run")
-        return []
-    hits = data["result"]["hits"].get("hit", [])
-    papers = []
-    for h in hits:
-        info = h["info"]
-        venues = info.get("venue")
-        venues = venues if isinstance(venues, list) else [venues]
-        if conference.lower() not in [str(v).lower() for v in venues] or str(info.get("year")) != str(year):
-            continue  # skip workshops and other venues the prefix search also matched
-        authors = (info.get("authors") or {}).get("author", [])
-        authors = authors if isinstance(authors, list) else [authors]
-        ee = info.get("ee")
-        ee = ee[0] if isinstance(ee, list) else ee
-        papers.append({
-            "id": "dblp:" + info.get("key", info["title"]),
-            "title": clean(info["title"]).rstrip("."),
-            "authors": [re.sub(r"\s\d{4}$", "", a["text"]) for a in authors],  # drop "0001" name suffixes
-            "abstract": "",
-            "published": f"{year}-01-01",  # DBLP only gives the year
-            "date_from_year": True,
-            "venue": conference,
-            "conf": f"{conference} {year}",
-            "dois": [norm_doi(info["doi"])] if info.get("doi") else [],
-            "links": {"Publisher": ee} if ee else {},
-        })
-    return papers
+            body = get("https://api2.openreview.net/notes?" + params, OPENREVIEW_HEADERS)
+            notes = json.loads(body)["notes"]
+        except (urllib.error.URLError, json.JSONDecodeError, KeyError) as e:
+            print(f"OpenReview {venue_id} failed ({type(e).__name__}: {e}); reply started with: {body[:150]!r}")
+            return None
+        total += len(notes)
+        for n in notes:
+            c = n.get("content") or {}
+            val = lambda k: (c.get(k) or {}).get("value")
+            title, abstract = clean(val("title")), clean(val("abstract"))
+            if not title or not re.search(pattern, title + " " + abstract, re.I):
+                continue
+            ms = n.get("pdate") or n.get("cdate")
+            papers.append({
+                "id": "openreview:" + n["id"],
+                "title": title,
+                "authors": val("authors") or [],
+                "abstract": abstract,
+                "published": datetime.fromtimestamp(ms / 1000, timezone.utc).date().isoformat() if ms else f"{year}-01-01",
+                "venue": val("venue") or f"{conference} {year}",  # e.g. "ICLR 2026 Poster"
+                "conf": f"{conference} {year}",
+                "dois": [],
+                "links": {"OpenReview": f"https://openreview.net/forum?id={n['id']}",
+                          "PDF": f"https://openreview.net/pdf?id={n['id']}"},
+            })
+        if len(notes) < limit:
+            return papers, total
+        offset += limit
+        time.sleep(1)  # be polite to OpenReview's free API
 
 
 openalex_calls = 0  # counted so each run can report its usage
@@ -248,6 +247,10 @@ def fetch_openalex(query, api_key, days, extra_filter=""):
                 "dois": [doi] if doi else [],
                 "links": links,
             })
+            venue = papers[-1]["venue"] or ""
+            short = next((abbr for pat, abbr in CONF_FROM_VENUE if re.search(pat, venue, re.I)), None)
+            if short:
+                papers[-1]["conf"] = f"{short} {w['publication_date'][:4]}"
         cursor = data["meta"].get("next_cursor")
         if not cursor:
             break
@@ -283,22 +286,18 @@ class Store:
         match["venue"] = match["venue"] or new["venue"]
         if new.get("conf"):
             match.setdefault("conf", new["conf"])
-        if new.get("date_from_year"):
-            pass  # keep the existing date
-        elif match.get("date_from_year"):
-            match["published"] = new["published"]
-            match["date_from_year"] = False
-        else:
-            match["published"] = min(match["published"], new["published"])
+        match["published"] = min(match["published"], new["published"])
         self._index(match)
 
 
 def main():
     try:
         with open(OUT) as f:
-            store = Store(json.load(f)["papers"])
+            saved = json.load(f)
     except FileNotFoundError:
-        store = Store([])
+        saved = {"papers": []}
+    store = Store(saved["papers"])
+    conf_done = set(saved.get("conf_done", []))  # conference-years already fetched; accepted lists don't change
 
     for i, (tag, q) in enumerate(t for t in TOPICS.items() if "arxiv" in t[1]):
         if i:
@@ -307,13 +306,22 @@ def main():
             store.add(p, {tag})
 
     for tag, q in TOPICS.items():
-        if "dblp" not in q:
+        if "openreview" not in q:
             continue
         for year in (date.today().year, date.today().year - 1):
-            for conference in q["conferences"]:
-                time.sleep(1)  # be polite to DBLP's free API
-                for p in fetch_dblp(q["dblp"], conference, year):
+            for conference in q["openreview"]:
+                if f"{conference} {year}" in conf_done:
+                    continue
+                result = fetch_openreview(conference, year, q["match"])
+                if result is None:
+                    continue  # failed: try again next run
+                papers, accepted = result
+                for p in papers:
                     store.add(p, {tag})
+                if accepted:  # no accepted papers yet means decisions aren't out, so check again later
+                    conf_done.add(f"{conference} {year}")
+                print(f"OpenReview {conference} {year}: {accepted} accepted, {len(papers)} on federated learning")
+                time.sleep(1)
 
     api_key = os.environ.get("OPENALEX_API_KEY")
     if api_key:
@@ -327,7 +335,7 @@ def main():
                     continue
                 extra = ",primary_location.source.id:" + "|".join(ids)
             for p in fetch_openalex(q["openalex"], api_key, q["days"], extra):
-                store.add(p, {tag})
+                store.add(p, {tag} | ({"conf"} if p.get("conf") else set()))
     else:
         print("OPENALEX_API_KEY not set: skipping OpenAlex, feed has arXiv papers only")
 
@@ -338,7 +346,7 @@ def main():
 
     with open(OUT, "w") as f:
         json.dump({"updated": datetime.now(timezone.utc).isoformat(timespec="minutes"),
-                   "papers": papers}, f, indent=1)
+                   "conf_done": sorted(conf_done), "papers": papers}, f, indent=1)
     print(f"{len(papers)} papers in feed")
     print(f"OpenAlex calls this run: {openalex_calls} (about ${openalex_calls * 0.001:.3f} of the free $1/day)")
 

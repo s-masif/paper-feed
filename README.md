@@ -37,6 +37,7 @@ To add a venue, add a line such as `r"internet of things journal",`.
 
 ## Top conferences tab
 
-Federated learning papers accepted at NeurIPS, ICML, ICLR, AAAI and IJCAI (this year and last year), from DBLP's
-free public API. DBLP has no abstracts: a paper shows one when it matches an arXiv paper by title.
-Edit `TOPICS["conf"]` in `fetch.py` to change the conferences or the search term.
+Federated learning papers accepted at NeurIPS, ICML and ICLR (this year and last year) come from OpenReview's
+free public API, with abstracts. Each conference-year is downloaded once and remembered in `papers.json`
+(`conf_done`), since accepted lists don't change. AAAI and IJCAI papers come from the OpenAlex searches,
+when their venue is one of those conferences. Edit `TOPICS["conf"]` and `CONF_FROM_VENUE` in `fetch.py` to change this.

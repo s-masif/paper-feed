@@ -158,7 +158,7 @@
   </div>
   <div id="feed"></div>
 </main>
-<footer>Papers from arXiv, OpenAlex and DBLP. Venues limited to selected journals and conferences.</footer>
+<footer>Papers from arXiv, OpenAlex and OpenReview. Venues limited to selected journals and conferences.</footer>
 <script>
 const feed = document.getElementById("feed");
 const search = document.getElementById("search");
@@ -184,8 +184,8 @@ function dayLabel(iso) {
 // Short venue label for the badge, like the abbreviations on al-folio publication lists.
 const VENUE_ABBR = [
   [/neural information processing systems|\bneurips\b/i, "NeurIPS"],
-  [/international conference on machine learning/i, "ICML"],
-  [/international conference on learning representations/i, "ICLR"],
+  [/international conference on machine learning|\bicml\b/i, "ICML"],
+  [/international conference on learning representations|\biclr\b/i, "ICLR"],
   [/sigkdd|\bkdd\b/i, "KDD"],
   [/aaai/i, "AAAI"],
   [/international joint conference on artificial intelligence|\bijcai\b/i, "IJCAI"],
@@ -255,11 +255,11 @@ function render() {
       abs.onclick = () => abs.setAttribute("aria-expanded", String(li.classList.toggle("open")));
       actions.append(abs);
     }
-    for (const label of ["arXiv", "Publisher", "PDF"]) {
+    for (const label of ["arXiv", "OpenReview", "Publisher", "PDF"]) {
       if (safe(p.links[label])) actions.append(el("a", { className: "btn", href: p.links[label], target: "_blank", rel: "noopener", textContent: label }));
     }
 
-    const main = safe(p.links.Publisher) || safe(p.links.arXiv) || safe(p.links.PDF);
+    const main = safe(p.links.Publisher) || safe(p.links.OpenReview) || safe(p.links.arXiv) || safe(p.links.PDF);
     const body = el("div", {},
       el("p", { className: "title" }, main ? el("a", { href: main, target: "_blank", rel: "noopener", textContent: p.title }) : p.title),
       el("p", { className: "author", textContent: authors }),
