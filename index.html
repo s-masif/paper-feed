@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paper feed</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3F6F7; --ink: #1B2932; --muted: #5C6B74; --rule: #D5DDE1;
+    --fl: #2E6A85; --gnn: #6A4C9C; --surface: #FFFFFF;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #141B20; --ink: #E3E9EC; --muted: #93A2AB; --rule: #2A363E;
+      --fl: #7FB6CF; --gnn: #B9A2E0; --surface: #1A2329;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font: 16px/1.55 "IBM Plex Sans", system-ui, sans-serif;
+    padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+  }
+  main { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+  header h1 {
+    font: 600 2.4rem/1.1 "Source Serif 4", Georgia, serif; margin: 0 0 .4rem;
+    letter-spacing: -.01em;
+  }
+  .updated { color: var(--muted); font-size: .9rem; margin: 0 0 1.5rem; }
+  .filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filters button {
+    font: 500 .9rem "IBM Plex Sans", system-ui, sans-serif; color: var(--ink);
+    background: transparent; border: 1px solid var(--rule); border-radius: 999px;
+    padding: .4rem .9rem; cursor: pointer;
+  }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .filters button:focus-visible, a:focus-visible, .toggle:focus-visible { outline: 2px solid var(--fl); outline-offset: 2px; }
+  h2 {
+    font: 600 1rem "IBM Plex Sans", system-ui, sans-serif; color: var(--muted);
+    margin: 2.25rem 0 .75rem; padding-bottom: .4rem; border-bottom: 1px solid var(--rule);
+  }
+  article {
+    background: var(--surface); padding: 1.1rem 1.25rem; margin-bottom: .75rem;
+    border-left: 3px solid var(--fl); border-radius: 0 6px 6px 0;
+  }
+  article.gnn { border-left-color: var(--gnn); }
+  article h3 { font: 600 1.2rem/1.3 "Source Serif 4", Georgia, serif; margin: 0 0 .35rem; }
+  article h3 a { color: inherit; text-decoration: none; }
+  article h3 a:hover { text-decoration: underline; }
+  .authors { color: var(--muted); font-size: .88rem; margin: 0 0 .6rem; }
+  .tag { font-size: .8rem; font-weight: 500; color: var(--gnn); margin-right: .5rem; }
+  .venue { color: var(--muted); font-size: .88rem; font-style: italic; margin: -.35rem 0 .6rem; }
+  .abstract {
+    font: 400 1rem/1.65 "Source Serif 4", Georgia, serif; margin: 0;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  article.open .abstract { display: block; }
+  .actions { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; margin-top: .7rem; font-size: .9rem; }
+  .actions > * { white-space: nowrap; }
+  .actions a, .toggle { color: var(--fl); font: 500 .9rem "IBM Plex Sans", system-ui, sans-serif; }
+  .toggle { background: none; border: 0; padding: 0; cursor: pointer; }
+  .status { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Paper feed</h1>
+    <p class="updated" id="updated">Loading papers…</p>
+    <div class="filters" role="group" aria-label="Topic">
+      <button data-topic="fl-gnn" aria-pressed="true">Federated + graph learning</button>
+      <button data-topic="fl" aria-pressed="false">All federated learning</button>
+    </div>
+  </header>
+  <div id="feed"></div>
+</main>
+<script>
+const feed = document.getElementById("feed");
+let papers = [];
+let topic = "fl-gnn";
+
+function el(tag, props = {}, ...children) {
+  const node = Object.assign(document.createElement(tag), props);
+  node.append(...children);
+  return node;
+}
+
+// Links come from outside sources: only allow http(s) URLs.
+function safe(url) {
+  return typeof url === "string" && /^https?:\/\//i.test(url) ? url : null;
+}
+
+function dayLabel(iso) {
+  const d = new Date(iso + "T00:00:00");
+  return d.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
+}
+
+function render() {
+  feed.replaceChildren();
+  const shown = papers.filter(p => p.tags.includes(topic));
+  if (!shown.length) {
+    feed.append(el("p", { className: "status", textContent: "No papers in this topic yet. The next daily update will add any new ones." }));
+    return;
+  }
+  let lastDay = null;
+  for (const p of shown) {
+    if (p.published !== lastDay) {
+      lastDay = p.published;
+      feed.append(el("h2", { textContent: dayLabel(p.published) }));
+    }
+    const isGnn = p.tags.includes("fl-gnn");
+    const authors = p.authors.length > 6 ? p.authors.slice(0, 6).join(", ") + " et al." : p.authors.join(", ");
+    const art = el("article", { className: isGnn ? "gnn" : "" });
+    const authorLine = el("p", { className: "authors" });
+    if (isGnn && topic === "fl") authorLine.append(el("span", { className: "tag", textContent: "Graph" }));
+    authorLine.append(authors);
+    const actions = el("div", { className: "actions" });
+    if (p.abstract) {
+      const toggle = el("button", { className: "toggle", textContent: "Show full abstract", type: "button" });
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.onclick = () => {
+        const open = art.classList.toggle("open");
+        toggle.textContent = open ? "Show less" : "Show full abstract";
+        toggle.setAttribute("aria-expanded", String(open));
+      };
+      actions.append(toggle);
+    }
+    for (const label of ["arXiv", "Publisher", "PDF"]) {
+      if (safe(p.links[label])) actions.append(el("a", { href: p.links[label], target: "_blank", rel: "noopener", textContent: label }));
+    }
+    const main = safe(p.links.Publisher) || safe(p.links.arXiv) || safe(p.links.PDF);
+    art.append(
+      el("h3", {}, main ? el("a", { href: main, target: "_blank", rel: "noopener", textContent: p.title }) : p.title),
+      authorLine
+    );
+    if (p.venue) art.append(el("p", { className: "venue", textContent: p.venue }));
+    art.append(
+      el("p", { className: "abstract", textContent: p.abstract || "The publisher doesn’t share this abstract. Open the paper to read it." }),
+      actions
+    );
+    feed.append(art);
+  }
+}
+
+document.querySelectorAll(".filters button").forEach(btn => {
+  btn.onclick = () => {
+    topic = btn.dataset.topic;
+    document.querySelectorAll(".filters button").forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+    render();
+  };
+});
+
+fetch("papers.json", { cache: "no-store" })
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(data => {
+    papers = data.papers;
+    const when = new Date(data.updated).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+    document.getElementById("updated").textContent = `${papers.length} papers from the last 60 days. Updated ${when}.`;
+    render();
+  })
+  .catch(() => {
+    document.getElementById("updated").textContent =
+      "No papers.json yet. Run the “Update paper feed” workflow once from the Actions tab on GitHub.";
+  });
+</script>
+</body>
+</html>
