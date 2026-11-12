@@ -19,6 +19,8 @@ jobs:
       - run: python fetch.py
         env:
           OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+          OPENREVIEW_USERNAME: ${{ secrets.OPENREVIEW_USERNAME }}
+          OPENREVIEW_PASSWORD: ${{ secrets.OPENREVIEW_PASSWORD }}
       - name: Commit new papers
         run: |
           git config user.name "github-actions[bot]"
