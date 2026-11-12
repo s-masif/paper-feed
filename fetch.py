@@ -3,6 +3,7 @@ import json
 import os
 import re
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -95,10 +96,31 @@ def norm_doi(doi):
     return doi.lower().removeprefix("https://doi.org/")
 
 
+DBLP_HOSTS = ["https://dblp.org", "https://dblp.uni-trier.de"]  # main site, then official mirror
+DBLP_HEADERS = {"User-Agent": "paper-feed/1.0 (+https://s-masif.github.io/paper-feed/)"}
+
+
+def dblp_search(params):
+    """DBLP search result as JSON, or None if every host gave a bad reply."""
+    for host in DBLP_HOSTS:
+        body = b""
+        try:
+            body = get(f"{host}/search/publ/api?{params}", DBLP_HEADERS)
+            return json.loads(body)
+        except (urllib.error.URLError, json.JSONDecodeError) as e:
+            print(f"DBLP {host} failed ({type(e).__name__}: {e}); reply started with: {body[:150]!r}")
+            time.sleep(2)
+    return None
+
+
 def fetch_dblp(query, conference, year):
     """Accepted papers at one conference in one year whose title matches the query."""
     params = urllib.parse.urlencode({"q": f"{query} venue:{conference} year:{year}", "format": "json", "h": 1000})
-    hits = json.loads(get("https://dblp.org/search/publ/api?" + params))["result"]["hits"].get("hit", [])
+    data = dblp_search(params)
+    if data is None:
+        print(f"Skipped {conference} {year}: DBLP unavailable this run")
+        return []
+    hits = data["result"]["hits"].get("hit", [])
     papers = []
     for h in hits:
         info = h["info"]
@@ -128,11 +150,11 @@ def fetch_dblp(query, conference, year):
 openalex_calls = 0  # counted so each run can report its usage
 
 
-def get(url):
+def get(url, headers=None):
     global openalex_calls
     if "api.openalex.org" in url:
         openalex_calls += 1
-    with urllib.request.urlopen(url, timeout=60) as resp:
+    with urllib.request.urlopen(urllib.request.Request(url, headers=headers) if headers else url, timeout=60) as resp:
         return resp.read()
 
 
