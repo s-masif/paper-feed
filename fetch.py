@@ -37,6 +37,22 @@ TOPICS = {
         "days": 60,
         "arxiv_max": 100,
     },
+    # OpenAlex only: AI/ML papers from selected Nature journals (any AI topic, not just FL).
+    "nature-ai": {
+        "openalex": openalex_any(['"machine learning"', '"deep learning"', '"neural network"',
+                                  '"artificial intelligence"', '"language model"', '"foundation model"',
+                                  '"reinforcement learning"']),
+        "journals": ["Nature", "Nature Communications", "Nature Machine Intelligence",
+                     "Nature Computational Science", "Nature Human Behaviour"],
+        "days": 60,
+    },
+    # DBLP only (free, no key): federated learning papers accepted at these conferences,
+    # this year and last year. DBLP terms are prefixes, so "federat" matches "federated".
+    "conf": {
+        "dblp": "federat",
+        "conferences": ["NeurIPS", "ICML", "ICLR", "AAAI", "IJCAI"],
+        "days": 730,
+    },
 }
 
 # Published papers are kept only if their venue matches one of these (case-insensitive regexes).
@@ -79,7 +95,43 @@ def norm_doi(doi):
     return doi.lower().removeprefix("https://doi.org/")
 
 
+def fetch_dblp(query, conference, year):
+    """Accepted papers at one conference in one year whose title matches the query."""
+    params = urllib.parse.urlencode({"q": f"{query} venue:{conference} year:{year}", "format": "json", "h": 1000})
+    hits = json.loads(get("https://dblp.org/search/publ/api?" + params))["result"]["hits"].get("hit", [])
+    papers = []
+    for h in hits:
+        info = h["info"]
+        venues = info.get("venue")
+        venues = venues if isinstance(venues, list) else [venues]
+        if conference.lower() not in [str(v).lower() for v in venues] or str(info.get("year")) != str(year):
+            continue  # skip workshops and other venues the prefix search also matched
+        authors = (info.get("authors") or {}).get("author", [])
+        authors = authors if isinstance(authors, list) else [authors]
+        ee = info.get("ee")
+        ee = ee[0] if isinstance(ee, list) else ee
+        papers.append({
+            "id": "dblp:" + info.get("key", info["title"]),
+            "title": clean(info["title"]).rstrip("."),
+            "authors": [re.sub(r"\s\d{4}$", "", a["text"]) for a in authors],  # drop "0001" name suffixes
+            "abstract": "",
+            "published": f"{year}-01-01",  # DBLP only gives the year
+            "date_from_year": True,
+            "venue": conference,
+            "conf": f"{conference} {year}",
+            "dois": [norm_doi(info["doi"])] if info.get("doi") else [],
+            "links": {"Publisher": ee} if ee else {},
+        })
+    return papers
+
+
+openalex_calls = 0  # counted so each run can report its usage
+
+
 def get(url):
+    global openalex_calls
+    if "api.openalex.org" in url:
+        openalex_calls += 1
     with urllib.request.urlopen(url, timeout=60) as resp:
         return resp.read()
 
@@ -122,11 +174,25 @@ def abstract_from_index(inverted):
     return clean(" ".join(words[i] for i in sorted(words)))
 
 
-def fetch_openalex(query, api_key, days):
+def openalex_source_ids(names, api_key):
+    """Look up each journal's OpenAlex ID by exact name."""
+    ids = []
+    for name in names:
+        params = urllib.parse.urlencode({"search": name, "per_page": 25, "select": "id,display_name", "api_key": api_key})
+        results = json.loads(get("https://api.openalex.org/sources?" + params))["results"]
+        match = next((r["id"] for r in results if r["display_name"].lower() == name.lower()), None)
+        if match:
+            ids.append(match.rsplit("/", 1)[-1])
+        else:
+            print(f"Journal not found in OpenAlex, skipped: {name}")
+    return ids
+
+
+def fetch_openalex(query, api_key, days, extra_filter=""):
     today = date.today()
     base = {
         "search.title_abstract_keywords": query,  # keywords also catch papers with no abstract
-        "filter": f"from_publication_date:{today - timedelta(days=days)},to_publication_date:{today}",
+        "filter": f"from_publication_date:{today - timedelta(days=days)},to_publication_date:{today}" + extra_filter,
         "sort": "publication_date:desc",
         "per_page": 100,
         "select": "id,doi,title,publication_date,authorships,abstract_inverted_index,primary_location,open_access",
@@ -193,7 +259,15 @@ class Store:
             match["links"].setdefault(label, url)
         match["abstract"] = match["abstract"] or new["abstract"]
         match["venue"] = match["venue"] or new["venue"]
-        match["published"] = min(match["published"], new["published"])
+        if new.get("conf"):
+            match.setdefault("conf", new["conf"])
+        if new.get("date_from_year"):
+            pass  # keep the existing date
+        elif match.get("date_from_year"):
+            match["published"] = new["published"]
+            match["date_from_year"] = False
+        else:
+            match["published"] = min(match["published"], new["published"])
         self._index(match)
 
 
@@ -204,16 +278,33 @@ def main():
     except FileNotFoundError:
         store = Store([])
 
-    for i, (tag, q) in enumerate(TOPICS.items()):
+    for i, (tag, q) in enumerate(t for t in TOPICS.items() if "arxiv" in t[1]):
         if i:
             time.sleep(3)  # arXiv asks for 3 s between API calls
         for p in fetch_arxiv(q["arxiv"], q["arxiv_max"]):
             store.add(p, {tag})
 
+    for tag, q in TOPICS.items():
+        if "dblp" not in q:
+            continue
+        for year in (date.today().year, date.today().year - 1):
+            for conference in q["conferences"]:
+                time.sleep(1)  # be polite to DBLP's free API
+                for p in fetch_dblp(q["dblp"], conference, year):
+                    store.add(p, {tag})
+
     api_key = os.environ.get("OPENALEX_API_KEY")
     if api_key:
         for tag, q in TOPICS.items():
-            for p in fetch_openalex(q["openalex"], api_key, q["days"]):
+            if "openalex" not in q:
+                continue
+            extra = ""
+            if "journals" in q:
+                ids = openalex_source_ids(q["journals"], api_key)
+                if not ids:  # never run this search without the journal restriction
+                    continue
+                extra = ",primary_location.source.id:" + "|".join(ids)
+            for p in fetch_openalex(q["openalex"], api_key, q["days"], extra):
                 store.add(p, {tag})
     else:
         print("OPENALEX_API_KEY not set: skipping OpenAlex, feed has arXiv papers only")
@@ -227,6 +318,7 @@ def main():
         json.dump({"updated": datetime.now(timezone.utc).isoformat(timespec="minutes"),
                    "papers": papers}, f, indent=1)
     print(f"{len(papers)} papers in feed")
+    print(f"OpenAlex calls this run: {openalex_calls} (about ${openalex_calls * 0.001:.3f} of the free $1/day)")
 
 
 if __name__ == "__main__":

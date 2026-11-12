@@ -34,3 +34,9 @@ Publisher links. Papers whose title changed between preprint and publication wil
 Published papers are kept only if their venue matches `TOP_VENUES` in `fetch.py` (Nature-family journals,
 IEEE Transactions, and top ML/data/systems conferences). arXiv preprints are always kept.
 To add a venue, add a line such as `r"internet of things journal",`.
+
+## Top conferences tab
+
+Federated learning papers accepted at NeurIPS, ICML, ICLR, AAAI and IJCAI (this year and last year), from DBLP's
+free public API. DBLP has no abstracts: a paper shows one when it matches an arXiv paper by title.
+Edit `TOPICS["conf"]` in `fetch.py` to change the conferences or the search term.

@@ -151,12 +151,14 @@
   <p class="updated" id="updated">Loading papers…</p>
   <input class="search" id="search" type="search" placeholder="Type to filter" aria-label="Filter papers by title, author, venue or abstract">
   <div class="filters" role="group" aria-label="Topic">
+    <button data-topic="fl" aria-pressed="false">Federated learning</button>
     <button data-topic="fl-gnn" aria-pressed="true">Federated graph learning</button>
-    <button data-topic="fl" aria-pressed="false">All federated learning</button>
+    <button data-topic="nature-ai" aria-pressed="false">Nature · AI</button>
+    <button data-topic="conf" aria-pressed="false">Top conferences</button>
   </div>
   <div id="feed"></div>
 </main>
-<footer>Papers from arXiv and OpenAlex. Venues limited to selected journals and conferences.</footer>
+<footer>Papers from arXiv, OpenAlex and DBLP. Venues limited to selected journals and conferences.</footer>
 <script>
 const feed = document.getElementById("feed");
 const search = document.getElementById("search");
@@ -222,12 +224,20 @@ function render() {
       : "No papers in this topic yet. The next daily update will add any new ones." }));
     return;
   }
-  let lastDay = null, list = null;
+  // The conference tab is grouped by conference and year ("NeurIPS 2025"), the others by date.
+  const byConf = topic === "conf";
+  if (byConf) {
+    const order = ["NeurIPS", "ICML", "ICLR", "AAAI", "IJCAI"];
+    shown.sort((a, b) => b.conf.split(" ")[1] - a.conf.split(" ")[1] ||
+      order.indexOf(a.conf.split(" ")[0]) - order.indexOf(b.conf.split(" ")[0]) || a.title.localeCompare(b.title));
+  }
+  let lastGroup = null, list = null;
   for (const p of shown) {
-    if (p.published !== lastDay) {
-      lastDay = p.published;
+    const group = byConf ? p.conf : p.published;
+    if (group !== lastGroup) {
+      lastGroup = group;
       list = el("ol");
-      feed.append(el("h2", { textContent: dayLabel(p.published) }), list);
+      feed.append(el("h2", { textContent: byConf ? p.conf : dayLabel(p.published) }), list);
     }
     const authors = p.authors.length > 6 ? p.authors.slice(0, 6).join(", ") + ", et al." : p.authors.join(", ");
     const li = el("li", { className: "paper" });
@@ -235,7 +245,8 @@ function render() {
     if (p.venue) badge.title = p.venue;
 
     const periodical = el("p", { className: "periodical", textContent: p.venue || "arXiv preprint" });
-    if (topic === "fl" && p.tags.includes("fl-gnn")) periodical.append(el("span", { className: "graph-tag", textContent: "· graph" }));
+    const isGraph = p.tags.includes("fl-gnn") || (byConf && /graph|gnn/i.test(p.title));
+    if ((topic === "fl" || byConf) && isGraph) periodical.append(el("span", { className: "graph-tag", textContent: "· graph" }));
 
     const actions = el("div", { className: "actions" });
     if (p.abstract) {
@@ -253,7 +264,7 @@ function render() {
       el("p", { className: "title" }, main ? el("a", { href: main, target: "_blank", rel: "noopener", textContent: p.title }) : p.title),
       el("p", { className: "author", textContent: authors }),
       periodical,
-      el("p", { className: "preview", textContent: p.abstract || "The publisher doesn’t share this abstract. Open the paper to read it." })
+      el("p", { className: "preview", textContent: p.abstract || "No abstract available here. Open the paper to read it." })
     );
     if (p.abstract) body.append(el("p", { className: "abstract", textContent: p.abstract }));
     body.append(actions);
