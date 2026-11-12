@@ -1,5 +1,6 @@
 {
- "updated": "2026-11-12T14:02+00:00",
+ "updated": "2026-11-12T14:11+00:00",
+ "conf_done": [],
  "papers": [
   {
    "id": "10.1038/d41586-026-03412-5",
@@ -25199,8 +25200,10 @@
     "PDF": "https://www.ijcai.org/proceedings/2026/0594.pdf"
    },
    "tags": [
+    "conf",
     "fl-gnn"
-   ]
+   ],
+   "conf": "IJCAI 2026"
   },
   {
    "id": "arxiv:2608.28963",
