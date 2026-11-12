@@ -3,83 +3,137 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Paper feed</title>
+<title>paper feed | Federated Learning | Graph Neural Network</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #F3F6F7; --ink: #1B2932; --muted: #5C6B74; --rule: #D5DDE1;
-    --fl: #2E6A85; --gnn: #6A4C9C; --surface: #FFFFFF;
+    --theme: #b509ac;          /* al-folio's default accent: change this to match your site */
+    --text: #000000;
+    --muted: #6c757d;
+    --divider: rgba(0, 0, 0, .1);
+    --bg: #ffffff;
+    --preprint: #7a7f87;       /* badge color for arXiv preprints */
     color-scheme: light;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #141B20; --ink: #E3E9EC; --muted: #93A2AB; --rule: #2A363E;
-      --fl: #7FB6CF; --gnn: #B9A2E0; --surface: #1A2329;
-      color-scheme: dark;
-    }
-  }
   * { box-sizing: border-box; }
+  html { scroll-padding-top: 4rem; }
   body {
-    margin: 0; background: var(--paper); color: var(--ink);
-    font: 16px/1.55 "IBM Plex Sans", system-ui, sans-serif;
-    padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 400 1rem/1.5 Roboto, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
-  main { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
-  header h1 {
-    font: 600 2.4rem/1.1 "Source Serif 4", Georgia, serif; margin: 0 0 .4rem;
-    letter-spacing: -.01em;
+  a { color: var(--theme); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--theme); outline-offset: 2px; }
+
+  /* top bar, like al-folio's navbar */
+  nav {
+    position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, .96);
+    border-bottom: 1px solid var(--divider); padding-top: env(safe-area-inset-top, 0px);
   }
-  .updated { color: var(--muted); font-size: .9rem; margin: 0 0 1.5rem; }
-  .filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  nav .inner {
+    max-width: 930px; margin: 0 auto; padding: .7rem 1rem;
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  }
+  nav .name { color: var(--text); font-weight: 300; font-size: 1.15rem; }
+  nav .name b { font-weight: 700; }
+  nav .links { display: flex; gap: 1.1rem; font-size: .95rem; }
+  nav .links a { color: var(--text); }
+  nav .links a.current { color: var(--theme); }
+
+  main { max-width: 930px; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+  h1 { font-weight: 300; font-size: 2.5rem; line-height: 1.2; margin: 0 0 .25rem; }
+  .description { color: var(--muted); margin: 0 0 .25rem; }
+  .updated { color: var(--muted); font-size: .85rem; margin: 0 0 1.5rem; }
+
+  .filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
   .filters button {
-    font: 500 .9rem "IBM Plex Sans", system-ui, sans-serif; color: var(--ink);
-    background: transparent; border: 1px solid var(--rule); border-radius: 999px;
-    padding: .4rem .9rem; cursor: pointer;
+    font: 400 .8rem Roboto, -apple-system, "Segoe UI", Arial, sans-serif; text-transform: uppercase;
+    letter-spacing: .02em; color: var(--text); background: transparent;
+    border: 1px solid var(--text); border-radius: .2rem; padding: .3rem .8rem; cursor: pointer;
   }
-  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .filters button:focus-visible, a:focus-visible, .toggle:focus-visible { outline: 2px solid var(--fl); outline-offset: 2px; }
+  .filters button:hover { border-color: var(--theme); color: var(--theme); }
+  .filters button[aria-pressed="true"] { background: var(--theme); border-color: var(--theme); color: #fff; }
+
+  /* date headers, like al-folio's year headers */
   h2 {
-    font: 600 1rem "IBM Plex Sans", system-ui, sans-serif; color: var(--muted);
-    margin: 2.25rem 0 .75rem; padding-bottom: .4rem; border-bottom: 1px solid var(--rule);
+    font-weight: 300; font-size: 1.6rem; color: rgba(0, 0, 0, .25); text-align: right;
+    border-top: 1px solid var(--divider); margin: 2rem 0 .5rem; padding-top: .5rem;
   }
-  article {
-    background: var(--surface); padding: 1.1rem 1.25rem; margin-bottom: .75rem;
-    border-left: 3px solid var(--fl); border-radius: 0 6px 6px 0;
+
+  ol { list-style: none; padding: 0; margin: 0; }
+  li.paper { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: .9rem 0; }
+  .abbr { padding-top: .2rem; }
+  .badge {
+    display: inline-block; max-width: 100%; background: var(--theme); color: #fff;
+    font-size: .75rem; font-weight: 700; line-height: 1.25; text-align: center;
+    padding: .3rem .4rem; border-radius: .25rem; width: 6.25rem; overflow-wrap: anywhere;
   }
-  article.gnn { border-left-color: var(--gnn); }
-  article h3 { font: 600 1.2rem/1.3 "Source Serif 4", Georgia, serif; margin: 0 0 .35rem; }
-  article h3 a { color: inherit; text-decoration: none; }
-  article h3 a:hover { text-decoration: underline; }
-  .authors { color: var(--muted); font-size: .88rem; margin: 0 0 .6rem; }
-  .tag { font-size: .8rem; font-weight: 500; color: var(--gnn); margin-right: .5rem; }
-  .venue { color: var(--muted); font-size: .88rem; font-style: italic; margin: -.35rem 0 .6rem; }
+  .badge.preprint { background: var(--preprint); }
+  .title { font-weight: 700; margin: 0; }
+  .title a { color: var(--text); }
+  .title a:hover { color: var(--theme); text-decoration: none; }
+  .author { margin: .1rem 0 0; }
+  .periodical { margin: .1rem 0 0; font-style: italic; }
+  .graph-tag { font-style: normal; font-size: .75rem; color: var(--theme); margin-left: .4rem; }
+  .preview {
+    margin: .45rem 0 0; color: #333; font-size: .92rem;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  li.open .preview { display: none; }
   .abstract {
-    font: 400 1rem/1.65 "Source Serif 4", Georgia, serif; margin: 0;
-    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    display: none; margin: .6rem 0 0; padding: .6rem .8rem; font-size: .92rem;
+    border: 1px solid var(--divider); border-radius: .25rem;
   }
-  article.open .abstract { display: block; }
-  .actions { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; margin-top: .7rem; font-size: .9rem; }
-  .actions > * { white-space: nowrap; }
-  .actions a, .toggle { color: var(--fl); font: 500 .9rem "IBM Plex Sans", system-ui, sans-serif; }
-  .toggle { background: none; border: 0; padding: 0; cursor: pointer; }
+  li.open .abstract { display: block; }
+  .actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .55rem; }
+  .btn {
+    font: 400 .72rem Roboto, -apple-system, "Segoe UI", Arial, sans-serif; text-transform: uppercase;
+    color: var(--text); background: transparent; border: 1px solid var(--text);
+    border-radius: .2rem; padding: .15rem .7rem; cursor: pointer; white-space: nowrap;
+  }
+  .btn:hover { color: var(--theme); border-color: var(--theme); text-decoration: none; }
+  li.open .btn.abs { color: var(--theme); border-color: var(--theme); }
   .status { color: var(--muted); }
+
+  footer {
+    max-width: 930px; margin: 0 auto; padding: 1.5rem 1rem 2rem; text-align: center;
+    color: var(--muted); font-size: .8rem; border-top: 1px solid var(--divider);
+  }
+
+  @media (max-width: 576px) {
+    h1 { font-size: 2rem; }
+    li.paper { grid-template-columns: 1fr; gap: .4rem; }
+    .badge { width: auto; }
+    nav .links a.hide-sm { display: none; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <header>
-    <h1>Paper feed</h1>
-    <p class="updated" id="updated">Loading papers…</p>
-    <div class="filters" role="group" aria-label="Topic">
-      <button data-topic="fl-gnn" aria-pressed="true">Federated + graph learning</button>
-      <button data-topic="fl" aria-pressed="false">All federated learning</button>
+<nav>
+  <div class="inner">
+    <a class="name" href="https://s-masif.github.io/"><b>S M Asiful</b> Huda</a>
+    <div class="links">
+      <a href="https://s-masif.github.io/" class="hide-sm">about</a>
+      <a href="https://s-masif.github.io/publications/" class="hide-sm">publications</a>
+      <a href="./" class="current">paper feed</a>
     </div>
-  </header>
+  </div>
+</nav>
+<main>
+  <h1>paper feed</h1>
+  <p class="description">New papers on federated learning and graph neural networks, updated daily.</p>
+  <p class="updated" id="updated">Loading papers…</p>
+  <div class="filters" role="group" aria-label="Topic">
+    <button data-topic="fl-gnn" aria-pressed="true">Federated graph learning</button>
+    <button data-topic="fl" aria-pressed="false">All federated learning</button>
+  </div>
   <div id="feed"></div>
 </main>
+<footer>Papers from arXiv and OpenAlex. Venues limited to selected journals and conferences.</footer>
 <script>
 const feed = document.getElementById("feed");
 let papers = [];
@@ -101,6 +155,38 @@ function dayLabel(iso) {
   return d.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
 }
 
+// Short venue label for the badge, like the abbreviations on al-folio publication lists.
+const VENUE_ABBR = [
+  [/neural information processing systems|\bneurips\b/i, "NeurIPS"],
+  [/international conference on machine learning/i, "ICML"],
+  [/international conference on learning representations/i, "ICLR"],
+  [/sigkdd|\bkdd\b/i, "KDD"],
+  [/aaai/i, "AAAI"],
+  [/international joint conference on artificial intelligence|\bijcai\b/i, "IJCAI"],
+  [/\bweb conference\b|world wide web conference/i, "WWW"],
+  [/computer vision and pattern recognition/i, "CVPR"],
+  [/international conference on computer vision/i, "ICCV"],
+  [/\binfocom\b/i, "INFOCOM"],
+  [/international conference on data engineering/i, "ICDE"],
+  [/\bvldb\b|very large data bases/i, "VLDB"],
+  [/\bsigmod\b/i, "SIGMOD"],
+  [/web search and data mining/i, "WSDM"],
+  [/information and knowledge management/i, "CIKM"],
+  [/international conference on data mining/i, "ICDM"],
+  [/\bmobicom\b/i, "MobiCom"],
+];
+function badgeText(venue) {
+  if (!venue) return "arXiv";
+  for (const [re, abbr] of VENUE_ABBR) if (re.test(venue)) return abbr;
+  // "IEEE Transactions on Neural Networks and Learning Systems" -> "IEEE TNNLS"
+  const t = venue.match(/ieee transactions on (.+)/i);
+  if (t) {
+    const initials = t[1].split(/[\s,-]+/).filter(w => /^[A-Z]/.test(w)).map(w => w[0]).join("");
+    return "IEEE T" + initials;
+  }
+  return venue;  // e.g. "Nature Communications"
+}
+
 function render() {
   feed.replaceChildren();
   const shown = papers.filter(p => p.tags.includes(topic));
@@ -108,43 +194,43 @@ function render() {
     feed.append(el("p", { className: "status", textContent: "No papers in this topic yet. The next daily update will add any new ones." }));
     return;
   }
-  let lastDay = null;
+  let lastDay = null, list = null;
   for (const p of shown) {
     if (p.published !== lastDay) {
       lastDay = p.published;
-      feed.append(el("h2", { textContent: dayLabel(p.published) }));
+      list = el("ol");
+      feed.append(el("h2", { textContent: dayLabel(p.published) }), list);
     }
-    const isGnn = p.tags.includes("fl-gnn");
-    const authors = p.authors.length > 6 ? p.authors.slice(0, 6).join(", ") + " et al." : p.authors.join(", ");
-    const art = el("article", { className: isGnn ? "gnn" : "" });
-    const authorLine = el("p", { className: "authors" });
-    if (isGnn && topic === "fl") authorLine.append(el("span", { className: "tag", textContent: "Graph" }));
-    authorLine.append(authors);
+    const authors = p.authors.length > 6 ? p.authors.slice(0, 6).join(", ") + ", et al." : p.authors.join(", ");
+    const li = el("li", { className: "paper" });
+    const badge = el("span", { className: "badge" + (p.venue ? "" : " preprint"), textContent: badgeText(p.venue) });
+    if (p.venue) badge.title = p.venue;
+
+    const periodical = el("p", { className: "periodical", textContent: p.venue || "arXiv preprint" });
+    if (topic === "fl" && p.tags.includes("fl-gnn")) periodical.append(el("span", { className: "graph-tag", textContent: "· graph" }));
+
     const actions = el("div", { className: "actions" });
     if (p.abstract) {
-      const toggle = el("button", { className: "toggle", textContent: "Show full abstract", type: "button" });
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.onclick = () => {
-        const open = art.classList.toggle("open");
-        toggle.textContent = open ? "Show less" : "Show full abstract";
-        toggle.setAttribute("aria-expanded", String(open));
-      };
-      actions.append(toggle);
+      const abs = el("button", { className: "btn abs", textContent: "Abs", type: "button" });
+      abs.setAttribute("aria-expanded", "false");
+      abs.onclick = () => abs.setAttribute("aria-expanded", String(li.classList.toggle("open")));
+      actions.append(abs);
     }
     for (const label of ["arXiv", "Publisher", "PDF"]) {
-      if (safe(p.links[label])) actions.append(el("a", { href: p.links[label], target: "_blank", rel: "noopener", textContent: label }));
+      if (safe(p.links[label])) actions.append(el("a", { className: "btn", href: p.links[label], target: "_blank", rel: "noopener", textContent: label }));
     }
+
     const main = safe(p.links.Publisher) || safe(p.links.arXiv) || safe(p.links.PDF);
-    art.append(
-      el("h3", {}, main ? el("a", { href: main, target: "_blank", rel: "noopener", textContent: p.title }) : p.title),
-      authorLine
+    const body = el("div", {},
+      el("p", { className: "title" }, main ? el("a", { href: main, target: "_blank", rel: "noopener", textContent: p.title }) : p.title),
+      el("p", { className: "author", textContent: authors }),
+      periodical,
+      el("p", { className: "preview", textContent: p.abstract || "The publisher doesn’t share this abstract. Open the paper to read it." })
     );
-    if (p.venue) art.append(el("p", { className: "venue", textContent: p.venue }));
-    art.append(
-      el("p", { className: "abstract", textContent: p.abstract || "The publisher doesn’t share this abstract. Open the paper to read it." }),
-      actions
-    );
-    feed.append(art);
+    if (p.abstract) body.append(el("p", { className: "abstract", textContent: p.abstract }));
+    body.append(actions);
+    li.append(el("div", { className: "abbr" }, badge), body);
+    list.append(li);
   }
 }
 
