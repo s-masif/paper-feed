@@ -11,7 +11,17 @@
 <link rel="alternate" type="application/rss+xml" title="paper feed: Nature · AI" href="feed/nature.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- The font loads without holding up the page; text shows in the system font until it arrives. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"></noscript>
+<script>
+  // Start downloading the opening tab's full list now, while the rest of the page is still being read.
+  (function () {
+    var tabs = ["preprint", "ieee-tx", "conf", "nature"], t = location.hash.slice(1);
+    if (tabs.indexOf(t) < 0) t = "preprint";
+    window.earlyFetch = { url: "feed/" + t + ".json", req: fetch("feed/" + t + ".json", { cache: "no-cache" }) };
+  })();
+</script>
 <style>
   :root {
     --theme: #b509ac;          /* al-folio's default accent: change this to match your site */
@@ -231,6 +241,8 @@
   <a href="feed/conf.xml">Conferences</a> · <a href="feed/nature.xml">Nature · AI</a>.
 </footer>
 <div class="toast" id="toast" role="status"></div>
+<!-- Written by fetch.py on every run: update info and the first papers of the opening tab. -->
+<script type="application/json" id="boot">{}</script>
 <script>
 const $ = id => document.getElementById(id);
 const feed = $("feed"), search = $("search");
@@ -268,9 +280,14 @@ const idle = window.requestIdleCallback || (f => setTimeout(f, 300));
 // feed/<tab>-abs.json (full abstracts, fetched in the background). "no-cache" lets the browser reuse its
 // copy when a file hasn't changed (a quick 304) instead of downloading it again on every visit.
 function getJSON(url) {
-  return fetch(url, { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
+  let req;
+  if (window.earlyFetch && window.earlyFetch.url === url) { req = window.earlyFetch.req; window.earlyFetch = null; }
+  else req = fetch(url, { cache: "no-cache" });
+  return req.then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
 }
-const tabFiles = {}, absFiles = {};
+let boot = {};
+try { boot = JSON.parse($("boot").textContent) || {}; } catch {}
+const tabFiles = {}, absFiles = {}, absMaps = {}, loadedTabs = new Set();
 function haystack(p) {
   return [p.title, p.authors.join(" "), p.venue || "arxiv preprint", p.note || "", p.full || p.preview || ""].join(" ").toLowerCase();
 }
@@ -287,6 +304,7 @@ function loadTab(t) {
 function loadAbstracts(t) {
   if (t === "saved") return Promise.resolve();
   return absFiles[t] ||= Promise.all([loadTab(t), getJSON(`feed/${t}-abs.json`).catch(() => ({}))]).then(([d, abs]) => {
+    absMaps[t] = abs;
     for (const p of d.papers) if (abs[p.id]) { p.full = abs[p.id]; p.hay = haystack(p); }
   });
 }
@@ -356,9 +374,23 @@ function groupOf(p) {
   if (tab === "saved") return "Saved " + dayLabel(p.savedOn);
   return dayLabel(p.published);
 }
+function computeShown() {
+  const list = filtered();
+  if (tab === "conf") {
+    const order = ["NeurIPS", "ICML", "ICLR", "AAAI", "IJCAI"];
+    const rank = n => (order.indexOf(n) + 1) || 99;
+    list.sort((a, b) => confYear(b) - confYear(a) || rank(confName(a)) - rank(confName(b)) ||
+      confName(a).localeCompare(confName(b)) || a.title.localeCompare(b.title));
+  } else if (tab === "nature" && $("sort").value === "picks") {
+    list.sort((a, b) => (b.score || 0) - (a.score || 0) || b.published.localeCompare(a.published));
+  } else if (tab === "saved") {
+    list.sort((a, b) => b.savedOn.localeCompare(a.savedOn) || b.published.localeCompare(a.published));
+  }
+  return list;
+}
 function render() {
   feed.replaceChildren();
-  shown = filtered();
+  shown = computeShown();
   drawn = 0; lastGroup = undefined; list = null;
   if (!shown.length) {
     const any = search.value.trim() || $("graph-only").checked || $("new-only").checked || (tab === "conf" && venue);
@@ -367,17 +399,16 @@ function render() {
       : any ? "No papers match these filters in this tab." : "No papers in this tab yet. The next daily update will add any new ones." }));
     return;
   }
-  if (tab === "conf") {
-    const order = ["NeurIPS", "ICML", "ICLR", "AAAI", "IJCAI"];
-    const rank = n => (order.indexOf(n) + 1) || 99;
-    shown.sort((a, b) => confYear(b) - confYear(a) || rank(confName(a)) - rank(confName(b)) ||
-      confName(a).localeCompare(confName(b)) || a.title.localeCompare(b.title));
-  } else if (tab === "nature" && $("sort").value === "picks") {
-    shown.sort((a, b) => (b.score || 0) - (a.score || 0) || b.published.localeCompare(a.published));
-  } else if (tab === "saved") {
-    shown.sort((a, b) => b.savedOn.localeCompare(a.savedOn) || b.published.localeCompare(a.published));
-  }
   drawMore();
+}
+// After the first screen was drawn from the papers inside the page, swap in the full list without redrawing,
+// so nothing jumps; fall back to a normal redraw if the first papers differ.
+function extend() {
+  const next = computeShown();
+  if (!drawn || next.length < drawn || shown.slice(0, drawn).some((p, i) => p.id !== next[i].id)) return render();
+  shown = next;
+  more.remove();
+  if (drawn < shown.length) feed.append(more);
 }
 // Adds the next BATCH papers; the observer calls it again when the bottom comes near.
 function drawMore() {
@@ -423,6 +454,7 @@ function paperItem(p) {
     abs.onclick = async () => {
       if (!body.querySelector(".abstract")) {   // the abstract is built on first open only
         if (!p.full) await loadAbstracts(tab);
+        p.full ||= absMaps[tab]?.[p.id];
         body.insertBefore(el("p", { className: "abstract", textContent: p.full || p.preview }), actions);
       }
       abs.setAttribute("aria-expanded", String(li.classList.toggle("open")));
@@ -437,7 +469,7 @@ function paperItem(p) {
   const save = el("button", { className: "btn save", type: "button", textContent: saved[p.id] ? "★ Saved" : "☆ Save" });
   save.setAttribute("aria-pressed", String(!!saved[p.id]));
   save.onclick = async () => {
-    if (!saved[p.id] && !p.full) await loadAbstracts(tab);  // keep the full abstract with it
+    if (!saved[p.id] && !p.full) { await loadAbstracts(tab); p.full ||= absMaps[tab]?.[p.id]; }  // keep the full abstract
     toggleSaved(p, save);
   };
   actions.append(cite, save);
@@ -491,12 +523,22 @@ async function openTab(t) {
   if (location.hash.slice(1) !== t) history.replaceState(null, "", "#" + t);
   document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.tab === t)));
   showInfo();
+  let fromBoot = false;
+  if (boot.tab === t && boot.papers?.length && !loadedTabs.has(t)) {
+    // First screen straight from the page: no waiting for any file.
+    for (const p of boot.papers) { p.authors ||= []; p.links ||= {}; }
+    papers = boot.papers;
+    buildChips();
+    render();
+    fromBoot = true;
+  }
   try {
     const data = await loadTab(t);
+    loadedTabs.add(t);
     if (tab !== t) return;             // another tab was clicked while this one loaded
     papers = data.papers;
     buildChips();
-    render();
+    if (fromBoot) extend(); else render();
     idle(() => loadAbstracts(t).then(() => { if (tab === t && search.value.trim()) render(); }));
   } catch (err) {
     console.error(err);
@@ -532,7 +574,7 @@ const toggle = document.querySelector(".menu-toggle");
 toggle.onclick = () => toggle.setAttribute("aria-expanded", String(nav.classList.toggle("open")));
 
 // ---------- start ----------
-getJSON("feed/meta.json").then(m => {
+(boot.updated ? Promise.resolve(boot) : getJSON("feed/meta.json")).then(m => {
   meta = m;
   const when = new Date(m.updated).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
   const upd = $("updated");
