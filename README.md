@@ -1,7 +1,6 @@
 <p align="center">
-  <img src="social-preview.png" alt="paper feed logo" width="120">
+  <img src="social-preview.png" alt="paper feed logo" width="600">
 </p>
-<h1 align="center">paper feed</h1>
  
 <p align="center">
   <a href="https://s-masif.github.io/paper-feed/">Live feed</a> ·
