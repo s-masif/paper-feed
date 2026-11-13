@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T14:20+00:00",
+ "updated": "2026-11-13T12:34+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -8,6 +8,97 @@
   "NeurIPS 2025"
  ],
  "papers": [
+  {
+   "id": "arxiv:2611.17186",
+   "title": "Cortex-FL: Agent-Mediated Collaboration for Federated Learning",
+   "authors": [
+    "Rui Sun",
+    "Jinfeng Peng",
+    "Zehua Cheng",
+    "Jiahao Sun",
+    "Zhipeng Wang"
+   ],
+   "abstract": "Federated learning (FL) enables independent data owners to train models collaboratively without centralizing raw data. However, identifying collaborators, preparing training tasks, and coordinating execution and incentives hinder its practical adoption by organizations without specialized expertise. We present Cortex-FL, an agent-native FL system that enables users to express learning objectives in natural language and delegate the collaboration required to train a model. Agents translate these objectives into shared tasks, discover collaborators, and negotiate participation agreements, connecting collaboration formation with distributed training and incentive management. The architecture separates agent coordination from local execution authority, allowing owners to delegate coordination while retaining control over their data, computation, and financial commitments. We demonstrate the complete workflow on a four-node deployment, in which a model requested in natural language proceeds through collaboration formation, contract-governed training, verified model delivery, and x402 settlement on a blockchain testnet.",
+   "published": "2026-11-12",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.17186"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.17186v1",
+    "PDF": "https://arxiv.org/pdf/2611.17186v1"
+   },
+   "tags": [
+    "fl"
+   ]
+  },
+  {
+   "id": "arxiv:2611.17129",
+   "title": "Paper-Faithful Federated Learning: Scientific Checks for Practitioner and Agent Development",
+   "authors": [
+    "Ali Dadras",
+    "Alp Yurtsever"
+   ],
+   "abstract": "Federated learning experiments can produce reasonable-looking results even when the experiment implementation differs from the intended experimental protocol. Small errors in configuration, data partitioning, aggregation, randomness, evaluation, or checkpoint recovery may therefore affect a comparison without causing the program to fail. We present FedBrew, a research codebase for controlled and reproducible federated learning experiments. Its focus is controlled simulation with checks of specified conditions of the intended experimental protocol. FedBrew uses configuration checks, identifiable client data partitions, checkpoint recovery checks, self-describing run records, and development-time checks of scientific conditions. These checks assess, for example, whether client partitions are disjoint and exhaustive and aggregation weights match the prescribed rule; numerical and recovery checks examine non-finite client model states and interrupted runs. The same structure also provides clear extension points and automated checks for new algorithms, datasets, models, and tasks, whether they are added by researchers or AI coding agents. FedBrew therefore supports reproducible and inspectable FL experiments through checks of specified software and scientific conditions and the run records associated with reported results.",
+   "published": "2026-11-12",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.17129"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.17129v1",
+    "PDF": "https://arxiv.org/pdf/2611.17129v1"
+   },
+   "tags": [
+    "fl"
+   ]
+  },
+  {
+   "id": "arxiv:2611.16856",
+   "title": "Sustainable Federated Fine-Tuning with LoRA: Environmental Impact and Performance Footprint",
+   "authors": [
+    "Pedro Augusto Londe Ribeiro",
+    "Rodrigo Moreira",
+    "Larissa Ferreira Rodrigues Moreira",
+    "Joberto S. B. Martins",
+    "Tereza C. Carvalho",
+    "Fl\u00e1vio de Oliveira Silva"
+   ],
+   "abstract": "Federated Learning (FL) with Parameter-Efficient Fine-Tuning (PEFT) enables efficient adaptation of Large Language Models (LLMs), yet its energy and carbon costs across hardware remain poorly understood. We evaluated federated Low-Rank Adaptation (LoRA) fine-tuning on NVIDIA A40, RTX 6000 Ada, and A100 GPUs using a $2^2$ full factorial design with 135M/360M models and 10/100 local steps. CodeCarbon tracked energy and estimated CO$_2$-equivalent emissions. Descriptive allocation of variation assigned 84.8-91.2% of energy and emissions variation to local steps within these ranges. On A40 and RTX 6000 Ada, configurations with fewer steps achieved comparable accuracy with roughly 6-8-fold lower energy consumption and higher accuracy per kWh. These findings support smaller local budgets for energy-efficient federated fine-tuning within the evaluated setting.",
+   "published": "2026-11-12",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.16856"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.16856v1",
+    "PDF": "https://arxiv.org/pdf/2611.16856v1"
+   },
+   "tags": [
+    "fl"
+   ]
+  },
+  {
+   "id": "arxiv:2611.16772",
+   "title": "Class-Competence Aggregation: Output-Layer Routing for Federated Multiclass DDoS Detection under Class-Concentrated Non-IID Data",
+   "authors": [
+    "Tapu Datta",
+    "Hafiz Imtiaz"
+   ],
+   "abstract": "Federated learning over distributed intrusion-detection sensors naturally produces \\emph{class-concentrated} non-IID data, where an entire attack class is held by a single client and absent elsewhere. We show this collapses federated averaging in a specific, localized way: the output layer holds one decision boundary per class, and when a class's aggregation weight comes overwhelmingly from clients that have never seen it, its neuron receives an active anti-signal rather than mere dilution, collapsing to zero. On CIC-DDoS2019, standard FedAvg drives the concentrated LDAP class to $0.00 \\pm 0.00\\%$ F1 across every seed. We propose Class-Competence Aggregation (CCA), which aggregates the output layer per class using each client's own locally reported validation F1 as the weight, while hidden layers remain under standard size-weighted FedAvg. CCA requires no server-held auxiliary data and adds only one F1 scalar per class per round beyond the feature-scaling and class-count exchanges common to any federated pipeline. On our primary CNN-LSTM architecture, CCA alone raises LDAP F1 from $0\\%$ to $84.83 \\pm 1.65\\%$, and the full method reaches $91.64 \\pm 0.57\\%$ macro F1, closing the federated-to-centralized gap from $-42.53$ to $-4.05$ points. Benchmarked against four other federated methods under identical partitions and seeds, CCA is the only one that recovers the concentrated class substantially and reliably; a $178\\times$ smaller MLP shows the same qualitative recovery, though less completely, confirming the effect holds across architecture scale even as its magnitude varies. Results are validated across three seeds and replicated on a second dataset, CICIDS2017.",
+   "published": "2026-11-12",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.16772"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.16772v1",
+    "PDF": "https://arxiv.org/pdf/2611.16772v1"
+   },
+   "tags": [
+    "fl"
+   ]
+  },
   {
    "id": "10.1038/d41586-026-03412-5",
    "title": "AI\u2019s energy paradox: will the AI boom strain energy systems or be the source of solutions?",
@@ -25,6 +116,145 @@
    },
    "tags": [
     "nature-ai"
+   ]
+  },
+  {
+   "id": "arxiv:2611.16065",
+   "title": "Tokenized Reward Systems for Federated Learning: The Privacy vs. Fairness Tradeoff",
+   "authors": [
+    "Andreas Sendros",
+    "Nikolaos Pavlidis",
+    "Vasilios Perifanis",
+    "Pavlos S. Efraimidis"
+   ],
+   "abstract": "Federated learning (FL) systems increasingly rely on blockchain based reward mechanisms to incentivize participation while preserving data privacy. We design and empirically evaluate two complementary Solidity smart contracts for FL reward distribution: the first one that allocates rewards proportionally to a publicly disclosed quality score, and a privacy preserving variant that hides individual quality scores behind a zero-knowledge (ZK) proof of a threshold condition. Both contracts mint a non transferable, use-and-burn token maintaining a trustless incentive structure. We evaluate the two designs through MNIST training with adversarial behavior, including Sybil attacks, zero gradient and random noise, across three independent random seeds. Our results reveal a fundamental tradeoff between cryptographic privacy and incentive fairness. The privacy preserving architecture strictly degrades system robustness, doubling the adversary's average reward capture while introducing severe outcome variance. This vulnerability is driven by a structural self-inclusion bias within cosine-similarity scoring: as the global model converges, legitimate gradient updates naturally diminish, rendering them statistically indistinguishable from bounded noise. Adversaries exploit this dynamic to systematically breach the ZK threshold, triggering a late stage failure cascade that culminates in absolute adversary monopoly over the reward pool and the total exclusion of honest contributors. Alongside a closed-form theorem formalizing this privacy--Sybil resistance tradeoff, we map strict mainnet deployment boundaries via linear gas scaling models, explicitly incorporating the post-Fusaka EIP-7825 per transaction gas cap. Ultimately, while cryptographically secure, static threshold ZK gates fail as incentive layer fairness mechanisms under realistic FL convergence dynamics on standard benchmarks.",
+   "published": "2026-11-11",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.16065"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.16065v1",
+    "PDF": "https://arxiv.org/pdf/2611.16065v1"
+   },
+   "tags": [
+    "fl"
+   ]
+  },
+  {
+   "id": "arxiv:2611.15917",
+   "title": "Owned Edits to a Shared Decision Rule: Learning Private Exceptions as Typed, Gated, Withdrawable Weight Edits",
+   "authors": [
+    "John J. O'Hare"
+   ],
+   "abstract": "Organisations that apply the same published decision rule often hold private evidence that the rule is wrong for their own cases, and will not pool it. We describe a learning mechanism for that setting whose unit of change is an owned edit. The published rule is compiled exactly into a small ReLU network, a structured prior. Each party's learner searches a small typed space of declarations, a few named values such as subject, scope, form and size, and proposes one only when its own records pass a selection-aware evidence gate. The learning is that gated search around the prior. In two analyses registered before they ran, on synthetic data with 20 sampled hidden truths, the learner at 30 records per party was non-inferior, within 2 points, to all seven tuned baselines (a confined gradient learner, Ditto, FedRep, federated averaging, two pooled networks and pooled gradient-boosted trees), scoring 96.6% against 91.7% for the unchanged rule; the same search without the prior or the gate scored 84.0%. In a third registered test, typed edits over a network trained on shared records beat that network alone by 5.4 points and the same edits over the published rule by 3.1. An acceptance body recomputes each edit from its declaration and writes it into units reserved for that party, so by construction an edit changes no decision about any other subject, withdraws exactly, discloses at most log2 of the typed space's size in bits, and can hide nothing beyond its declared values. We report where it loses: truths shared by all parties, relaxations, ten records, a pre-stated gate criterion that failed in both runs, and a language model given the records that decided about as accurately on one draw. On a rule-only base, a table of owned exceptions makes the same decisions.",
+   "published": "2026-11-11",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.15917"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.15917v1",
+    "PDF": "https://arxiv.org/pdf/2611.15917v1"
+   },
+   "tags": [
+    "fl"
+   ]
+  },
+  {
+   "id": "arxiv:2611.15707",
+   "title": "Efficient Knowledge Transfer in Federated Bayesian Optimization through Neural Network Surrogates",
+   "authors": [
+    "Alexander Gr\u00e4fe",
+    "Max van Gemmeren",
+    "Paul Brunzema",
+    "Sebastian Trimpe"
+   ],
+   "abstract": "Federated Bayesian Optimization (FedBO) has emerged as a powerful paradigm for enhancing Bayesian Optimization (BO) in distributed, privacy-sensitive settings, enabling agents to accelerate the optimization of their local objectives by sharing knowledge about their similarities without exposing raw data. However, existing methods rely on restrictive assumptions, such as near-identical objective functions or shared Gaussian process hyperparameters that are often violated in heterogeneous real-world applications. We present GLOBAFED, a novel framework that enables efficient knowledge transfer across different but related objectives without compromising privacy. At its core is a probabilistic neural network surrogate with a shared feature-extracting backbone and agent-specific heads equipped with varia- tional Bayesian last layers to provide uncertainty estimates. During optimization, agents use federated learning on the shared backbone to collaboratively build a common latent feature representation, while agent-specific heads adapt to their individual objectives. Our empirical results demonstrate that GLOBAFED significantly accelerates convergence and reaches better final performance compared to state-of-the-art FedBO baselines, and enables agents to warm-start their optimization from previously learned global features.",
+   "published": "2026-11-11",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.15707"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.15707v1",
+    "PDF": "https://arxiv.org/pdf/2611.15707v1"
+   },
+   "tags": [
+    "fl"
+   ]
+  },
+  {
+   "id": "arxiv:2611.15499",
+   "title": "Rateless Coding for Efficient Model Broadcast in Federated Learning",
+   "authors": [
+    "Zijun Qin",
+    "Zuolin Jin",
+    "Jingxuan Huang",
+    "Ming Xiao",
+    "Xianhao Chen"
+   ],
+   "abstract": "Model broadcast in federated learning (FL) with wireless channels faces significant challenges due to large model sizes and heterogeneous, unreliable channel conditions. While rateless coding has been widely adopted in modern broadcast communications to handle channel heterogeneity, its potential for model broadcast in FL remains largely unexplored. To fill this gap, we propose a joint source-channel coding scheme based on rateless coding to improve the robustness and efficiency of downlink model broadcast in FL. Specifically, we establish a rigorous convergence analysis of FL to inform the rateless code and quantization design under noisy downlink channel conditions. Moreover, by observing that the iterative process of FL naturally provides prior information about client updates, we leverage client-side local models as conditional prior information to aid the decoding process, thereby reducing transmission costs. Extensive simulations demonstrate that our rateless coding scheme significantly enhances downlink model broadcast efficiency in FL, while retaining comparable training accuracies for both homogeneous and heterogeneous data distributions.",
+   "published": "2026-11-11",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.15499"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.15499v1",
+    "PDF": "https://arxiv.org/pdf/2611.15499v1"
+   },
+   "tags": [
+    "fl"
+   ]
+  },
+  {
+   "id": "arxiv:2611.15165",
+   "title": "Bridging Update Coordination and Flatness in Federated Learning",
+   "authors": [
+    "Chongwei He",
+    "Shichen Huang",
+    "Jiayun Li",
+    "Deyuan Lin",
+    "Wangze Jiang",
+    "Shengjia Li",
+    "Xu Wang",
+    "Xiaofan Li",
+    "Zhi-Ri Tang"
+   ],
+   "abstract": "Federated learning combines complementary knowledge across clients to alleviate local data limitations without sharing raw samples. However, data heterogeneity can cause conflicting updates and hinder generalization. Update coordination reduces interference among client updates, while flatness optimization reduces sensitivity to parameter perturbations to improve generalization. Existing joint designs largely target specific algorithms, limiting flexible combinations of these approaches. To address this problem, we propose a unified federated learning framework that bridges update coordination and flatness optimization. Clients separately accumulate descent signals and flatness corrections along the same local trajectory. The server coordinates both groups with independent states before fusing their outputs into a global update. Explicit conversion between trajectory signals and model updates enables different coordination strategies to work with compatible local or globally guided flatness mechanisms without changing the inference architecture. Experiments show that the evaluated combinations generally improve average and worst-client accuracy over update coordination alone, demonstrating the effectiveness of the proposed framework in combining these complementary optimization mechanisms.",
+   "published": "2026-11-11",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.15165"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.15165v1",
+    "PDF": "https://arxiv.org/pdf/2611.15165v1"
+   },
+   "tags": [
+    "fl"
+   ]
+  },
+  {
+   "id": "arxiv:2611.15025",
+   "title": "Federated Class Incremental Learning: A Pseudo Feature Based Approach Without Exemplars",
+   "authors": [
+    "Min Kyoon Yoo",
+    "Yu Rang Park"
+   ],
+   "abstract": "Federated learning often assumes that data is fixed in advance, which is unrealistic in many real-world scenarios where new data continuously arrives, causing catastrophic forgetting. To address this challenge, we propose FCLPF (Federated Class Incremental Learning with Pseudo Features), a method that uses pseudo features generated from prototypes to mitigate catastrophic forgetting. Our approach reduces communication costs and improves efficiency by eliminating the need for past data and avoiding computationally heavy models like GANs. Experimental results on CIFAR-100 show that FCLPF achieves an average accuracy of 51.87% and an average forgetting of 9.62%, significantly outperforming existing baselines with an average accuracy of 47.72% and forgetting of 20.46%. On TinyImageNet, FCLPF achieves 37.56% accuracy and 3.14% forgetting, compared to the baselines' 27.69% accuracy and 24.46% forgetting, demonstrating the superior performance of FCLPF.",
+   "published": "2026-11-11",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.15025"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.15025v1",
+    "PDF": "https://arxiv.org/pdf/2611.15025v1"
+   },
+   "tags": [
+    "fl"
    ]
   },
   {
@@ -776,6 +1006,28 @@
    },
    "tags": [
     "nature-ai"
+   ]
+  },
+  {
+   "id": "arxiv:2611.14590",
+   "title": "An Asynchronous Federated Learning Platform for Lung Adenocarcinoma Grading via Foundation Models and Structural Pruning",
+   "authors": [
+    "Moon-Il Joo",
+    "Md Ariful Islam Mozumder",
+    "Hee-Cheol Kim"
+   ],
+   "abstract": "Classification of lung adenocarcinoma into poorly differentiated (PD) and well-to-moderately differentiated (WMD) subtypes plays an important role in patient survival; however, consistent classification is difficult due to inter-observer variability among pathologists. Collecting data from multiple hospitals is also challenging due to patient privacy concerns. This study proposes a web-based federated learning system that shares only locally trained model weights without sharing patient data between institutions. The UNI2 foundation model and CLAM-SB were used to classify pathological whole slide images. A four-client federated learning system was constructed, and the NLST cohort was reserved exclusively for external validation. In centralized evaluation, joint training with CPTAC and TCGA outperformed single-institution training on external validation, confirming the necessity of multi-institutional data integration. FedAvg, FedProx, FedBN, and FedNova were compared as federated learning algorithms under identical experimental conditions. Test AUC ranked as FedBN, FedProx, FedNova, and FedAvg. FedNova showed the most balanced classification performance between PD and WMD. L1-norm structural pruning at 20%, 30%, and 40% sparsity was applied to reduce model transmission size. FedAvg, FedProx, and FedBN showed a tendency of decreasing Test AUC under pruning, while FedNova achieved improved Test AUC across all sparsity levels. A web-based application was developed supporting slide upload, local training, AI classification, and attention heatmap-based visualization. The combination of FedNova and 40% pruning was confirmed as a practical approach that improves communication efficiency and classification performance while protecting patient privacy.",
+   "published": "2026-11-10",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.14590"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.14590v1",
+    "PDF": "https://arxiv.org/pdf/2611.14590v1"
+   },
+   "tags": [
+    "fl"
    ]
   },
   {
@@ -24853,83 +25105,6 @@
    },
    "tags": [
     "fl-gnn"
-   ]
-  },
-  {
-   "id": "10.48550/arxiv.2609.14246",
-   "title": "Joint Optimization for Federated Learning and Transmission over Unreliable Wireless Networks with Heterogeneous Data",
-   "authors": [
-    "Changheng Wang",
-    "Xianchao Zhang",
-    "Zhiqing Wei",
-    "Lingzhu Zhao",
-    "Zhongming Yang",
-    "Zhiyong Feng"
-   ],
-   "abstract": "In wireless federated learning (FL), data heterogeneity and multiple local updates induce client drift, degrading model convergence. It is further affected by unreliable wireless links, as transmission errors may invalidate model updates. To address these challenges, we propose a federated random walk averaging (FedRW) framework, which is a variant of federated averaging (FedAvg) that mitigates data heterogeneity by updating models along random walk (RW) paths and aggregating them at the server. Model parameters are transmitted in packets with retransmission support to improve training quality by mitigating wireless errors along RW paths. Meanwhile, wireless transmission delays hinder the exploration of FedRW. To this end, we formulate a joint optimization problem that integrates learning, RW path selection, and transmission parameter tuning, aiming to minimize the training loss under delay constraints. By deriving an upper bound on the expected convergence of FedRW over unreliable wireless networks, we reduce the problem to a general form agnostic to task type and model architecture. A distributed solution is then proposed, in which the server or clients optimize packet size and maximum number of retransmissions locally, and efficiently select reliable and expandable next-hop nodes via a resilience-aware beam search with dynamic pruning. Simulation results show that FedRW achieves 2.26%-9% higher accuracy than state-of-the-art baselines under high data heterogeneity. Furthermore, the jointly optimized FedRW yields at least 2.78% higher accuracy and faster convergence compared to baselines.",
-   "published": "2026-09-13",
-   "venue": null,
-   "dois": [
-    "10.48550/arxiv.2609.14246"
-   ],
-   "links": {
-    "arXiv": "https://arxiv.org/abs/2609.14246",
-    "PDF": "https://arxiv.org/pdf/2609.14246"
-   },
-   "tags": [
-    "fl"
-   ]
-  },
-  {
-   "id": "10.48550/arxiv.2609.14734",
-   "title": "OCT-FedSIR: Toward Trustworthy Federated Ophthalmic Learning under Annotation Noise",
-   "authors": [
-    "Sina Gholami",
-    "Abdulmoneam Ali",
-    "Tania Haghighi",
-    "Rashadul Hasan Badhon",
-    "Behafarin Emam",
-    "Sally Shin Yee Ong",
-    "Atalie C. Thompson",
-    "Theodore Leng",
-    "Ahmed Arafa",
-    "Jennifer I. Lim",
-    "Minhaj Nur Alam"
-   ],
-   "abstract": "Federated learning enables collaborative model development without centralizing patient data, but annotation reliability at participating institutions cannot always be assumed. In ophthalmic imaging, differences in disease prevalence and class composition can resemble changes caused by corrupted supervision. We introduce OCT-FedSIR, a reliability-aware spectral framework for federated OCT classification under client-dependent annotation noise and heterogeneous data distributions. OCT-FedSIR combines class-balanced spectral estimation, Stage-I logit adjustment, complementary spectral descriptors, selective spectral relabeling, and noise-aware federated optimization. We evaluated the framework on the Kermany, University of Illinois Chicago, and Wake Forest datasets under symmetric and structured asymmetric noise and three levels of non-IID heterogeneity. Across 117 experimental conditions, OCT-FedSIR achieved a mean accuracy of 86.73%, compared with 79.94% for RoFL and 78.75% for FedCorr. It correctly separated clients with original and corrupted annotations across all evaluated conditions, while the original FedSIR identification procedure was less robust, particularly under asymmetric noise. Spectral relabeling recovered 77.2% of corrupted annotations with 91.3% correction precision and a 3.5% false-correction rate. Retaining corrected clients outperformed spectral pruning by 9.30 percentage points on average. These findings show that annotation noise can often be identified and corrected without discarding informative client data.",
-   "published": "2026-09-13",
-   "venue": null,
-   "dois": [
-    "10.48550/arxiv.2609.14734"
-   ],
-   "links": {
-    "arXiv": "https://arxiv.org/abs/2609.14734",
-    "PDF": "https://arxiv.org/pdf/2609.14734"
-   },
-   "tags": [
-    "fl"
-   ]
-  },
-  {
-   "id": "10.48550/arxiv.2609.14591",
-   "title": "Pathwise Individual Rationality in Federated Learning: A Mechanism-Architecture Co-Design",
-   "authors": [
-    "Amin Meghrazi",
-    "Srinivasan Parthasarathy",
-    "Andrew Perrault"
-   ],
-   "abstract": "Participation in federated learning (FL) comes at a cost. Clients trade off privacy, communication, and compute costs for potentially greater gains in model efficacy. This paper explores this tradeoff under the aegis of individual rationality (IR) versus autarky, the basic game-theoretic requirement that the federation provide utility no worse than local training. Using the above as the design target, we examine pathwise performance of FL, as a per-round bound on cumulative surplus rather than only an asymptotic equilibrium guarantee under different degrees of client data heterogeneity. Along the learning path, clients can remain below their local-training baseline for hundreds of rounds. The natural remedy is to cap each client's per-round contribution so that this shortfall stays bounded. We prove that such a cap drives all contributions to zero, with high probability, when its tolerance is small relative to the warm-up deficit, and we observe learning collapse under it even at low heterogeneity. We then propose a design that combines a short-term participation guarantee, enforced after an announced grace window, with personalized model evaluation, while preserving the incentive properties of the underlying mechanism. We provide a theoretical basis for this approach and empirically demonstrate that, after the grace window, clients meet IR on nearly all rounds without harming overall performance under low to moderate heterogeneity; under severe heterogeneity, the design shows promising outcomes for clients compared to their local baseline at some cost in accuracy.",
-   "published": "2026-09-13",
-   "venue": null,
-   "dois": [
-    "10.48550/arxiv.2609.14591"
-   ],
-   "links": {
-    "arXiv": "https://arxiv.org/abs/2609.14591",
-    "PDF": "https://arxiv.org/pdf/2609.14591"
-   },
-   "tags": [
-    "fl"
    ]
   },
   {
