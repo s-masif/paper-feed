@@ -277,7 +277,10 @@ function haystack(p) {
 function loadTab(t) {
   if (t === "saved") return Promise.resolve({ papers: Object.values(saved) });
   return tabFiles[t] ||= getJSON(`feed/${t}.json`).then(d => {
-    for (const p of d.papers) p.hay = haystack(p);
+    for (const p of d.papers) {
+      p.authors ||= []; p.links ||= {};   // some records (e.g. editorials) come without authors
+      p.hay = haystack(p);
+    }
     return d;
   });
 }
@@ -290,6 +293,7 @@ function loadAbstracts(t) {
 
 // ---------- saved papers and "new since last visit" (both kept in this browser only) ----------
 let saved = store.get("pf-saved", {});
+for (const p of Object.values(saved)) { p.authors ||= []; p.links ||= {}; }
 function toggleSaved(p, btn) {
   if (saved[p.id]) delete saved[p.id];
   else saved[p.id] = { ...p, hay: undefined, savedOn: new Date().toISOString().slice(0, 10) };
@@ -494,9 +498,12 @@ async function openTab(t) {
     buildChips();
     render();
     idle(() => loadAbstracts(t).then(() => { if (tab === t && search.value.trim()) render(); }));
-  } catch {
+  } catch (err) {
+    console.error(err);
     $("chips").replaceChildren();
-    feed.replaceChildren(el("p", { className: "status", textContent: "This tab’s file isn’t there yet. Run the “Update paper feed” workflow once from the Actions tab on GitHub." }));
+    feed.replaceChildren(el("p", { className: "status", textContent: tabFiles[t] && !(err instanceof TypeError)
+      ? "This tab’s file isn’t there yet. Run the “Update paper feed” workflow once from the Actions tab on GitHub."
+      : "Something went wrong showing this tab. Try reloading the page." }));
   }
 }
 document.querySelectorAll(".tabs button").forEach(b => { b.onclick = () => openTab(b.dataset.tab); });
