@@ -1,3 +1,15 @@
+<p align="center">
+  <img src="social-preview.png" alt="paper feed logo" width="120">
+</p>
+<h1 align="center">paper feed</h1>
+ 
+<p align="center">
+  <a href="https://s-masif.github.io/paper-feed/">Live feed</a> ·
+  <a href="#set-it-up-about-15-minutes">Set it up</a> ·
+  <a href="#make-it-your-own">Make it your own</a>
+</p>
+
+
 # paper feed
 
 A daily-updated, self-hosted feed of new research papers, built for federated learning and federated graph learning
