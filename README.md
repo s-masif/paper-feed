@@ -21,7 +21,7 @@ After that it updates itself every day at 06:00 UTC.
 |---|---|---|---|
 | Preprints | federated learning preprints | arXiv API | free |
 | IEEE Transactions | federated learning papers in IEEE Transactions journals | OpenAlex, filter-only listing of every new paper, matched here | ~$0.01–0.05 a day |
-| Top conferences | federated learning papers at ~30 top AI, data, vision, NLP, systems and security venues | OpenReview (NeurIPS, ICML, ICLR, with abstracts) and dblp (all venues, weekly); missing abstracts filled from OpenAlex by DOI | free / fractions of a cent |
+| Top conferences | federated learning papers at ~30 top AI, data, vision, NLP, systems and security venues | OpenReview (NeurIPS, ICML, ICLR, with abstracts) and dblp (all venues, 6 per day in turn, so each is refreshed about weekly); missing abstracts filled from OpenAlex by DOI | free / fractions of a cent |
 | Nature · AI | AI papers from Nature journals that are about AI methods or AI for science | OpenAlex, filter-only listing, scored here (`nature_score`) | ~$0.01 a day |
 | ★ Saved | papers you starred | your browser | — |
 
