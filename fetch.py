@@ -46,7 +46,10 @@ ARXIV_QUERIES = [
 KEEP_DAYS = {"preprint": 90, "preprint-graph": 180, "ieee-tx": 180, "nature": 90}
 # Conference papers stay while their conference is this year's or last year's.
 
-# A paper counts as federated learning if its title or abstract matches this (used for IEEE, Nature, dblp).
+# The words sent to dblp and IEEE Xplore to find candidate papers (both search titles; dblp also matches
+# longer words starting with these). Results are then checked against FED_RE below.
+SEARCH_WORDS = "federated"
+# A paper counts as on-topic if its title or abstract matches this (used for IEEE, Nature, dblp, OpenReview).
 FED_RE = re.compile(r"federat|\bfedavg\b", re.I)
 # ...unless the title is about a different kind of federation (federated databases, identity, ...).
 NOT_FL_RE = re.compile(r"federated (quer|databases?|search|identit|sparql|catalog|data ?lake)", re.I)
@@ -83,12 +86,9 @@ DBLP_VENUES = [
 ]
 # Proceedings parts that aren't main-conference papers.
 DBLP_SKIP_VENUE = re.compile(r"workshop|companion|findings|demo|adjunct|poster", re.I)
-# dblp limits how fast one machine may query it, and GitHub's shared runners hit that limit quickly. So each run
-# reads only a few venues, in turn, with pauses between them: every venue is refreshed about once a week, which
-# is plenty since proceedings come out in batches. A run that gets "too many requests" stops reading dblp and
-# continues where it left off next time.
-DBLP_PER_RUN = 6
-DBLP_PAUSE = 8  # seconds between dblp requests
+# dblp's search API sits behind a bot check that scripts can't pass, so dblp is read through its SPARQL service
+# instead, which dblp offers as an API (robots.txt asks for 10 s between requests; this makes one a day).
+DBLP_SPARQL = "https://sparql.dblp.org/sparql"
 
 # NeurIPS, ICML and ICLR also come from OpenReview (with abstracts), when OpenReview login details are set.
 OPENREVIEW_CONFS = ["NeurIPS", "ICML", "ICLR"]
@@ -102,13 +102,16 @@ IEEE_MAX_PAGES = 10  # per content type, 200 records a page
 
 # OpenAlex listings re-read RECENT_DAYS on a normal run and their whole window once a week
 # (FULL_SWEEP_WEEKDAY, 6 = Sunday), which catches papers OpenAlex adds late.
-RECENT_DAYS = 21
+RECENT_DAYS = 45  # OpenAlex can take a few weeks to index new IEEE papers
 FULL_SWEEP_WEEKDAY = 6
 ABSTRACT_RETRY_DAYS = 7  # how often to ask OpenAlex again for an abstract it didn't have
 
 OUT = "papers.json"
 FEED_DIR = "feed"
 RSS_ITEMS = 60
+PREVIEW_CHARS = 220   # the page shows two lines of preview; the full abstract is in feed/<tab>-abs.json
+BOOT_TAB, BOOT_COUNT = "preprint", 40  # papers written straight into index.html for an instant first screen
+PAGE = "index.html"
 NS = {"a": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/atom"}
 TODAY = date.today()
 
@@ -243,98 +246,75 @@ def fetch_openreview(conference, year, pattern, token):
 # ---------------------------------------------------------------------------------------------------------
 # dblp (all other conferences): titles, authors and DOIs, no abstracts
 # ---------------------------------------------------------------------------------------------------------
-class DblpBusy(Exception):
-    """dblp asked us to slow down (HTTP 429) and didn't recover after waiting."""
-
-
-def dblp_get(params):
-    """One dblp search request, honouring 429 'Retry-After' and retrying a busy or empty reply twice."""
-    url = "https://dblp.org/search/publ/api?" + urllib.parse.urlencode(params)
-    for attempt in range(3):
-        if attempt:
-            time.sleep(wait)
-        try:
-            body = get(url)
-            return json.loads(body)
-        except urllib.error.HTTPError as e:
-            if e.code not in (429, 500, 502, 503, 504):
-                raise
-            retry_after = (e.headers or {}).get("Retry-After", "")
-            wait = min(int(retry_after), 120) if retry_after.isdigit() else 30 * (attempt + 1)
-            if attempt == 2:
-                if e.code == 429:
-                    raise DblpBusy() from e
-                raise
-        except json.JSONDecodeError:
-            print(f"dblp sent a reply that isn't JSON; it started with: {body[:120]!r}")
-            wait = 30 * (attempt + 1)
-            if attempt == 2:
-                raise DblpBusy("not json")
-
-
-def dblp_hits(query):
-    """All hits of one dblp search, as dblp 'info' records."""
-    hits, offset = [], 0
-    while True:
-        result = dblp_get({"q": query, "format": "json", "h": 1000, "f": offset})["result"]
-        page = [h["info"] for h in (result.get("hits") or {}).get("hit") or []]
-        hits += page
-        total = int((result.get("hits") or {}).get("@total", 0))
-        offset += len(page)
-        if not page or offset >= min(total, 5000):
-            return hits
-        time.sleep(DBLP_PAUSE)
-
-
-def as_list(value):
-    return value if isinstance(value, list) else [] if value is None else [value]
-
-
-def fetch_dblp_venue(label, prefix):
-    """Federated learning papers from this year's and last year's edition of one venue, or None on failure."""
+def fetch_dblp():
+    """Federated learning papers (title match) from this year's and last year's editions of DBLP_VENUES,
+    in one SPARQL query. Returns None if dblp's SPARQL service couldn't be read."""
     first_year = TODAY.year - 1
-    # dblp's query syntax: "streamid:" limits a search to one venue. The plain venue name is a fallback;
-    # either way, results are checked against the venue's key prefix below.
-    for query in (f"federat streamid:{prefix}:", f"federat venue:{label.split()[-1]}"):
+    label_of = {f"https://dblp.org/streams/{prefix}": label for label, prefix in DBLP_VENUES}
+    streams = " ".join(f"<{iri}>" for iri in label_of)
+    word = SEARCH_WORDS.lower().replace('"', "")
+    query = f"""PREFIX dblp: <https://dblp.org/rdf/schema#>
+SELECT ?pub ?title ?year ?stream ?venue ?doi ?page (GROUP_CONCAT(DISTINCT ?author; separator="|") AS ?authors)
+WHERE {{
+  VALUES ?stream {{ {streams} }}
+  ?pub dblp:publishedInStream ?stream ;
+       dblp:title ?title ;
+       dblp:yearOfPublication ?year .
+  FILTER(STR(?year) >= "{first_year}")
+  FILTER(CONTAINS(LCASE(STR(?title)), "{word}"))
+  OPTIONAL {{ ?pub dblp:publishedIn ?venue }}
+  OPTIONAL {{ ?pub dblp:doi ?doi }}
+  OPTIONAL {{ ?pub dblp:primaryDocumentPage ?page }}
+  OPTIONAL {{ ?pub dblp:hasSignature ?sig . ?sig dblp:signatureOrdinal ?ord ; dblp:signatureDblpName ?name .
+             BIND(CONCAT(STR(?ord), ":", STR(?name)) AS ?author) }}
+}}
+GROUP BY ?pub ?title ?year ?stream ?venue ?doi ?page"""
+    body = b""
+    try:
+        body = get(DBLP_SPARQL + "?" + urllib.parse.urlencode({"query": query}),
+                   {"Accept": "application/sparql-results+json"})
+        rows = json.loads(body)["results"]["bindings"]
+    except (urllib.error.URLError, json.JSONDecodeError, KeyError) as e:
+        print(f"dblp SPARQL failed ({type(e).__name__}: {e}); reply started with: {body[:150]!r}")
+        return None
+    papers = {}
+    for r in rows:
+        val = lambda k: clean((r.get(k) or {}).get("value", ""))
+        pub, title, venue = val("pub"), val("title").rstrip("."), val("venue")
+        label = label_of.get(val("stream"))
         try:
-            hits = dblp_hits(query)
-        except DblpBusy:
-            raise
-        except (urllib.error.URLError, json.JSONDecodeError, KeyError, ValueError) as e:
-            print(f"dblp {label} failed ({type(e).__name__}: {e})")
-            return None
-        time.sleep(DBLP_PAUSE)
-        papers = []
-        for info in hits:
-            if not info.get("key", "").startswith(prefix + "/"):
-                continue
-            title = clean(info.get("title", "")).rstrip(".")
-            venue = " ".join(as_list(info.get("venue")))
-            year = int(info.get("year") or 0)
-            if year < first_year or DBLP_SKIP_VENUE.search(venue) or not FED_RE.search(title) \
-                    or NOT_FL_RE.search(title):
-                continue
-            doi = norm_doi(info["doi"]) if info.get("doi") else None
-            ee = next((u for u in as_list(info.get("ee")) if u.startswith("http")), None)
-            authors = [re.sub(r" \d{4}$", "", a["text"] if isinstance(a, dict) else a)  # "Wei Wang 0001"
-                       for a in as_list((info.get("authors") or {}).get("author"))]
-            links = {"Publisher": f"https://doi.org/{doi}" if doi else ee or info.get("url")}
-            if info.get("access") == "open" and ee and ee.lower().endswith(".pdf"):
-                links["PDF"] = ee
-            papers.append({
-                "id": doi or "dblp:" + info["key"],
-                "title": title,
-                "authors": authors,
-                "abstract": "",
-                "published": f"{year}-01-01",
-                "venue": label,
-                "conf": f"{label} {year}",
-                "dois": [doi] if doi else [],
-                "links": links,
-            })
-        if hits or query.startswith("federat venue:"):
-            return papers
-    return []
+            year = int(val("year")[:4])
+        except ValueError:
+            continue
+        if not label or year < first_year or DBLP_SKIP_VENUE.search(venue) or not FED_RE.search(title) \
+                or NOT_FL_RE.search(title):
+            continue
+        if pub in papers:  # the same record on several rows (several venue names or pages)
+            continue
+        doi = norm_doi(val("doi")) if val("doi") else None
+        signed = []
+        for part in val("authors").split("|"):
+            ord_, _, name = part.partition(":")
+            if name:
+                signed.append((int(ord_) if ord_.isdigit() else 999, re.sub(r" \d{4}$", "", name)))  # "Wei Wang 0001"
+        page = val("page") if val("page").startswith("http") else None
+        papers[pub] = {
+            "id": doi or "dblp:" + pub.removeprefix("https://dblp.org/rec/"),
+            "title": title,
+            "authors": [name for _, name in sorted(signed)],
+            "abstract": "",
+            "published": f"{year}-01-01",
+            "venue": label,
+            "conf": f"{label} {year}",
+            "dois": [doi] if doi else [],
+            "links": {"Publisher": f"https://doi.org/{doi}" if doi else page or pub},
+        }
+    counts = {}
+    for p in papers.values():
+        counts[p["venue"]] = counts.get(p["venue"], 0) + 1
+    print(f"dblp: {len(papers)} federated learning papers ({first_year}-{TODAY.year}): "
+          + ", ".join(f"{k} {v}" for k, v in sorted(counts.items(), key=lambda kv: -kv[1])))
+    return list(papers.values())
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -362,7 +342,7 @@ def fetch_ieee_xplore(api_key, since):
         start = 1
         for _ in range(IEEE_MAX_PAGES):
             params = urllib.parse.urlencode({
-                "apikey": api_key, "querytext": "federated", "content_type": content_type,
+                "apikey": api_key, "querytext": SEARCH_WORDS, "content_type": content_type,
                 "start_date": since.strftime("%Y%m%d"), "max_records": 200, "start_record": start,
                 "sort_field": "article_number", "sort_order": "desc", "format": "json",
             })
@@ -687,7 +667,7 @@ def main():
     stamp = datetime.now(timezone.utc).isoformat(timespec="minutes")
     store = Store(saved["papers"], stamp)
     state = {k: saved.get(k) for k in ("conf_done", "full_sweep", "ieee_sources", "nature_sources",
-                                        "dblp_next", "dblp_seen", "abs_tried", "ieee_xplore_checked")}
+                                        "abs_tried", "ieee_xplore_checked", "ieee_swept_ids")}
     conf_done = set(state["conf_done"] or [])
     full_sweep = state["full_sweep"] or {}
     abs_tried = state["abs_tried"] or {}
@@ -711,7 +691,7 @@ def main():
         for conference in OPENREVIEW_CONFS if or_token else []:
             if f"{conference} {year}" in conf_done:
                 continue
-            result = fetch_openreview(conference, year, r"federat", or_token)
+            result = fetch_openreview(conference, year, FED_RE.pattern, or_token)
             if result is None:
                 continue  # failed: try again next run
             papers, accepted = result
@@ -722,26 +702,10 @@ def main():
             print(f"OpenReview {conference} {year}: {accepted} accepted, {len(papers)} on federated learning")
             time.sleep(1)
 
-    # dblp: every other conference, a few venues per run, in turn
-    start = (state["dblp_next"] or 0) % len(DBLP_VENUES)
-    dblp_seen = state["dblp_seen"] or {}  # venue -> date it was last read successfully
-    for i in range(DBLP_PER_RUN):
-        label, prefix = DBLP_VENUES[(start + i) % len(DBLP_VENUES)]
-        try:
-            papers = fetch_dblp_venue(label, prefix)
-        except DblpBusy as e:
-            if str(e) == "not json":  # skip this venue next time, in case the reply is about this query
-                state["dblp_next"] = (start + i + 1) % len(DBLP_VENUES)
-            print(f"dblp is not answering properly ({str(e) or 'too many requests'}): stopping dblp for this run")
-            break
-        state["dblp_next"] = (start + i + 1) % len(DBLP_VENUES)
-        if papers is None:
-            continue
-        dblp_seen[label] = TODAY.isoformat()
-        for p in papers:
-            store.add(p)
-        print(f"dblp {label}: {len(papers)} federated learning papers ({TODAY.year - 1}-{TODAY.year})")
-    state["dblp_seen"] = dblp_seen
+    # dblp: every other conference, one SPARQL query
+    papers = fetch_dblp()
+    for p in papers or []:
+        store.add(p)
 
     # IEEE Xplore (optional): new IEEE Transactions papers, early access included, with abstracts
     ieee_key = os.environ.get("IEEE_API_KEY")
@@ -763,9 +727,12 @@ def main():
 
         try:
             state["ieee_sources"] = ieee_transactions_sources(api_key, state["ieee_sources"])
+            ids = state["ieee_sources"]["ids"]
+            if set(ids) - set(state["ieee_swept_ids"] or []):
+                full_sweep.pop("ieee-tx", None)  # journals never fully read: read their whole window
             full, days = window("ieee-tx")
             seen = kept = 0
-            for w in list_works(state["ieee_sources"]["ids"], api_key, days):
+            for w in list_works(ids, api_key, days):
                 seen += 1
                 p = paper_from_work(w)
                 if p and is_fl(p["title"] + " " + p["abstract"], p["title"]):
@@ -774,6 +741,7 @@ def main():
             print(f"IEEE Transactions: {seen} papers listed ({days} days), {kept} on federated learning")
             if full:
                 full_sweep["ieee-tx"] = TODAY.isoformat()
+                state["ieee_swept_ids"] = ids
         except (urllib.error.URLError, json.JSONDecodeError, KeyError, IndexError, TypeError) as e:
             print(f"IEEE Transactions failed ({type(e).__name__}: {e}); trying again next run")
 
@@ -848,18 +816,43 @@ def write_feed_files(papers, updated):
         rows = [p for p in papers if p["tab"] == tab]
         lite = []
         for p in rows:
-            row = {k: p[k] for k in LITE_FIELDS if p.get(k) not in (None, "", [], {}) or k in ("authors", "links")}
-            row["preview"] = p["abstract"][:300]
+            row = {k: p[k] for k in LITE_FIELDS
+                   if (p.get(k) not in (None, "", [], {}) and p.get(k) is not False) or k in ("authors", "links")}
+            if tab != "nature":
+                row.pop("fl", None)  # everything outside the Nature tab is on-topic
+            row["preview"] = p["abstract"][:PREVIEW_CHARS]
             row["doi"] = next((d for d in p["dois"] if not d.startswith("10.48550/")), p["dois"][0] if p["dois"] else "")
             lite.append(row)
         with open(f"{FEED_DIR}/{tab}.json", "w", encoding="utf-8") as f:
             json.dump({"updated": updated, "papers": lite}, f, **compact)
         with open(f"{FEED_DIR}/{tab}-abs.json", "w", encoding="utf-8") as f:
-            json.dump({p["id"]: p["abstract"] for p in rows if len(p["abstract"]) > 300}, f, **compact)
+            json.dump({p["id"]: p["abstract"] for p in rows if len(p["abstract"]) > PREVIEW_CHARS}, f, **compact)
         meta["tabs"][tab] = {"count": len(rows), "graph": sum(p["graph"] for p in rows)}
         write_rss(tab, title, rows)
+        if tab == BOOT_TAB:
+            boot_papers = lite[:BOOT_COUNT]
     with open(f"{FEED_DIR}/meta.json", "w", encoding="utf-8") as f:
         json.dump(meta, f, **compact)
+    write_boot(meta, boot_papers)
+
+
+def write_boot(meta, papers):
+    """Put the update info and the opening tab's first papers inside index.html, so a first visit shows papers
+    as soon as the page itself arrives, without waiting for any other file."""
+    try:
+        with open(PAGE, encoding="utf-8") as f:
+            page = f.read()
+    except FileNotFoundError:
+        return
+    data = json.dumps({**meta, "tab": BOOT_TAB, "papers": papers}, separators=(",", ":"), ensure_ascii=False)
+    data = data.replace("</", "<\\/")  # can't end the <script> element early
+    new, n = re.subn(r'(<script type="application/json" id="boot">).*?(</script>)',
+                     lambda m: m.group(1) + data + m.group(2), page, count=1, flags=re.S)
+    if not n:
+        print(f"{PAGE} has no boot element; the page will load its papers the slower way")
+    elif new != page:
+        with open(PAGE, "w", encoding="utf-8") as f:
+            f.write(new)
 
 
 def write_rss(tab, title, rows):
