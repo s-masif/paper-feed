@@ -2,7 +2,8 @@ name: Update paper feed
 
 on:
   schedule:
-    - cron: "0 6 * * *"   # every day at 06:00 UTC
+    - cron: "17 6 * * *"    # every day at 06:17 UTC
+    - cron: "17 18 * * *"   # and 18:17 UTC, as a backup
   workflow_dispatch:       # lets you run it by hand from the Actions tab
 
 permissions:
