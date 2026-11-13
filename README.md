@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="social-preview.png" alt="paper feed logo" width="600">
+  <img src="social-preview.png" alt="paper feed logo" width="720">
 </p>
  
 <p align="center">
