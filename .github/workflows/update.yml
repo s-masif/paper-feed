@@ -22,9 +22,10 @@ jobs:
           OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
           OPENREVIEW_USERNAME: ${{ secrets.OPENREVIEW_USERNAME }}
           OPENREVIEW_PASSWORD: ${{ secrets.OPENREVIEW_PASSWORD }}
+          IEEE_API_KEY: ${{ secrets.IEEE_API_KEY }}
       - name: Commit new papers
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add papers.json
+          git add papers.json feed
           git diff --staged --quiet || (git commit -m "Update papers" && git push)
