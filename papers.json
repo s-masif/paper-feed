@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T12:34+00:00",
+ "updated": "2026-11-13T16:44+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -97,6 +97,80 @@
    },
    "tags": [
     "fl"
+   ]
+  },
+  {
+   "id": "10.1038/s41467-026-78767-4",
+   "title": "Scaling medical imaging report generation with multimodal reinforcement learning",
+   "authors": [
+    "Qianchu Liu",
+    "Sheng Zhang",
+    "Guanghui Qin",
+    "Yu Gu",
+    "Ying Jin",
+    "Sam Preston",
+    "Yanbo Xu",
+    "Sid Kiblawi",
+    "Wen-wai Yim",
+    "Timothy Ossowski",
+    "Tristan Naumann",
+    "Mu Wei",
+    "Hoifung Poon"
+   ],
+   "abstract": "Abstract In medical imaging report generation, supervised fine-tuning can overfit to superficial patterns and generalize poorly across institutions. We introduce Universal Report Generation (UNIRG), which adopts reinforcement learning to directly optimize clinically meaningful quality criteria. With this framework, we developed UNIRG-CXR, an 8-billion-parameter vision\u2013language model trained on four public datasets (MIMIC-CXR, CheXpert Plus, ReXGradient-160k and IU-Xray) by supervised fine-tuning followed by reinforcement learning (group-relative policy optimization) against a composite lexical, semantic and clinical-error reward. We evaluated held-out test sets and an external proprietary dataset, with RadCliQ as primary metric and expert radiologist validation. Here we show that our method improves report quality and generalization: UNIRG-CXR surpasses prior models on the ReXrank benchmark across four datasets and two generation settings, exceeding the previous best score by over 50% on two test sets, and produces fewer clinically significant errors while maintaining performance on unseen data sources and across demographic subgroups.",
+   "published": "2026-11-12",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-78767-4"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-78767-4",
+    "PDF": "https://doi.org/10.1038/s41467-026-78767-4"
+   },
+   "tags": [
+    "nature-ai"
+   ]
+  },
+  {
+   "id": "10.1038/s41467-026-78811-3",
+   "title": "scMomer: a pretraining framework for inferring robust cellular representations from single-cell transcriptomes",
+   "authors": [
+    "Yuhang Liu",
+    "Quan Zou",
+    "Ran Su",
+    "Leyi Wei"
+   ],
+   "abstract": "Abstract Foundation models offer new opportunities to capture cellular behavior from large-scale single-cell data. However, their development has been greatly constrained due to the limited availability of multi-omics profiles. Consequently, most models are designed for a single modality (e.g. scRNA-seq, or scATAC-seq, etc.), restricting their ability to capture the diversity of heterogeneous biological systems. Here, we introduce scMomer, a modality-aware pretraining framework designed for multi-modal representation learning under missing modality conditions. scMomer adopts a three-stage pretraining strategy that learns unimodal cell representations, models joint representations from multi-omics data, and distills multi-modal knowledge to enable multi-omics-like representations from unimodal input. Its modality-specific architecture and three-stage pretraining strategy enable effective learning under missing modality conditions and help capture cellular heterogeneity. Through extensive experiments, scMomer generates biologically meaningful embeddings and outperforms state-of-the-art unimodal approaches across diverse gene-level and cell-level downstream tasks, including cross-modality translation, gene function prediction, cell annotation, drug response prediction, and perturbation prediction. Overall, these results demonstrate that scMomer serves as a robust, generalizable, and scalable foundation for single-cell multi-modal analysis under missing modality conditions.",
+   "published": "2026-11-12",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-78811-3"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-78811-3",
+    "PDF": "https://doi.org/10.1038/s41467-026-78811-3"
+   },
+   "tags": [
+    "nature-ai"
+   ]
+  },
+  {
+   "id": "10.1038/s43588-026-01094-7",
+   "title": "Open foundation models for clinical AI",
+   "authors": [
+    "Vikas Bansal"
+   ],
+   "abstract": "",
+   "published": "2026-11-12",
+   "venue": "Nature Computational Science",
+   "dois": [
+    "10.1038/s43588-026-01094-7"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s43588-026-01094-7"
+   },
+   "tags": [
+    "nature-ai"
    ]
   },
   {
