@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>paper feed | S M Asiful Huda</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+<link rel="alternate" type="application/rss+xml" title="paper feed: Preprints" href="feed/preprint.xml">
+<link rel="alternate" type="application/rss+xml" title="paper feed: IEEE Transactions" href="feed/ieee-tx.xml">
+<link rel="alternate" type="application/rss+xml" title="paper feed: Top conferences" href="feed/conf.xml">
+<link rel="alternate" type="application/rss+xml" title="paper feed: Nature · AI" href="feed/nature.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -12,11 +16,26 @@
   :root {
     --theme: #b509ac;          /* al-folio's default accent: change this to match your site */
     --text: #000000;
+    --body: #333333;
     --muted: #6c757d;
     --divider: rgba(0, 0, 0, .1);
     --bg: #ffffff;
+    --nav-bg: rgba(255, 255, 255, .96);
+    --heading: rgba(0, 0, 0, .25);
     --preprint: #7a7f87;       /* badge color for arXiv preprints */
+    --new: #1a7f37;
+    --ring: rgba(181, 9, 172, .15);
+    --track: rgba(0, 0, 0, .2);
     color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --theme: #2698ba;        /* al-folio's dark-mode accent */
+      --text: #e8e8e8; --body: #c9c9c9; --muted: #9aa0a6; --divider: rgba(255, 255, 255, .14);
+      --bg: #1c1c1d; --nav-bg: rgba(28, 28, 29, .96); --heading: rgba(255, 255, 255, .3);
+      --preprint: #5f646b; --new: #3fb950; --ring: rgba(38, 152, 186, .25); --track: rgba(255, 255, 255, .25);
+      color-scheme: dark;
+    }
   }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 4rem; }
@@ -27,11 +46,12 @@
   }
   a { color: var(--theme); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--theme); outline-offset: 2px; }
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--theme); outline-offset: 2px; }
+  button, select, input { font-family: inherit; }
 
   /* top bar, like al-folio's navbar */
   nav {
-    position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, .96);
+    position: sticky; top: 0; z-index: 10; background: var(--nav-bg);
     border-bottom: 1px solid var(--divider); padding-top: env(safe-area-inset-top, 0px);
   }
   nav .inner {
@@ -45,9 +65,8 @@
   nav .links a.current { color: var(--theme); }
   nav .links a:hover { color: var(--theme); text-decoration: none; }
   .kbd {
-    font: 400 .8rem Roboto, -apple-system, "Segoe UI", Arial, sans-serif; color: var(--muted);
-    background: transparent; border: 1px solid var(--divider); border-radius: .25rem;
-    padding: .1rem .45rem; cursor: pointer;
+    font-size: .8rem; color: var(--muted); background: transparent; border: 1px solid var(--divider);
+    border-radius: .25rem; padding: .1rem .45rem; cursor: pointer;
   }
   .kbd:hover { color: var(--theme); border-color: var(--theme); }
   .menu-toggle { display: none; background: none; border: 0; font-size: 1.4rem; line-height: 1; cursor: pointer; color: var(--text); padding: .2rem; }
@@ -57,31 +76,58 @@
   h1 { font-weight: 300; font-size: 2.5rem; line-height: 1.2; margin: 0 0 .25rem; }
   .description { color: var(--muted); margin: 0 0 .25rem; }
   .updated { color: var(--muted); font-size: .85rem; margin: 0 0 1.5rem; }
+  .updated b { color: var(--new); font-weight: 500; }
 
   .search {
-    width: 100%; font: 400 1rem Roboto, -apple-system, "Segoe UI", Arial, sans-serif; color: var(--text);
-    background: var(--bg); border: 1px solid var(--divider); border-radius: .25rem;
-    padding: .5rem .75rem; margin-bottom: .9rem;
+    width: 100%; font-size: 1rem; color: var(--text); background: var(--bg);
+    border: 1px solid var(--divider); border-radius: .25rem; padding: .5rem .75rem; margin-bottom: .9rem;
   }
-  .search:focus { outline: none; border-color: var(--theme); box-shadow: 0 0 0 .15rem rgba(181, 9, 172, .15); }
-  .filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
-  .tab-info { color: var(--muted); font-size: .88rem; line-height: 1.5; margin: 0 0 1rem; max-width: 48rem; }
-  .filters button {
-    font: 400 .8rem Roboto, -apple-system, "Segoe UI", Arial, sans-serif; text-transform: uppercase;
-    letter-spacing: .02em; color: var(--text); background: transparent;
+  .search:focus { outline: none; border-color: var(--theme); box-shadow: 0 0 0 .15rem var(--ring); }
+
+  /* tabs */
+  .tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+  .tabs button {
+    font-size: .8rem; text-transform: uppercase; letter-spacing: .02em; color: var(--text); background: transparent;
     border: 1px solid var(--text); border-radius: .2rem; padding: .3rem .8rem; cursor: pointer;
   }
-  .filters button:hover { border-color: var(--theme); color: var(--theme); }
-  .filters button[aria-pressed="true"] { background: var(--theme); border-color: var(--theme); color: #fff; }
+  .tabs button:hover { border-color: var(--theme); color: var(--theme); }
+  .tabs button[aria-selected="true"] { background: var(--theme); border-color: var(--theme); color: #fff; }
+  .tabs .count { opacity: .7; margin-left: .3rem; font-size: .72rem; }
 
-  /* date headers, like al-folio's year headers */
+  /* controls under the tabs: graph switch, new-only switch, sort */
+  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.2rem; margin-bottom: .6rem; font-size: .85rem; }
+  .switch { display: inline-flex; align-items: center; gap: .45rem; cursor: pointer; color: var(--text); user-select: none; }
+  .switch[hidden] { display: none; }
+  .switch input { appearance: none; width: 2.1rem; height: 1.15rem; border-radius: 1rem; background: var(--track);
+    position: relative; cursor: pointer; margin: 0; transition: background .15s; flex: none; }
+  .switch input::after { content: ""; position: absolute; top: .15rem; left: .15rem; width: .85rem; height: .85rem;
+    border-radius: 50%; background: #fff; transition: transform .15s; box-shadow: 0 1px 2px rgba(0,0,0,.3); }
+  .switch input:checked { background: var(--theme); }
+  .switch input:checked::after { transform: translateX(.95rem); }
+  .controls select { font-size: .85rem; color: var(--text); background: var(--bg); border: 1px solid var(--divider);
+    border-radius: .2rem; padding: .15rem .4rem; margin-left: .3rem; }
+  /* conference chips */
+  .chips { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .75rem; }
+  .chips:empty { display: none; }
+  .chip { font-size: .75rem; color: var(--text); background: transparent; border: 1px solid var(--divider);
+    border-radius: 1rem; padding: .12rem .65rem; cursor: pointer; }
+  .chip:hover { border-color: var(--theme); color: var(--theme); }
+  .chip[aria-pressed="true"] { border-color: var(--theme); color: var(--theme); font-weight: 500; }
+  .chip .n { color: var(--muted); margin-left: .25rem; }
+  .tab-info { color: var(--muted); font-size: .88rem; line-height: 1.5; margin: 0 0 1rem; max-width: 48rem; }
+
+  /* date and conference headers, like al-folio's year headers */
   h2 {
-    font-weight: 300; font-size: 1.6rem; color: rgba(0, 0, 0, .25); text-align: right;
+    font-weight: 300; font-size: 1.6rem; color: var(--heading); text-align: right;
     border-top: 1px solid var(--divider); margin: 2rem 0 .5rem; padding-top: .5rem;
   }
 
   ol { list-style: none; padding: 0; margin: 0; }
-  li.paper { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: .9rem 0; }
+  li.paper {
+    display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: .9rem 0;
+    content-visibility: auto; contain-intrinsic-size: auto 9rem;  /* browser skips off-screen papers */
+  }
+  #more { height: 1px; }
   .abbr { padding-top: .2rem; }
   .badge {
     display: inline-block; max-width: 100%; background: var(--theme); color: #fff;
@@ -92,28 +138,34 @@
   .title { font-weight: 700; margin: 0; }
   .title a { color: var(--text); }
   .title a:hover { color: var(--theme); text-decoration: none; }
+  .new-pill { display: inline-block; vertical-align: .1em; margin-left: .4rem; font-size: .65rem; font-weight: 700;
+    text-transform: uppercase; color: var(--new); border: 1px solid var(--new); border-radius: .2rem; padding: 0 .3rem; }
   .author { margin: .1rem 0 0; }
   .periodical { margin: .1rem 0 0; font-style: italic; }
-  .graph-tag { font-style: normal; font-size: .75rem; color: var(--theme); margin-left: .4rem; }
+  .tag { font-style: normal; font-size: .75rem; color: var(--theme); margin-left: .4rem; }
+  .note { font-style: normal; font-size: .8rem; color: var(--new); display: block; }
   .preview {
-    margin: .45rem 0 0; color: #333; font-size: .92rem;
+    margin: .45rem 0 0; color: var(--body); font-size: .92rem;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   }
   li.open .preview { display: none; }
   .abstract {
-    display: none; margin: .6rem 0 0; padding: .6rem .8rem; font-size: .92rem;
+    display: none; margin: .6rem 0 0; padding: .6rem .8rem; font-size: .92rem; color: var(--body);
     border: 1px solid var(--divider); border-radius: .25rem;
   }
   li.open .abstract { display: block; }
   .actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .55rem; }
   .btn {
-    font: 400 .72rem Roboto, -apple-system, "Segoe UI", Arial, sans-serif; text-transform: uppercase;
-    color: var(--text); background: transparent; border: 1px solid var(--text);
-    border-radius: .2rem; padding: .15rem .7rem; cursor: pointer; white-space: nowrap;
+    font-size: .72rem; text-transform: uppercase; color: var(--text); background: transparent;
+    border: 1px solid var(--text); border-radius: .2rem; padding: .15rem .7rem; cursor: pointer; white-space: nowrap;
   }
   .btn:hover { color: var(--theme); border-color: var(--theme); text-decoration: none; }
-  li.open .btn.abs { color: var(--theme); border-color: var(--theme); }
+  li.open .btn.abs, .btn.save[aria-pressed="true"] { color: var(--theme); border-color: var(--theme); }
   .status { color: var(--muted); }
+  .toast { position: fixed; left: 50%; bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+    background: var(--text); color: var(--bg); font-size: .85rem; padding: .45rem .9rem; border-radius: .3rem;
+    opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 20; }
+  .toast.show { opacity: 1; }
 
   footer {
     max-width: 930px; margin: 0 auto; padding: 1.5rem 1rem 2rem; text-align: center;
@@ -148,182 +200,349 @@
 </nav>
 <main>
   <h1>paper feed</h1>
-  <p class="description">new papers on federated learning and graph neural networks, updated daily.</p>
+  <p class="description">new papers on federated learning and federated graph learning, plus AI highlights from Nature journals, updated daily.</p>
   <p class="updated" id="updated">Loading papers…</p>
-  <input class="search" id="search" type="search" placeholder="Type to filter" aria-label="Filter papers by title, author, venue or abstract">
-  <div class="filters" role="group" aria-label="Topic">
-    <button data-topic="fl" aria-pressed="false">Federated learning</button>
-    <button data-topic="fl-gnn" aria-pressed="true">Federated graph learning</button>
-    <button data-topic="nature-ai" aria-pressed="false">Nature · AI</button>
-    <button data-topic="conf" aria-pressed="false">Top conferences</button>
+  <input class="search" id="search" type="search" placeholder="Type to filter (title, author, venue, abstract)" aria-label="Filter papers by title, author, venue or abstract">
+  <div class="tabs" role="tablist" aria-label="Venue">
+    <button role="tab" data-tab="preprint">Preprints</button>
+    <button role="tab" data-tab="ieee-tx">IEEE Transactions</button>
+    <button role="tab" data-tab="conf">Top conferences</button>
+    <button role="tab" data-tab="nature">Nature · AI</button>
+    <button role="tab" data-tab="saved" title="Papers you starred, kept in this browser">★ Saved</button>
   </div>
+  <div class="controls">
+    <label class="switch" title="Show only papers on graphs (GNNs, knowledge graphs, subgraphs...)">
+      <input type="checkbox" id="graph-only"> Graph learning only
+    </label>
+    <label class="switch" id="new-wrap" hidden>
+      <input type="checkbox" id="new-only"> New since your last visit
+    </label>
+    <label id="sort-wrap" hidden>Sort
+      <select id="sort"><option value="picks">Top picks</option><option value="date">Newest</option></select>
+    </label>
+  </div>
+  <div class="chips" id="chips" role="group" aria-label="Conference"></div>
   <p class="tab-info" id="tab-info" aria-live="polite"></p>
   <div id="feed"></div>
 </main>
-<footer>Papers from arXiv, OpenAlex and OpenReview. Venues limited to selected journals and conferences.</footer>
+<footer>
+  Papers from arXiv, OpenReview, dblp and OpenAlex. Follow a tab in your feed reader (RSS):
+  <a href="feed/preprint.xml">Preprints</a> · <a href="feed/ieee-tx.xml">IEEE Transactions</a> ·
+  <a href="feed/conf.xml">Conferences</a> · <a href="feed/nature.xml">Nature · AI</a>.
+</footer>
+<div class="toast" id="toast" role="status"></div>
 <script>
-const feed = document.getElementById("feed");
-const search = document.getElementById("search");
-let papers = [];
-let topic = "fl-gnn";
+const $ = id => document.getElementById(id);
+const feed = $("feed"), search = $("search");
+const TABS = ["preprint", "ieee-tx", "conf", "nature", "saved"];
+const BATCH = 40;            // papers drawn at a time; more are added as you scroll
+let tab = TABS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "preprint";
+let papers = [];             // the current tab's papers
+let venue = "";              // conference chip ("" = all)
+let meta = null;
 
+// ---------- small helpers ----------
 function el(tag, props = {}, ...children) {
   const node = Object.assign(document.createElement(tag), props);
   node.append(...children);
   return node;
 }
-
 // Links come from outside sources: only allow http(s) URLs.
-function safe(url) {
-  return typeof url === "string" && /^https?:\/\//i.test(url) ? url : null;
-}
-
+function safe(url) { return typeof url === "string" && /^https?:\/\//i.test(url) ? url : null; }
 function dayLabel(iso) {
-  const d = new Date(iso + "T00:00:00");
-  return d.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
+  return new Date(iso + "T00:00:00").toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+}
+const store = {  // localStorage, which can be unavailable (private mode, blocked storage)
+  get(key, fallback) { try { const v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); } catch { return fallback; } },
+  set(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} },
+};
+let toastTimer;
+function toast(text) {
+  const t = $("toast"); t.textContent = text; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 1800);
+}
+const idle = window.requestIdleCallback || (f => setTimeout(f, 300));
+
+// ---------- loading ----------
+// Each tab is two small files written by fetch.py: feed/<tab>.json (papers with a short preview) and
+// feed/<tab>-abs.json (full abstracts, fetched in the background). "no-cache" lets the browser reuse its
+// copy when a file hasn't changed (a quick 304) instead of downloading it again on every visit.
+function getJSON(url) {
+  return fetch(url, { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
+}
+const tabFiles = {}, absFiles = {};
+function haystack(p) {
+  return [p.title, p.authors.join(" "), p.venue || "arxiv preprint", p.note || "", p.full || p.preview || ""].join(" ").toLowerCase();
+}
+function loadTab(t) {
+  if (t === "saved") return Promise.resolve({ papers: Object.values(saved) });
+  return tabFiles[t] ||= getJSON(`feed/${t}.json`).then(d => {
+    for (const p of d.papers) p.hay = haystack(p);
+    return d;
+  });
+}
+function loadAbstracts(t) {
+  if (t === "saved") return Promise.resolve();
+  return absFiles[t] ||= Promise.all([loadTab(t), getJSON(`feed/${t}-abs.json`).catch(() => ({}))]).then(([d, abs]) => {
+    for (const p of d.papers) if (abs[p.id]) { p.full = abs[p.id]; p.hay = haystack(p); }
+  });
 }
 
-// Short venue label for the badge, like the abbreviations on al-folio publication lists.
+// ---------- saved papers and "new since last visit" (both kept in this browser only) ----------
+let saved = store.get("pf-saved", {});
+function toggleSaved(p, btn) {
+  if (saved[p.id]) delete saved[p.id];
+  else saved[p.id] = { ...p, hay: undefined, savedOn: new Date().toISOString().slice(0, 10) };
+  store.set("pf-saved", saved);
+  btn.setAttribute("aria-pressed", String(!!saved[p.id]));
+  btn.textContent = saved[p.id] ? "★ Saved" : "☆ Save";
+  updateCounts();
+  if (tab === "saved") openTab("saved");
+}
+// The feed's update time at your previous visit; papers the feed added after it are "new".
+const lastSeen = store.get("pf-last-seen", null);
+function isNew(p) { return !!lastSeen && (p.added || "") > lastSeen; }
+
+// ---------- badges and citations ----------
 const VENUE_ABBR = [
-  [/neural information processing systems|\bneurips\b/i, "NeurIPS"],
-  [/international conference on machine learning|\bicml\b/i, "ICML"],
-  [/international conference on learning representations|\biclr\b/i, "ICLR"],
-  [/sigkdd|\bkdd\b/i, "KDD"],
-  [/aaai/i, "AAAI"],
-  [/international joint conference on artificial intelligence|\bijcai\b/i, "IJCAI"],
-  [/\bweb conference\b|world wide web conference/i, "WWW"],
-  [/computer vision and pattern recognition/i, "CVPR"],
-  [/international conference on computer vision/i, "ICCV"],
-  [/\binfocom\b/i, "INFOCOM"],
-  [/international conference on data engineering/i, "ICDE"],
-  [/\bvldb\b|very large data bases/i, "VLDB"],
-  [/\bsigmod\b/i, "SIGMOD"],
-  [/web search and data mining/i, "WSDM"],
-  [/information and knowledge management/i, "CIKM"],
-  [/international conference on data mining/i, "ICDM"],
-  [/\bmobicom\b/i, "MobiCom"],
+  [/nature machine intelligence/i, "Nat. Mach. Intell."], [/nature communications/i, "Nat. Commun."],
+  [/nature computational science/i, "Nat. Comput. Sci."], [/^npj artificial intelligence/i, "npj AI"],
 ];
-function badgeText(venue) {
-  if (!venue) return "arXiv";
-  for (const [re, abbr] of VENUE_ABBR) if (re.test(venue)) return abbr;
+function badgeText(p) {
+  if (!p.venue) return "arXiv";
+  if (p.conf) return p.conf.replace(/ \d{4}$/, "");
+  for (const [re, abbr] of VENUE_ABBR) if (re.test(p.venue)) return abbr;
   // "IEEE Transactions on Neural Networks and Learning Systems" -> "IEEE TNNLS"
-  const t = venue.match(/ieee transactions on (.+)/i);
-  if (t) {
-    const initials = t[1].split(/[\s,-]+/).filter(w => /^[A-Z]/.test(w)).map(w => w[0]).join("");
-    return "IEEE T" + initials;
-  }
-  return venue;  // e.g. "Nature Communications"
+  const t = p.venue.match(/ieee(?:\/[a-z]+)? transactions on (.+)/i);
+  if (t) return "IEEE T" + t[1].split(/[\s,-]+/).filter(w => /^[A-Z]/.test(w)).map(w => w[0]).join("");
+  return p.venue;
+}
+function bibtex(p) {
+  const first = (p.authors[0] || "anon").split(" ").pop().replace(/[^A-Za-z]/g, "").toLowerCase();
+  const year = (p.conf || "").match(/\d{4}$/)?.[0] || p.published.slice(0, 4);
+  const word = (p.title.match(/[A-Za-z]{4,}/) || ["paper"])[0].toLowerCase();
+  const kind = p.conf ? "inproceedings" : p.venue ? "article" : "misc";
+  const fields = [["title", `{${p.title}}`], ["author", p.authors.join(" and ")], ["year", year]];
+  if (p.conf) fields.push(["booktitle", p.conf.replace(/ \d{4}$/, "")]);
+  else if (p.venue) fields.push(["journal", p.venue]);
+  else if (p.links.arXiv) fields.push(["eprint", p.links.arXiv.split("/abs/")[1]], ["archivePrefix", "arXiv"]);
+  if (p.doi) fields.push(["doi", p.doi]);
+  const url = safe(p.links.Publisher) || safe(p.links.OpenReview) || safe(p.links.arXiv);
+  if (url) fields.push(["url", url]);
+  return `@${kind}{${first}${year}${word},\n` + fields.map(([k, v]) => `  ${k} = {${v}}`).join(",\n") + "\n}";
 }
 
+// ---------- rendering ----------
+let shown = [], drawn = 0, lastGroup = null, list = null;
+const more = el("div", { id: "more" });
+new IntersectionObserver(entries => { if (entries.some(e => e.isIntersecting)) drawMore(); },
+  { rootMargin: "1200px 0px" }).observe(more);   // start drawing well before the reader reaches the end
+
+const confName = p => p.conf.replace(/ \d{4}$/, "");
+const confYear = p => +p.conf.slice(-4);
+function filtered() {
+  const words = search.value.toLowerCase().split(/\s+/).filter(Boolean);
+  const graphOnly = $("graph-only").checked, newOnly = $("new-only").checked;
+  return papers.filter(p => (!graphOnly || p.graph) && (!newOnly || isNew(p)) &&
+    (tab !== "conf" || !venue || (p.conf && confName(p) === venue)) && words.every(w => (p.hay ||= haystack(p)).includes(w)));
+}
+function groupOf(p) {
+  if (tab === "conf") return p.conf;
+  if (tab === "nature" && $("sort").value === "picks") return null;
+  if (tab === "saved") return "Saved " + dayLabel(p.savedOn);
+  return dayLabel(p.published);
+}
 function render() {
   feed.replaceChildren();
-  const words = search.value.toLowerCase().split(/\s+/).filter(Boolean);
-  const shown = papers.filter(p => p.tags.includes(topic) &&
-    words.every(w => [p.title, p.authors.join(" "), p.venue || "arxiv preprint", p.abstract].join(" ").toLowerCase().includes(w)));
+  shown = filtered();
+  drawn = 0; lastGroup = undefined; list = null;
   if (!shown.length) {
-    feed.append(el("p", { className: "status", textContent: words.length
-      ? "No papers match your search in this topic."
-      : "No papers in this topic yet. The next daily update will add any new ones." }));
+    const any = search.value.trim() || $("graph-only").checked || $("new-only").checked || (tab === "conf" && venue);
+    feed.append(el("p", { className: "status", textContent: tab === "saved" && !papers.length
+      ? "Nothing saved yet. Use ☆ Save on any paper to keep it here (in this browser)."
+      : any ? "No papers match these filters in this tab." : "No papers in this tab yet. The next daily update will add any new ones." }));
     return;
   }
-  // The conference tab is grouped by conference and year ("NeurIPS 2025"), the others by date.
-  const byConf = topic === "conf";
-  if (byConf) {
+  if (tab === "conf") {
     const order = ["NeurIPS", "ICML", "ICLR", "AAAI", "IJCAI"];
-    shown.sort((a, b) => b.conf.split(" ")[1] - a.conf.split(" ")[1] ||
-      order.indexOf(a.conf.split(" ")[0]) - order.indexOf(b.conf.split(" ")[0]) || a.title.localeCompare(b.title));
+    const rank = n => (order.indexOf(n) + 1) || 99;
+    shown.sort((a, b) => confYear(b) - confYear(a) || rank(confName(a)) - rank(confName(b)) ||
+      confName(a).localeCompare(confName(b)) || a.title.localeCompare(b.title));
+  } else if (tab === "nature" && $("sort").value === "picks") {
+    shown.sort((a, b) => (b.score || 0) - (a.score || 0) || b.published.localeCompare(a.published));
+  } else if (tab === "saved") {
+    shown.sort((a, b) => b.savedOn.localeCompare(a.savedOn) || b.published.localeCompare(a.published));
   }
-  let lastGroup = null, list = null;
-  for (const p of shown) {
-    const group = byConf ? p.conf : p.published;
-    if (group !== lastGroup) {
+  drawMore();
+}
+// Adds the next BATCH papers; the observer calls it again when the bottom comes near.
+function drawMore() {
+  if (drawn >= shown.length) return;
+  const frag = document.createDocumentFragment();
+  for (const p of shown.slice(drawn, drawn + BATCH)) {
+    const group = groupOf(p);
+    if (group !== lastGroup || !list) {
       lastGroup = group;
       list = el("ol");
-      feed.append(el("h2", { textContent: byConf ? p.conf : dayLabel(p.published) }), list);
+      if (group) frag.append(el("h2", { textContent: group }));
+      frag.append(list);
     }
-    const authors = p.authors.length > 6 ? p.authors.slice(0, 6).join(", ") + ", et al." : p.authors.join(", ");
-    const li = el("li", { className: "paper" });
-    const badge = el("span", { className: "badge" + (p.venue ? "" : " preprint"), textContent: badgeText(p.venue) });
-    if (p.venue) badge.title = p.venue;
+    list.append(paperItem(p));
+  }
+  drawn = Math.min(drawn + BATCH, shown.length);
+  more.remove();
+  feed.append(frag);
+  if (drawn < shown.length) feed.append(more);
+}
 
-    const periodical = el("p", { className: "periodical", textContent: p.venue || "arXiv preprint" });
-    const isGraph = p.tags.includes("fl-gnn") || (byConf && /graph|gnn/i.test(p.title));
-    if ((topic === "fl" || byConf) && isGraph) periodical.append(el("span", { className: "graph-tag", textContent: "· graph" }));
+function paperItem(p) {
+  const authors = p.authors.length > 6 ? p.authors.slice(0, 6).join(", ") + ", et al." : p.authors.join(", ");
+  const li = el("li", { className: "paper" });
+  const badge = el("span", { className: "badge" + (p.venue ? "" : " preprint"), textContent: badgeText(p) });
+  if (p.venue) badge.title = p.venue;
 
-    const actions = el("div", { className: "actions" });
-    if (p.abstract) {
-      const abs = el("button", { className: "btn abs", textContent: "Abs", type: "button" });
-      abs.setAttribute("aria-expanded", "false");
-      abs.onclick = () => abs.setAttribute("aria-expanded", String(li.classList.toggle("open")));
-      actions.append(abs);
-    }
-    for (const label of ["arXiv", "OpenReview", "Publisher", "PDF"]) {
-      if (safe(p.links[label])) actions.append(el("a", { className: "btn", href: p.links[label], target: "_blank", rel: "noopener", textContent: label }));
-    }
+  const main = safe(p.links.Publisher) || safe(p.links.OpenReview) || safe(p.links.arXiv) || safe(p.links.PDF);
+  const title = el("p", { className: "title" }, main ? el("a", { href: main, target: "_blank", rel: "noopener", textContent: p.title }) : p.title);
+  if (isNew(p)) title.append(el("span", { className: "new-pill", textContent: "new" }));
 
-    const main = safe(p.links.Publisher) || safe(p.links.OpenReview) || safe(p.links.arXiv) || safe(p.links.PDF);
-    const body = el("div", {},
-      el("p", { className: "title" }, main ? el("a", { href: main, target: "_blank", rel: "noopener", textContent: p.title }) : p.title),
-      el("p", { className: "author", textContent: authors }),
-      periodical,
-      el("p", { className: "preview", textContent: p.abstract || "No abstract available here. Open the paper to read it." })
-    );
-    if (p.abstract) body.append(el("p", { className: "abstract", textContent: p.abstract }));
-    body.append(actions);
-    li.append(el("div", { className: "abbr" }, badge), body);
-    list.append(li);
+  const periodical = el("p", { className: "periodical", textContent: p.venue || "arXiv preprint" });
+  if (p.graph) periodical.append(el("span", { className: "tag", textContent: "· graph" }));
+  if (p.fl && p.venue && /^(nature|npj)\b/i.test(p.venue)) periodical.append(el("span", { className: "tag", textContent: "· federated" }));
+  if (p.note && !p.venue) periodical.append(el("span", { className: "note", textContent: p.note }));
+
+  const actions = el("div", { className: "actions" });
+  const body = el("div", {}, title, el("p", { className: "author", textContent: authors }), periodical,
+    el("p", { className: "preview", textContent: p.preview || p.full || "No abstract available here. Open the paper to read it." }));
+  if (p.preview || p.full) {
+    const abs = el("button", { className: "btn abs", textContent: "Abs", type: "button" });
+    abs.setAttribute("aria-expanded", "false");
+    abs.onclick = async () => {
+      if (!body.querySelector(".abstract")) {   // the abstract is built on first open only
+        if (!p.full) await loadAbstracts(tab);
+        body.insertBefore(el("p", { className: "abstract", textContent: p.full || p.preview }), actions);
+      }
+      abs.setAttribute("aria-expanded", String(li.classList.toggle("open")));
+    };
+    actions.append(abs);
+  }
+  for (const label of ["arXiv", "OpenReview", "Publisher", "PDF"]) {
+    if (safe(p.links[label])) actions.append(el("a", { className: "btn", href: p.links[label], target: "_blank", rel: "noopener", textContent: label }));
+  }
+  const cite = el("button", { className: "btn", type: "button", textContent: "Cite", title: "Copy BibTeX" });
+  cite.onclick = () => navigator.clipboard.writeText(bibtex(p)).then(() => toast("BibTeX copied"), () => toast("Couldn’t copy"));
+  const save = el("button", { className: "btn save", type: "button", textContent: saved[p.id] ? "★ Saved" : "☆ Save" });
+  save.setAttribute("aria-pressed", String(!!saved[p.id]));
+  save.onclick = async () => {
+    if (!saved[p.id] && !p.full) await loadAbstracts(tab);  // keep the full abstract with it
+    toggleSaved(p, save);
+  };
+  actions.append(cite, save);
+  body.append(actions);
+  li.append(el("div", { className: "abbr" }, badge), body);
+  return li;
+}
+
+// ---------- tabs and controls ----------
+// What each tab shows. Keep in sync with fetch.py.
+const TAB_INFO = {
+  "preprint": "Federated learning preprints from arXiv. A preprint moves to its venue’s tab once the published version is found; “Accepted at …” notes come from the authors’ arXiv comments. Last 3 months (6 months for graph papers).",
+  "ieee-tx": "Federated learning papers in IEEE Transactions journals (including IEEE/ACM Transactions). Every new paper in those journals is checked, so papers without an abstract are still caught by their title. Last 6 months.",
+  "conf": "Federated learning papers at top AI, data, vision, language, systems and security conferences, this year and last. NeurIPS, ICML and ICLR come from OpenReview with abstracts; the rest come from dblp, with abstracts added from OpenAlex where it has them.",
+  "nature": "AI papers from Nature, Nature Communications, Nature Machine Intelligence, Nature Computational Science and npj Artificial Intelligence. Every paper is scored on how much it is about AI methods or AI for science, rather than only using AI as a tool, and the ones above a threshold are kept. Federated learning papers in these journals are always kept. Last 3 months.",
+  "saved": "Papers you starred. They are kept in this browser only, and stay here after they leave the feed.",
+};
+function showInfo() {
+  const info = $("tab-info");
+  info.textContent = TAB_INFO[tab] + " ";
+  if (tab !== "saved") info.append(el("a", { href: `feed/${tab}.xml`, textContent: "RSS feed" }), ".");
+  $("sort-wrap").hidden = tab !== "nature";
+}
+function updateCounts() {
+  document.querySelectorAll(".tabs button").forEach(b => {
+    const t = b.dataset.tab;
+    const n = t === "saved" ? Object.keys(saved).length : meta?.tabs?.[t]?.count;
+    b.querySelector(".count")?.remove();
+    if (n != null) b.append(el("span", { className: "count", textContent: n }));
+  });
+}
+function buildChips() {
+  const chips = $("chips");
+  chips.replaceChildren();
+  if (tab !== "conf") return;
+  const counts = {};
+  for (const p of papers) if (p.conf) counts[confName(p)] = (counts[confName(p)] || 0) + 1;
+  const names = Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
+  if (venue && !counts[venue]) venue = "";
+  for (const name of ["", ...names]) {
+    const chip = el("button", { className: "chip", type: "button", textContent: name || "All" });
+    chip.append(el("span", { className: "n", textContent: name ? counts[name] : papers.length }));
+    chip.setAttribute("aria-pressed", String(name === venue));
+    chip.onclick = () => { venue = name; buildChips(); render(); };
+    chips.append(chip);
   }
 }
 
-// What each tab shows. Keep in sync with TOPICS in fetch.py.
-const TAB_INFO = {
-  "fl": "Preprints from arXiv, plus published papers from Nature journals, IEEE Transactions and top AI, data and systems conferences, that mention federated learning, optimization, training, averaging, fine-tuning or FedAvg. Last 60 days, newest first.",
-  "fl-gnn": "Federated learning papers that also involve graphs: graph neural networks (GNN, GCN, graph attention), graph learning, subgraphs, knowledge graphs, and graph embeddings or representations. Same sources as Federated learning. Last 6 months, newest first.",
-  "nature-ai": "Machine learning and AI papers (deep learning, neural networks, language and foundation models, reinforcement learning) in Nature, Nature Communications, Nature Machine Intelligence, Nature Computational Science and Nature Human Behaviour. Any AI topic, not only federated learning. Last 60 days, newest first.",
-  "conf": "Federated learning papers accepted at NeurIPS, ICML and ICLR (from OpenReview, matched on title or abstract), plus AAAI and IJCAI papers found in the published-paper search. This year’s and last year’s conferences, grouped by conference.",
-};
-function showInfo() { document.getElementById("tab-info").textContent = TAB_INFO[topic] || ""; }
-
-document.querySelectorAll(".filters button").forEach(btn => {
-  btn.onclick = () => {
-    topic = btn.dataset.topic;
-    document.querySelectorAll(".filters button").forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
-    showInfo();
+async function openTab(t) {
+  tab = t;
+  if (location.hash.slice(1) !== t) history.replaceState(null, "", "#" + t);
+  document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.tab === t)));
+  showInfo();
+  try {
+    const data = await loadTab(t);
+    if (tab !== t) return;             // another tab was clicked while this one loaded
+    papers = data.papers;
+    buildChips();
     render();
-  };
-});
-showInfo();
-
-search.addEventListener("input", render);
-
-// "ctrl k" (or Cmd+K on Mac) jumps to the search box.
-function focusSearch() {
-  nav.classList.remove("open");
-  search.focus();
-  search.scrollIntoView({ block: "center" });
+    idle(() => loadAbstracts(t).then(() => { if (tab === t && search.value.trim()) render(); }));
+  } catch {
+    $("chips").replaceChildren();
+    feed.replaceChildren(el("p", { className: "status", textContent: "This tab’s file isn’t there yet. Run the “Update paper feed” workflow once from the Actions tab on GitHub." }));
+  }
 }
-document.getElementById("kbd").onclick = focusSearch;
-document.addEventListener("keydown", e => {
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); focusSearch(); }
-});
+document.querySelectorAll(".tabs button").forEach(b => { b.onclick = () => openTab(b.dataset.tab); });
+window.addEventListener("hashchange", () => { const t = location.hash.slice(1); if (TABS.includes(t) && t !== tab) openTab(t); });
 
-// Menu toggle on small screens.
+// Remembered between visits.
+$("graph-only").checked = store.get("pf-graph-only", false);
+$("graph-only").onchange = e => { store.set("pf-graph-only", e.target.checked); render(); };
+$("new-only").onchange = render;
+$("sort").value = store.get("pf-nature-sort", "picks");
+$("sort").onchange = e => { store.set("pf-nature-sort", e.target.value); render(); };
+
+// Filter after a short pause in typing rather than on every key.
+let typing;
+search.addEventListener("input", () => { clearTimeout(typing); typing = setTimeout(render, 120); });
+
+// "ctrl k" (or Cmd+K on Mac) and "/" jump to the search box.
 const nav = document.querySelector("nav");
+function focusSearch() { nav.classList.remove("open"); search.focus(); search.scrollIntoView({ block: "center" }); }
+$("kbd").onclick = focusSearch;
+document.addEventListener("keydown", e => {
+  const inField = /^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName);
+  if (((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") || (e.key === "/" && !inField)) { e.preventDefault(); focusSearch(); }
+});
 const toggle = document.querySelector(".menu-toggle");
 toggle.onclick = () => toggle.setAttribute("aria-expanded", String(nav.classList.toggle("open")));
 
-fetch("papers.json", { cache: "no-store" })
-  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then(data => {
-    papers = data.papers;
-    const when = new Date(data.updated).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
-    document.getElementById("updated").textContent = `${papers.length} papers. Updated ${when}.`;
-    render();
-  })
-  .catch(() => {
-    document.getElementById("updated").textContent =
-      "No papers.json yet. Run the “Update paper feed” workflow once from the Actions tab on GitHub.";
-  });
+// ---------- start ----------
+getJSON("feed/meta.json").then(m => {
+  meta = m;
+  const when = new Date(m.updated).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+  const upd = $("updated");
+  upd.textContent = `Updated ${when}.`;
+  updateCounts();
+  if (lastSeen && lastSeen < m.updated) {
+    $("new-wrap").hidden = false;
+    upd.append(" ", el("b", { textContent: "Papers added since your last visit are marked new." }));
+  }
+  // Remember this update as seen once the page has been open a little while,
+  // so a quick reload doesn't clear the "new" marks.
+  setTimeout(() => store.set("pf-last-seen", m.updated), 20000);
+}).catch(() => { $("updated").textContent = "No feed files yet. Run the “Update paper feed” workflow once from the Actions tab on GitHub."; });
+updateCounts();
+openTab(tab);
+// Once the first tab is on screen, fetch the other tabs' lists quietly so switching is instant.
+idle(() => TABS.forEach(t => t !== "saved" && loadTab(t).catch(() => {})));
 </script>
 </body>
 </html>
