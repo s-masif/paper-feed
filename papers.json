@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T20:41+00:00",
+ "updated": "2026-11-13T20:59+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -13,14 +13,118 @@
  },
  "ieee_sources": {
   "checked": "2026-11-13",
+  "version": 2,
   "ids": [
+   "S100142436",
+   "S100835903",
+   "S104780363",
+   "S10892749",
+   "S10936095",
+   "S111326731",
+   "S115173108",
+   "S116977442",
+   "S120877133",
+   "S126824455",
+   "S128536549",
+   "S130363450",
+   "S133363738",
    "S133795288",
+   "S134177497",
+   "S137030581",
+   "S13961689",
+   "S142331907",
+   "S14279044",
+   "S144620930",
+   "S144771191",
    "S14676311",
+   "S154533451",
+   "S157670870",
+   "S162355128",
+   "S163644703",
+   "S164692974",
+   "S168680287",
+   "S173527311",
+   "S184777250",
+   "S184954342",
+   "S187110076",
+   "S19003042",
+   "S192268925",
+   "S193624734",
+   "S196647941",
    "S199944782",
+   "S201762130",
+   "S201921491",
+   "S203966947",
+   "S204223317",
+   "S207741693",
+   "S2476799526",
+   "S2484188435",
+   "S2484352698",
+   "S2488537894",
+   "S2490693980",
+   "S2490853239",
    "S2491400915",
+   "S2492498579",
+   "S2496326734",
+   "S2502544478",
+   "S29875816",
    "S30698027",
+   "S34881539",
+   "S36029991",
+   "S37538908",
+   "S38993383",
+   "S4210169448",
+   "S4210173141",
+   "S4210175523",
+   "S4210182817",
+   "S4210191041",
+   "S4210192662",
+   "S4210199657",
+   "S4210208950",
+   "S4210209078",
+   "S4210209367",
+   "S4210210251",
+   "S4210221417",
+   "S4210223690",
+   "S4210224842",
+   "S4210231342",
+   "S4210233665",
+   "S4306422866",
+   "S4306422867",
+   "S4387282875",
+   "S4387283721",
+   "S4387283722",
+   "S4387286196",
+   "S4387286330",
+   "S4387287601",
+   "S4387997533",
+   "S4390296945",
+   "S4404675360",
+   "S4502562",
+   "S50222406",
+   "S50523690",
+   "S5240358",
+   "S5407042750",
+   "S5407042752",
+   "S5407054002",
+   "S58031724",
+   "S58069681",
+   "S59604973",
+   "S61310614",
+   "S63459445",
+   "S64770346",
+   "S68937846",
    "S69141925",
-   "S8351582"
+   "S80299757",
+   "S8351582",
+   "S84775595",
+   "S85738991",
+   "S87725633",
+   "S90277605",
+   "S93787993",
+   "S93916849",
+   "S97130795",
+   "S98183460"
   ]
  },
  "nature_sources": {
@@ -40,7 +144,8 @@
    "npj Artificial Intelligence": "S5407042906"
   }
  },
- "dblp_checked": null,
+ "dblp_next": 1,
+ "dblp_seen": {},
  "abs_tried": {},
  "ieee_xplore_checked": null,
  "papers": [
@@ -672,6 +777,38 @@
     "PDF": "https://arxiv.org/pdf/2611.14590v1"
    },
    "added": "2026-11-10",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.14312",
+   "title": "PSL-RGHA: Parallel Split Learning with Reference Gradient Half-Space Alignment for Mitigating Gradient Divergence",
+   "authors": [
+    "Han Li",
+    "Zheng Lin",
+    "Miao Yang",
+    "Zehang Lin",
+    "Jing Yang",
+    "Zihan Fang",
+    "Qiyang Zhang",
+    "Zhaolu Kang",
+    "Jianmin Li",
+    "Lin Li",
+    "Mingwei Hong",
+    "Shunzhi Zhu"
+   ],
+   "abstract": "The escalating complexity of deep neural networks hinders the deployment of federated learning (FL) on resource-constrained devices, especially for multimedia applications such as on-device image classification and speech recognition. Parallel split learning (PSL) has emerged as a promising solution by offloading a substantial portion of the computational workload to the server through layer-wise model partitioning, making it particularly suitable for resource-limited visual and speech intelligence scenarios. However, the absence of client-side aggregation renders PSL sus ceptible to severe training divergence and potential convergence failure under heterogeneous data distributions. To address this challenge, we propose PSL-RGHA, a gradient-aligned PSL framework that employs reference gradient half-space alignment mechanism to mitigate training divergence among client devices. PSL-RGHA comprises two novel components: reference gradient progressive construction (RGPC) and gradient half-space alignment (GHA). Specifically, RGPC evaluates the directional consistency of client gradients and progressively synthesizes a robust reference gradient via Weiszfeld updates, effectively approximating the global descent direction. Then, GHA constrains client gradients within the reference half-space defined by RGPC to mitigate gradient conflicts and rectify local updates. Extensive experiments demonstrate that our PSL-RGHA framework outperforms existing baselines in various settings.",
+   "published": "2026-11-10",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.14312"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.14312v1",
+    "PDF": "https://arxiv.org/pdf/2611.14312v1"
+   },
+   "added": "2026-11-13T20:59+00:00",
    "fl": true,
    "tab": "preprint",
    "graph": false
@@ -2996,6 +3133,28 @@
    "graph": false
   },
   {
+   "id": "arxiv:2611.03724",
+   "title": "Does the Trust Boundary Hold over Time? A Long-Horizon Benchmark for Receiver-Directed Federated Learning",
+   "authors": [
+    "Ting Xu",
+    "Henry Leung"
+   ],
+   "abstract": "In receiver-directed federated learning, each site draws a trust boundary. For every source and model component it judges, on its own data, whether the transfer helps (admit), harms (reject) or cannot yet be told (abstain). We ask whether this boundary holds over hundreds of rounds. Our benchmark has a federation of thirteen semi-synthetic sites, an exact oracle for every evaluated transfer, paired seeds, an attack protocol, fourteen methods over 600 rounds and Qwen3-1.7B LoRA sites over 500. The answer depends on which boundary is measured. Across 20 paired CPU seeds, a gate judging against a fixed reference better identified transfers useful relative to the site's starting model. Yet it admitted 29% of transfers harmful to the model the site now has. A gate judging against the current model admitted 2% of harmful transfers on that target in the CPU tier, but missed many transfers useful to the starting model. Two short propositions explain these distinct failures. We also evaluate a held out audit that leaves gate verdicts intact. After training, it decides whether each final model is deployed or the site falls back to local training, and reports admissions that have gone stale. With independent audit data its guarantees hold after any training history. At 600 rounds the audit deployed 65 to 72% of models, none with negative benefit on its target, and kept 98% of the gain. No stale report had the wrong sign in our runs. With 20,000 audit observations, a variance-adaptive bound found 99% of stale transfers that cost at least 0.01 in log loss. A common-target Qwen3 comparison on 60 selected transfers shows the same tension over 100 rounds. With 38% adversarial sites, FedFomo and CS-Gate were the only evaluated methods with positive mean gain in every honest group.",
+   "published": "2026-11-01",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.03724"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.03724v1",
+    "PDF": "https://arxiv.org/pdf/2611.03724v1"
+   },
+   "added": "2026-11-13T20:59+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
    "id": "arxiv:2611.01082",
    "title": "VeilFL: Two-Stage Accountability for Anonymous Federated Learning",
    "authors": [
@@ -3676,6 +3835,32 @@
    "added": "2026-11-13T20:41+00:00",
    "fl": false,
    "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2610.39132",
+   "title": "DICE: Decentralized Incentive-driven Federated Learning for Efficient & Scalable Customization of Pretrained Models in Web3",
+   "authors": [
+    "Hong Lin",
+    "Zhongle Xie",
+    "Lidan Shou",
+    "Ke Chen",
+    "Gang Chen"
+   ],
+   "abstract": "Customizing Pretrained Models (PMs) for downstream tasks demands task-specific data, which burgeoning Web3 applications provide abundantly. Blockchain-powered federated learning (BCFL) offers a secure and privacy-preserving paradigm to customize PMs among self-interested and untrusted Web3 participants. Yet, existing BCFL algorithms face severe efficiency and scalability challenges when applied to large PMs, due to their substantial computational and memory requirements and the hardware constraints of many participants. This paper introduces DICE, a novel BCFL algorithm that addresses the efficiency and scalability challenges of customizing large PMs in Web3 via two sets of synergistic techniques: (i) a dynamic progressive learning scheme and a model slice verification scheme to enable a wider range of honest participants, including those unable to deploy the full model, to engage in customizing PMs, while preserving model utility; (ii) a tree-structured committee consensus protocol and an efficiency-driven incentive scheme to address the dominant bottleneck that hinders existing BCFL algorithms from scaling to a larger number of data holders for customizing data-hungry large PMs, while maintaining security. Theoretical analysis and extensive experimental results on customizing vision and language PMs demonstrate DICE's efficiency, effectiveness, and security.",
+   "published": "2026-10-29",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2610.39132"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2610.39132v1",
+    "PDF": "https://arxiv.org/pdf/2610.39132v1"
+   },
+   "note": "Published in CIKM2026",
+   "added": "2026-11-13T20:59+00:00",
+   "fl": true,
+   "tab": "preprint",
    "graph": false
   },
   {
