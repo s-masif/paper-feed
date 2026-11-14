@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T21:15+00:00",
+ "updated": "2026-11-14T13:36+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -17691,68 +17691,6 @@
     "PDF": "https://www.nature.com/articles/s41467-026-76933-2.pdf"
    },
    "score": 6,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-76748-1",
-   "title": "Towards unified AI-driven fracture mechanics: the extended deep energy method (XDEM)",
-   "authors": [
-    "Yizheng Wang",
-    "Yuzhou Lin",
-    "Somdatta Goswami",
-    "Luyang Zhao",
-    "Huadong Zhang",
-    "Jinshuai Bai",
-    "Cosmin Anitescu",
-    "Mohammad Sadegh Eshaghi",
-    "Xiaoying Zhuang",
-    "Timon Rabczuk",
-    "Yinghua Liu"
-   ],
-   "abstract": "Physics-Informed Neural Networks (PINNs) have recently emerged as powerful tools for solving partial differential equations (PDEs), with the Deep Energy Method (DEM) proving especially effective in fracture mechanics due to its energy-based formulation. Despite these advances, existing DEM approaches require dense collocation near cracks, face stability challenges, and typically treat discrete and continuous fracture models separately. To overcome these limitations, we introduce the Extended Deep Energy Method (XDEM), a unified deep learning framework that incorporates both displacement discontinuities and crack-tip asymptotics in the discrete setting, while flexibly coupling displacement and phase fields in the continuous setting. This integration enables accurate fracture predictions using uniformly distributed, relatively sparse collocation points. Validation across benchmark problems including stress intensity factor evaluation, straight and kinked crack growth, and complex crack initiation demonstrates that XDEM consistently outperforms standard DEM in accuracy and efficiency. By bridging discrete and phase-field models within a single framework, XDEM establishes a robust foundation for applying AI to fracture mechanics and opens new avenues for predictive modeling in engineering and materials science.",
-   "published": "2026-08-15",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-76748-1"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-76748-1",
-    "PDF": "https://doi.org/10.1038/s41467-026-76748-1"
-   },
-   "score": 11,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-76632-y",
-   "title": "Machine learning-driven optimization of high-velocity impact resistance for three-dimensional biphasic composites",
-   "authors": [
-    "Lehu Bu",
-    "Pengfei Wang",
-    "Sida Hao",
-    "Shan Li",
-    "Yangfan Wu",
-    "Deya Wang",
-    "Mao L\u0131u",
-    "Tianzhi Luo",
-    "Songlin Xu"
-   ],
-   "abstract": "Under high-velocity loading conditions, composite materials inevitably exhibit wave propagation and localized temperature rise, yet their complex microstructural arrangement contributes to the characteristic stress localization and attenuation behaviors. To mitigate this challenge and optimize the impact resistance of composite materials, we developed a three-dimensional convolutional neural network (3D-CNN) with experimental and simulation methods to quantitatively correlate microstructural configurations with the dynamic response of biphasic composites. This methodology synergizes experimental data from split Hopkinson pressure bar (SHPB) dynamic tests with finite element (FE) simulations, enabling a comprehensive characterization of the dynamic behavior of composites. The optimized microstructures improve dynamic stress uniformity from 21.54% to 97.45% and increase dynamic load capacity by approximately 22% to 57% compared with random designs at the same stiff-phase fractions. This machine learning-driven approach can improve dynamic stress equilibrium properties for soft and stiff composites. The thermal transport module enables integrated evaluation of impact resistance and heat-spreading performance, revealing multi-material architectures that sustain high dynamic mechanical performance while allowing effective thermal conductivity through phase connectivity and percolation pathways. This proposed 3D CNN framework facilitates rapid exploration of the design space and accurate prediction of thermomechanical properties, thereby enabling the inverse design of next-generation impact-resistant composites for aerospace and automotive applications.",
-   "published": "2026-08-15",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-76632-y"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-76632-y",
-    "PDF": "https://doi.org/10.1038/s41467-026-76632-y"
-   },
-   "score": 7,
    "added": "2026-11-13T20:41+00:00",
    "fl": false,
    "tab": "nature",
