@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14T13:36+00:00",
+ "updated": "2026-11-15T13:59+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -8,8 +8,8 @@
   "NeurIPS 2025"
  ],
  "full_sweep": {
-  "nature": "2026-11-13",
-  "ieee-tx": "2026-11-13"
+  "nature": "2026-11-15",
+  "ieee-tx": "2026-11-15"
  },
  "ieee_sources": {
   "checked": "2026-11-13",
@@ -264,6 +264,57 @@
   "S98183460"
  ],
  "papers": [
+  {
+   "id": "10.1038/s41467-026-79121-4",
+   "title": "A subspecialty diagnostic system powered by self-supervised learning for cervical histopathology",
+   "authors": [
+    "Yizhi Wang",
+    "Li Chen",
+    "Qiang Huang",
+    "Tian Guan",
+    "Xi Deng",
+    "Zhiyuan Shen",
+    "Jiawen Li",
+    "Xinrui Chen",
+    "Bin Hu",
+    "Zhe Lei",
+    "Xitong Ling",
+    "Taojie Zhu",
+    "Zirui Huang",
+    "Deshui Yu",
+    "Fanyi Zeng",
+    "Yan Liu",
+    "Qiming He",
+    "Lianghui Zhu",
+    "Qiming He",
+    "Hanzhong Liu",
+    "Diwei Shi",
+    "Hanzhong Liu",
+    "Junbo Hu",
+    "Hongyi Gao",
+    "Zhen Song",
+    "Mingwen Zhao",
+    "Lingchuan Guo",
+    "Chao He",
+    "Mingwen Zhao",
+    "Yonghong He"
+   ],
+   "abstract": "Cervical cancer remains a major malignancy in women, with large-scale human papillomavirus-based screening generating a large volume of biopsies and, for advanced cases, surgical specimens, imposing an overwhelming diagnostic burden that necessitates precise histopathological evaluation. Although deep learning shows promise, general foundation models offer a broader reach but remain limited in capturing subspecialty-specific features and task adaptability. We introduce the Cervical Subspecialty Pathology (CerS-Path) diagnostic system, built upon the subspecialized dataset and developed through two synergistic pretraining stages: self-supervised learning on approximately 190 million tissue patches to build a cervical-specific feature extractor, and multimodal enhancement with 2.5 million image-text pairs, followed by diagnostic functions integration and downstream task enhancement. CerS-Path integrates eight functions\u2014across morphological diagnosis, predictive analytics, and multimodal tasks\u2014to cover the diagnostic workflow from biopsies to resection specimens. Comprehensive evaluations demonstrate improved performance in cervical pathology in female patients, where CerS-Path outperforms state-of-the-art foundation models across 26 of 30 diagnostic tasks. Furthermore, in multicenter retrospective and prospective validation across six independent cohorts of women, CerS-Path achieves up to 99% sensitivity for clinically relevant lesion detection with acceptable specificity across sites, highlighting its potential for screening-derived histopathology and suitability for integration into high-volume diagnostic pathways. Foundation models could be promising for cervical cancer screening, but have important limitations for their clinical deployment. Here, the authors introduce the Cervical Subspecialty Pathology (CerS-Path) diagnostic system, a self-supervised learning framework for cervical cancer pathology that outperforms state-of-the-art foundation models across multiple diagnostic tasks.",
+   "published": "2026-11-14",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-79121-4"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-79121-4",
+    "PDF": "https://doi.org/10.1038/s41467-026-79121-4"
+   },
+   "score": 12,
+   "added": "2026-11-15T13:59+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
   {
    "id": "arxiv:2611.17186",
    "title": "Cortex-FL: Agent-Mediated Collaboration for Federated Learning",
@@ -21377,75 +21428,6 @@
    ],
    "links": {
     "Publisher": "https://doi.org/10.1109/tnnls.2026.3688600"
-   },
-   "added": "2026-11-13T21:15+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "arxiv:2605.18437",
-   "title": "Heterogeneous Tasks Offloading in Vehicular Edge Computing: A Federated Meta Deep Reinforcement Learning Approach",
-   "authors": [
-    "Yaorong Huang",
-    "Jingtao Luo",
-    "Xuechao Wang"
-   ],
-   "abstract": "Vehicular edge computing (VEC) enables latency-sensitive vehicular applications by offloading computation-intensive tasks to nearby edge servers. However, real-world vehicular workloads are typically modeled as heterogeneous directed acyclic graph (DAG) tasks with complex dependency structures, making joint offloading and resource allocation highly challenging. Moreover, distributed MEC deployment raises privacy concerns when collaboratively training learning-based policies. In this paper, we propose a Federated Meta Deep Reinforcement Learning framework with GAT-Seq2Seq modeling (FedMAGS) for heterogeneous task offloading in VEC systems. The proposed approach leverages Graph Attention Networks to capture DAG dependencies, a Seq2Seq-based policy to generate structured offloading decisions, and federated meta-learning to enable fast adaptation across distributed MEC servers without sharing raw data. Extensive simulations demonstrate that FedMAGS achieves faster convergence, lower execution delay, and better scalability compared with state-of-the-art baselines. In addition, the federated design preserves data privacy while reducing communication overhead, making the framework well suited for dynamic and large-scale VEC environments.",
-   "published": "2026-05-18",
-   "venue": null,
-   "dois": [
-    "10.48550/arxiv.2605.18437"
-   ],
-   "links": {
-    "arXiv": "http://arxiv.org/abs/2605.18437v1",
-    "PDF": "https://arxiv.org/pdf/2605.18437v1"
-   },
-   "added": "2026-05-18",
-   "fl": true,
-   "tab": "preprint",
-   "graph": true
-  },
-  {
-   "id": "10.1109/tits.2026.3690685",
-   "title": "ByFeDis: Toward Byzantine-Robust Heterogeneous Federated Learning via Knowledge Distillation in Railway Intelligent Control Systems",
-   "authors": [
-    "Shijia Guo",
-    "Rong Xia Sun",
-    "Jingwei Liu"
-   ],
-   "abstract": "Railway intelligent train control system must accommodate a wide range of scenarios due to the extensive variation in its operational environment. Federated learning based on knowledge distillation offers an efficient training paradigm for such systems by supporting model heterogeneity and reducing communication overhead. However, conventional federated knowledge distillation approaches often exhibit limited robustness against untrusted clients and do not facilitate continuous learning. In this paper, we design a Byzantine-robust federated knowledge distillation scheme, named ByFeDis, which mitigates the impact of malicious clients by removing outliers and low-value learning data, thereby improving learning efficiency. Additionally, we enhance the scalability of federated knowledge distillation in an improved scheme ByFeDis*, which is built on ByFeDis and enables continuous training for newly joined clients. Specifically, ByFeDis measures the soft labels uploaded by clients using Euclidean distance to identify poisoned soft labels that disrupt the training process. These abnormal soft labels include not only malicious perturbed samples that significantly deviate from the distribution of the true labels, but also speculative soft labels that are overly close to the true labels. To further enhance privacy protection, we employ fully homomorphic encryption to enable secure aggregation, thereby safeguarding sensitive client information. Theoretical analysis confirms that our scheme effectively preserves privacy while reducing communication complexity compared with existing approaches. Extensive experiments across multiple datasets demonstrate that ByFeDis achieves, on average, a 2% improvement in accuracy over other Byzantine-robust schemes, while ByFeDis* further enhances model accuracy by 3% and reduces premature convergence by up to 10 training rounds in subsequent learning.",
-   "published": "2026-05-18",
-   "venue": "IEEE Transactions on Intelligent Transportation Systems",
-   "dois": [
-    "10.1109/tits.2026.3690685"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tits.2026.3690685"
-   },
-   "added": "2026-11-13T21:15+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tnnls.2026.3690045",
-   "title": "Toward Privacy Preservation in Federated Learning: A Framework Integrating Client-Side Shuffling and Model Compression",
-   "authors": [
-    "Jinguo Li",
-    "Ruyang Xiao",
-    "Le Yu",
-    "Kai Zhang",
-    "Jianting Ning"
-   ],
-   "abstract": "Federated learning (FL) enables multiple clients to train models on local data and collaboratively optimize a global model without sharing raw data. However, client heterogeneity, such as differences in data distributions and system capabilities, poses challenges like reduced training efficiency and slower convergence. Furthermore, there is a risk of inference attacks during the transmission of model parameters. To address these issues, we propose the client-side shuffling and compressed-model FL (CSCP-Fed) framework, which is efficient and privacy-preserving, based on client-side shuffling and compressed-model techniques. The framework combines differential privacy (DP) with client-side shuffling to ensure data anonymity and enable secure weighted aggregation of model parameters. It also designs an asymmetric-encryption-based secure communication protocol to safeguard data transmission. In addition, it introduces a hybrid-weighted attention aggregation algorithm and a compressed-model-driven client selection strategy to mitigate the impact of heterogeneity, accelerate convergence, and maintain model generalization ability. Rigorous security analysis and experiments show that CSCP-Fed can effectively protect privacy without relying on any centralized entity. It reduces the expected global loss per round by 15%-38%, cuts communication overhead by 19.3%-44.3%, speeds up convergence by 10%-41%, and improves learning accuracy by 4%-13% compared to traditional methods.",
-   "published": "2026-05-18",
-   "venue": "IEEE Transactions on Neural Networks and Learning Systems",
-   "dois": [
-    "10.1109/tnnls.2026.3690045"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tnnls.2026.3690045"
    },
    "added": "2026-11-13T21:15+00:00",
    "fl": true,
