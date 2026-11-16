@@ -43,7 +43,7 @@ ARXIV_QUERIES = [
 ]
 
 # How long each tab keeps a paper, in days (by its publication date).
-KEEP_DAYS = {"preprint": 90, "preprint-graph": 180, "ieee-tx": 180, "nature": 90}
+KEEP_DAYS = {"preprint": 90, "preprint-graph": 180, "ieee-tx": 365, "nature": 90}
 # Conference papers stay while their conference is this year's or last year's.
 
 # The words sent to dblp and IEEE Xplore to find candidate papers (both search titles; dblp also matches
@@ -338,13 +338,18 @@ def fetch_ieee_xplore(api_key, since):
     """Federated learning papers in IEEE Transactions inserted in IEEE Xplore since `since` (a date).
     Returns None if the API can't be used (key pending or rejected, limit reached, outage)."""
     papers = []
-    diag = {"returned": 0, "insert": [], "online": [], "sample": []}  # one-run diagnostic, printed below
+    returned, inserts = 0, []
     for content_type in IEEE_CONTENT_TYPES:
         start = 1
         for _ in range(IEEE_MAX_PAGES):
             params = urllib.parse.urlencode({
+                # start_date alone was ignored (IEEE returned papers inserted as far back as 2002), so the
+                # range is sent in full and bounded by publication year as well; insert_date is then checked
+                # again below, because the server-side date filter cannot be relied on.
                 "apikey": api_key, "querytext": SEARCH_WORDS, "content_type": content_type,
-                "start_date": since.strftime("%Y%m%d"), "max_records": 200, "start_record": start,
+                "start_date": since.strftime("%Y%m%d"), "end_date": TODAY.strftime("%Y%m%d"),
+                "start_year": since.year, "end_year": TODAY.year + 1,
+                "max_records": 200, "start_record": start,
                 "sort_field": "article_number", "sort_order": "desc", "format": "json",
             })
             try:
@@ -356,14 +361,13 @@ def fetch_ieee_xplore(api_key, since):
                 print(f"IEEE Xplore failed ({type(e).__name__}: {e}); using OpenAlex only")
                 return None
             articles = data.get("articles") or []
-            diag["returned"] += len(articles)
+            returned += len(articles)
+            since_key = since.strftime("%Y%m%d")
             for a in articles:
-                diag["insert"].append(str(a.get("insert_date") or ""))
-                diag["online"].append(str(a.get("online_date") or ""))
-                if len(diag["sample"]) < 3:
-                    diag["sample"].append(f"{content_type} | insert={a.get('insert_date')} online={a.get('online_date')} "
-                                          f"pub={a.get('publication_date')} | {str(a.get('title'))[:60]}")
-            for a in articles:
+                insert = str(a.get("insert_date") or "")
+                inserts.append(insert)
+                if insert < since_key:
+                    continue  # older than requested: IEEE's own date filter is not dependable
                 title = clean(re.sub(r"<[^>]+>", "", a.get("title") or ""))
                 venue = clean(a.get("publication_title") or "")
                 abstract = clean(re.sub(r"<[^>]+>", "", a.get("abstract") or ""))
@@ -387,14 +391,11 @@ def fetch_ieee_xplore(api_key, since):
             if not articles or start > int(data.get("total_records") or 0):
                 break
             time.sleep(0.2)  # the free key allows 10 calls a second
-    ins = sorted(x for x in diag["insert"] if x)
-    onl = sorted(x for x in diag["online"] if x)
-    print(f"IEEE Xplore diagnostic: {diag['returned']} articles returned for start_date={since:%Y%m%d}; "
-          f"insert_date range {ins[0] if ins else '-'}..{ins[-1] if ins else '-'} ({len(ins)} have it); "
-          f"online_date range {onl[0] if onl else '-'}..{onl[-1] if onl else '-'} ({len(onl)} have it)")
-    for line in diag["sample"]:
-        print("  sample:", line)
-    print(f"IEEE Xplore: {len(papers)} federated learning papers in IEEE Transactions inserted since {since}")
+    seen = sorted(x for x in inserts if x)
+    print(f"IEEE Xplore: {len(papers)} federated learning papers in IEEE Transactions inserted since {since} "
+          f"({returned} articles returned, insert_date {seen[0] if seen else '-'}..{seen[-1] if seen else '-'})")
+    if seen and seen[0] < since.strftime("%Y%m%d"):
+        print("  note: IEEE ignored the date filter; older papers were dropped here instead")
     return papers
 
 
@@ -737,7 +738,10 @@ def main():
     api_key = os.environ.get("OPENALEX_API_KEY")
     if api_key:
         def window(tab):
-            full = tab not in full_sweep or TODAY.weekday() == FULL_SWEEP_WEEKDAY
+            # A full sweep runs weekly, the first time a tab is seen, and whenever KEEP_DAYS has been
+            # raised since the last one, so widening a window backfills on the next run instead of waiting.
+            full = (tab not in full_sweep or TODAY.weekday() == FULL_SWEEP_WEEKDAY
+                    or (full_sweep.get(tab + "-days") or 0) < KEEP_DAYS[tab])
             return full, KEEP_DAYS[tab] if full else min(KEEP_DAYS[tab], RECENT_DAYS)
 
         try:
@@ -756,6 +760,7 @@ def main():
             print(f"IEEE Transactions: {seen} papers listed ({days} days), {kept} on federated learning")
             if full:
                 full_sweep["ieee-tx"] = TODAY.isoformat()
+                full_sweep["ieee-tx-days"] = days
                 state["ieee_swept_ids"] = ids
         except (urllib.error.URLError, json.JSONDecodeError, KeyError, IndexError, TypeError) as e:
             print(f"IEEE Transactions failed ({type(e).__name__}: {e}); trying again next run")
@@ -775,6 +780,7 @@ def main():
             print(f"Nature journals: {seen} papers listed ({days} days), {kept} picked")
             if full:
                 full_sweep["nature"] = TODAY.isoformat()
+                full_sweep["nature-days"] = days
         except (urllib.error.URLError, json.JSONDecodeError, KeyError, IndexError, TypeError) as e:
             print(f"Nature journals failed ({type(e).__name__}: {e}); trying again next run")
 
