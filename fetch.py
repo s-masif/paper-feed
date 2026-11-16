@@ -338,6 +338,7 @@ def fetch_ieee_xplore(api_key, since):
     """Federated learning papers in IEEE Transactions inserted in IEEE Xplore since `since` (a date).
     Returns None if the API can't be used (key pending or rejected, limit reached, outage)."""
     papers = []
+    diag = {"returned": 0, "insert": [], "online": [], "sample": []}  # one-run diagnostic, printed below
     for content_type in IEEE_CONTENT_TYPES:
         start = 1
         for _ in range(IEEE_MAX_PAGES):
@@ -355,6 +356,13 @@ def fetch_ieee_xplore(api_key, since):
                 print(f"IEEE Xplore failed ({type(e).__name__}: {e}); using OpenAlex only")
                 return None
             articles = data.get("articles") or []
+            diag["returned"] += len(articles)
+            for a in articles:
+                diag["insert"].append(str(a.get("insert_date") or ""))
+                diag["online"].append(str(a.get("online_date") or ""))
+                if len(diag["sample"]) < 3:
+                    diag["sample"].append(f"{content_type} | insert={a.get('insert_date')} online={a.get('online_date')} "
+                                          f"pub={a.get('publication_date')} | {str(a.get('title'))[:60]}")
             for a in articles:
                 title = clean(re.sub(r"<[^>]+>", "", a.get("title") or ""))
                 venue = clean(a.get("publication_title") or "")
@@ -379,6 +387,13 @@ def fetch_ieee_xplore(api_key, since):
             if not articles or start > int(data.get("total_records") or 0):
                 break
             time.sleep(0.2)  # the free key allows 10 calls a second
+    ins = sorted(x for x in diag["insert"] if x)
+    onl = sorted(x for x in diag["online"] if x)
+    print(f"IEEE Xplore diagnostic: {diag['returned']} articles returned for start_date={since:%Y%m%d}; "
+          f"insert_date range {ins[0] if ins else '-'}..{ins[-1] if ins else '-'} ({len(ins)} have it); "
+          f"online_date range {onl[0] if onl else '-'}..{onl[-1] if onl else '-'} ({len(onl)} have it)")
+    for line in diag["sample"]:
+        print("  sample:", line)
     print(f"IEEE Xplore: {len(papers)} federated learning papers in IEEE Transactions inserted since {since}")
     return papers
 
