@@ -354,10 +354,48 @@ GROUP BY ?pub ?title ?year ?stream ?venue ?doi ?page"""
 CROSSREF_WORKS = "https://api.crossref.org/works"
 CROSSREF_PREFIX = "10.1109"
 CROSSREF_ROWS = 1000
-CROSSREF_MAX_PAGES = 40
+CROSSREF_QUERY = "federated"   # Crossref does the matching: without it, a month of IEEE records is tens of
+                               # thousands of papers to page through to find a handful
+CROSSREF_MAX_PAGES = 20
+CROSSREF_QUIET_PAGES = 2       # results come best-match first, so stop after this many pages with no match
+CROSSREF_MAILTO = "smasiful.huda@unina.it"   # puts the feed in Crossref's "polite" pool
 CROSSREF_FIRST_DAYS = 30   # how far back to look the very first time
 CROSSREF_OVERLAP = 2       # days of overlap on later runs, so nothing falls between two runs
 CROSSREF_SELECT = ("DOI,title,container-title,author,issued,published,published-online,created,abstract,URL,type")
+# Crossref names proceedings in full ("Proceedings of the AAAI Conference on ..."), so each conference is
+# recognised by a pattern. Used when dblp cannot be reached, which is most runs.
+CROSSREF_CONFS = [
+    (r"\bneurips\b|neural information processing systems", "NeurIPS"),
+    (r"international conference on machine learning(?! and)|\bicml\b", "ICML"),
+    (r"international conference on learning representations|\biclr\b", "ICLR"),
+    (r"aaai conference on artificial intelligence|\baaai\b", "AAAI"),
+    (r"international joint conference on artificial intelligence|\bijcai\b", "IJCAI"),
+    (r"artificial intelligence and statistics|\baistats\b", "AISTATS"),
+    (r"\bsigkdd\b|knowledge discovery and data mining", "KDD"),
+    (r"\bweb conference\b|world wide web conference", "WWW"),
+    (r"\bsigir\b|research and development in information retrieval", "SIGIR"),
+    (r"information and knowledge management|\bcikm\b", "CIKM"),
+    (r"web search and data mining|\bwsdm\b", "WSDM"),
+    (r"international conference on data mining(?! and)|\bicdm\b", "ICDM"),
+    (r"international conference on data engineering(?! and)|\bicde\b", "ICDE"),
+    (r"\bsigmod\b|management of data", "SIGMOD"),
+    (r"\bvldb\b|very large data bases", "VLDB"),
+    (r"computer vision and pattern recognition|\bcvpr\b", "CVPR"),
+    (r"international conference on computer vision(?! and)|\biccv\b", "ICCV"),
+    (r"european conference on computer vision|\beccv\b", "ECCV"),
+    (r"\bacm multimedia\b|international conference on multimedia", "ACM MM"),
+    (r"association for computational linguistics", "ACL"),
+    (r"empirical methods in natural language processing|\bemnlp\b", "EMNLP"),
+    (r"\binfocom\b", "INFOCOM"),
+    (r"\bmobicom\b|mobile computing and networking", "MobiCom"),
+    (r"\bmobisys\b|mobile systems, applications", "MobiSys"),
+    (r"\bmobihoc\b", "MobiHoc"),
+    (r"\bsensys\b|embedded networked sensor", "SenSys"),
+    (r"computer and communications security(?! workshop)|\bacm ccs\b", "CCS"),
+    (r"usenix security", "USENIX Security"),
+    (r"\bndss\b|network and distributed system security", "NDSS"),
+]
+CROSSREF_CONF_SKIP = re.compile(r"workshop|companion|findings|demo|adjunct|poster|tutorial", re.I)
 VOLUME_DATE = re.compile(r"-01-01$")  # some IEEE journals stamp a whole volume with 1 January
 DATE_REPAIRS_PER_RUN = 60
 
@@ -389,13 +427,27 @@ def crossref_get(params):
             {k: v for k, v in params.items() if k != "select"})))["message"]
 
 
-def fetch_crossref(since):
-    """Federated learning papers in IEEE Transactions that Crossref indexed on or after `since`.
+def conf_of(venue, year):
+    """"AAAI 2026" for a proceedings name Crossref recognises, else None."""
+    if not venue or CROSSREF_CONF_SKIP.search(venue):
+        return None
+    label = next((name for pat, name in CROSSREF_CONFS if re.search(pat, venue, re.I)), None)
+    return f"{label} {year}" if label else None
+
+
+def fetch_crossref(since, conferences=False):
+    """Federated learning papers Crossref indexed on or after `since`: IEEE Transactions papers, or, with
+    `conferences`, papers in the proceedings of the conferences in CROSSREF_CONFS.
     Returns None if Crossref could not be read, so the run carries on with the other sources."""
-    papers, cursor, seen = [], "*", 0
+    what = "proceedings-article" if conferences else "journal-article"
+    where = "" if conferences else f"prefix:{CROSSREF_PREFIX},"
+    papers, cursor, seen, quiet = [], "*", 0, 0
     for _ in range(CROSSREF_MAX_PAGES):
-        params = {"filter": f"prefix:{CROSSREF_PREFIX},from-index-date:{since}",
+        params = {"filter": f"{where}type:{what},from-index-date:{since}",
+                  "query.bibliographic": CROSSREF_QUERY,
                   "rows": CROSSREF_ROWS, "cursor": cursor, "select": CROSSREF_SELECT}
+        if CROSSREF_MAILTO:
+            params["mailto"] = CROSSREF_MAILTO
         try:
             data = crossref_get(params)
         except (urllib.error.URLError, json.JSONDecodeError, KeyError) as e:
@@ -403,14 +455,19 @@ def fetch_crossref(since):
             return None
         items = data.get("items") or []
         seen += len(items)
+        before = len(papers)
         for it in items:
             title = clean(re.sub(r"<[^>]+>", "", " ".join(it.get("title") or [])))
             venue = clean((it.get("container-title") or [""])[0])
             abstract = clean(re.sub(r"<[^>]+>", "", it.get("abstract") or ""))
-            if not title or not IEEE_TX_RE.search(venue) or not is_fl(title + " " + abstract, title):
+            if not title or not is_fl(title + " " + abstract, title):
+                continue
+            published, exact = crossref_date(it)
+            conf = conf_of(venue, published[:4]) if conferences else None
+            wanted = conf is not None if conferences else bool(IEEE_TX_RE.search(venue))
+            if not wanted:
                 continue
             doi = norm_doi(it["DOI"])
-            published, exact = crossref_date(it)
             papers.append({
                 "id": doi,
                 "title": title,
@@ -421,13 +478,16 @@ def fetch_crossref(since):
                 "venue": venue,
                 "dois": [doi],
                 "links": {"Publisher": it.get("URL") or f"https://doi.org/{doi}"},
+                **({"conf": conf, "venue": conf.rsplit(" ", 1)[0]} if conf else {}),
             })
+        quiet = 0 if len(papers) > before else quiet + 1
         cursor = data.get("next-cursor")
-        if not cursor or len(items) < CROSSREF_ROWS:
+        if not cursor or len(items) < CROSSREF_ROWS or quiet >= CROSSREF_QUIET_PAGES:
             break
-        time.sleep(0.5)
-    print(f"Crossref: {len(papers)} federated learning papers in IEEE Transactions "
-          f"({seen} IEEE records indexed since {since})")
+        time.sleep(1)  # Crossref rate-limits callers that ask faster
+    where_text = "top conferences" if conferences else "IEEE Transactions"
+    print(f"Crossref: {len(papers)} federated learning papers in {where_text} "
+          f"({seen} records read, indexed since {since})")
     return papers
 
 
@@ -897,11 +957,12 @@ def main():
     cr_since = (date.fromisoformat(last_cr) - timedelta(days=CROSSREF_OVERLAP)) if last_cr \
         else TODAY - timedelta(days=CROSSREF_FIRST_DAYS)
     cr_papers = fetch_crossref(cr_since.isoformat())
+    cr_confs = fetch_crossref(cr_since.isoformat(), conferences=True) if cr_papers is not None else None
+    for p in (cr_papers or []) + (cr_confs or []):
+        store.add(p)
     if cr_papers is not None:
-        for p in cr_papers:
-            store.add(p)
         state["crossref_checked"] = TODAY.isoformat()
-        note("Crossref", True, f"{len(cr_papers)} papers")
+        note("Crossref", True, f"{len(cr_papers)} journal, {len(cr_confs or [])} conference papers")
     else:
         note("Crossref", False, "could not be read")
 
