@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T13:59+00:00",
+ "updated": "2026-11-16T15:55+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -150,7 +150,7 @@
   "10.1109/tsg.2026.3707150": "2026-11-13",
   "10.1109/tpds.2026.3725682": "2026-11-13"
  },
- "ieee_xplore_checked": null,
+ "ieee_xplore_checked": "2026-11-16",
  "ieee_swept_ids": [
   "S100142436",
   "S100835903",
@@ -311,6 +311,246 @@
    },
    "score": 12,
    "added": "2026-11-15T13:59+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-79090-8",
+   "title": "DPI-score: a deep learning-based metric for assessing protein-protein interfaces in cryoEM derived assemblies",
+   "authors": [
+    "Niraj Bhujel",
+    "Nicholas Whyatt",
+    "Agnel Praveen Joseph",
+    "Jyothish Thomas",
+    "Luc G. Elliott",
+    "Tamilarasan Sabapathy",
+    "Jeyan Thiyagalingam",
+    "Sony Malhotra"
+   ],
+   "abstract": "Abstract Advances in cryoEM have led to a surge in high-resolution structures; however, model building and refinement at resolutions ( > = 3 \u212b) and in regions with variable local resolution remain challenging, making validation essential. CryoEM derived assemblies often contain extensive protein-protein interfaces, however, most existing validation metrics focus on density fit or overall geometry without directly assessing interface quality. To address this, we present DPI-Score, a deep learning-based metric for assessing protein-protein interfaces in cryoEM derived complexes. The method uses only raw structural coordinates of interface atoms, without requiring engineered features, and achieves 87.53% validation accuracy. DPI-Score was applied to 29,120 interfaces from 6,011 fitted entries with resolutions worse than 3 \u212b in the Electron Microscopy Data Bank. Here, we show that DPI-Score provides complementary information to existing validation metrics and can identify interface errors in modelled assemblies that are not detected by density-based scores alone.",
+   "published": "2026-11-14",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-79090-8"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-79090-8",
+    "PDF": "https://www.nature.com/articles/s41467-026-79090-8_reference.pdf"
+   },
+   "score": 6,
+   "added": "2026-11-16T15:55+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-79466-w",
+   "title": "An electrically driven multimodal soft robot enabled by a monolithic heterolayer elastomer",
+   "authors": [
+    "Lvting Wang",
+    "Huangwei Ji",
+    "Zixuan Wang",
+    "Jiangshan Zhuo",
+    "Lu Jiang",
+    "Ning Xu",
+    "Mengke Shi",
+    "Huifeng Dong",
+    "Junbo Peng",
+    "Ofoq Normahmedov",
+    "Shengchao Jiang",
+    "Xin Zhao",
+    "Zhijian Wang",
+    "Fengqian Chen",
+    "Ye Shi"
+   ],
+   "abstract": "Soft robots powered by active materials can navigate complex environments through multimodal locomotion. However, prevailing designs typically rely on a single active material within multi-component architectures, which often leads to high structural complexity and \u201csoft-stiff\u201d interfacial challenges. Here, we present an electrically driven, entirely soft robot based on a monolithic heterolayer elastomer integrating a processable high-performance dielectric elastomer and a liquid crystal elastomer. In this \u201csoft-soft\u201d structure, the liquid crystal elastomer functions as a reconfigurable compliant skeleton to program the equilibrium states, while the dielectric elastomer serves as a fast-responsive artificial muscle driving dynamic motion. Through independent control of the two active materials, the robot demonstrates bidirectional crawling at 2.3 cm\u00b7s\u22121, leaping over 2.5 body lengths, climbing on a 20\u00b0 slope, and controlled rolling. Our approach establishes a paradigm for creating soft robots with high structural integrity, payload\u2011to\u2011weight ratio, and controllability for deployment in unstructured environments. Soft robots are promising for complex applications, though typical robots rely on a single active material limiting applications. Here the authors design artificial muscle using dielectric elastomers and liquid crystal elastomers for multimodal locomotion.",
+   "published": "2026-11-14",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-79466-w"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-79466-w",
+    "PDF": "https://www.nature.com/articles/s41467-026-79466-w_reference.pdf"
+   },
+   "score": 6,
+   "added": "2026-11-16T15:55+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-78707-2",
+   "title": "Boosting reinforcement learning for critical node detection with multi-topology training strategies",
+   "authors": [
+    "Kushal Raj Bhandari",
+    "Pin\u2010Yu Chen",
+    "Shlomo Havlin",
+    "Jianxi Gao"
+   ],
+   "abstract": "Identifying pivotal components in complex networks\u2014such as key intersections in transportation systems, influential actors in social networks, or keystone species in ecosystems\u2014is essential for improving the resilience and mitigating catastrophic failures of these systems. However, existing methods for critical node detection are typically tailored to specific network types and objectives, limiting their generalizability. To overcome this limitation, we propose a machine learning framework that combines reinforcement learning with an attention-based graph neural network. By leveraging multi-topology training, our model learns to adapt and generalize across diverse network structures and objective functions. Experiments on real-world and synthetic networks uncover distinct topological features that are important for identifying critical nodes. Notably, our method applied to personalized gene networks, prioritizes genes that are significantly enriched for cataloged cancer drivers. This work provides a robust critical node detection model with a comprehensive multi-topology training approach, suitable for a broader range of real-world applications. Critical node detection helps identify network elements whose removal most disrupts connectivity. Here, the authors develop a reinforcement-learning approach that trains on diverse graph topologies to improve generalization to both synthetic and real networks.",
+   "published": "2026-11-14",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-78707-2"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-78707-2",
+    "PDF": "https://www.nature.com/articles/s41467-026-78707-2_reference.pdf"
+   },
+   "score": 10,
+   "added": "2026-11-16T15:55+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": true
+  },
+  {
+   "id": "arxiv:2611.18014",
+   "title": "Conflict, Feasibility, Faithfulness, Displacement: Four Quantities That Come Apart in Federated Dual-Cone Aggregation",
+   "authors": [
+    "Grzegorz Gwardys",
+    "Karol Wojciechowski",
+    "Mateusz Gwardys",
+    "Bartosz {\u015a}widerski"
+   ],
+   "abstract": "FedFV, FedGH and FedMGDA+ aggregate client updates with multi-objective gradient aggregators to remove conflict between them. We examine this rationale with UPGrad, which increases no client's loss to first order, in a comparison that changes only the direction of FedAvg's update. Four quantities the rationale treats as one -- conflict between client updates, feasibility of their weighted mean, faithfulness of the transmitted updates to the clients' gradients, and displacement of the update -- come apart. Under Dirichlet partitioning UPGrad improves CIFAR-10 accuracy by +0.78 pp (14/15 seeds, p < 0.001), only with full participation; on Oxford-IIIT Pet its +0.52 pp gain vanishes (+0.07 pp) once the data our protocol left unused are kept. Varying only the Dirichlet concentration, the gain grows with heterogeneity, yet the split with the most conflict shows none. Uniform client weights, blind to conflict, match the CIFAR-10 gain and exceed the Pets gain; a matched random rotation does neither. No fairness effect survives multiplicity correction, and on CIFAR-10 the guarantee does not reach the clients' gradients. We state what evaluations should report.",
+   "published": "2026-11-13",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.18014"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.18014v1",
+    "PDF": "https://arxiv.org/pdf/2611.18014v1"
+   },
+   "added": "2026-11-16T15:55+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.17944",
+   "title": "Differentially Private Federated Class-Incremental Learning for EEG Mental State Classification",
+   "authors": [
+    "Baran Can G\u00fcl",
+    "Ali G\u00fcl\u00fcmser",
+    "Nasser Jazdi",
+    "Michael Weyrich"
+   ],
+   "abstract": "Federated learning (FL) under differential privacy (DP) is typically evaluated on large client cohorts, where subsampling and cross-client averaging amplify privacy and smooth injected noise. Personal biosignal applications such as wearable EEG instead involve small federations of a handful of subjects, a regime whose interaction with formal client-level DP is largely uncharacterized. We study differentially private federated class-incremental learning in this small-cohort regime, combining a public EEG dataset with a custom four-channel MUSE 2 recording set into a K=5-client federation, and give a masked per-class training protocol that avoids degenerate gradients and missing negative supervision under class-incremental streaming. We propose FedEEG, combining Synaptic-Intelligence consolidation with a lagged adaptive FedProx term, and show it reduces catastrophic forgetting relative to FedAvg, FedProx, and a federated Learning-without-Forgetting baseline; on-device balanced-batch replay reduces mean forgetting by a further 56.7%. A class-scoping diagnosis yields $50.5\\%\\pm3.6\\%$ accuracy with 6 seeds and 2.02 times chance. We also introduce head-scoped client-level DP, which protects the classification head and alone reduces the achievable $\\varepsilon$ by 200 times at a matched round budget; combined with fewer communication rounds it reaches $\\varepsilon\\!\\approx\\!10.4$ with utility not statistically distinguishable from non-private training.",
+   "published": "2026-11-13",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.17944"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.17944v1",
+    "PDF": "https://arxiv.org/pdf/2611.17944v1"
+   },
+   "added": "2026-11-16T15:55+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.17869",
+   "title": "Process Mining-Enabled Federated Anomaly Detection for the Industrial IoT",
+   "authors": [
+    "Francesco Vitale",
+    "Salvatore Bramante",
+    "Francesco Flammini",
+    "Hangli Ge"
+   ],
+   "abstract": "While federated anomaly detection enables the integration of local data insights across diverse nodes to reduce false positives, it inherently struggles with non-IID data. In practice, industrial IoT plants often operate under varying conditions and experience diverse environmental phenomena, resulting in significant heterogeneity in the monitored time series. In such settings, standard federated learning approaches fail to perform nuanced aggregation that accounts for these cross-node differences, ultimately leading to increased false positive rates. In this paper, we propose a process mining approach to evaluate the similarity of local node data against a reference provided by a global node. The global node utilizes these similarity metrics to dynamically weight local models during aggregation, producing personalized updates distributed across the network. We evaluate our approach using industrial IoT time-series data collected from manufacturing plants operating under distinct conditions. Experimental results demonstrate that our process mining-enabled federated anomaly detection pipeline achieves superior performance, yielding a 46.52% and 11.99% relative improvement in F1-score compared to isolated local training baselines and standard FedAvg, respectively, alongside a 51.24% relative reduction in false positives over standard federated aggregation.",
+   "published": "2026-11-13",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.17869"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.17869v1",
+    "PDF": "https://arxiv.org/pdf/2611.17869v1"
+   },
+   "note": "Accepted to the IEEE Annual Congress on Artificial Intelligence of Things (IEEE AIoT 2026)",
+   "added": "2026-11-16T15:55+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.17794",
+   "title": "Federated Physics-Informed Thermal Field Prediction Across Unseen Geometries in Distributed Additive Manufacturing",
+   "authors": [
+    "Amirul Islam Saimon",
+    " Zhenyu",
+    " Kong"
+   ],
+   "abstract": "In additive manufacturing (AM), each change in part geometry requires a new thermal simulation, which makes design evaluation over many candidates costly. Geometry-aware models reduce this cost by predicting thermal fields on unseen parts with a single learned model, but they assume that diverse geometries are available centrally. This assumption is restrictive when each manufacturing site holds only a limited set of proprietary part designs that it cannot share. We propose Fed-PIGANO, a federated framework that trains physics-informed geometry-aware neural operator (PI-GANO) models at individual sites and aggregates their geometry encoders and prediction networks without sharing part geometries. We evaluate the framework on a 2D steady-state thermal benchmark for metal AM, with geometries from five polygonal families distributed across three sites under four scenarios that range from identical to strongly different family compositions. Over seven replications, Fed-PIGANO achieves mean relative L2 errors of 1.83% to 2.04% across all 12 scenario-site cases, compared with up to 20.46% for local-only training, and consistently yields lower PDE residuals. Its prediction accuracy is comparable to that of a centralized model trained on the pooled geometries of all sites. These results demonstrate that federated learning lets manufacturing sites benefit from each other's geometries without sharing them, enabling rapid thermal prediction on new part designs for tasks such as shape optimization, inverse design, and uncertainty quantification.",
+   "published": "2026-11-13",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.17794"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.17794v1",
+    "PDF": "https://arxiv.org/pdf/2611.17794v1"
+   },
+   "added": "2026-11-16T15:55+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.17703",
+   "title": "iGRAIL: Blockchain-Based Generative Federated Learning for Trustworthy Healthcare Intelligence",
+   "authors": [
+    "Debashis Das",
+    "Sourav Banerjee",
+    "Saraju P. Mohanty"
+   ],
+   "abstract": "Healthcare organizations collect huge amounts of patient data from clinical records, medical tests, monitoring systems, and healthcare services. Such data can underpin intelligent healthcare analytics but remains distributed across institutions and cannot be shared directly due to privacy, security, and trust concerns. Federated learning (FL) enables collaborative learning without sharing raw patient records, but the exchanged model information remains vulnerable to privacy leakage, tampering, replay, and unauthorized access. In this paper, we propose iGRAIL, a blockchain-enabled generative FL framework for trustworthy healthcare intelligence. iGRAIL combines local generative learning for data augmentation with differential privacy to protect sensitive information during local training. Model communication is secured using cryptographic mechanisms, and blockchain-based verification and smart-contract access control ensure that only authorized, authentic, fresh, and integrity-preserving updates are accepted for federated aggregation. The framework is evaluated on four healthcare datasets and compared with the conventional FL and blockchain-based FL (BC-FL) under predictive, privacy, non-IID, scalability, malicious-update, security-verification, and runtime settings. For the two large diabetes datasets, iGRAIL improves accuracy by about 5.4-5.6%, the F1-score by 14.6-16.9%, and MCC by 16.0-18.1% over the best FL or BC-FL baseline. Increasing the strength of differential privacy reduces the privacy-loss parameter $\u03b5$ by about 72.5% for the cancer dataset and 87.5% for the diabetes dataset, with only a limited loss in prediction performance. These results indicate that iGRAIL supports secure and scalable federated computing while preserving privacy, model integrity, and controlled participation, at the cost of additional computational overhead.",
+   "published": "2026-11-13",
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.17703"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.17703v1",
+    "PDF": "https://arxiv.org/pdf/2611.17703v1"
+   },
+   "added": "2026-11-16T15:55+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-79455-z",
+   "title": "miProbe: microbial peptide repository of biological embeddings",
+   "authors": [
+    "Peigen Yao",
+    "Dingfeng Wu",
+    "Ruixin Zhu",
+    "Qian Long",
+    "Bin Yang",
+    "Na Jiao",
+    "Xiaowen Pu",
+    "Guoqing Zhang",
+    "Wei Wang",
+    "Lei Liu"
+   ],
+   "abstract": "Microbial peptides represent a vast yet largely underexplored component of microbial dark matter, offering a valuable reservoir of bioactive molecules. Artificial Intelligence (AI) has revolutionized peptide mining, demonstrating high-throughput screening capabilities in tasks such as functional prediction and de novo design. To fully unlock the potential of microbial resource, we present miProbe (https://www.biosino.org/iMAC/miProbe), an integrative platform hosting 1.08 \u00d7 109 microbial peptides from disparate habitats. Uniquely, miProbe bridges the gap between raw sequences and AI applications by providing 8 TB of precomputed protein language model embeddings (e.g., ESM2-650M and ProtT5-XL-U50). Our analysis reveals substantial variation in peptide diversity and functional properties across habitats and microbial taxonomic groups, and highlights the utility of large-scale embedding resources in functional peptide mining. Equipped with robust APIs for seamless model integration, miProbe establishes a diverse and scalable data resource to accelerate AI-driven exploration of microbial dark matter and the rational design of novel therapeutics. Authors present miProbe, a platform aimed to consolidate peptide data and functional characterisation, and presenting a resource to accelerate AI-driven exploration of microbial dark matter.",
+   "published": "2026-11-13",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-79455-z"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-79455-z",
+    "PDF": "https://www.nature.com/articles/s41467-026-79455-z_reference.pdf"
+   },
+   "score": 6,
+   "added": "2026-11-16T15:55+00:00",
    "fl": false,
    "tab": "nature",
    "graph": false
@@ -1425,6 +1665,33 @@
    "added": "2026-11-13T20:41+00:00",
    "fl": false,
    "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tpami.2026.3751908",
+   "title": "Enhancing Gradient Inversion Attacks in Federated Learning via Hierarchical Feature Optimization",
+   "authors": [
+    "Hao Fang",
+    "Wenbo Yu",
+    "Bin Chen",
+    "Xuan Wang",
+    "Shu\u2010Tao Xia",
+    "Qing Liao",
+    "Ke Xu"
+   ],
+   "abstract": "Federated Learning (FL) has emerged as a compelling paradigm for privacy-preserving distributed machine learning, allowing multiple clients to collaboratively train a global model by transmitting locally computed gradients to a central server without exposing their private data. Nonetheless, recent studies find that the gradients exchanged in the FL system are also vulnerable to privacy leakage, e.g., an attacker can invert shared gradients to reconstruct sensitive data by leveraging pre-trained generative adversarial networks (GAN) as prior knowledge. However, existing attacks simply perform gradient inversion in the latent space of the GAN model, which limits their expression ability and generalizability. To tackle these challenges, we propose Gradient Inversion over Feature Domains (GIFD), which disassembles the GAN model and searches the hierarchical features of the intermediate layers. Instead of optimizing only over the initial latent code, we progressively change the optimized layer, from the initial latent space to intermediate layers closer to the output images. In addition, we design a regularizer to avoid unreal image generation by adding a small ${l_{1}}$ ball constraint to the searching range. We also extend GIFD to the out-of-distribution (OOD) setting, which weakens the assumption that the training sets of GANs and FL tasks obey the same data distribution. Furthermore, we consider the challenging OOD scenario of label inconsistency and propose a label mapping technique as an effective solution. Extensive experiments demonstrate that our method can achieve high-quality reconstruction and outperform competitive baselines across a variety of FL scenarios.",
+   "published": "2026-11-09",
+   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+   "dois": [
+    "10.1109/tpami.2026.3751908"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tpami.2026.3751908",
+    "PDF": "https://arxiv.org/pdf/2604.00955"
+   },
+   "added": "2026-11-16T15:55+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
    "graph": false
   },
   {
@@ -17640,114 +17907,6 @@
    "graph": false
   },
   {
-   "id": "10.1038/s42256-026-01279-9",
-   "title": "Machine learning of artistic fingerprints in jazz",
-   "authors": [
-    "Huw Cheston",
-    "Reuben Bance",
-    "Peter M. C. Harrison"
-   ],
-   "abstract": "Abstract Artists are often recognizable through collections of distinctive patterns (\u2018fingerprints\u2019) in their work. Identifying such traits has important applications in authorship attribution, education, cultural heritage research and historical analysis. Here we focus on music, a domain with a rich tradition of theoretical and mathematical analysis. We train a variety of supervised learning models to identify 20 iconic jazz musicians from a curated dataset of 84 h of recordings. In particular, we introduce a multi-input architecture that represents four musical domains separately: melody, harmony, rhythm and dynamics. This design allows us to accurately identify individual performers (our best model obtains 94% accuracy across 20 classes) and to examine which musical elements most strongly distinguish between individual artists. We release open-source implementations of our models and an accompanying web application for exploring our results.",
-   "published": "2026-08-17",
-   "venue": "Nature Machine Intelligence",
-   "dois": [
-    "10.1038/s42256-026-01279-9"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s42256-026-01279-9",
-    "PDF": "https://www.nature.com/articles/s42256-026-01279-9.pdf"
-   },
-   "score": 8,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-76390-x",
-   "title": "Generative AI for efficient statistical computation of fluids",
-   "authors": [
-    "Bogdan Raoni\u0107",
-    "Roberto Molinaro",
-    "Samuel Lanthaler",
-    "Tobias Rohner",
-    "Victor Armegioiu",
-    "Stephan Simonis",
-    "Dana Grund",
-    "Yannick Ramic",
-    "Zhong Yi Wan",
-    "Fei Sha",
-    "Siddhartha Mishra",
-    "Leonardo Zepeda-N\u00fa\u00f1ez"
-   ],
-   "abstract": "We present GenCFD, a generative modeling approach for fast, accurate, and robust statistical computation of three-dimensional turbulent fluid flows. While motivated from conditional score-based diffusion models, GenCFD is both empirically and theoretically validated on generating turbulent flows. Extensive numerical experimentation of challenging three-dimensional fluids demonstrates that GenCFD provides an accurate approximation of relevant statistical quantities of interest while also efficiently generating high-quality realistic samples of such flows. Moreover, we present rigorous theoretical results on analytically tractable models with mathematically relevant features of turbulent fluid flows. The analysis uncovers the mechanism underlying the success of the diffusion modeling approach. In particular, we highlight the importance of modeling distributions by GenCFD, while the mean-square-loss used by the deterministic machine learning approaches fails to accurately characterize statistical features of chaotic dynamics.",
-   "published": "2026-08-17",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-76390-x"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-76390-x",
-    "PDF": "https://doi.org/10.1038/s41467-026-76390-x"
-   },
-   "score": 11,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-75704-3",
-   "title": "A minimal model of working memory in neural systems and neuromorphic circuits",
-   "authors": [
-    "Damien Depannemaecker",
-    "Adrien d\u2019Hollande",
-    "Gabriele Casagrande",
-    "Jiaming Wu",
-    "Marcelo J. Rozenberg"
-   ],
-   "abstract": "Phenomenological spiking neuron models such as Izhikevich, adaptive quadratic integrate-and-fire (aQIF), and Adaptive Exponential (AdEx) are widely used because of their simplicity and numerical efficiency. These models reproduce diverse neuronal dynamics through a slow self-inhibitory adaptation variable. Here we introduce their symmetric counterpart by replacing adaptation with slow self-excitation, motivated by intrinsic calcium-mediated membrane currents. This minimal modification enables robust persistent spiking and working-memory dynamics without compromising computational efficiency. These properties remain in excitatory spiking neural networks. We then derive and validate a mean-field neural mass model that remains stable while retaining working-memory functionality. Additionally, we implement the single-neuron model in a minimal memristor-based neuromorphic circuit and experimentally confirm its dynamics. These results provide scalable tools for large-scale brain simulations and neuromorphic applications in robotics, brain-machine interfaces, and edge AI devices.",
-   "published": "2026-08-17",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-75704-3"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-75704-3",
-    "PDF": "https://doi.org/10.1038/s41467-026-75704-3"
-   },
-   "score": 10,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-76933-2",
-   "title": "High-precision integrated diffractive optical networks enabling regression analysis",
-   "authors": [
-    "Chao Chen",
-    "Hanting Ding",
-    "Yu Yu",
-    "Xinliang Zhang"
-   ],
-   "abstract": "The growing demands of artificial intelligence impose tremendous challenges on computing hardware. Integrated diffractive optical networks (IDONs) have emerged as a promising candidate for next-generation computing architectures, offering ultrafast processing speed, superior energy efficiency, and inherent parallelism. However, phase-error accumulation and fabrication-sensitive metasurfaces limit their physical precision, restricting most demonstrations to classification tasks. Here, we implement a high-precision IDON by incorporating hardware-level error compensation. Cascaded metasurfaces provide high computational capacity through densely integrated optical modulation units, while integrated thermo-optic tuning arrays enable in-situ calibration to accommodate fabrication nonidealities. Numerical analysis reveals that the proposed approach suppresses the relative error of matrix multiplication from 37% to 4.7%. Leveraging this improvement, we experimentally achieve regression on the Boston Housing dataset with an R\u00b2 of 0.71, comparable to that of state-of-the-art digital implementations. The demonstrated IDON represents a significant advance toward high-precision optical computing. Integrated diffractive optical networks offer fast and energy-efficient computing, but fabrication and environmental variations limit their precision. Here, the authors introduce hardware-level in-situ error compensation, enabling high-precision optical computing and regression analysis.",
-   "published": "2026-08-17",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-76933-2"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-76933-2",
-    "PDF": "https://www.nature.com/articles/s41467-026-76933-2.pdf"
-   },
-   "score": 6,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
    "id": "10.1109/tmc.2026.3723868",
    "title": "A Federated Learning Framework Based on Distributed Homomorphic Encryption for Cross-Trust Domain Collaboration in Vehicular Networks",
    "authors": [
@@ -21382,54 +21541,6 @@
     "PDF": "https://arxiv.org/pdf/2308.06822"
    },
    "added": "2026-11-13T20:41+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tvt.2026.3694574",
-   "title": "Physical Layer Authentication Enhanced Federated Learning for UAV With Intrinsic Security",
-   "authors": [
-    "Ziheng Tong",
-    "Jingjing Wang",
-    "Jianwei Liu",
-    "Haohua Du",
-    "Chunxiao Jiang"
-   ],
-   "abstract": "Unmanned aerial vehicles (UAVs) can be utilized effectively as airborne base stations, offering wireless communication and federated learning (FL) services for terrestrial edge devices (EDs). FL enables EDs to collaboratively train a global model for specific tasks without sharing their local raw data. However, due to the unreliable wireless links and dynamic topologies, potential malicious nodes may attempt to masquerade as legitimate nodes to pose various potential threats (e.g., inference, poisoning, and backdoor attacks) to undermine the trustworthiness of the intermediate model parameters. Although existing cryptographic authentication protocols focus on the data-level security, security level can be further enhanced at the physical layer level. In this paper, we design FedPLA, a UAV-aided federated learning framework enhanced by physical layer authentication, which utilizes SNR difference for lightweight authentication to ensure FL intrinsic security. Subsequently, we formulate a multi-step decision problem for joint UAV trajectory and resource allocation, aiming to minimize the latency and energy costs while maximizing secure edge device number with intrusion-proof and unjustly accused-proof guaranty. To efficiently deduce strategies while avoiding potential dangerous policies, we develop an LSTM-enhanced safe deep reinforcement learning algorithm (LSTM-SDRL) for real-time strategy making. Furthermore, extensive simulations demonstrate the effectiveness of the proposed LSTM-SDRL.",
-   "published": "2026-05-19",
-   "venue": "IEEE Transactions on Vehicular Technology",
-   "dois": [
-    "10.1109/tvt.2026.3694574"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tvt.2026.3694574"
-   },
-   "added": "2026-11-13T21:15+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tnnls.2026.3688600",
-   "title": "Recovering Reward Functions From Distributed Expert Demonstrations via Bi-Level Maximum-Likelihood Optimization",
-   "authors": [
-    "Guangyu Jiang",
-    "Shu Hong",
-    "Mahdi Imani",
-    "Nathaniel D. Bastian",
-    "Tian Lan"
-   ],
-   "abstract": "Inverse reinforcement learning (IRL) seeks to infer the latent reward function and the associated optimal policy from expert demonstrations. However, most current IRL methods assume centralized access to all trajectory data, which is impractical in real-world scenarios characterized by decentralized data sources and privacy concerns. To this end, this article proposes a novel algorithm for federated maximum-likelihood IRL (F-ML-IRL) and provides a rigorous analysis of its convergence rate. The proposed F-ML-IRL leverages dual aggregation to update the shared global model and performs bi-level local updates: an upper level learning task to optimize the parameterized reward function by maximizing the discounted likelihood of observing human expert trajectories under the current policy, and a lower level learning task to find the optimal agent policy regarding the entropy-regularized discounted cumulative reward under the current reward function. We analyze the convergence rate of the proposed F-ML-IRL algorithm and show that the global model in F-ML-IRL converges to a stationary point for both the reward and policy parameters within finite time. That is, the log-distance between the recovered policy and the optimal policy, as well as the gradient of the likelihood objective, converges to zero. Evaluating our F-ML-IRL algorithm on high-dimensional robotic control tasks in MuJoCo, we show that it ensures convergence of the recovered reward in decentralized learning and outperforms centralized baselines due to its ability to utilize distributed data-attaining better recovered rewards than all baselines in 12 out of 20 tasks.",
-   "published": "2026-05-19",
-   "venue": "IEEE Transactions on Neural Networks and Learning Systems",
-   "dois": [
-    "10.1109/tnnls.2026.3688600"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tnnls.2026.3688600"
-   },
-   "added": "2026-11-13T21:15+00:00",
    "fl": true,
    "tab": "ieee-tx",
    "graph": false
