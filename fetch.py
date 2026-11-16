@@ -97,6 +97,8 @@ OPENREVIEW_CONFS = ["NeurIPS", "ICML", "ICLR"]
 # early access included, the day IEEE adds them, with abstracts. If the key is missing, not yet approved or the
 # API fails, the run carries on with OpenAlex alone. Each run asks only for papers inserted since the last
 # successful run (minus a few days of overlap), so it uses a handful of the 200 free calls a day.
+IEEE_XPLORE_ENABLED = False  # the API ignored start_date/end_date and returned nothing inserted in the last
+                             # months, so it added no papers; set True to try it again if IEEE fixes that
 IEEE_CONTENT_TYPES = ["Journals", "Early Access Articles"]
 IEEE_MAX_PAGES = 10  # per content type, 200 records a page
 
@@ -110,6 +112,8 @@ OUT = "papers.json"
 FEED_DIR = "feed"
 RSS_ITEMS = 60
 PREVIEW_CHARS = 220   # the page shows two lines of preview; the full abstract is in feed/<tab>-abs.json
+ABS_RECENT = 250      # full abstracts for the newest papers load with the tab; older ones (feed/<tab>-abs-older.json)
+                      # only when a reader searches or opens one, which keeps the first load small
 BOOT_TAB, BOOT_COUNT = "preprint", 40  # papers written straight into index.html for an instant first screen
 PAGE = "index.html"
 NS = {"a": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/atom"}
@@ -134,13 +138,38 @@ def norm_doi(doi):
 openalex_calls = {"search": 0, "list": 0}  # counted so each run can report its cost
 
 
-def get(url, headers=None):
+RETRY_CODES = {429, 500, 502, 503, 504}  # rate limit and server hiccups: worth trying again
+RETRY_WAIT = 5                           # seconds before the first retry, doubling after that
+
+
+def get(url, headers=None, tries=3):
+    """Fetch a URL, retrying a rate limit or a server error a couple of times with a growing wait."""
     if "api.openalex.org" in url:
         query = urllib.parse.urlparse(url).query
         openalex_calls["search" if "search" in query else "list"] += 1
     req = urllib.request.Request(url, headers={**USER_AGENT, **(headers or {})})
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        return resp.read()
+    for attempt in range(tries):
+        try:
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                return resp.read()
+        except urllib.error.HTTPError as e:
+            if e.code not in RETRY_CODES or attempt == tries - 1:
+                raise
+            wait = RETRY_WAIT * 2 ** attempt
+            print(f"  {urllib.parse.urlparse(url).netloc} returned {e.code}; retrying in {wait}s")
+        except urllib.error.URLError:
+            if attempt == tries - 1:
+                raise
+            wait = RETRY_WAIT * 2 ** attempt
+            print(f"  {urllib.parse.urlparse(url).netloc} did not answer; retrying in {wait}s")
+        time.sleep(wait)
+
+
+health = {}  # source -> how it went this run, written to feed/meta.json so the page can show it
+
+
+def note(source, ok, detail=""):
+    health[source] = {"ok": bool(ok), "detail": detail}
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -320,6 +349,112 @@ GROUP BY ?pub ?title ?year ?stream ?venue ?doi ?page"""
 # ---------------------------------------------------------------------------------------------------------
 # IEEE Xplore (optional)
 # ---------------------------------------------------------------------------------------------------------
+# Crossref: where IEEE registers every paper as it publishes, months before OpenAlex lists it. Free, no key.
+# Only IEEE's DOI prefix is asked for; the venue and topic filters below are the same as everywhere else.
+CROSSREF_WORKS = "https://api.crossref.org/works"
+CROSSREF_PREFIX = "10.1109"
+CROSSREF_ROWS = 1000
+CROSSREF_MAX_PAGES = 40
+CROSSREF_FIRST_DAYS = 30   # how far back to look the very first time
+CROSSREF_OVERLAP = 2       # days of overlap on later runs, so nothing falls between two runs
+CROSSREF_SELECT = ("DOI,title,container-title,author,issued,published,published-online,created,abstract,URL,type")
+VOLUME_DATE = re.compile(r"-01-01$")  # some IEEE journals stamp a whole volume with 1 January
+DATE_REPAIRS_PER_RUN = 60
+
+
+def crossref_date(item):
+    """(date, exact) for a Crossref record: the online publication day when it has one, which is the day the
+    paper really appeared, otherwise the issue date, which can be a whole volume's 1 January."""
+    for key in ("published-online", "published"):
+        parts = ((item.get(key) or {}).get("date-parts") or [[]])[0]
+        if len(parts) == 3:
+            return "%04d-%02d-%02d" % tuple(parts), True
+    parts = ((item.get("issued") or {}).get("date-parts") or [[]])[0]
+    if parts:
+        y, m, d = (list(parts) + [1, 1])[:3]
+        return "%04d-%02d-%02d" % (y, m, d), False
+    created = (item.get("created") or {}).get("date-time") or ""
+    return (created[:10] or TODAY.isoformat()), False
+
+
+def crossref_get(params):
+    """One Crossref page. Retries once without `select` in case a field name is not accepted."""
+    try:
+        return json.loads(get(CROSSREF_WORKS + "?" + urllib.parse.urlencode(params)))["message"]
+    except urllib.error.HTTPError as e:
+        if e.code != 400 or "select" not in params:
+            raise
+        print("  Crossref rejected the field list; asking for whole records instead")
+        return json.loads(get(CROSSREF_WORKS + "?" + urllib.parse.urlencode(
+            {k: v for k, v in params.items() if k != "select"})))["message"]
+
+
+def fetch_crossref(since):
+    """Federated learning papers in IEEE Transactions that Crossref indexed on or after `since`.
+    Returns None if Crossref could not be read, so the run carries on with the other sources."""
+    papers, cursor, seen = [], "*", 0
+    for _ in range(CROSSREF_MAX_PAGES):
+        params = {"filter": f"prefix:{CROSSREF_PREFIX},from-index-date:{since}",
+                  "rows": CROSSREF_ROWS, "cursor": cursor, "select": CROSSREF_SELECT}
+        try:
+            data = crossref_get(params)
+        except (urllib.error.URLError, json.JSONDecodeError, KeyError) as e:
+            print(f"Crossref failed ({type(e).__name__}: {e}); using the other sources")
+            return None
+        items = data.get("items") or []
+        seen += len(items)
+        for it in items:
+            title = clean(re.sub(r"<[^>]+>", "", " ".join(it.get("title") or [])))
+            venue = clean((it.get("container-title") or [""])[0])
+            abstract = clean(re.sub(r"<[^>]+>", "", it.get("abstract") or ""))
+            if not title or not IEEE_TX_RE.search(venue) or not is_fl(title + " " + abstract, title):
+                continue
+            doi = norm_doi(it["DOI"])
+            published, exact = crossref_date(it)
+            papers.append({
+                "id": doi,
+                "title": title,
+                "authors": [clean(f"{a.get('given', '')} {a.get('family', '')}") for a in it.get("author") or []],
+                "abstract": abstract,
+                "published": published,
+                "date_exact": exact,
+                "venue": venue,
+                "dois": [doi],
+                "links": {"Publisher": it.get("URL") or f"https://doi.org/{doi}"},
+            })
+        cursor = data.get("next-cursor")
+        if not cursor or len(items) < CROSSREF_ROWS:
+            break
+        time.sleep(0.5)
+    print(f"Crossref: {len(papers)} federated learning papers in IEEE Transactions "
+          f"({seen} IEEE records indexed since {since})")
+    return papers
+
+
+def repair_volume_dates(papers):
+    """Papers stamped 1 January carry a volume date rather than a publication day. Ask Crossref for the real
+    online date, a few each run, and mark each one checked so it is never asked about twice."""
+    todo = [p for p in papers if VOLUME_DATE.search(p["published"]) and not p.get("date_exact")
+            and any(d.startswith(CROSSREF_PREFIX + "/") for d in p["dois"])][:DATE_REPAIRS_PER_RUN]
+    fixed = 0
+    for p in todo:
+        doi = next(d for d in p["dois"] if d.startswith(CROSSREF_PREFIX + "/"))
+        try:
+            item = json.loads(get(f"{CROSSREF_WORKS}/{urllib.parse.quote(doi)}"))["message"]
+        except (urllib.error.URLError, json.JSONDecodeError, KeyError) as e:
+            print(f"Date repair stopped ({type(e).__name__}: {e}); continuing next run")
+            break
+        date, exact = crossref_date(item)
+        p["date_exact"] = True  # checked, whatever the answer, so it is not asked about again
+        if exact and date != p["published"]:
+            p["published"] = date
+            fixed += 1
+        time.sleep(0.2)
+    if todo:
+        print(f"Volume dates: checked {len(todo)}, corrected {fixed}")
+    return fixed
+
+
 def ieee_date(a):
     """The date IEEE first put the paper online, as YYYY-MM-DD (early access date when there is one)."""
     for key in ("online_date", "insert_date", "publication_date"):
@@ -505,12 +640,15 @@ def journal_sources(names, api_key, cache):
     return {"checked": TODAY.isoformat(), "names": names, "ids": ids} if ids else cache
 
 
-def list_works(source_ids, api_key, days):
-    """Every work published in the last `days` days in these journals."""
+def list_works(source_ids, api_key, days, search=None):
+    """Works published in the last `days` days in these journals. With `search`, only those whose title or
+    abstract matches it, which is the whole point for a big set of journals: listing every paper in all the
+    IEEE Transactions for a year is tens of thousands of records and times out."""
     for i in range(0, len(source_ids), 50):  # OpenAlex allows up to 100 OR'ed values; 50 keeps URLs short
         params = {
             "filter": f"primary_location.source.id:{'|'.join(source_ids[i:i + 50])},"
-                      f"from_publication_date:{TODAY - timedelta(days=days)},to_publication_date:{TODAY}",
+                      f"from_publication_date:{TODAY - timedelta(days=days)},to_publication_date:{TODAY}"
+                      + (f",title_and_abstract.search:{search}" if search else ""),
             "select": OPENALEX_SELECT,
         }
         yield from openalex_list("works", params, api_key)
@@ -636,7 +774,11 @@ class Store:
         if new["venue"] and not match["venue"]:
             match["venue"], match["published"] = new["venue"], new["published"]
         elif bool(new["venue"]) == bool(match["venue"]):
-            match["published"] = min(match["published"], new["published"])
+            if new.get("date_exact") and not match.get("date_exact"):
+                match["published"] = new["published"]          # a real publication day beats a volume date
+            elif not (match.get("date_exact") and not new.get("date_exact")):
+                match["published"] = min(match["published"], new["published"])
+        match["date_exact"] = match.get("date_exact") or new.get("date_exact")
         if new.get("conf"):
             match.setdefault("conf", new["conf"])
         if "score" in new:
@@ -683,24 +825,29 @@ def main():
     stamp = datetime.now(timezone.utc).isoformat(timespec="minutes")
     store = Store(saved["papers"], stamp)
     state = {k: saved.get(k) for k in ("conf_done", "full_sweep", "ieee_sources", "nature_sources",
-                                        "abs_tried", "ieee_xplore_checked", "ieee_swept_ids")}
+                                        "abs_tried", "ieee_xplore_checked", "ieee_swept_ids", "crossref_checked")}
     conf_done = set(state["conf_done"] or [])
     full_sweep = state["full_sweep"] or {}
     abs_tried = state["abs_tried"] or {}
 
     # arXiv
+    arxiv_n, arxiv_err = 0, ""
     for i, (query, max_results) in enumerate(ARXIV_QUERIES):
         if i:
             time.sleep(3)  # arXiv asks for 3 s between API calls
         try:
             for p in fetch_arxiv(query, max_results):
                 store.add(p)
+                arxiv_n += 1
         except (urllib.error.URLError, ET.ParseError) as e:
-            print(f"arXiv failed ({type(e).__name__}: {e})")
+            arxiv_err = f"{type(e).__name__}: {e}"
+            print(f"arXiv failed ({arxiv_err})")
+    note("arXiv", not arxiv_err, arxiv_err or f"{arxiv_n} papers")
 
     # OpenReview: NeurIPS, ICML, ICLR, with abstracts
     or_user, or_pass = os.environ.get("OPENREVIEW_USERNAME"), os.environ.get("OPENREVIEW_PASSWORD")
     or_token = openreview_login(or_user, or_pass) if or_user and or_pass else None
+    or_ok = False
     if not (or_user and or_pass):
         print("OPENREVIEW_USERNAME/OPENREVIEW_PASSWORD not set: NeurIPS, ICML and ICLR come from dblp only")
     for year in (TODAY.year, TODAY.year - 1):
@@ -716,16 +863,27 @@ def main():
             if accepted:  # no accepted papers yet means decisions aren't out, so check again later
                 conf_done.add(f"{conference} {year}")
             print(f"OpenReview {conference} {year}: {accepted} accepted, {len(papers)} on federated learning")
+            or_ok = True
             time.sleep(1)
+    note("OpenReview", or_ok or not or_token, "" if or_token else "no login set")
 
-    # dblp: every other conference, one SPARQL query
-    papers = fetch_dblp()
-    for p in papers or []:
-        store.add(p)
+    # dblp: every other conference, one SPARQL query. Conference proceedings appear in batches a few times a
+    # year, so this runs weekly rather than every run; dblp rate-limits callers that ask more often.
+    last_dblp = full_sweep.get("dblp")
+    if last_dblp and (TODAY - date.fromisoformat(last_dblp)).days < 7:
+        print(f"dblp: last read {last_dblp}, next in {7 - (TODAY - date.fromisoformat(last_dblp)).days} days")
+        note("dblp", True, f"last read {last_dblp}")
+    else:
+        papers = fetch_dblp()
+        for p in papers or []:
+            store.add(p)
+        if papers is not None:
+            full_sweep["dblp"] = TODAY.isoformat()
+        note("dblp", papers is not None, "" if papers is not None else "could not be read")
 
     # IEEE Xplore (optional): new IEEE Transactions papers, early access included, with abstracts
     ieee_key = os.environ.get("IEEE_API_KEY")
-    if ieee_key:
+    if ieee_key and IEEE_XPLORE_ENABLED:
         last = state["ieee_xplore_checked"]
         since = (date.fromisoformat(last) - timedelta(days=3)) if last else TODAY - timedelta(days=KEEP_DAYS["ieee-tx"])
         papers = fetch_ieee_xplore(ieee_key, since)
@@ -733,6 +891,19 @@ def main():
             for p in papers:
                 store.add(p)
             state["ieee_xplore_checked"] = TODAY.isoformat()
+
+    # Crossref: IEEE papers the day they are registered, months before OpenAlex lists them
+    last_cr = state["crossref_checked"]
+    cr_since = (date.fromisoformat(last_cr) - timedelta(days=CROSSREF_OVERLAP)) if last_cr \
+        else TODAY - timedelta(days=CROSSREF_FIRST_DAYS)
+    cr_papers = fetch_crossref(cr_since.isoformat())
+    if cr_papers is not None:
+        for p in cr_papers:
+            store.add(p)
+        state["crossref_checked"] = TODAY.isoformat()
+        note("Crossref", True, f"{len(cr_papers)} papers")
+    else:
+        note("Crossref", False, "could not be read")
 
     # OpenAlex: IEEE Transactions and Nature journals, listed in full, filtered here
     api_key = os.environ.get("OPENALEX_API_KEY")
@@ -751,19 +922,21 @@ def main():
                 full_sweep.pop("ieee-tx", None)  # journals never fully read: read their whole window
             full, days = window("ieee-tx")
             seen = kept = 0
-            for w in list_works(ids, api_key, days):
+            for w in list_works(ids, api_key, days, search=SEARCH_WORDS):
                 seen += 1
                 p = paper_from_work(w)
                 if p and is_fl(p["title"] + " " + p["abstract"], p["title"]):
                     store.add(p)
                     kept += 1
-            print(f"IEEE Transactions: {seen} papers listed ({days} days), {kept} on federated learning")
+            print(f"IEEE Transactions: {seen} papers matching '{SEARCH_WORDS}' listed ({days} days), {kept} kept")
+            note("IEEE Transactions (OpenAlex)", True, f"{kept} papers")
             if full:
                 full_sweep["ieee-tx"] = TODAY.isoformat()
                 full_sweep["ieee-tx-days"] = days
                 state["ieee_swept_ids"] = ids
         except (urllib.error.URLError, json.JSONDecodeError, KeyError, IndexError, TypeError) as e:
             print(f"IEEE Transactions failed ({type(e).__name__}: {e}); trying again next run")
+            note("IEEE Transactions (OpenAlex)", False, f"{type(e).__name__}")
 
         try:
             state["nature_sources"] = journal_sources(NATURE_JOURNALS, api_key, state["nature_sources"])
@@ -778,15 +951,21 @@ def main():
                     store.add(p)
                     kept += 1
             print(f"Nature journals: {seen} papers listed ({days} days), {kept} picked")
+            note("Nature journals", True, f"{kept} papers")
             if full:
                 full_sweep["nature"] = TODAY.isoformat()
                 full_sweep["nature-days"] = days
         except (urllib.error.URLError, json.JSONDecodeError, KeyError, IndexError, TypeError) as e:
             print(f"Nature journals failed ({type(e).__name__}: {e}); trying again next run")
+            note("Nature journals", False, f"{type(e).__name__}")
 
         enrich_abstracts([p for p in store.papers if tab_of(p) in ("conf", "ieee-tx")], api_key, abs_tried)
     else:
         print("OPENALEX_API_KEY not set: skipping IEEE Transactions, Nature and conference abstracts")
+        note("IEEE Transactions (OpenAlex)", False, "no API key")
+        note("Nature journals", False, "no API key")
+
+    repair_volume_dates(store.papers)
 
     # Decide each paper's tab and whether it is still current.
     papers = []
@@ -832,7 +1011,7 @@ def write_feed_files(papers, updated):
     feed/meta.json has the update time and per-tab counts for the menu."""
     os.makedirs(FEED_DIR, exist_ok=True)
     compact = {"separators": (",", ":"), "ensure_ascii": False}
-    meta = {"updated": updated, "tabs": {}}
+    meta = {"updated": updated, "tabs": {}, "sources": health}
     for tab, title in TAB_TITLES.items():
         rows = [p for p in papers if p["tab"] == tab]
         lite = []
@@ -846,8 +1025,10 @@ def write_feed_files(papers, updated):
             lite.append(row)
         with open(f"{FEED_DIR}/{tab}.json", "w", encoding="utf-8") as f:
             json.dump({"updated": updated, "papers": lite}, f, **compact)
-        with open(f"{FEED_DIR}/{tab}-abs.json", "w", encoding="utf-8") as f:
-            json.dump({p["id"]: p["abstract"] for p in rows if len(p["abstract"]) > PREVIEW_CHARS}, f, **compact)
+        long_abs = [p for p in rows if len(p["abstract"]) > PREVIEW_CHARS]
+        for name, part in (("-abs", long_abs[:ABS_RECENT]), ("-abs-older", long_abs[ABS_RECENT:])):
+            with open(f"{FEED_DIR}/{tab}{name}.json", "w", encoding="utf-8") as f:
+                json.dump({p["id"]: p["abstract"] for p in part}, f, **compact)
         meta["tabs"][tab] = {"count": len(rows), "graph": sum(p["graph"] for p in rows)}
         write_rss(tab, title, rows)
         if tab == BOOT_TAB:
