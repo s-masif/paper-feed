@@ -400,17 +400,31 @@ VOLUME_DATE = re.compile(r"-01-01$")  # some IEEE journals stamp a whole volume 
 DATE_REPAIRS_PER_RUN = 60
 
 
+def date_parts(item, key):
+    """The year/month/day numbers Crossref gives under `key`. Crossref sometimes fills a missing part with
+    null (for example [[2026, null]]), so anything that is not a number is dropped."""
+    parts = ((item.get(key) or {}).get("date-parts") or [[]])[0] or []
+    return [n for n in parts if isinstance(n, int)]
+
+
+def as_date(y, m=1, d=1):
+    """An ISO date, or None if the numbers do not make a real one."""
+    try:
+        return date(y, m, d).isoformat()
+    except (ValueError, TypeError):
+        return None
+
+
 def crossref_date(item):
     """(date, exact) for a Crossref record: the online publication day when it has one, which is the day the
     paper really appeared, otherwise the issue date, which can be a whole volume's 1 January."""
     for key in ("published-online", "published"):
-        parts = ((item.get(key) or {}).get("date-parts") or [[]])[0]
-        if len(parts) == 3:
-            return "%04d-%02d-%02d" % tuple(parts), True
-    parts = ((item.get("issued") or {}).get("date-parts") or [[]])[0]
-    if parts:
-        y, m, d = (list(parts) + [1, 1])[:3]
-        return "%04d-%02d-%02d" % (y, m, d), False
+        parts = date_parts(item, key)
+        if len(parts) == 3 and as_date(*parts):
+            return as_date(*parts), True
+    parts = date_parts(item, "issued")
+    if parts and as_date(*(parts + [1, 1])[:3]):
+        return as_date(*(parts + [1, 1])[:3]), False
     created = (item.get("created") or {}).get("date-time") or ""
     return (created[:10] or TODAY.isoformat()), False
 
@@ -457,6 +471,7 @@ def fetch_crossref(since, conferences=False):
         seen += len(items)
         before = len(papers)
         for it in items:
+          try:
             title = clean(re.sub(r"<[^>]+>", "", " ".join(it.get("title") or [])))
             venue = clean((it.get("container-title") or [""])[0])
             abstract = clean(re.sub(r"<[^>]+>", "", it.get("abstract") or ""))
@@ -480,6 +495,8 @@ def fetch_crossref(since, conferences=False):
                 "links": {"Publisher": it.get("URL") or f"https://doi.org/{doi}"},
                 **({"conf": conf, "venue": conf.rsplit(" ", 1)[0]} if conf else {}),
             })
+          except (TypeError, ValueError, KeyError, IndexError, AttributeError) as e:
+            print(f"  skipped a Crossref record ({type(e).__name__}: {e})")
         quiet = 0 if len(papers) > before else quiet + 1
         cursor = data.get("next-cursor")
         if not cursor or len(items) < CROSSREF_ROWS or quiet >= CROSSREF_QUIET_PAGES:
