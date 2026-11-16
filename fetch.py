@@ -202,6 +202,7 @@ def fetch_arxiv(query, max_results):
             "authors": [a.find("a:name", NS).text for a in e.findall("a:author", NS)],
             "abstract": clean(e.find("a:summary", NS).text),
             "published": e.find("a:published", NS).text[:10],
+            "date_q": DATE_DAY,
             "venue": None,
             "dois": ["10.48550/arxiv." + arxiv_id.lower()],  # arXiv's own DOI, which OpenAlex uses
             "links": links,
@@ -258,6 +259,7 @@ def fetch_openreview(conference, year, pattern, token):
                 "authors": val("authors") or [],
                 "abstract": abstract,
                 "published": datetime.fromtimestamp(ms / 1000, timezone.utc).date().isoformat() if ms else f"{year}-01-01",
+                "date_q": DATE_DAY if ms else DATE_STAMP,
                 "venue": val("venue") or f"{conference} {year}",  # e.g. "ICLR 2026 Poster"
                 "conf": f"{conference} {year}",
                 "dois": [],
@@ -361,6 +363,8 @@ CROSSREF_QUIET_PAGES = 2       # results come best-match first, so stop after th
 CROSSREF_MAILTO = "smasiful.huda@unina.it"   # puts the feed in Crossref's "polite" pool
 CROSSREF_FIRST_DAYS = 60   # how far back to look the very first time
 CROSSREF_OVERLAP = 2       # days of overlap on later runs, so nothing falls between two runs
+CROSSREF_VERSION = 2       # raise this to make the next run re-read the whole first window (after a change
+                           # to how Crossref dates are merged, say); the number is remembered in papers.json
 CROSSREF_SELECT = ("DOI,title,container-title,author,issued,published,published-online,created,abstract,URL,type")
 # Crossref names proceedings in full ("Proceedings of the AAAI Conference on ..."), so each conference is
 # recognised by a pattern. Used when dblp cannot be reached, which is most runs.
@@ -400,7 +404,7 @@ CROSSREF_CONFS = [
 ]
 CROSSREF_CONF_SKIP = re.compile(r"workshop|companion|findings|demo|adjunct|poster|tutorial|doctoral|student", re.I)
 VOLUME_DATE = re.compile(r"-01-01$")  # some IEEE journals stamp a whole volume with 1 January
-DATE_REPAIRS_PER_RUN = 60
+DATE_REPAIRS_PER_RUN = 200
 
 
 def date_parts(item, key):
@@ -418,23 +422,34 @@ def as_date(y, m=1, d=1):
         return None
 
 
+# How much a paper's date can be trusted, kept as date_q on the paper. When two records of the same paper
+# meet, the better-known date wins; between equals, the earlier.
+DATE_DAY, DATE_DEPOSIT, DATE_STAMP = 3, 2, 1   # a known day; the day the publisher deposited it; a volume stamp
+
+
+def date_quality(p):
+    return p.get("date_q") or (DATE_DAY if p.get("date_exact") else DATE_STAMP)
+
+
 def crossref_date(item):
-    """(date, exact) for a Crossref record, taking the most specific day available: the online publication
+    """(date, quality) for a Crossref record, taking the most specific day available: the online publication
     date, else a full issue date. A part-written issue date ("2026", "March 2026") is a volume stamp rather
     than a day, so the deposit date is used instead, which is about when the paper appeared."""
     for key in ("published-online", "published"):
         parts = date_parts(item, key)
         if len(parts) == 3 and as_date(*parts):
-            return as_date(*parts), True
+            return as_date(*parts), DATE_DAY
     issued = date_parts(item, "issued")
-    if len(issued) == 3 and as_date(*issued):
-        return as_date(*issued), True
+    # An issue date of exactly 1 January is a volume stamp even when written out in full: papers first posted
+    # in November turn up "issued 2026-01-01". Only an issue date on any other day counts as a known day.
+    if len(issued) == 3 and as_date(*issued) and issued[1:] != [1, 1]:
+        return as_date(*issued), DATE_DAY
     created = (item.get("created") or {}).get("date-time") or ""
     if created[:10]:
-        return created[:10], False
+        return created[:10], DATE_DEPOSIT
     if issued and as_date(*(issued + [1, 1])[:3]):
-        return as_date(*(issued + [1, 1])[:3]), False
-    return TODAY.isoformat(), False
+        return as_date(*(issued + [1, 1])[:3]), DATE_STAMP
+    return TODAY.isoformat(), DATE_STAMP
 
 
 def crossref_get(params):
@@ -488,7 +503,9 @@ def fetch_crossref(since, conferences=False):
             abstract = clean(re.sub(r"<[^>]+>", "", it.get("abstract") or ""))
             if not title or not is_fl(title + " " + abstract, title):
                 continue
-            published, exact = crossref_date(it)
+            if conferences and re.match(r"\s*(poster|demo|extended abstract|doctoral)\b", title, re.I):
+                continue
+            published, quality = crossref_date(it)
             conf_year = (date_parts(it, "issued") or [int(published[:4])])[0]
             conf = conf_of(venue, conf_year) if conferences else None
             wanted = conf is not None if conferences else bool(IEEE_TX_RE.search(venue))
@@ -501,7 +518,7 @@ def fetch_crossref(since, conferences=False):
                 "authors": [clean(f"{a.get('given', '')} {a.get('family', '')}") for a in it.get("author") or []],
                 "abstract": abstract,
                 "published": published,
-                "date_exact": exact,
+                "date_q": quality,
                 "venue": venue,
                 "dois": [doi],
                 "links": {"Publisher": it.get("URL") or f"https://doi.org/{doi}"},
@@ -523,7 +540,7 @@ def fetch_crossref(since, conferences=False):
 def repair_volume_dates(papers):
     """Papers stamped 1 January carry a volume date rather than a publication day. Ask Crossref for the real
     online date, a few each run, and mark each one checked so it is never asked about twice."""
-    todo = [p for p in papers if VOLUME_DATE.search(p["published"]) and not p.get("date_exact")
+    todo = [p for p in papers if VOLUME_DATE.search(p["published"]) and date_quality(p) < DATE_DEPOSIT
             and not p.get("date_checked") and any(d.startswith(CROSSREF_PREFIX + "/") for d in p["dois"])
             ][:DATE_REPAIRS_PER_RUN]
     fixed = 0
@@ -535,13 +552,13 @@ def repair_volume_dates(papers):
         except (urllib.error.URLError, json.JSONDecodeError, KeyError) as e:
             print(f"Date repair stopped ({type(e).__name__}: {e}); continuing next run")
             break
-        new_date, exact = crossref_date(item)
+        new_date, quality = crossref_date(item)
         p["date_checked"] = True  # whatever the answer, it is not asked about again
-        if exact:
-            p["date_exact"] = True
-        if new_date != p["published"] and (exact or not VOLUME_DATE.search(new_date)):
-            p["published"] = new_date
-            fixed += 1
+        if quality > date_quality(p):
+            p["date_q"] = quality
+            if new_date != p["published"]:
+                p["published"] = new_date
+                fixed += 1
         time.sleep(0.2)
     if todo:
         print(f"Volume dates: checked {len(todo)}, corrected {fixed}")
@@ -840,8 +857,12 @@ class Store:
         self.papers, self.by_doi, self.by_title, self.stamp = [], {}, {}, stamp
         for p in papers:
             p.pop("tags", None)  # from the old tab system
-            if not p.get("date_exact"):
-                p.pop("date_exact", None)  # an earlier version wrote null here; the flag is only ever True
+            if p.pop("date_exact", None):   # from an earlier version of this script
+                p["date_q"] = DATE_DAY
+            if VOLUME_DATE.search(p["published"]) and p.get("date_q", 0) >= DATE_DAY:
+                # an earlier version took "issued 1 January" for a real day; let it be looked at again
+                p.pop("date_q", None)
+                p.pop("date_checked", None)
             p.setdefault("added", p["published"])
             self.add(p)
 
@@ -869,12 +890,14 @@ class Store:
         if new["venue"] and not match["venue"]:
             match["venue"], match["published"] = new["venue"], new["published"]
         elif bool(new["venue"]) == bool(match["venue"]):
-            if new.get("date_exact") and not match.get("date_exact"):
-                match["published"] = new["published"]          # a real publication day beats a volume date
-            elif not (match.get("date_exact") and not new.get("date_exact")):
+            nq, mq = date_quality(new), date_quality(match)
+            if nq > mq:
+                match["published"] = new["published"]   # the better-known date wins, whichever came first
+            elif nq == mq:
                 match["published"] = min(match["published"], new["published"])
-        if new.get("date_exact"):
-            match["date_exact"] = True
+        if date_quality(new) > date_quality(match):
+            match["date_q"] = date_quality(new)
+            match.pop("date_exact", None)
         if new.get("conf"):
             match.setdefault("conf", new["conf"])
         if "score" in new:
@@ -921,7 +944,7 @@ def main():
     stamp = datetime.now(timezone.utc).isoformat(timespec="minutes")
     store = Store(saved["papers"], stamp)
     state = {k: saved.get(k) for k in ("conf_done", "full_sweep", "ieee_sources", "nature_sources",
-                                        "abs_tried", "ieee_xplore_checked", "ieee_swept_ids", "crossref_created")}
+                                        "abs_tried", "ieee_xplore_checked", "ieee_swept_ids", "crossref_created", "crossref_version")}
     conf_done = set(state["conf_done"] or [])
     full_sweep = state["full_sweep"] or {}
     abs_tried = state["abs_tried"] or {}
@@ -989,7 +1012,7 @@ def main():
             state["ieee_xplore_checked"] = TODAY.isoformat()
 
     # Crossref: IEEE papers the day they are registered, months before OpenAlex lists them
-    last_cr = state["crossref_created"]
+    last_cr = state["crossref_created"] if state["crossref_version"] == CROSSREF_VERSION else None
     cr_since = (date.fromisoformat(last_cr) - timedelta(days=CROSSREF_OVERLAP)) if last_cr \
         else TODAY - timedelta(days=CROSSREF_FIRST_DAYS)
     cr_papers = fetch_crossref(cr_since.isoformat())
@@ -998,6 +1021,7 @@ def main():
         store.add(p)
     if cr_papers is not None and cr_confs is not None:
         state["crossref_created"] = TODAY.isoformat()  # only move on when both passes succeeded
+        state["crossref_version"] = CROSSREF_VERSION
         note("Crossref", True, f"{len(cr_papers)} journal, {len(cr_confs)} conference papers")
     elif cr_papers is not None:
         note("Crossref", False, "conference papers could not be read")
