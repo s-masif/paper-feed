@@ -359,7 +359,7 @@ CROSSREF_QUERY = "federated"   # Crossref does the matching: without it, a month
 CROSSREF_MAX_PAGES = 20
 CROSSREF_QUIET_PAGES = 2       # results come best-match first, so stop after this many pages with no match
 CROSSREF_MAILTO = "smasiful.huda@unina.it"   # puts the feed in Crossref's "polite" pool
-CROSSREF_FIRST_DAYS = 30   # how far back to look the very first time
+CROSSREF_FIRST_DAYS = 60   # how far back to look the very first time
 CROSSREF_OVERLAP = 2       # days of overlap on later runs, so nothing falls between two runs
 CROSSREF_SELECT = ("DOI,title,container-title,author,issued,published,published-online,created,abstract,URL,type")
 # Crossref names proceedings in full ("Proceedings of the AAAI Conference on ..."), so each conference is
@@ -368,34 +368,37 @@ CROSSREF_CONFS = [
     (r"\bneurips\b|neural information processing systems", "NeurIPS"),
     (r"international conference on machine learning(?! and)|\bicml\b", "ICML"),
     (r"international conference on learning representations|\biclr\b", "ICLR"),
-    (r"aaai conference on artificial intelligence|\baaai\b", "AAAI"),
+    (r"aaai conference on artificial intelligence", "AAAI"),
     (r"international joint conference on artificial intelligence|\bijcai\b", "IJCAI"),
     (r"artificial intelligence and statistics|\baistats\b", "AISTATS"),
-    (r"\bsigkdd\b|knowledge discovery and data mining", "KDD"),
+    (r"\bsigkdd\b|\bkdd\b", "KDD"),  # not "knowledge discovery and data mining": PAKDD has that too
     (r"\bweb conference\b|world wide web conference", "WWW"),
     (r"\bsigir\b|research and development in information retrieval", "SIGIR"),
     (r"information and knowledge management|\bcikm\b", "CIKM"),
     (r"web search and data mining|\bwsdm\b", "WSDM"),
-    (r"international conference on data mining(?! and)|\bicdm\b", "ICDM"),
+    (r"(?<!siam )international conference on data mining(?! and)|\bicdm\b", "ICDM"),
     (r"international conference on data engineering(?! and)|\bicde\b", "ICDE"),
     (r"\bsigmod\b|management of data", "SIGMOD"),
     (r"\bvldb\b|very large data bases", "VLDB"),
     (r"computer vision and pattern recognition|\bcvpr\b", "CVPR"),
     (r"international conference on computer vision(?! and)|\biccv\b", "ICCV"),
     (r"european conference on computer vision|\beccv\b", "ECCV"),
-    (r"\bacm multimedia\b|international conference on multimedia", "ACM MM"),
-    (r"association for computational linguistics", "ACL"),
+    (r"acm international conference on multimedia|\bacm multimedia\b", "ACM MM"),  # not ICME
     (r"empirical methods in natural language processing|\bemnlp\b", "EMNLP"),
+    (r"north american chapter of the association for computational linguistics|\bnaacl\b", "NAACL"),
+    (r"annual meeting of the association for computational linguistics", "ACL"),
+    (r"proceedings of machine learning and systems|\bmlsys\b", "MLSys"),
     (r"\binfocom\b", "INFOCOM"),
     (r"\bmobicom\b|mobile computing and networking", "MobiCom"),
     (r"\bmobisys\b|mobile systems, applications", "MobiSys"),
     (r"\bmobihoc\b", "MobiHoc"),
     (r"\bsensys\b|embedded networked sensor", "SenSys"),
-    (r"computer and communications security(?! workshop)|\bacm ccs\b", "CCS"),
+    (r"(?<!asia conference on )computer and communications security(?! workshop)|\bacm ccs\b", "CCS"),
     (r"usenix security", "USENIX Security"),
+    (r"ieee symposium on security and privacy|\bieee s&p\b", "IEEE S&P"),
     (r"\bndss\b|network and distributed system security", "NDSS"),
 ]
-CROSSREF_CONF_SKIP = re.compile(r"workshop|companion|findings|demo|adjunct|poster|tutorial", re.I)
+CROSSREF_CONF_SKIP = re.compile(r"workshop|companion|findings|demo|adjunct|poster|tutorial|doctoral|student", re.I)
 VOLUME_DATE = re.compile(r"-01-01$")  # some IEEE journals stamp a whole volume with 1 January
 DATE_REPAIRS_PER_RUN = 60
 
@@ -416,17 +419,22 @@ def as_date(y, m=1, d=1):
 
 
 def crossref_date(item):
-    """(date, exact) for a Crossref record: the online publication day when it has one, which is the day the
-    paper really appeared, otherwise the issue date, which can be a whole volume's 1 January."""
+    """(date, exact) for a Crossref record, taking the most specific day available: the online publication
+    date, else a full issue date. A part-written issue date ("2026", "March 2026") is a volume stamp rather
+    than a day, so the deposit date is used instead, which is about when the paper appeared."""
     for key in ("published-online", "published"):
         parts = date_parts(item, key)
         if len(parts) == 3 and as_date(*parts):
             return as_date(*parts), True
-    parts = date_parts(item, "issued")
-    if parts and as_date(*(parts + [1, 1])[:3]):
-        return as_date(*(parts + [1, 1])[:3]), False
+    issued = date_parts(item, "issued")
+    if len(issued) == 3 and as_date(*issued):
+        return as_date(*issued), True
     created = (item.get("created") or {}).get("date-time") or ""
-    return (created[:10] or TODAY.isoformat()), False
+    if created[:10]:
+        return created[:10], False
+    if issued and as_date(*(issued + [1, 1])[:3]):
+        return as_date(*(issued + [1, 1])[:3]), False
+    return TODAY.isoformat(), False
 
 
 def crossref_get(params):
@@ -457,7 +465,10 @@ def fetch_crossref(since, conferences=False):
     where = "" if conferences else f"prefix:{CROSSREF_PREFIX},"
     papers, cursor, seen, quiet = [], "*", 0, 0
     for _ in range(CROSSREF_MAX_PAGES):
-        params = {"filter": f"{where}type:{what},from-index-date:{since}",
+        # from-created-date, not from-index-date: "created" is when the publisher first deposited the paper,
+        # which is about when it appeared. "index" only means the record was touched, so it returns years-old
+        # papers whose metadata was tidied up, which is what it did before this was changed.
+        params = {"filter": f"{where}type:{what},from-created-date:{since}",
                   "query.bibliographic": CROSSREF_QUERY,
                   "rows": CROSSREF_ROWS, "cursor": cursor, "select": CROSSREF_SELECT}
         if CROSSREF_MAILTO:
@@ -478,7 +489,8 @@ def fetch_crossref(since, conferences=False):
             if not title or not is_fl(title + " " + abstract, title):
                 continue
             published, exact = crossref_date(it)
-            conf = conf_of(venue, published[:4]) if conferences else None
+            conf_year = (date_parts(it, "issued") or [int(published[:4])])[0]
+            conf = conf_of(venue, conf_year) if conferences else None
             wanted = conf is not None if conferences else bool(IEEE_TX_RE.search(venue))
             if not wanted:
                 continue
@@ -512,19 +524,23 @@ def repair_volume_dates(papers):
     """Papers stamped 1 January carry a volume date rather than a publication day. Ask Crossref for the real
     online date, a few each run, and mark each one checked so it is never asked about twice."""
     todo = [p for p in papers if VOLUME_DATE.search(p["published"]) and not p.get("date_exact")
-            and any(d.startswith(CROSSREF_PREFIX + "/") for d in p["dois"])][:DATE_REPAIRS_PER_RUN]
+            and not p.get("date_checked") and any(d.startswith(CROSSREF_PREFIX + "/") for d in p["dois"])
+            ][:DATE_REPAIRS_PER_RUN]
     fixed = 0
     for p in todo:
         doi = next(d for d in p["dois"] if d.startswith(CROSSREF_PREFIX + "/"))
         try:
-            item = json.loads(get(f"{CROSSREF_WORKS}/{urllib.parse.quote(doi)}"))["message"]
+            item = json.loads(get(f"{CROSSREF_WORKS}/{urllib.parse.quote(doi)}"
+                                  + (f"?mailto={CROSSREF_MAILTO}" if CROSSREF_MAILTO else "")))["message"]
         except (urllib.error.URLError, json.JSONDecodeError, KeyError) as e:
             print(f"Date repair stopped ({type(e).__name__}: {e}); continuing next run")
             break
-        date, exact = crossref_date(item)
-        p["date_exact"] = True  # checked, whatever the answer, so it is not asked about again
-        if exact and date != p["published"]:
-            p["published"] = date
+        new_date, exact = crossref_date(item)
+        p["date_checked"] = True  # whatever the answer, it is not asked about again
+        if exact:
+            p["date_exact"] = True
+        if new_date != p["published"] and (exact or not VOLUME_DATE.search(new_date)):
+            p["published"] = new_date
             fixed += 1
         time.sleep(0.2)
     if todo:
@@ -824,6 +840,8 @@ class Store:
         self.papers, self.by_doi, self.by_title, self.stamp = [], {}, {}, stamp
         for p in papers:
             p.pop("tags", None)  # from the old tab system
+            if not p.get("date_exact"):
+                p.pop("date_exact", None)  # an earlier version wrote null here; the flag is only ever True
             p.setdefault("added", p["published"])
             self.add(p)
 
@@ -855,7 +873,8 @@ class Store:
                 match["published"] = new["published"]          # a real publication day beats a volume date
             elif not (match.get("date_exact") and not new.get("date_exact")):
                 match["published"] = min(match["published"], new["published"])
-        match["date_exact"] = match.get("date_exact") or new.get("date_exact")
+        if new.get("date_exact"):
+            match["date_exact"] = True
         if new.get("conf"):
             match.setdefault("conf", new["conf"])
         if "score" in new:
@@ -902,7 +921,7 @@ def main():
     stamp = datetime.now(timezone.utc).isoformat(timespec="minutes")
     store = Store(saved["papers"], stamp)
     state = {k: saved.get(k) for k in ("conf_done", "full_sweep", "ieee_sources", "nature_sources",
-                                        "abs_tried", "ieee_xplore_checked", "ieee_swept_ids", "crossref_checked")}
+                                        "abs_tried", "ieee_xplore_checked", "ieee_swept_ids", "crossref_created")}
     conf_done = set(state["conf_done"] or [])
     full_sweep = state["full_sweep"] or {}
     abs_tried = state["abs_tried"] or {}
@@ -924,7 +943,7 @@ def main():
     # OpenReview: NeurIPS, ICML, ICLR, with abstracts
     or_user, or_pass = os.environ.get("OPENREVIEW_USERNAME"), os.environ.get("OPENREVIEW_PASSWORD")
     or_token = openreview_login(or_user, or_pass) if or_user and or_pass else None
-    or_ok = False
+    or_failed = bool(or_user and or_pass and not or_token)  # had a login and it did not work
     if not (or_user and or_pass):
         print("OPENREVIEW_USERNAME/OPENREVIEW_PASSWORD not set: NeurIPS, ICML and ICLR come from dblp only")
     for year in (TODAY.year, TODAY.year - 1):
@@ -933,6 +952,7 @@ def main():
                 continue
             result = fetch_openreview(conference, year, FED_RE.pattern, or_token)
             if result is None:
+                or_failed = True
                 continue  # failed: try again next run
             papers, accepted = result
             for p in papers:
@@ -940,9 +960,8 @@ def main():
             if accepted:  # no accepted papers yet means decisions aren't out, so check again later
                 conf_done.add(f"{conference} {year}")
             print(f"OpenReview {conference} {year}: {accepted} accepted, {len(papers)} on federated learning")
-            or_ok = True
             time.sleep(1)
-    note("OpenReview", or_ok or not or_token, "" if or_token else "no login set")
+    note("OpenReview", not or_failed, "" if or_token else "no login set")
 
     # dblp: every other conference, one SPARQL query. Conference proceedings appear in batches a few times a
     # year, so this runs weekly rather than every run; dblp rate-limits callers that ask more often.
@@ -970,16 +989,18 @@ def main():
             state["ieee_xplore_checked"] = TODAY.isoformat()
 
     # Crossref: IEEE papers the day they are registered, months before OpenAlex lists them
-    last_cr = state["crossref_checked"]
+    last_cr = state["crossref_created"]
     cr_since = (date.fromisoformat(last_cr) - timedelta(days=CROSSREF_OVERLAP)) if last_cr \
         else TODAY - timedelta(days=CROSSREF_FIRST_DAYS)
     cr_papers = fetch_crossref(cr_since.isoformat())
     cr_confs = fetch_crossref(cr_since.isoformat(), conferences=True) if cr_papers is not None else None
     for p in (cr_papers or []) + (cr_confs or []):
         store.add(p)
-    if cr_papers is not None:
-        state["crossref_checked"] = TODAY.isoformat()
-        note("Crossref", True, f"{len(cr_papers)} journal, {len(cr_confs or [])} conference papers")
+    if cr_papers is not None and cr_confs is not None:
+        state["crossref_created"] = TODAY.isoformat()  # only move on when both passes succeeded
+        note("Crossref", True, f"{len(cr_papers)} journal, {len(cr_confs)} conference papers")
+    elif cr_papers is not None:
+        note("Crossref", False, "conference papers could not be read")
     else:
         note("Crossref", False, "could not be read")
 
