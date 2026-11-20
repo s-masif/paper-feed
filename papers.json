@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T00:26+00:00",
+ "updated": "2026-11-20T00:39+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -298,7 +298,14 @@
   "10.1109/tdsc.2026.3754440": "2026-11-18",
   "10.1109/tcc.2026.3754858": "2026-11-18",
   "10.1109/tmc.2026.3755564": "2026-11-19",
-  "10.1109/tpds.2026.3755398": "2026-11-19"
+  "10.1109/tpds.2026.3755398": "2026-11-19",
+  "10.1109/tcomm.2026.3755517": "2026-11-20",
+  "10.1109/tnsm.2026.3755818": "2026-11-20",
+  "10.1109/tmc.2026.3755226": "2026-11-20",
+  "10.1109/tsusc.2026.3755693": "2026-11-20",
+  "10.1109/tdsc.2026.3755968": "2026-11-20",
+  "10.1109/tmc.2026.3750699": "2026-11-20",
+  "10.1109/tip.2026.3753090": "2026-11-20"
  },
  "ieee_xplore_checked": "2026-11-16",
  "ieee_swept_ids": [
@@ -413,9 +420,188 @@
   "S97130795",
   "S98183460"
  ],
- "crossref_created": "2026-11-19",
+ "crossref_created": "2026-11-20",
  "crossref_version": 2,
  "papers": [
+  {
+   "id": "10.1109/tcomm.2026.3755517",
+   "title": "Adaptive Beam Hopping and Power Control for Dual-Layer Over-the-Air Online Federated Learning in LEO Satellite Networks",
+   "authors": [
+    "Zhendong Li",
+    "Shaojie Wang",
+    "Zhou Su",
+    "Zihao Zhang",
+    "Haixia Peng",
+    "Nan Cheng",
+    "Ying Wang",
+    "Wen Chen"
+   ],
+   "abstract": "",
+   "published": "2026-11-19",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Communications",
+   "dois": [
+    "10.1109/tcomm.2026.3755517"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tcomm.2026.3755517"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tnsm.2026.3755818",
+   "title": "FedLoc-Guard: Cross-Round Behavior Modeling for Backdoor Defense in Federated RSSI Fingerprint Localization",
+   "authors": [
+    "Xuejun Zhang",
+    "Hui Chen",
+    "Yexin Fan",
+    "Yanchun Hu",
+    "Jiami Guo",
+    "Xiaodong Yang"
+   ],
+   "abstract": "",
+   "published": "2026-11-19",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Network and Service Management",
+   "dois": [
+    "10.1109/tnsm.2026.3755818"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tnsm.2026.3755818"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tmc.2026.3755226",
+   "title": "Adaptive Quantization and Device Scheduling for Asynchronous Federated Learning Over Resource-Constrained Wireless Networks",
+   "authors": [
+    "Xiaodong Li",
+    "Yulong Gao",
+    "Fengyu Liang",
+    "Carla Fabiana Chiasserini"
+   ],
+   "abstract": "",
+   "published": "2026-11-19",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Mobile Computing",
+   "dois": [
+    "10.1109/tmc.2026.3755226"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tmc.2026.3755226"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tsusc.2026.3755693",
+   "title": "DecFLDiff: Decentralized Semi-Supervised Federated Learning for Vehicular Networks Based on Diffusion Model",
+   "authors": [
+    "Dacheng He",
+    "Weidi Wen",
+    "Yuxiang Chen",
+    "Junguo Liao",
+    "Wei Liang",
+    "Kuanching Li",
+    "Albert Y. Zomaya"
+   ],
+   "abstract": "",
+   "published": "2026-11-19",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Sustainable Computing",
+   "dois": [
+    "10.1109/tsusc.2026.3755693"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tsusc.2026.3755693"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tdsc.2026.3755968",
+   "title": "SecureFedIPM: Resilient and Privacy-Preserving Federated Intelligent Paging for 6G Networks",
+   "authors": [
+    "Cong Li",
+    "Xinsheng Ji",
+    "Weizhi Meng"
+   ],
+   "abstract": "",
+   "published": "2026-11-19",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Dependable and Secure Computing",
+   "dois": [
+    "10.1109/tdsc.2026.3755968"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tdsc.2026.3755968"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tmc.2026.3750699",
+   "title": "AFIND+ : Adaptive Client-Centric Collaboration for Decentralized Personalized Federated Learning",
+   "authors": [
+    "Zhichao Wang",
+    "Lin Wang",
+    "Yongxin Guo",
+    "Ying-Jun Angela Zhang",
+    "Xiaoying Tang"
+   ],
+   "abstract": "",
+   "published": "2026-11-19",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Mobile Computing",
+   "dois": [
+    "10.1109/tmc.2026.3750699"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tmc.2026.3750699"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tip.2026.3753090",
+   "title": "Disentanglement-Guided Multi-Teacher Relational Distillation for Federated Class-Incremental Facial Expression Recognition",
+   "authors": [
+    "Leying Jiang",
+    "Hu Ding",
+    "Chuhang Ke",
+    "Yan Yan",
+    "Rui Zhu",
+    "Hanzi Wang"
+   ],
+   "abstract": "",
+   "published": "2026-11-19",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Image Processing",
+   "dois": [
+    "10.1109/tip.2026.3753090"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tip.2026.3753090"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
   {
    "id": "10.1109/tmc.2026.3755564",
    "title": "SemFedVAE: A Communication-Efficient Federated Learning Framework for Variational Autoencoder With Semantic Latent Space Alignment",
@@ -469,6 +655,246 @@
    "graph": false
   },
   {
+   "id": "arxiv:2611.24689",
+   "title": "Stealing Exact Training Data from Other Clients during Federated Learning",
+   "authors": [
+    "Omkar Shrikanth",
+    "Soham Dambalkar",
+    "Parag Jyoti Pal",
+    "Advik Raj Basani",
+    "Arnab K. Paul"
+   ],
+   "abstract": "Malicious adversaries can employ gradient inversion attacks to reverse-engineer private data using the model updates of a round in Federated Learning. While there have been developments in gradient inversion for text, exact text recovery by a malicious client has so far remained infeasible, as FedAvg entangles the gradient contributions of many clients and obscures the signal of any individual sentence. We introduce a novel attack pipeline that unwinds this entanglement progressively through an iterative loop, in which the gradient contributions of sentences recovered exactly in one round are subtracted from the aggregate, exposing the remaining sentences for recovery in the next iteration. We show, for the first time, exact sentence recovery, with 100% precision, and on aggregates containing up to $4\\times$ more tokens than the model's hidden dimension, we recover up to 80.2% of client sentences exactly, a regime where existing attacks recover none exactly.",
+   "published": "2026-11-18",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.24689"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.24689v1",
+    "PDF": "https://arxiv.org/pdf/2611.24689v1"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.24367",
+   "title": "VAFL: A Vertical Analytic Federated Learning Mechanism for Efficient Crowdsourced Services via Closed-Form Solutions",
+   "authors": [
+    "Yajiang Huang",
+    "Anfeng Liu",
+    "Tian Wang",
+    "Mianxiong Dong",
+    "Houbing Herbert Song"
+   ],
+   "abstract": "Intelligent services often rely on complementary information held by different organizations, motivating Vertical Federated Learning without centralized raw-data pooling. We propose VAFL, a Vertical Analytic Federated Learning framework that fits classification and regression heads on fixed local representations through regularized least squares. An agent-assisted protected-computation workflow supports two-party and multi-party collaboration. To reduce fitting overhead, we develop a full-dimensional equivalent solve that applies block factors directly to the target matrix, avoiding construction of the full inverse. We further study two width-reduction strategies: local spectral projection with coefficient lifting, and full-dimensional local fitting with low-rank cross-party correction. The first compresses the prediction space, whereas the second retains local components outside the collaboration subspace. We establish their algebraic properties and analyze their computational scope. Experiments on five benchmarks show the accuracy--cost tradeoffs of these strategies and compatibility with diverse frozen backbones. Predictive performance and training time identify useful operating points and the limits of compression.",
+   "published": "2026-11-18",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.24367"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.24367v1",
+    "PDF": "https://arxiv.org/pdf/2611.24367v1"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.24254",
+   "title": "FedE2E: One-Shot Federated Learning for End-to-End Autonomous Driving with Closed-Loop Evaluation",
+   "authors": [
+    "Tao Lian",
+    "Antonio M. L\u00f3pez"
+   ],
+   "abstract": "Federated learning enables collaborative model training without sharing datasets. However, existing federated learning methods for autonomous driving typically require multi-round communication and lack closed-loop evaluation, while one-shot methods mainly focus on perception tasks. To address these limitations, we propose \\method, a one-shot federated learning method for end-to-end autonomous driving. It comprises multi-client calibration, anchor-based feature alignment, and token-wise consensus distillation to distill knowledge from heterogeneous models. Closed-loop evaluation on Bench2Drive demonstrates the effectiveness of \\method in both one-shot and multi-round federated learning. In the one-shot setting, it achieves a Driving Score of 55.85, which is 4.07 points higher than prior work. In the multi-round setting, it reaches 60.35 after five communication rounds, the best performance among all compared methods under the same number of communication rounds.",
+   "published": "2026-11-18",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.24254"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.24254v1",
+    "PDF": "https://arxiv.org/pdf/2611.24254v1"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.23913",
+   "title": "Resilient Federated LQR over Noisy and Lossy Uplinks via Scalar Communication",
+   "authors": [
+    "Mohammadreza Rostami",
+    "Shahriar Talebi",
+    "Solmaz S. Kia"
+   ],
+   "abstract": "This paper studies model-free federated learning of a common LQR controller for a fleet of similar systems that communicate with a server over an uplink subject to limited bandwidth, packet dropout, and additive noise. We propose \\textsc{ResiFedLQR}, a scalar communication scheme in which each agent sends one real number per packet, with redundancy, instead of full gradient estimates. The scalars can be gradient coordinates, projections of the gradient onto random directions reproduced at the server from a shared seed, or the rollout costs themselves. For the projection encoding, we prove that, with high probability, every iterate stabilizes all agents and the fleet-average cost converges linearly to a neighborhood of the optimum whose radius separates heterogeneity, sampling, and communication effects, and we derive a rule for choosing the number of transmissions from the channel parameters and the fleet size. We then compare the encodings with full-gradient transmission under the same uplink budget and identify the signal-to-noise regime and power constraint under which each is preferable. Numerical experiments on a heterogeneous fleet evaluate stability and convergence under varying noise levels and dropout probabilities.",
+   "published": "2026-11-18",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.23913"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.23913v1",
+    "PDF": "https://arxiv.org/pdf/2611.23913v1"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.23908",
+   "title": "Training-Free Domain Generation for One-Shot Federated Learning with Server-Side Pre-trained Diffusion Models",
+   "authors": [
+    "Yixuan Tong",
+    "Yuanguo Bi",
+    "Mingjian Zhi",
+    "Wenchao Xu",
+    "Yuan Wu"
+   ],
+   "abstract": "One-shot federated learning (OSFL) has attracted increasing attention for its ability to substantially reduce communication overhead by limiting client-server interaction to a single communication round. Nevertheless, this limited interaction makes learning from heterogeneous client distributions challenging. Diffusion-based OSFL approaches seek to address this challenge by synthesizing data that approximate client distributions. However, existing diffusion-based approaches often impose substantial computational costs on clients and lack effective visual guidance to generate data aligned with client distributions. To address these limitations, we propose FedDoG, a training-free Domain Generation framework that leverages server-side pre-trained diffusion models to synthesize data aligned with client domains. FedDoG extracts compact domain representations using a frozen image encoder, substantially reducing client-side computational and communication costs. These representations are incorporated into the diffusion model through a pre-trained image-conditioning adapter, thereby providing explicit visual guidance for domain generation. To further improve the quality of synthetic data, FedDoG adapts the strength of visual conditioning according to domain concentration and filters generated samples based on class consistency and predictive entropy. Experiments on three benchmarks demonstrate that FedDoG generates higher-quality synthetic images and outperforms existing OSFL baselines in classification accuracy. Meanwhile, FedDoG reduces client upload and computation time by 99.9% and 91.5%, respectively. The code is available at https://github.com/YXTong17/FedDoG.",
+   "published": "2026-11-18",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.23908"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.23908v1",
+    "PDF": "https://arxiv.org/pdf/2611.23908v1"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-79241-x",
+   "title": "Quantum-accurate vibrational and conformational dynamics from small molecules to proteins with machine-learned force fields",
+   "authors": [
+    "Sergio Suarez Dou",
+    "Miguel Gallegos",
+    "Kyunghoon Han",
+    "Florian N. Br\u00fcnig",
+    "Joshua T. Berryman",
+    "Alexandre Tkatchenko"
+   ],
+   "abstract": "Abstract Biomolecular thermodynamics and spectroscopy depend on relative conformer energies, local curvatures, and collective dipole fluctuations on the potential-energy surface. Conventional molecular mechanics force fields enable large-scale simulations, but their fixed functional forms can misrepresent infrared intensities, mode character, and environment-dependent vibrational response. Here we assess general-purpose machine-learned force fields by using finite-temperature infrared spectra across small molecules, gas-phase peptides, and monomeric, oligomeric, and solvated protein assemblies. To enable this analysis, we introduce QVib, a dataset of 293 molecules and 1366 conformers, together with peptide amide-band benchmarks and p53 oligomerization-domain models, to evaluate vibrational transferability from DFT references to experimental spectra. Across these systems, machine-learned force fields improve over molecular mechanics in reproducing DFT-level forces, vibrational frequencies, densities of states, mode eigenvectors, conformational energetics, and experimental infrared spectra. Among models with explicit long-range electrostatics, SO3LR provides the best accuracy\u2013cost balance of the models tested here. These results show that machine-learned force-field dynamics can recover collective, environment-dependent vibrational landscapes at near-DFT fidelity, enabling spectroscopically validated biomolecular simulations at force-field-like cost.",
+   "published": "2026-11-18",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-79241-x"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-79241-x",
+    "PDF": "https://doi.org/10.1038/s41467-026-79241-x"
+   },
+   "score": 8,
+   "added": "2026-11-20T00:39+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-78403-1",
+   "title": "Supervised deep learning for efficient cryo-EM image alignment in drug discovery with cryoPARES",
+   "authors": [
+    "Rub\u00e9n S\u00e1nchez-Garc\u00eda",
+    "Alex Berndt",
+    "Amir Apelbaum",
+    "Judith Reeks",
+    "Pamela A. Williams",
+    "Carl R. Poelking",
+    "Charlotte Mary Deane",
+    "Michael Saur"
+   ],
+   "abstract": "Cryo-Electron Microscopy (cryo-EM) is a pivotal tool for determining 3D structures of biological macromolecules. Current workflows are computationally demanding and require manual intervention, creating bottlenecks for high-throughput applications like structure-based drug discovery. In such contexts, where all protein samples can be assumed to be equivalent at resolutions relevant for image alignment, information about particle poses from previous refinements could be reused. Existing methods, however, ignore this prior knowledge, aligning each dataset from scratch. We present cryoPARES, a deep learning pose estimation method trained on pre-aligned datasets. Our method not only provides accurate angular predictions significantly faster than traditional approaches but also introduces automated particle pruning capabilities that eliminate manual intervention. Together with its single-pass operation, these features enable near real-time reconstructions that provide feedback during data acquisition. We demonstrate cryoPARES\u2019s effectiveness through rapid structural determination of seven ligand-bound complexes across four distinct protein targets. We also release three fragment-bound cryo-EM datasets.",
+   "published": "2026-11-18",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-78403-1"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-78403-1",
+    "PDF": "https://doi.org/10.1038/s41467-026-78403-1"
+   },
+   "score": 8,
+   "added": "2026-11-20T00:39+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s42256-026-01349-y",
+   "title": "When AI-assisted criticism scales, peer review needs an obligation threshold",
+   "authors": [
+    "Yiteng Sun",
+    "Fan Li",
+    "Ching-Hung Lee",
+    "Chun-Hsien Chen"
+   ],
+   "abstract": "",
+   "published": "2026-11-18",
+   "venue": "Nature Machine Intelligence",
+   "dois": [
+    "10.1038/s42256-026-01349-y"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s42256-026-01349-y"
+   },
+   "score": 8,
+   "added": "2026-11-20T00:39+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-79335-6",
+   "title": "Machine learning-driven regulation of the four-electron LiOH pathway in lithium\u2013oxygen batteries with prolonged cycling",
+   "authors": [
+    "\u767d\u5929\u7701",
+    "Yiming Hu",
+    "Wei Zhai",
+    "Xiongwei Zhong",
+    "Jinru Huang",
+    "Jiaxian Wang",
+    "Wei Song",
+    "Teng Rao",
+    "Shengchuang Du",
+    "Dandan Gao",
+    "Jingyu Lu",
+    "Rongpei Shi",
+    "Lijie Ci",
+    "Deping Li"
+   ],
+   "abstract": "Abstract The practical deployment of high-energy-density lithium\u2013oxygen batteries is fundamentally restricted by sluggish oxygen redox kinetics and the instability of discharge intermediates. Here, we report an artificial intelligence-integrated framework leveraging interpretable machine learning and density functional theory to navigate a vast chemical space of thousands of active sites. This approach identifies Ni-Co dual-atom catalysts as a better configuration among the selected elements for orchestrating multi-electron transfer. Theoretical analysis reveals that synergistic electronic coupling between the dual-sites fundamentally reconfigures the d -band center, thereby lowering the thermodynamic barriers for oxygen redox. Moreover, the catalysts enable precise regulation of the reaction pathway, inducing a controllable transition from the conventional two-electron pathway to a four-electron pathway. This shift yields a discharge capacity of ~60,000 mAh g \u22121 . Beyond its role as a positive electrode catalyst, this architecture functions as a multifunctional interfacial protective layer that stabilizes the lithium metal negative electrode by suppressing dendrite growth. Consequently, the lithium\u2013oxygen system achieves stable lifespan of 2075 cycles under the four-electron pathway with reduced voltage decay. This work establishes a data-guided strategy for the rational design of atomic-scale architecture via artificial intelligence, unlocking the potential of multi-electron oxygen chemistry for lithium\u2013oxygen batteries.",
+   "published": "2026-11-18",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-79335-6"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-79335-6",
+    "PDF": "https://doi.org/10.1038/s41467-026-79335-6"
+   },
+   "score": 9,
+   "added": "2026-11-20T00:39+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
    "id": "10.1109/tmc.2026.3754357",
    "title": "FASAFL: Fairness Aware Starlink Assisted Federated Learning for Communication Heterogeneous Edge Networks",
    "authors": [
@@ -503,7 +929,7 @@
     "Jine Tang",
     "Yushu Zhang"
    ],
-   "abstract": "",
+   "abstract": "Federated learning (FL) is a prominent machine learning (ML) framework that enables training a global model across distributed client devices without exposing their private data. However, traditional FL methods often face challenges in achieving fast convergence, particularly in heterogeneous or non-independent and identically distributed (non-IID) data environments. These issues arise primarily from inaccurate gradient estimation during the optimization process. To address these limitations, this article introduces an adaptive optimizer, federated fractional gradient descent with adaptive parameter updates (FedFGD-APUs). In particular, the proposed FedFGD-APU optimizer leverages fractional-order derivatives for efficient gradient computation. It employs an adaptive strategy to dynamically adjust fractional order, learning rate, and momentum to improve learning convergence and stability. We also develop a theoretical computational framework linking federated optimization with adaptive fractional derivatives, establishing the convergence of FedFGD-APU for nonconvex optimization settings with a convergence rate of $\\mathcal {O}(1/T)$ . We conduct comprehensive experiments on MNIST, CIFAR-10, and NSL-KDD datasets to validate FedFGD-APU's effectiveness under both IID and non-IID data distributions. The experimental results demonstrate that FedFGD-APU significantly improves communication speedups and testing accuracy across heterogeneous data scenarios.",
    "published": "2026-11-17",
    "date_q": 2,
    "venue": "IEEE Transactions on Cybernetics",
@@ -511,7 +937,8 @@
     "10.1109/tcyb.2026.3750279"
    ],
    "links": {
-    "Publisher": "https://doi.org/10.1109/tcyb.2026.3750279"
+    "Publisher": "https://doi.org/10.1109/tcyb.2026.3750279",
+    "PDF": "https://doi.org/10.1109/tcyb.2026.3750279"
    },
    "added": "2026-11-18T00:59+00:00",
    "fl": true,
@@ -6822,7 +7249,8 @@
     "10.1038/s42256-026-01323-8"
    ],
    "links": {
-    "Publisher": "https://doi.org/10.1038/s42256-026-01323-8"
+    "Publisher": "https://doi.org/10.1038/s42256-026-01323-8",
+    "PDF": "https://discovery.ucl.ac.uk/id/eprint/10233410/1/Model_Versioning__Commentary_.pdf"
    },
    "added": "2026-11-02",
    "score": 8,
@@ -28918,127 +29346,6 @@
    "graph": false
   },
   {
-   "id": "10.1038/s41467-026-76604-2",
-   "title": "An ab initio foundation model of wavefunctions that accurately describes chemical bond breaking",
-   "authors": [
-    "Adam Foster",
-    "Zeno Sch\u00e4tzle",
-    "P. Bern\u00e1t Szab\u00f3",
-    "Lixue Cheng",
-    "Jonas K\u00f6hler",
-    "Gino Cassella",
-    "Nicholas Gao",
-    "Jiawei Li",
-    "Frank No\u00e9",
-    "Jan Hermann"
-   ],
-   "abstract": "Reliable description of bond breaking remains a major challenge for quantum chemistry due to the multireference character of the electronic structure in dissociating species. Multireference methods in particular suffer from large computational cost, which under the normal paradigm has to be paid anew for each system at a full price, ignoring commonalities in electronic structure across molecules. Quantum Monte Carlo with deep neural networks uniquely offers to exploit such commonalities by pretraining transferable wavefunction models, but all such attempts were so far limited in scope. Here, we bring this paradigm to fruition with Orbformer, a transferable wavefunction model pretrained on 22,000 equilibrium and dissociating structures that can be fine-tuned on unseen molecules reaching an accuracy-cost ratio rivalling classical multireference methods. On established benchmarks as well as more challenging bond dissociations and Diels-Alder reactions, Orbformer is the only method that consistently converges to chemical accuracy (1 kcal/mol). This work turns the idea of amortizing the cost of solving the Schr\u00f6dinger equation over many molecules into a practical approach in quantum chemistry.",
-   "published": "2026-08-21",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-76604-2"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-76604-2",
-    "PDF": "https://www.nature.com/articles/s41467-026-76604-2_reference.pdf"
-   },
-   "score": 10,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-76939-w",
-   "title": "HIPPIE: a generative model for electrophysiological analysis across species, technologies, and modalities",
-   "authors": [
-    "Jesus Gonzalez-Ferrer",
-    "Julian Lehrer",
-    "Bruno Alvarez-Esteban",
-    "Avelina Moreno-Ochando",
-    "H. Schweiger",
-    "Jinghui Geng",
-    "Luiz F. S. Eug\u00eanio dos Santos",
-    "Sebastian Hernandez",
-    "Francisco Reyes",
-    "Jessica L. Sevetson",
-    "Aidan Schneider",
-    "Sofie R. Salama",
-    "Mircea Teodorescu",
-    "David H. Haussler",
-    "Mohammed A. Mostajo-Radji"
-   ],
-   "abstract": "Neuronal classification from extracellular electrophysiological recordings is challenging due to intrinsic waveform variability, noise, and technical differences across experiments, technologies, and species. We introduce HIPPIE (High-dimensional Interpretation of Physiological Patterns In Intercellular Electrophysiology), a deep learning framework that combines self-supervised pretraining on unlabeled datasets with supervised fine-tuning to classify neurons from extracellular recordings. Using conditional convolutional joint autoencoders, HIPPIE learns technology-adjusted representations of waveforms and spiking dynamics. Here we show, across mouse, rat, and macaque recordings, that HIPPIE classifies cell types competitively with existing methods while additionally supporting generative analyses that discriminative models cannot perform, including counterfactual decoding of electrophysiological signals under changed experimental conditioning, cross-species latent interpolation, and a cross-modal analysis revealing that spike-timing modalities and waveform morphology encode largely independent dimensions of neuronal identity. HIPPIE is available as both a Python package and a coding-free web application, providing a unified framework for multimodal neuronal classification across technologies, experimental conditions, and species.",
-   "published": "2026-08-21",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-76939-w"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-76939-w",
-    "PDF": "https://www.nature.com/articles/s41467-026-76939-w_reference.pdf"
-   },
-   "score": 9,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-76287-9",
-   "title": "Deep learning for precision grading of Schistosoma japonicum-induced liver fibrosis in ultrasound images",
-   "authors": [
-    "Ziyang Xu",
-    "Jianfeng Zhang",
-    "Tingting Wu",
-    "Haiyong Hua",
-    "Kun Yang",
-    "Tieyong Zeng"
-   ],
-   "abstract": "Liver fibrosis caused by schistosomiasis is a major health problem in endemic regions. Ultrasonography is widely used for screening, but grading remains subjective and dependent on specialist expertise. Here we show that a deep learning system can provide automated, fine-grained assessment of liver fibrosis caused by Schistosoma japonicum. We developed and evaluated the system using a multicentre dataset of 167,702 ultrasound images labelled on a 36-level scale from 0.0 to 3.5, designed to capture gradual disease progression and map onto four clinical grades. Of these images, 16,811 were reserved for the independent test set. In this test set, 93.9% of predictions were within 0.5 grades of expert labels, with a mean absolute error of 0.116. We further developed a deployable version that ran on Windows and Android devices, processing each image in less than 400 milliseconds. These results support scalable and more consistent ultrasound screening and follow-up in endemic regions. Researchers developed a deep learning system that accurately grades schistosomiasis-related liver fibrosis from ultrasound, and deployed it on Windows and Android devices to support consistent screening and follow-up in endemic regions.",
-   "published": "2026-08-21",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-76287-9"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-76287-9",
-    "PDF": "https://www.nature.com/articles/s41467-026-76287-9_reference.pdf"
-   },
-   "score": 7,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-77065-3",
-   "title": "18 Month patency of acellular bioengineered regenerative conduit as coronary artery bypass",
-   "authors": [
-    "Abrielle Krouse",
-    "Matthew Soule",
-    "Christina Gross",
-    "Mariah M. McMahon",
-    "Jacob Benkofske",
-    "Zeeshan H. Syedain"
-   ],
-   "abstract": "Coronary artery bypass grafting remains the standard of care for complex coronary artery disease; however, outcomes are limited by failure or lack of suitable native vessels. Tissue-engineered vascular grafts have shown promise in peripheral applications, yet durable performance in coronary circulation remains unmet. In this study, tissue-engineered vessels are implanted with and without external support as coronary artery bypass grafts in an ovine model and anticoagulants are administered for 180 days. Unsupported vessels fail early due to kink-related thrombus, whereas external supported vessels achieve 100% patency at 180 days. Further, two animals are followed through 550 days without anticoagulant to maintain patency. The tissue engineered vessel explants demonstrate host-mediated remodeling including endothelium, no thrombus, minimal inflammatory response, and burst pressures exceeding native coronary bypass grafts. This study demonstrates preliminary, long-term patency after withdrawal of anticoagulation, with evidence of regenerative transformation into a living, functional vessel. Here the authors tested lab-grown blood vessels as heart bypass grafts in sheep, adding an external support to prevent kinking. The vessels stayed open for 18 months, even after blood thinners were stopped, while transforming into living, functional tissue.",
-   "published": "2026-08-21",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-77065-3"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-77065-3",
-    "PDF": "https://www.nature.com/articles/s41467-026-77065-3_reference.pdf"
-   },
-   "score": 6,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
    "id": "10.1109/tits.2026.3722836",
    "title": "Personalized Federated Learning for Multiple Tasks in Internet of Vehicles",
    "authors": [
@@ -36567,6 +36874,36 @@
    "graph": false,
    "date_checked": true,
    "date_q": 2
+  },
+  {
+   "id": "arxiv:2606.11803",
+   "title": "SwarmSense-DNN: A Trustworthy and Decentralized Neural Framework for Proactive Anomaly Defense in Consumer IoT",
+   "authors": [
+    "Jing Yang",
+    "Vijay Govindarajan",
+    "Saad Arif",
+    "Xu Xu",
+    "Mohamed Kallel",
+    "Zaffar Ahmed Shaikh",
+    "Zhe Liu",
+    "Chunhong Yuan",
+    "Lip Yee Por"
+   ],
+   "abstract": "The rapid growth of consumer IoT devices has introduced unprecedented challenges in trustworthy anomaly detection against AI-enabled cyber threats, requiring real-time, privacy-preserving, and scalable defense mechanisms. Traditional centralized strategies face critical limitations, including communication bottlenecks, single points of failure, and privacy vulnerabilities when processing distributed consumer data. We propose SwarmSense-DNN, a novel decentralized neural framework employing swarm intelligence for secure, cooperative anomaly detection across distributed IoT environments. The framework integrates autonomous agents with deep neural networks to form a self-organizing defense system that detects evolving anomalies without centralized coordination. It utilizes hierarchical federated learning with graph neural networks and attention mechanisms to capture local and global anomaly behaviors while ensuring data privacy. Extensive experiments demonstrate SwarmSense-DNN's superior performance: it achieves 95.44% average detection accuracy across five benchmark datasets while reducing communication overhead by 67%. The framework maintains robust resilience against adversarial threats through differential privacy safeguards and demonstrates strong fault tolerance under node failures and AI-enabled attacks.",
+   "published": "2026-06-10",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2606.11803"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2606.11803v1",
+    "PDF": "https://arxiv.org/pdf/2606.11803v1"
+   },
+   "added": "2026-11-20T00:39+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": true
   },
   {
    "id": "10.1109/tdsc.2026.3701838",
@@ -60249,150 +60586,6 @@
    "fl": true,
    "tab": "ieee-tx",
    "graph": true
-  },
-  {
-   "id": "10.1109/tce.2025.3634581",
-   "title": "Federated Learning-Enabled Digital Twins for Privacy-Preserving Cardiovascular Disease Detection in Consumer Electronics",
-   "authors": [
-    "Soufiane Ben Othman",
-    "Chinmay Chakraborty",
-    "Saranjit Singh",
-    "Mohamed Amine Frikha"
-   ],
-   "abstract": "Digital Twins (DTs) hold transformative potential for precision cardiology by enabling patient-specific modeling of coronary hemodynamics, electrophysiological dynamics, and myocardial mechanics through multi-modal data fusion. However, their clinical deployment is impeded by critical challenges: privacy vulnerabilities in centralized data aggregation, computational inefficiency of high-fidelity simulations, algorithmic bias across demographic cohorts, and lack of robustness in distributed environments. To address these limitations, we propose QuantumFedDT-CVD, a quantum-enhanced, federated learning-enabled digital twin framework for privacy-preserving cardiovascular disease detection using consumer-grade electronics. The framework enables decentralized training across edge and clinical systems, integrating real-time physiological signals with electronic health records, genomic profiles, and medical imaging, without exchanging raw patient data. At its core, QuantumFedDT-CVD employs physics-informed quantum-variational neural operators to model non-Markovian cardiovascular dynamics withO(nlogn) spectral efficiency. Evaluated on the UK Biobank cohort augmented with real-world data from 500 CVD patients, QuantumFedDT-CVD achieves an AUC-ROC of 0.94 for early adverse event prediction and a Dice score of 0.92 for cardiac segmentation. It operates at 4.2 \u00d7 108FLOPs/round, 0.8 MB/round communication overhead, and 550 J/round energy consumption under-differential privacy. The system scales to 200 institutions, tolerates up to 40% Byzantine clients, and demonstrates a measured quantum advantage factor of 3.8, paving the way for efficient, secure, and equitable remote cardiovascular monitoring.",
-   "published": "2025-11-19",
-   "venue": "IEEE Transactions on Consumer Electronics",
-   "dois": [
-    "10.1109/tce.2025.3634581"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tce.2025.3634581"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tce.2025.3634753",
-   "title": "Adaptive Federated Reinforcement Learning With Temporal Hybrid Deep Model for Consumer Internet of Vehicles Intrusion Detection",
-   "authors": [
-    "Hamad Naeem",
-    "Amjad Alsirhani",
-    "Faeiz Alserhani",
-    "Maha M. Althobaiti",
-    "Eatedal A. Alabdulkreem"
-   ],
-   "abstract": "Consumer devices that are integrated into the Internet of Vehicles (IoV) systems are becoming more susceptible to the sophisticated intrusion attacks, which are a major threat to user safety and the overall integrity of the system. Federated Learning (FL) has been a prominent technique for collaborative training models while maintaining the confidentiality of sensitive information. In addition, conventional FL-based IDS approaches have problems to handle non-identical IID (IID) data distributions across clients, and usually use a fixed aggregation method like FedAvg and FedProx, which has poor adaptability to changeable client behaviors. To tackle these limitations, this research proposes an adaptive federated learning framework by preprocessing IoVs network traffic through standardization and IID (independent and identical distributed) distribution of data among clients. A Temporal Hybrid Deep Model (CNN-LSTM-Attention) is trained on each client locally (starting from the global model). After training, client models and performance metrics are updated to a central server, where a Reinforcement Learning (RL) agent based on Deep Q-Network (DQN) optimally decides aggregation weights based on client Q-values, which maximizes global accuracy as a reward. Iterative aggregation greatly improves intrusion detection performance, with detection accuracies of 99.85% and 95.18% on the benchmark datasets CICIOV2024 and CICEVSE2024, respectively. The proposed method makes it possible to develop a lightweight, edge-deployable intrusion detection system for consumer IoV device like telematics and electric car chargers. By leveraging federated learning, the approach provides real-time, privacy-preserving protection.",
-   "published": "2025-11-19",
-   "venue": "IEEE Transactions on Consumer Electronics",
-   "dois": [
-    "10.1109/tce.2025.3634753"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tce.2025.3634753"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tmc.2025.3634664",
-   "title": "Completion Time Minimization for UAV-Assisted Semi-Decentralized Hybrid Federated Learning",
-   "authors": [
-    "Kui Chen",
-    "Jing Zhang",
-    "Yong Liang Xiao",
-    "Minho Jo",
-    "Derrick Wing Kwan Ng"
-   ],
-   "abstract": "The Internet-of-Things (IoT) enables the connection of myriad wireless devices, generating a massive influx of data that can overwhelm central servers. Federated learning (FL) mitigates these issues by distributing computation tasks across edge devices, thus preserving data privacy by eliminating the need for raw data transmission. However, when deployed in large-scale IoT networks, FL encounters several challenges such as device energy constraints, heterogeneous network conditions, and the straggler effect, which inevitably impedes model convergence. In response, this paper proposes a semi-decentralized hybrid FL (SDHFL) scheme leveraging an unmanned aerial vehicle (UAV) as a mobile data center to collect data from distributed IoT clusters. To further expedite FL convergence, we formulate a non-convex mixed-integer nonlinear programming (MINLP) problem to minimize overall completion time while ensuring quality of service (QoS) requirements, considering both the UAV's energy constraints and network stability. We demonstrate that efficient learning is achieved by optimizing both power allocation and device computational capability. Furthermore, we prove the convergence of the proposed SDHFL scheme and derive the minimum number of global iterations required. Exploiting these insights, we introduce a low-complexity suboptimal algorithm for dynamic cluster selection and resource allocation optimization, leveraging Lyapunov optimization theory to obtain optimal solutions efficiently, demonstrating its scalability for large-scale networks. Our simulation results validate the effectiveness of the proposed SDHFL framework, revealing a non-trivial tradeoff where the overall completion time initially decreases and then increases as the number of devices or clusters grows, indicating the necessity of optimizing both cluster counts and intra-cluster device allocations. Furthermore, compared to several baseline schemes, our proposed optimal algorithms significantly reduce overall completion time and enhance model convergence, demonstrating the potential of SDHFL for enabling efficient and scalable FL in IoT networks.",
-   "published": "2025-11-19",
-   "venue": "IEEE Transactions on Mobile Computing",
-   "dois": [
-    "10.1109/tmc.2025.3634664"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tmc.2025.3634664"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tmlcn.2025.3635050",
-   "title": "Communication Efficient Federated Learning With Quantization-Aware Training Design",
-   "authors": [
-    "Xiang Fang",
-    "Li Chen",
-    "Huarui Yin",
-    "Xiaohui Chen",
-    "Weidong Wang"
-   ],
-   "abstract": "Model quantization is an effective method that can improve communication efficiency in federated learning (FL). The existing FL quantization protocols almost stay at the level of post-training quantization (PTQ), which comes at the cost of large quantization loss, especially in the setting of low-bits quantization. In this work, we propose a FL quantization training strategy to reduce the impact of quantization on model quality. Specifically, we first apply quantization-aware training (QAT) to FL (QAT-FL), which reduces quantization distortion by adding a fake-quantization module to the model so that the model could perceive future quantization during training. The convergence guarantee of the QAT-FL algorithm is established under certain assumptions. On the basis of the QAT-FL algorithm, we extend the discussion of non-uniform quantization and the adaptive algorithm, so that the model can adaptively adjust the parametric distribution and the number of quantization bits to reduce the amount of traffic in training. Experimental results based on MNIST, CIFAR-10 and FEMNIST datasets show that QAT-FL has advantages in terms of training loss and model inference accuracy, and adaptive-bits quantization of QAT-FL also greatly improves communication efficiency.",
-   "published": "2025-11-19",
-   "venue": "IEEE Transactions on Machine Learning in Communications and Networking",
-   "dois": [
-    "10.1109/tmlcn.2025.3635050"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tmlcn.2025.3635050",
-    "PDF": "https://doi.org/10.1109/tmlcn.2025.3635050"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tai.2025.3634272",
-   "title": "Heterogeneity-Aware Federated Learning for Medical Image Classification With Dynamic Parameter Optimization",
-   "authors": [
-    "Pranab Sahoo",
-    "Ashutosh Tripathi",
-    "Sriparna Saha",
-    "Samrat Mondal"
-   ],
-   "abstract": "The development of robust artificial intelligence based models for medical applications necessitates extensive datasets from multiple institutions. However, privacy concerns often hinder data sharing across these institutions. Federated learning (FL) emerges as a promising paradigm, facilitating collaborative model training while safeguarding data privacy. Nevertheless, the efficacy of FL is constrained by two fundamental challenges: system heterogeneity and statistical heterogeneity. To address these challenges, recent studies have incorporated regularization terms into the objective function, aiming to improve the stability of the method. While these approaches have shown promising results, our study reveals that the fixed and manual calculation of the regularization term constrains its effectiveness. In this paper, we introduce FedDPO, a heterogeneity-aware federated learning approach that employs a reinforcement learning-driven strategy to dynamically determine an adaptive regularization term for each client\u2019s objective function. This regularization term is tailored to individual client states, including data distribution, system specifications, and performance feedback, enabling regularized local model updates that account for heterogeneity across the federated network. Additionally, FedDPO incorporates local batch normalization to mitigate the impact of heterogeneous data. Extensive experiments on two medical and one non-medical image classification tasks demonstrate FedDPO\u2019s consistent superiority over several baselines across diverse heterogeneity settings. Furthermore, the theoretical analysis provides formal guarantees of FedDPO\u2019s efficacy compared to manual and heuristic proximal term selection methods.",
-   "published": "2025-11-19",
-   "venue": "IEEE Transactions on Artificial Intelligence",
-   "dois": [
-    "10.1109/tai.2025.3634272"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tai.2025.3634272"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/ton.2025.3616605",
-   "title": "Client Selection in Federated Learning With Differential Privacy-Based Data Stream",
-   "authors": [
-    "Junru Wu",
-    "Chengxin Li",
-    "Wentai Wu",
-    "Young\u2010June Choi",
-    "Hiroo Sekiya",
-    "Zhetao Li"
-   ],
-   "abstract": "Federated learning (FL) is a distributed machine learning (ML) paradigm designed for numerous networked devices. To face the massive data generated by devices and privacy concerns in model construction, the paradigm can execute ML tasks with differential privacy (DP) over private data streams. In each FL training iteration, a few clients are selected to participate and consume privacy budgets that determine the level of privacy protection. The client selection strategy plays a pivotal role in the final model performance. At present, reconciling model performance with privacy protection remains an open issue in online settings. Specifically, the DP model designed for data streams reduces the benefits of frequent participation by clients with high-quality data, as the DP model constrains the available privacy budget of continuous iterations. To address this issue, we propose a novel client selection framework for FL with DP-based data streams. At a macro level, we leverage fuzzy control to dynamically adjust the participation rate of clients, ensuring sufficient privacy budgets are allocated in each training iteration. At a fine-grained level, we design a dynamic scoring function based on the characteristics of the clients and a budget-aware client selection method to select clients further. Additionally, considering the diverse scenarios in data collection, we propose a relaxed semi-online setting and integrate reinforcement learning (RL) to enhance the framework performance. Extensive experiments demonstrate the remarkable advantages of our framework in accuracy, convergence rate, robustness, etc.",
-   "published": "2025-11-19",
-   "venue": "IEEE Transactions on Networking",
-   "dois": [
-    "10.1109/ton.2025.3616605"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/ton.2025.3616605"
-   },
-   "added": "2026-11-16T19:41+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
   },
   {
    "id": "10.1145/3746252.3761213",
