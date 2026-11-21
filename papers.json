@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T00:39+00:00",
+ "updated": "2026-11-21T00:00+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -148,10 +148,10 @@
   }
  },
  "abs_tried": {
-  "10.1109/tits.2026.3705379": "2026-11-13",
-  "10.1109/tetc.2026.3696330": "2026-11-13",
-  "10.1109/tsg.2026.3707150": "2026-11-13",
-  "10.1109/tpds.2026.3725682": "2026-11-13",
+  "10.1109/tits.2026.3705379": "2026-11-21",
+  "10.1109/tetc.2026.3696330": "2026-11-21",
+  "10.1109/tsg.2026.3707150": "2026-11-21",
+  "10.1109/tpds.2026.3725682": "2026-11-21",
   "10.1109/tii.2025.3649540": "2026-11-16",
   "10.1109/tce.2026.3661887": "2026-11-16",
   "10.1109/tce.2026.3688316": "2026-11-16",
@@ -305,7 +305,13 @@
   "10.1109/tsusc.2026.3755693": "2026-11-20",
   "10.1109/tdsc.2026.3755968": "2026-11-20",
   "10.1109/tmc.2026.3750699": "2026-11-20",
-  "10.1109/tip.2026.3753090": "2026-11-20"
+  "10.1109/tip.2026.3753090": "2026-11-20",
+  "10.1109/tdsc.2026.3756097": "2026-11-21",
+  "10.1109/tiv.2026.3756024": "2026-11-21",
+  "10.1109/tmc.2026.3756242": "2026-11-21",
+  "10.1109/tkde.2026.3756090": "2026-11-21",
+  "10.1109/ton.2026.3756120": "2026-11-21",
+  "10.1109/tetc.2026.3753727": "2026-11-21"
  },
  "ieee_xplore_checked": "2026-11-16",
  "ieee_swept_ids": [
@@ -420,9 +426,156 @@
   "S97130795",
   "S98183460"
  ],
- "crossref_created": "2026-11-20",
+ "crossref_created": "2026-11-21",
  "crossref_version": 2,
  "papers": [
+  {
+   "id": "10.1109/tdsc.2026.3756097",
+   "title": "Path-Aware Structured Perturbation for Backdoor Defense in Federated Learning: A Dynamic Game-Theoretic Framework",
+   "authors": [
+    "Hanjie Liu",
+    "Wengang Ma",
+    "Junxiang Wang",
+    "Jialin Chen",
+    "Junjiang He",
+    "Xiaolong Lan"
+   ],
+   "abstract": "",
+   "published": "2026-11-20",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Dependable and Secure Computing",
+   "dois": [
+    "10.1109/tdsc.2026.3756097"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tdsc.2026.3756097"
+   },
+   "added": "2026-11-21T00:00+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tiv.2026.3756024",
+   "title": "A Secure Authentication Scheme With Gradient Privacy for Federated-Learning-Based VANETs",
+   "authors": [
+    "Seunghwan Son",
+    "Hyeokchan Kwon",
+    "Youngho Park"
+   ],
+   "abstract": "",
+   "published": "2026-11-20",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Intelligent Vehicles",
+   "dois": [
+    "10.1109/tiv.2026.3756024"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tiv.2026.3756024"
+   },
+   "added": "2026-11-21T00:00+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tmc.2026.3756242",
+   "title": "Asynchronous Collaboration in Personalized Federated Learning under Device Heterogeneity",
+   "authors": [
+    "Boyi Liu",
+    "Zimu Zhou",
+    "Siyao Cheng",
+    "Shuo Kang",
+    "Yongxin Tong"
+   ],
+   "abstract": "",
+   "published": "2026-11-20",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Mobile Computing",
+   "dois": [
+    "10.1109/tmc.2026.3756242"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tmc.2026.3756242"
+   },
+   "added": "2026-11-21T00:00+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tkde.2026.3756090",
+   "title": "Beyond Personalization: Federated Recommendation With Calibration Via Low-Rank Decomposition",
+   "authors": [
+    "Jundong Chen",
+    "Honglei Zhang",
+    "Haoxuan Li",
+    "Chunxu Zhang",
+    "Zhiwei Li",
+    "Yidong Li"
+   ],
+   "abstract": "",
+   "published": "2026-11-20",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Knowledge and Data Engineering",
+   "dois": [
+    "10.1109/tkde.2026.3756090"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tkde.2026.3756090"
+   },
+   "added": "2026-11-21T00:00+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/ton.2026.3756120",
+   "title": "Federated Soft Poly-Level Learning Over a Distributed Network with Guaranteed Convergence",
+   "authors": [
+    "Yang Jiao",
+    "Kai Yang",
+    "Jianwei Huang"
+   ],
+   "abstract": "",
+   "published": "2026-11-20",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Networking",
+   "dois": [
+    "10.1109/ton.2026.3756120"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/ton.2026.3756120"
+   },
+   "added": "2026-11-21T00:00+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tetc.2026.3753727",
+   "title": "GAP-FedPolyp: GAN-Augmented and Personalized Federated Learning for Robust Colorectal Polyp Segmentation",
+   "authors": [
+    "Abdul Raheem",
+    "Zhen Yang",
+    "Malik Abdul Manan",
+    "Shahzad Ahmed"
+   ],
+   "abstract": "",
+   "published": "2026-11-20",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Emerging Topics in Computing",
+   "dois": [
+    "10.1109/tetc.2026.3753727"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tetc.2026.3753727"
+   },
+   "added": "2026-11-21T00:00+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
   {
    "id": "10.1109/tcomm.2026.3755517",
    "title": "Adaptive Beam Hopping and Power Control for Dual-Layer Over-the-Air Online Federated Learning in LEO Satellite Networks",
@@ -600,6 +753,174 @@
    "added": "2026-11-20T00:39+00:00",
    "fl": true,
    "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.26227",
+   "title": "Federated Learning for Unmanned Aerial Systems: A Screened Bibliometric Census of an Emergent Sub-Literature",
+   "authors": [
+    "Ameen Ur Rehman",
+    "Ali Nasir"
+   ],
+   "abstract": "We census the literature at the intersection of federated learning (FL) and unmanned aerial systems (UAS) with a broad Scopus query that combines FL, UAV, and delivery/logistics terms (Computer Science and Engineering, 2022--2026). The export holds \\textbf{14,965 records}, but only \\textbf{7.9\\%} of the 14,945 unique records mention both an FL term and a UAV term in title, abstract, or author keywords. That screen leaves \\textbf{1,185 records}: 90 in 2022, 361 in 2025, and 332 already indexed for 2026. The screened share of each year's raw output stays near 7.5\\%, so the growth is not an artefact of the screen. Term-definition, document-type, and complete-year checks leave the leading venue (\\emph{IEEE Internet of Things Journal}, 111 papers, $h{=}30$) and the leading country (China, 628 affiliation instances) unchanged. A manual read of 30 records finds 14 of 26 full papers (54\\%, 95\\% CI 35--71\\%) substantively about FL for UAVs, so the corpus counts keyword co-occurrence, not only focused work. Counting authors by Scopus ID gives 4,095 authors with Lotka exponent $n{=}3.15$ ($R^2{=}0.996$); name strings would merge distinct people and understate the author count by 31\\%. An OpenAlex export under the same screen yields 147 records, 74\\% of them in the Scopus corpus, but the two exports are not matched populations, so we do not read the volume gap as coverage alone. Finally, of 228 records with a delivery-adjacent term, only 5 (2.2\\%) mention \\emph{parcel}, \\emph{last-mile}, or \\emph{courier} (14, or 6.1\\%, if \\emph{package} counts); the rest reflect transportation, traffic, and generic-logistics idiom. Keyword screening alone therefore cannot isolate last-mile drone-delivery research from the surrounding UAV-networking literature.",
+   "published": "2026-11-19",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.26227"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.26227v1",
+    "PDF": "https://arxiv.org/pdf/2611.26227v1"
+   },
+   "added": "2026-11-21T00:00+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.26104",
+   "title": "How Network Topology and Data Heterogeneity Shape Decentralized Learning: A Spectral Analysis",
+   "authors": [
+    "Luigi Palmieri",
+    "Lorenzo Valerio",
+    "Chiara Boldrini",
+    "Andrea Passarella",
+    "Marco Conti",
+    "J\u00e1nos Kert\u00e9sz"
+   ],
+   "abstract": "Network topology influences decentralized federated learning through information mixing and the relative contribution of individual nodes. While existing analyses primarily focus on spectral mixing properties, they often assume doubly stochastic aggregation, overlooking topology-dependent influence under irregular communication networks. We develop a spectral framework that separates two complementary mechanisms: the dominant eigenmode determines the consensus trajectory and node influence, while non-dominant eigenmodes govern the propagation and attenuation of disagreement. Under uniform neighborhood averaging, we show that the stationary influence is proportional to node degree plus one and derive a bound relating model disagreement to spectral mixing and gradient heterogeneity. We then investigate how these mechanisms interact with the data distribution across nodes. Experiments across regular and heterogeneous network topologies reveal nearly identical learning dynamics under IID data, while network size and connectivity affect how unevenly distributed information is learned under non-IID data. For non-IID settings, we characterize how the distribution of data across nodes shapes the relative contribution of local information to consensus dynamics.",
+   "published": "2026-11-19",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.26104"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.26104v1",
+    "PDF": "https://arxiv.org/pdf/2611.26104v1"
+   },
+   "added": "2026-11-21T00:00+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-78758-5",
+   "title": "A defence-in-depth strategy for securing AI-driven biological sequence design",
+   "authors": [
+    "Maximilian Sprang",
+    "Hassan Abdullah Hassan",
+    "Yasha Ektefaie",
+    "Anne Schmieder",
+    "Alix Wasilenko",
+    "Moritz Hanke",
+    "Rosa E. Mart\u00edn-Pe\u00f1a",
+    "Rachael Harkness",
+    "Jasper G\u00f6tting",
+    "Alan E Murphy",
+    "Johannes Mayer",
+    "Marco Sch\u00e4fer",
+    "Andr\u00e9 Friedrich",
+    "Kerstin Lenhof",
+    "Sophia Rudorf",
+    "Gigi Kwik Gr\u00f6nvall",
+    "Jan Kellmann",
+    "Simon Anders",
+    "Berkan Aysan",
+    "Nicole Saverschek",
+    "Kathrin Schuldt",
+    "Marc G\u00fcell",
+    "Katharina Ladewig",
+    "Georges Hattab"
+   ],
+   "abstract": "Generative artificial intelligence can design biological sequences, from proteins to whole genomes, opening opportunities for medicine and biotechnology, but the same capability can be misused. The W\u00fcbben Sandpit conference brought together experts in biology, AI, biosecurity, ethics, medicine and policy to ask how the field can capture the benefits while managing the risks. Here we set out a defence-in-depth strategy that builds safeguards into every stage, from the data used to train models, to the models themselves, to the synthesis of physical DNA. We argue that responsible governance is not a brake on progress but a precondition for it. Generative artificial intelligence can design biological sequences, from proteins to whole genomes, however this capability can be misused. Here the attendees of the W\u00fcbben Sandpit conference outline a defence-in-depth strategy that builds safeguards into every stage of sequence design.",
+   "published": "2026-11-19",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-78758-5"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-78758-5",
+    "PDF": "https://doi.org/10.1038/s41467-026-78758-5"
+   },
+   "score": 11,
+   "added": "2026-11-21T00:00+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-78715-2",
+   "title": "Automated data to model transformation for constraint programming with AI",
+   "authors": [
+    "Zhengqi Shi",
+    "Jin Huang",
+    "Xinyu Li",
+    "Hao Zhang",
+    "Mingming Peng",
+    "Xinyi Yang",
+    "Qihao Liu",
+    "Shaosen Su",
+    "Chunjiang Zhang",
+    "Peigen Li",
+    "Liang Gao"
+   ],
+   "abstract": "Artificial intelligence for combinatorial optimization depends on high-quality, structured training data, yet transforming ambiguous natural-language descriptions into precise, executable formal models remains a major bottleneck, traditionally requiring extensive manual effort and domain expertise. We develop CPAM-LLM, an automated constraint-programming modeling framework based on large language models that converts unstructured problem specifications into validated and executable formal models. The framework integrates retrieval-augmented generation grounded in formal concept analysis for structural validation, chaos-mapping-based data augmentation to enhance cross-domain generalization, and dynamic constraint adaptation to accommodate evolving problem settings. We demonstrate its effectiveness across five scenarios, including DNA sequence design, reconfigurable energy storage systems, and unmanned vehicle logistics. The results show that the framework can automate the data-to-model pipeline while adapting reliably to changing requirements, providing a practical approach to automated data formalization and indicating the importance of accessible, high-quality structured data for reliable downstream artificial intelligence applications.",
+   "published": "2026-11-19",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-78715-2"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-78715-2",
+    "PDF": "https://www.nature.com/articles/s41467-026-78715-2_reference.pdf"
+   },
+   "score": 12,
+   "added": "2026-11-21T00:00+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s43588-026-01084-9",
+   "title": "An alternative path for artificial intelligence in Africa",
+   "authors": [
+    "Matthew L. Smith",
+    "Gretchen Adams",
+    "Rachel Adams",
+    "Fitsum Assamnew Andargie",
+    "Tegawend\u00e9 Fran\u00e7ois Bissyand\u00e9",
+    "Anindya Chaudhuri",
+    "Becky Faith",
+    "Dennis Fosu",
+    "A Glover",
+    "Annette M H\u00fcbschle",
+    "Jerry John Kponyo",
+    "Howard Lakougna",
+    "Abiodun Modupe",
+    "Joyce Nakatumba Nabende",
+    "Seydina Moussa Ndiaye",
+    "Victor Odumuyiwa",
+    "Idrissa Sarr",
+    "Balthas Seibold",
+    "Jonathan Shock",
+    "Valerie G. Traore",
+    "Kofi Yeboah"
+   ],
+   "abstract": "",
+   "published": "2026-11-19",
+   "venue": "Nature Computational Science",
+   "dois": [
+    "10.1038/s43588-026-01084-9"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s43588-026-01084-9"
+   },
+   "score": 7,
+   "added": "2026-11-21T00:00+00:00",
+   "fl": false,
+   "tab": "nature",
    "graph": false
   },
   {
@@ -892,6 +1213,59 @@
    "added": "2026-11-20T00:39+00:00",
    "fl": false,
    "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.25301",
+   "title": "SplitReAlign: Partition-Aware Representation Realignment for Split Federated Unlearning",
+   "authors": [
+    "Jia Chen",
+    "Yecheng Lv",
+    "Xinrong Hu",
+    "Jun Bai"
+   ],
+   "abstract": "Split federated learning (SFL) distributes neural networks across clients and a server, coupling class-specific knowledge across their representations. This coupling complicates split federated unlearning (SFU), where class-wise forgetting must remove target knowledge while preserving retained utility under heterogeneous representation spaces and asymmetric update constraints. We propose SplitReAlign, a partition-aware representation realignment framework for class-wise SFU. It constructs endpoint-specific discriminative subspaces coordinated through a shared semantic anchor, selectively realigning forgotten representations while penalizing changes outside the active subspaces. To accommodate asymmetric update constraints, SplitReAlign leverages gradients through frozen servers for Client-only updates and fixed client-feature statistics for Server-only guidance, while Joint updates optimize both partitions. Experiments on CIFAR-10 and CIFAR-100 under heterogeneous client distributions demonstrate that SplitReAlign achieves the lowest average gap to retraining among all compared methods across six settings. Notably, Server-only achieves the closest agreement with retraining on both datasets, highlighting the effectiveness of partition-aware guidance under restricted updates.",
+   "published": "2026-11-18",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.25301"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.25301v1",
+    "PDF": "https://arxiv.org/pdf/2611.25301v1"
+   },
+   "added": "2026-11-21T00:00+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.25300",
+   "title": "Federated Learning of Car Aerodynamics Surrogates with Spectral Optimizers",
+   "authors": [
+    "Arman Bolatov",
+    "Nikolay Spitsyn",
+    "Daniil Medyakov",
+    "Vladimir Aletov",
+    "Dmitry Bylinkin",
+    "Martin Tak\u00e1\u010d",
+    "Aleksandr Beznosikov"
+   ],
+   "abstract": "Neural surrogates predict the aerodynamic forces on a car in seconds, compared with hours for a CFD simulation, but training them requires thousands of CFD simulations of different car designs, which car manufacturers keep proprietary. Federated learning allows several manufacturers to train a shared surrogate without exchanging data. We study which federated optimizer brings such a surrogate closest to one trained on pooled data. On DrivAerNet++, we train a Transolver surrogate across six clients that each hold cars of a single body type, and we compare three spectral optimizers, which orthogonalize the update of each weight matrix (FedMuon and two methods we propose, FedMARS-M and FedOLion), with three non-spectral ones (FedAvg, SCAFFOLD-Adam and FedLion), all tuned with the same protocol. FedMuon and FedMARS-M reach a drag error within 2% of centralized training with Muon, using two to four local epochs per round. The non-spectral methods perform best with sixteen local epochs, the largest number we tested, and still have a 17 to 37% higher drag error than FedMARS-M. We relate this gap to the low stable rank of the weight gradients, for which an orthogonalized step yields about twice the first-order decrease of a gradient step of the same spectral norm. Code: https://github.com/armanbolatov/fedmars_drivaernet",
+   "published": "2026-11-18",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.25300"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.25300v1",
+    "PDF": "https://arxiv.org/pdf/2611.25300v1"
+   },
+   "added": "2026-11-21T00:00+00:00",
+   "fl": true,
+   "tab": "preprint",
    "graph": false
   },
   {
@@ -29288,62 +29662,6 @@
    "graph": false,
    "date_checked": true,
    "date_q": 2
-  },
-  {
-   "id": "10.1038/s41467-026-77099-7",
-   "title": "Exploring the chemical space of transition-metal cluster thermodynamics via automated first-principles calculations and machine learning",
-   "authors": [
-    "Ning-Zheng Li",
-    "Ziyue Wang",
-    "Ziyu Li",
-    "Qiang Shi",
-    "Qing\u2010Yu Liu",
-    "Sheng\u2010Gui He"
-   ],
-   "abstract": "Atomic clusters serve as the embryos of materials, yet their enormous and compositionally complex chemical space has long hindered systematic exploration of thermodynamic stability. Here, we show that a unified first-principles and machine-learning framework enables large-scale mapping of transition metal cluster thermodynamics. By integrating a progressive sampling strategy with a composition-based deep-learning model, we alleviate the intrinsic sampling bottleneck associated with exponentially expanding chemical spaces. Based on \u2248 93,000 global-minimum structures obtained via automated first-principles calculations, our model-the cluster-transformer-encoder network-enables reliable predictions of atomization energies (\u2248 40 meV per atom accuracy) for 9.13 million metal cluster compositions, covering 30 d-block metals and 4 chemically relevant ligand elements (C, N, O, and S). The resulting thermodynamic trends show strong correlations between cluster atomization energies and bulk cohesive energies, and identify heteronuclear stabilization and the stability of noble-metal-doped oxide clusters. This work establishes a scalable, composition-driven strategy for efficient first-pass exploration of chemically complex small-cluster spaces, providing insights into collective stability trends of metal systems.",
-   "published": "2026-08-22",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-77099-7"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-77099-7",
-    "PDF": "https://www.nature.com/articles/s41467-026-77099-7_reference.pdf"
-   },
-   "score": 8,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-77047-5",
-   "title": "Tirzepatide versus GLP-1 receptor agonists and stroke in patients with atrial fibrillation and type 2 diabetes",
-   "authors": [
-    "Chih-Lang Lin",
-    "Kuan-Chou Lin",
-    "Jung-Min Yu",
-    "Chia\u2010Lun Chang",
-    "Yu-Yi Lin",
-    "Chih-Yuan Fang",
-    "Wan\u2010Ming Chen",
-    "Szu\u2010Yuan Wu"
-   ],
-   "abstract": "Patients with atrial fibrillation and type 2 diabetes remain at high risk of stroke despite anticoagulation and glucose-lowering treatment. We examined whether tirzepatide was associated with lower cerebrovascular risk than established glucagon-like peptide-1 receptor agonists in a retrospective cohort from a large international federated electronic health-record network. Here we show that, among 14,118 matched pairs of adults initiating tirzepatide or another glucagon-like peptide-1 receptor agonist, tirzepatide use was associated with lower risks of any stroke, ischemic stroke, hemorrhagic stroke, and death from any cause. The absolute difference in stroke risk was 2.1 percentage points at one year, and the absolute difference in mortality was 6.2 percentage points. These observational findings support further assessment of tirzepatide as a potential option for people with both conditions, but randomized trials are required before treatment recommendations can change. Among adults with atrial fibrillation and type 2 diabetes, tirzepatide use was associated with lower risks of stroke and death than other GLP-1 receptor agonists. The findings support trials of its cerebrovascular benefits in this high-risk group.",
-   "published": "2026-08-22",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-77047-5"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-77047-5",
-    "PDF": "https://www.nature.com/articles/s41467-026-77047-5_reference.pdf"
-   },
-   "score": 11,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": true,
-   "tab": "nature",
-   "graph": false
   },
   {
    "id": "10.1109/tits.2026.3722836",
@@ -60539,53 +60857,6 @@
    "fl": true,
    "tab": "ieee-tx",
    "graph": false
-  },
-  {
-   "id": "10.1109/tdsc.2025.3627244",
-   "title": "Enhancing Security and Privacy in Multi-Server Federated Learning",
-   "authors": [
-    "Xingwen Zhao",
-    "Yongfeng Bu",
-    "Kai Fan",
-    "Hui Li"
-   ],
-   "abstract": "Federated learning is a distributed learning approach designed to train models across multiple client devices with local data while preserving the privacy of that data. However, traditional federated learning suffers from three major f laws: 1.Vulnerability to Byzantine Attacks. 2.Privacy Leakage Risks. 3.Assumption of Third-Party Server Reliability. Few solutions currently address all three of these flaws at the same time. To address the above issues simultaneously, this paper introduces a multi-server federated learning approach that enhances security and privacy. We first set up a multi-server architecture to address the performance issues and single point of failure in traditional federated learning frameworks. And we set up and update different servers reputation on both the server and participant sides, which work together to resist aggregation attacks that can be implemented by malicious servers. It is also worth noting that we split models to be uploaded into two segments, each of which is uploaded to two different servers in conjunction with the last model of the previous round to defend against privacy attacks and keep model as complete as possible. Experiments on MNIST, IMDB, CIFAR10, and Adult indicate this method maintains accuracy, defends against label-flipping and Gaussian noise, and protects privacy.",
-   "published": "2025-11-20",
-   "venue": "IEEE Transactions on Dependable and Secure Computing",
-   "dois": [
-    "10.1109/tdsc.2025.3627244"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tdsc.2025.3627244"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tsg.2025.3628876",
-   "title": "Privacy-Preserving Residential Short-Term Load Forecasting With Missing Data Tolerance",
-   "authors": [
-    "Shao Liang",
-    "Kaiyuan Pang",
-    "Changsen Feng",
-    "Yu Yang",
-    "Fushuan Wen"
-   ],
-   "abstract": "Traditional data-driven residential short-term load forecasting methods are faced with two major challenges, i.e., preserving data privacy and addressing missing data. Regarding privacy-preserving, a new two-stage pre-training personalized federated learning framework is proposed to train customized forecasting models with high forecasting accuracy for all households without violating their data privacy. As for the missing data problem, an advanced semi-supervised graph diffusion network model is proposed to address missing \u201cfeatures\u201d and \u201clabels\u201d problems, where \u201cfeatures\u201d and \u201clabels\u201d refer to the required input data of the forecasting model and actual load data of the forecasting day, respectively. Mathematically, a graph feature diffusion mechanism-based feature input and imputation module is developed to mitigate the deficiency imposed by missing \u201cfeatures\u201d. Next, a graph convolutional network-based semi-supervised feature augmented and update module is established to mitigate the negative effects of missing \u201clabels\u201d. An actual power system in China is employed to demonstrate the proposed method, and simulation results indicate that high forecasting accuracy and strong robustness under missing data scenarios are achieved.",
-   "published": "2025-11-20",
-   "venue": "IEEE Transactions on Smart Grid",
-   "dois": [
-    "10.1109/tsg.2025.3628876"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tsg.2025.3628876"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": true
   },
   {
    "id": "10.1145/3746252.3761213",
