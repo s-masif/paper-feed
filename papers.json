@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T14:40+00:00",
+ "updated": "2026-11-23T18:18+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -426,7 +426,7 @@
   "S97130795",
   "S98183460"
  ],
- "crossref_created": "2026-11-22",
+ "crossref_created": "2026-11-23",
  "crossref_version": 2,
  "papers": [
   {
@@ -635,6 +635,136 @@
    "added": "2026-11-22T14:40+00:00",
    "fl": false,
    "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.27686",
+   "title": "Learning in Symbiosis: Heterogeneous Federated Learning with ANNs and SNNs",
+   "authors": [
+    "Manh V. Nguyen",
+    "Liang Zhao",
+    "Bobin Deng",
+    "Xinyue Zhang",
+    "Shaoen Wu"
+   ],
+   "abstract": "Spiking Neural Networks (SNNs), widely regarded as the third generation of neural networks, represent a promising neuromorphic computing paradigm with the potential to reduce the energy footprint of Artificial Intelligence (AI). Their en-ergy efficiency makes SNNs particularly attractive for resource-constrained Edge AI devices, motivating growing research interest in Federated Learning (FL) with SNNs. Despite these advantages, integrating SNNs into existing FL systems remains challenging, as replacing all conventional Artificial Neural Network (ANN) devices with SNN-based alternatives is impractical. Instead, we envision a gradual transition toward neuromorphic Edge AI, where ANN and SNN devices coexist and collaboratively participate in FL. To facilitate this transition, we propose Hybrid Neuromorphic Federated Learning (HNFL), a framework that enables joint training of heterogeneous ANN and SNN devices within an FL environment. Through experiments on CIFAR-10 using both VGG9 and ResNet architectures, we demonstrate the mutual benefits of collaborative ANN-SNN training. Specifically, HNFL achieves an average improvement of 16.85% when incorporating SNN devices into ANN-based FL and 8.02% when incorporating ANN devices into SNN-based FL. Furthermore, HNFL produces sparser spiking activity in the trained SNN models, with reductions of 12.4% for SResNet and 22.4% for SVGG9. To the best of our knowledge, this is the first work to demonstrate that ANNs and SNNs can coexist and mutually benefit from collaborative training in FL, providing a practical path toward the gradual integration of neuromorphic computing into existing Edge AI systems.",
+   "published": "2026-11-20",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.27686"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.27686v1",
+    "PDF": "https://arxiv.org/pdf/2611.27686v1"
+   },
+   "added": "2026-11-23T18:18+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.27433",
+   "title": "Consensus of Consensus: Decentralized Consensus-Based Optimization",
+   "authors": [
+    "Stefania Bellavia",
+    "Massimo Fornasier",
+    "Greta Malaspina",
+    "Tim Roith"
+   ],
+   "abstract": "We propose and analyze a decentralized variant of Consensus-Based Optimization (CBO) for the global minimization of continuous, possibly non-convex functions accessible only through a stochastic, possibly biased, zeroth-order oracle with bounded mean-squared error. The agents are split among $N$ units of an undirected communication network. Each unit evolves its swarm of $M$ agents towards a local tracking variable, which follows the network average of the local consensus points through one round of neighbour-to-neighbour communication via a doubly stochastic mixing matrix, without any central coordinator. We show that, under an explicit condition linking the drift and diffusion parameters to $M$, all agents reach consensus almost surely, at an exponential mean-square rate governed by the spectrum of the mixing matrix. Using a finite-agent quantitative Laplace principle, we prove that, for large $\u03b1$ and provided some agent visits a neighbourhood of the global minimizer with sufficient probability, the expected mean-squared distance of the swarm from the minimizer falls below any tolerance within an explicit number of iterations, at a rate that deteriorates for poorly connected networks. We verify this hitting assumption for a simplified dynamics. Experiments on benchmarks up to dimension $d=1000$, with stochastic objectives, and on a federated learning task demonstrate the method's effectiveness.",
+   "published": "2026-11-20",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.27433"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.27433v1",
+    "PDF": "https://arxiv.org/pdf/2611.27433v1"
+   },
+   "added": "2026-11-23T18:18+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.27170",
+   "title": "FedQCal: Quadratic Programming with Dual-Space Calibration for One-Shot Federated Learning",
+   "authors": [
+    "Shunsei Koshibuchi",
+    "Hiroshi Kera",
+    "Kazuhiko Kawamoto"
+   ],
+   "abstract": "One-shot federated learning must combine heterogeneous client models after a single upload. Different local class distributions make it difficult to decide which client updates to retain. We propose FedQCal, which uses a reference model trained on a small labeled server set to define alignment requirements for aggregation. The key idea is to retain sufficient reference alignment while avoiding unnecessarily large aggregation coefficients. A minimum-norm quadratic program (QP) enforces these requirements. Classification loss on the same server examples selects a merge through two dual variables, so the alignment thresholds need not be prescribed in advance. We prove that the selected coefficients remain exact QP solutions at their induced thresholds. A perturbation bound explains how coefficient norm limits the amplification of projection errors. Experiments on CIFAR-10, CIFAR-100, and SVHN show gains over one-round FedAvg in most settings. Ablations support reference-guided weighting and coefficient calibration, even with one labeled server image per class.",
+   "published": "2026-11-20",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.27170"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.27170v1",
+    "PDF": "https://arxiv.org/pdf/2611.27170v1"
+   },
+   "added": "2026-11-23T18:18+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.27117",
+   "title": "Highly Efficient Vertical Federated Clustering with Triangle-Inequality-based Pruning",
+   "authors": [
+    "Feiteng Nie",
+    "Shengkun Zhu",
+    "Zepeng Liu",
+    "Sheng Wang",
+    "Yuan Sun",
+    "Zhiyong Peng"
+   ],
+   "abstract": "In many real-world scenarios, multiple parties hold complementary feature subsets for the same samples but cannot share raw data. This makes efficient clustering over distributed feature subsets an important and challenging problem. While vertical federated learning (VFL) enables such collaboration, existing VFL clustering methods often require many communication rounds or substantial local computation. To address these limitations, we first propose TriCD, an exact pruning method for CDKM that preserves the same cluster assignments under the same initialization. TriCD constructs triangle-inequality bounds on demand to skip redundant objective evaluations with negligible extra space. Building upon this, we propose FedTriCD, an efficient federated clustering algorithm. By decomposing the global objective into client-local subproblems, FedTriCD enables pruning-based local optimization using only local data. FedTriCD further reduces communication by allowing multiple local updates between server synchronizations. A proximal regularization term is introduced to control the drift caused by infrequent communication. Our theoretical analysis establishes the exactness and finite convergence of TriCD and provides a bounded-error server-side update guarantee for FedTriCD. Experiments on multiple real-world datasets demonstrate the efficiency and clustering quality of the proposed methods. TriCD achieves up to a 50.07$\\times$ speedup over \\Lloyd's algorithm. Moreover, FedTriCD achieves competitive clustering quality while requiring fewer local evaluations and fewer communication rounds than state-of-the-art federated clustering methods.",
+   "published": "2026-11-20",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.27117"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.27117v1",
+    "PDF": "https://arxiv.org/pdf/2611.27117v1"
+   },
+   "added": "2026-11-23T18:18+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.27114",
+   "title": "Federated and Balanced $k$-means: Communication Efficiency, Privacy, and Heterogeneity",
+   "authors": [
+    "Feiteng Nie",
+    "Shengkun Zhu",
+    "Sheng Wang",
+    "Yuan Sun",
+    "Feiping Nie",
+    "Wei Song",
+    "Zhiyong Peng"
+   ],
+   "abstract": "Collaborating on data across organizations in healthcare and finance demands methods that preserve privacy while enabling effective analysis. Vertical Federated Learning (VFL) facilitates clustering across data where different parties hold different features of the same entities without sharing raw data. However, existing VFL clustering methods suffer from two key limitations: vulnerability to information leakage and the creation of imbalanced clusters. To address these limitations, we propose Fabric, a balanced and privacy-preserving federated $k$-means algorithm. Our method decomposes the balanced clustering problem into independent subproblems for each client, using the Alternating Direction Method of Multipliers (ADMM) to efficiently handle the balance constraints. Under the semi-honest model, Fabric provides provable privacy guarantees by injecting calibrated noise into local objective evaluations. Extensive evaluations on ten real-world datasets show that Fabric achieves a superior utility-privacy trade-off compared with state-of-the-art methods and converges faster. Specifically, Fabric reduces SSE by 29.1\\% on average and improves balance performance by 1.41$\\times$, while being 26$\\times$ faster on average.",
+   "published": "2026-11-20",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.27114"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.27114v1",
+    "PDF": "https://arxiv.org/pdf/2611.27114v1"
+   },
+   "added": "2026-11-23T18:18+00:00",
+   "fl": true,
+   "tab": "preprint",
    "graph": false
   },
   {
@@ -985,6 +1115,28 @@
    "added": "2026-11-21T00:00+00:00",
    "fl": false,
    "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.26731",
+   "title": "Cross-Attack Robust Aggregation for Federated Learning",
+   "authors": [
+    "Eyhab Al-Masri"
+   ],
+   "abstract": "Federated learning (FL) lets resource-constrained IoT and edge devices train a shared model without exchanging raw data, but compromised or faulty devices can poison the global model. Existing robust aggregators each fail in some regime: naive averaging (FedAvg) collapses under high-magnitude attacks, whereas distance- and statistics-based defenses (Krum, median, trimmed mean) sacrifice accuracy on non-IID data and remain vulnerable to stealthy attacks. We present FedTether, which reweights client updates by their deviation from a coordinatewise median through a robust, dead-zoned score applied as a server-side optimizer step. Across three datasets, three attack types, and Byzantine fractions up to 40%, FedTether is the only method top-tier in every regime: it matches FedAvg under stealthy attacks with no robustness tax, exceeds robust baselines by up to 42 accuracy points, and stays accurate where high-magnitude attacks reduce FedAvg to near-random. These properties persist at 50 clients under partial participation, with no shared data or validation set.",
+   "published": "2026-11-19",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.26731"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.26731v1",
+    "PDF": "https://arxiv.org/pdf/2611.26731v1"
+   },
+   "added": "2026-11-23T18:18+00:00",
+   "fl": true,
+   "tab": "preprint",
    "graph": false
   },
   {
@@ -7480,7 +7632,7 @@
     "Publisher": "https://doi.org/10.1038/s41467-026-79253-7",
     "PDF": "https://www.nature.com/articles/s41467-026-79253-7_reference.pdf"
    },
-   "score": 8,
+   "score": 6,
    "added": "2026-11-13T20:41+00:00",
    "fl": false,
    "tab": "nature",
@@ -8366,7 +8518,7 @@
     "PDF": "https://www.nature.com/articles/s41467-026-79039-x_reference.pdf"
    },
    "added": "2026-10-31",
-   "score": 9,
+   "score": 8,
    "fl": false,
    "tab": "nature",
    "graph": false
@@ -14125,7 +14277,7 @@
     "PDF": "https://doi.org/10.1038/s41586-026-11162-7"
    },
    "added": "2026-10-14",
-   "score": 8,
+   "score": 7,
    "fl": false,
    "tab": "nature",
    "graph": false
@@ -15187,7 +15339,7 @@
     "PDF": "https://www.nature.com/articles/s41467-026-77962-7_reference.pdf"
    },
    "added": "2026-10-11",
-   "score": 8,
+   "score": 7,
    "fl": false,
    "tab": "nature",
    "graph": false
@@ -21153,10 +21305,13 @@
    "date_q": 3,
    "venue": "NeurIPS 2026 poster",
    "conf": "NeurIPS 2026",
-   "dois": [],
+   "dois": [
+    "10.48550/arxiv.2611.26805"
+   ],
    "links": {
     "OpenReview": "https://openreview.net/forum?id=PRnblGnQBU",
-    "PDF": "https://openreview.net/pdf?id=PRnblGnQBU"
+    "PDF": "https://openreview.net/pdf?id=PRnblGnQBU",
+    "arXiv": "http://arxiv.org/abs/2611.26805v1"
    },
    "added": "2026-11-19T00:26+00:00",
    "fl": true,
@@ -29609,60 +29764,6 @@
    "added": "2026-11-13T20:41+00:00",
    "fl": true,
    "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s42256-026-01287-9",
-   "title": "Multi-resolution enhancement for full-spectrum neural representations",
-   "authors": [
-    "Yuan Ni",
-    "Zhantao Chen",
-    "Shizhou Xu",
-    "Cheng Peng",
-    "Rajan Plumley",
-    "Chun Hong Yoon",
-    "Jana B. Thayer",
-    "Joshua J. Turner"
-   ],
-   "abstract": "Scientific data acquisition continues to outpace storage and analysis capabilities, making voxel-based representations increasingly intractable. Implicit neural representations (INRs) offer a promising solution by encoding signals through coordinate-based neural networks, serving as surrogates of data, with computational and storage requirements scaling with network complexity rather than data dimensionality. However, smaller INRs struggle to faithfully represent multiscale structures, high-frequency information and fine textures that constitute a large proportion of scientific measurements. We propose WIEN-INR, a theoretically guided hierarchical INR framework that distributes modelling across resolution scales and enables improved representation capacity through a novel enhancement network to recover subtle details. This multiscale architecture allows smaller networks to retain the full spatial-frequency content of the signal as well as preserve training efficiency and lower storage cost. Evaluated on distinct raw experimental measurements across scales and complexities, WIEN-INR represents a practical step towards a broader adoption of neural representations in scientific workflows, delivering compact, robust and high-fidelity representations. Ni et al. present WIEN-INR, an implicit neural representation for scientific data compression. It operates in the multiscale wavelet domain to improve compression as well as preserve fine details and signal fidelity.",
-   "published": "2026-08-24",
-   "venue": "Nature Machine Intelligence",
-   "dois": [
-    "10.1038/s42256-026-01287-9"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s42256-026-01287-9",
-    "PDF": "https://www.nature.com/articles/s42256-026-01287-9.pdf"
-   },
-   "score": 8,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s42256-026-01297-7",
-   "title": "A roadmap for end-to-end task-agnostic exoskeleton control",
-   "authors": [
-    "Max K. Shepherd",
-    "Ethan B. Schonhaut",
-    "Keaton L. Scherpereel",
-    "Fatima Mumtaza Tourk",
-    "Aaron J. Young"
-   ],
-   "abstract": "",
-   "published": "2026-08-24",
-   "venue": "Nature Machine Intelligence",
-   "dois": [
-    "10.1038/s42256-026-01297-7"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s42256-026-01297-7"
-   },
-   "score": 8,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
    "graph": false
   },
   {
