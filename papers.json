@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T18:18+00:00",
+ "updated": "2026-11-24T03:58+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -152,60 +152,60 @@
   "10.1109/tetc.2026.3696330": "2026-11-21",
   "10.1109/tsg.2026.3707150": "2026-11-21",
   "10.1109/tpds.2026.3725682": "2026-11-21",
-  "10.1109/tii.2025.3649540": "2026-11-16",
-  "10.1109/tce.2026.3661887": "2026-11-16",
-  "10.1109/tce.2026.3688316": "2026-11-16",
-  "10.1109/tvt.2026.3689153": "2026-11-16",
-  "10.1109/tdsc.2026.3656703": "2026-11-16",
-  "10.1109/tce.2026.3661487": "2026-11-16",
-  "10.1109/tccn.2026.3661518": "2026-11-16",
-  "10.1109/tnsm.2026.3685416": "2026-11-16",
-  "10.1109/tii.2026.3652802": "2026-11-16",
-  "10.1109/tccn.2026.3661503": "2026-11-16",
-  "10.1109/tcss.2025.3648193": "2026-11-16",
-  "10.1109/tii.2026.3677043": "2026-11-16",
-  "10.1109/tce.2026.3689383": "2026-11-16",
-  "10.1109/tce.2026.3702941": "2026-11-16",
-  "10.1109/tcc.2026.3680955": "2026-11-16",
-  "10.1109/tccn.2026.3661499": "2026-11-16",
-  "10.1109/tits.2026.3655758": "2026-11-16",
-  "10.1109/tccn.2026.3661495": "2026-11-16",
-  "10.1109/tnsm.2026.3682080": "2026-11-16",
-  "10.1109/tnsm.2026.3682129": "2026-11-16",
-  "10.1109/tce.2026.3682624": "2026-11-16",
-  "10.1109/tce.2026.3685994": "2026-11-16",
-  "10.1109/tdsc.2026.3687550": "2026-11-16",
-  "10.1109/tdsc.2026.3689563": "2026-11-16",
-  "10.1109/tmm.2026.3689434": "2026-11-16",
-  "10.1109/tcsvt.2026.3689071": "2026-11-16",
-  "10.1109/tvt.2026.3691127": "2026-11-16",
-  "10.1109/tce.2026.3691084": "2026-11-16",
-  "10.1109/tce.2026.3692584": "2026-11-16",
-  "10.1109/tccn.2026.3705831": "2026-11-16",
-  "10.1109/tce.2026.3714278": "2026-11-16",
-  "10.1109/tnse.2026.3718246": "2026-11-16",
-  "10.1109/tccn.2026.3721525": "2026-11-16",
-  "10.1109/tii.2026.3725687": "2026-11-16",
-  "10.1109/tsc.2026.3746696": "2026-11-16",
-  "10.1109/tnsm.2026.3750310": "2026-11-16",
-  "10.1109/tdsc.2026.3753491": "2026-11-16",
-  "10.1109/tmc.2026.3688489": "2026-11-16",
-  "10.1109/tmc.2026.3656974": "2026-11-16",
-  "10.1109/tmc.2026.3656452": "2026-11-16",
-  "10.1109/tetci.2026.3670702": "2026-11-16",
-  "10.1109/tkde.2026.3652029": "2026-11-16",
-  "10.1109/tifs.2026.3688943": "2026-11-16",
-  "10.1109/tmc.2026.3688468": "2026-11-16",
-  "10.1109/tkde.2026.3692681": "2026-11-16",
-  "10.1109/tmc.2026.3752824": "2026-11-16",
-  "10.1109/tmc.2026.3683093": "2026-11-16",
-  "10.1109/tifs.2026.3675464": "2026-11-16",
-  "10.1109/tkde.2026.3689321": "2026-11-16",
-  "10.1109/tmc.2026.3689261": "2026-11-16",
-  "10.1109/tsg.2026.3688250": "2026-11-16",
-  "10.1109/tifs.2026.3751579": "2026-11-16",
-  "10.1109/tmc.2026.3681477": "2026-11-16",
-  "10.1109/tte.2026.3661383": "2026-11-16",
+  "10.1109/tii.2025.3649540": "2026-11-24",
+  "10.1109/tce.2026.3661887": "2026-11-24",
+  "10.1109/tce.2026.3688316": "2026-11-24",
+  "10.1109/tvt.2026.3689153": "2026-11-24",
+  "10.1109/tdsc.2026.3656703": "2026-11-24",
+  "10.1109/tce.2026.3661487": "2026-11-24",
+  "10.1109/tccn.2026.3661518": "2026-11-24",
+  "10.1109/tnsm.2026.3685416": "2026-11-24",
+  "10.1109/tii.2026.3652802": "2026-11-24",
+  "10.1109/tccn.2026.3661503": "2026-11-24",
+  "10.1109/tcss.2025.3648193": "2026-11-24",
+  "10.1109/tii.2026.3677043": "2026-11-24",
+  "10.1109/tce.2026.3689383": "2026-11-24",
+  "10.1109/tce.2026.3702941": "2026-11-24",
+  "10.1109/tcc.2026.3680955": "2026-11-24",
+  "10.1109/tccn.2026.3661499": "2026-11-24",
+  "10.1109/tits.2026.3655758": "2026-11-24",
+  "10.1109/tccn.2026.3661495": "2026-11-24",
+  "10.1109/tnsm.2026.3682080": "2026-11-24",
+  "10.1109/tnsm.2026.3682129": "2026-11-24",
+  "10.1109/tce.2026.3682624": "2026-11-24",
+  "10.1109/tce.2026.3685994": "2026-11-24",
+  "10.1109/tdsc.2026.3687550": "2026-11-24",
+  "10.1109/tdsc.2026.3689563": "2026-11-24",
+  "10.1109/tmm.2026.3689434": "2026-11-24",
+  "10.1109/tcsvt.2026.3689071": "2026-11-24",
+  "10.1109/tvt.2026.3691127": "2026-11-24",
+  "10.1109/tce.2026.3691084": "2026-11-24",
+  "10.1109/tce.2026.3692584": "2026-11-24",
+  "10.1109/tccn.2026.3705831": "2026-11-24",
+  "10.1109/tce.2026.3714278": "2026-11-24",
+  "10.1109/tnse.2026.3718246": "2026-11-24",
+  "10.1109/tccn.2026.3721525": "2026-11-24",
+  "10.1109/tii.2026.3725687": "2026-11-24",
+  "10.1109/tsc.2026.3746696": "2026-11-24",
+  "10.1109/tnsm.2026.3750310": "2026-11-24",
+  "10.1109/tdsc.2026.3753491": "2026-11-24",
+  "10.1109/tmc.2026.3688489": "2026-11-24",
+  "10.1109/tmc.2026.3656974": "2026-11-24",
+  "10.1109/tmc.2026.3656452": "2026-11-24",
+  "10.1109/tetci.2026.3670702": "2026-11-24",
+  "10.1109/tkde.2026.3652029": "2026-11-24",
+  "10.1109/tifs.2026.3688943": "2026-11-24",
+  "10.1109/tmc.2026.3688468": "2026-11-24",
+  "10.1109/tkde.2026.3692681": "2026-11-24",
+  "10.1109/tmc.2026.3752824": "2026-11-24",
+  "10.1109/tmc.2026.3683093": "2026-11-24",
+  "10.1109/tifs.2026.3675464": "2026-11-24",
+  "10.1109/tkde.2026.3689321": "2026-11-24",
+  "10.1109/tmc.2026.3689261": "2026-11-24",
+  "10.1109/tsg.2026.3688250": "2026-11-24",
+  "10.1109/tifs.2026.3751579": "2026-11-24",
+  "10.1109/tmc.2026.3681477": "2026-11-24",
+  "10.1109/tte.2026.3661383": "2026-11-24",
   "10.1109/tvt.2025.3597870": "2026-11-16",
   "10.1109/tdsc.2025.3620529": "2026-11-16",
   "10.1109/tmc.2025.3627961": "2026-11-16",
@@ -260,8 +260,8 @@
   "10.1145/3799682.3840864": "2026-11-16",
   "10.1145/3799682.3840868": "2026-11-16",
   "10.1145/3799682.3840870": "2026-11-16",
-  "10.1145/3799682.3841141": "2026-11-16",
-  "10.1145/3799682.3841150": "2026-11-16",
+  "10.1145/3799682.3841141": "2026-11-24",
+  "10.1145/3799682.3841150": "2026-11-24",
   "10.1145/3799682.3841156": "2026-11-16",
   "10.1145/3767308.3836338": "2026-11-16",
   "10.1145/3767308.3836577": "2026-11-16",
@@ -278,7 +278,7 @@
   "10.1145/3767308.3835286": "2026-11-16",
   "10.1145/3767308.3835291": "2026-11-16",
   "10.1145/3767308.3835464": "2026-11-16",
-  "10.1145/3767308.3835496": "2026-11-16",
+  "10.1145/3767308.3835496": "2026-11-24",
   "10.1145/3767308.3835427": "2026-11-16",
   "10.1145/3767308.3835608": "2026-11-16",
   "10.1145/3767308.3835615": "2026-11-16",
@@ -287,10 +287,10 @@
   "10.1145/3767308.3835658": "2026-11-16",
   "10.1145/3767308.3835563": "2026-11-16",
   "10.1145/3830454.3846424": "2026-11-16",
-  "10.1145/3830454.3846547": "2026-11-16",
+  "10.1145/3830454.3846547": "2026-11-24",
   "10.1145/3830454.3846666": "2026-11-16",
   "10.1145/3767308.3835560": "2026-11-16",
-  "10.1145/3767308.3835918": "2026-11-16",
+  "10.1145/3767308.3835918": "2026-11-24",
   "10.1145/3767308.3835171": "2026-11-16",
   "10.1109/tmc.2026.3753963": "2026-11-17",
   "10.1109/tmc.2026.3754357": "2026-11-18",
@@ -311,7 +311,13 @@
   "10.1109/tmc.2026.3756242": "2026-11-21",
   "10.1109/tkde.2026.3756090": "2026-11-21",
   "10.1109/ton.2026.3756120": "2026-11-21",
-  "10.1109/tetc.2026.3753727": "2026-11-21"
+  "10.1109/tetc.2026.3753727": "2026-11-21",
+  "10.1109/tdsc.2026.3756699": "2026-11-24",
+  "10.1109/tsc.2026.3756674": "2026-11-24",
+  "10.1109/tce.2026.3756741": "2026-11-24",
+  "10.1109/tvt.2026.3756839": "2026-11-24",
+  "10.1109/tetci.2026.3749286": "2026-11-24",
+  "10.1109/cvaa71532.2026.11782352": "2026-11-24"
  },
  "ieee_xplore_checked": "2026-11-16",
  "ieee_swept_ids": [
@@ -426,9 +432,229 @@
   "S97130795",
   "S98183460"
  ],
- "crossref_created": "2026-11-23",
+ "crossref_created": "2026-11-24",
  "crossref_version": 2,
  "papers": [
+  {
+   "id": "10.1109/tdsc.2026.3756699",
+   "title": "Towards Breaking the Impossibility: Collusion-Resistant Verifiable Aggregation Without Trusted Setup for Federated Learning",
+   "authors": [
+    "Jinpeng Hou",
+    "Lei Zhou",
+    "Yansong Gao",
+    "Yifeng Zheng",
+    "Anmin Fu"
+   ],
+   "abstract": "",
+   "published": "2026-11-23",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Dependable and Secure Computing",
+   "dois": [
+    "10.1109/tdsc.2026.3756699"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tdsc.2026.3756699"
+   },
+   "added": "2026-11-24T03:58+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tsc.2026.3756674",
+   "title": "Incentivizing Participation in Federated Model-As-a-Service Marketplace: A Game-Theoretical Framework With Shapley Fairness",
+   "authors": [
+    "Bo Shen",
+    "Zhengying Shang",
+    "Wen Ji",
+    "Bin Guo"
+   ],
+   "abstract": "",
+   "published": "2026-11-23",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Services Computing",
+   "dois": [
+    "10.1109/tsc.2026.3756674"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tsc.2026.3756674"
+   },
+   "added": "2026-11-24T03:58+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tce.2026.3756741",
+   "title": "Privacy-Preserving Multi-Modal Federated Learning for Consumer-Centric IoMT: Personalized Treatment Response Prediction",
+   "authors": [
+    "Muhammad Arshad",
+    "Muhammad Umer",
+    "Muhammad Wajeeh Us Sima",
+    "Chengliang Wang",
+    "Jamshed Ali Shaikh",
+    "Lucia Cascone"
+   ],
+   "abstract": "",
+   "published": "2026-11-23",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Consumer Electronics",
+   "dois": [
+    "10.1109/tce.2026.3756741"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tce.2026.3756741"
+   },
+   "added": "2026-11-24T03:58+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tvt.2026.3756839",
+   "title": "Hierarchical Knowledge Distillation and Unlearning Optimization Approaches for Federated Learning",
+   "authors": [
+    "Xiaoming Yuan",
+    "Lixin Chen",
+    "Zheng Zhang",
+    "Tianran Wang",
+    "Shuyu Wang",
+    "Bingting Jiang",
+    "Qingxu Deng"
+   ],
+   "abstract": "",
+   "published": "2026-11-23",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Vehicular Technology",
+   "dois": [
+    "10.1109/tvt.2026.3756839"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tvt.2026.3756839"
+   },
+   "added": "2026-11-24T03:58+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tetci.2026.3749286",
+   "title": "Secure Aggregation for Personalized Federated Learning Against Gradient Inversion Attacks",
+   "authors": [
+    "Leming Wu",
+    "Han Yu",
+    "Yaochu Jin",
+    "Kuangrong Hao"
+   ],
+   "abstract": "",
+   "published": "2026-11-23",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Emerging Topics in Computational Intelligence",
+   "dois": [
+    "10.1109/tetci.2026.3749286"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tetci.2026.3749286"
+   },
+   "added": "2026-11-24T03:58+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/cvaa71532.2026.11782352",
+   "title": "Dynamic Global-Guided Federated Learning Method for Strongly Non-IID Data",
+   "authors": [
+    "Diwen Zhou",
+    "Cuitao Zhu"
+   ],
+   "abstract": "",
+   "published": "2026-11-23",
+   "date_q": 2,
+   "venue": "ICCV",
+   "dois": [
+    "10.1109/cvaa71532.2026.11782352"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/cvaa71532.2026.11782352"
+   },
+   "conf": "ICCV 2026",
+   "added": "2026-11-24T03:58+00:00",
+   "fl": true,
+   "tab": "conf",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.28920",
+   "title": "Semantic Communication via Federated Learning with Knowledge-Enhanced Networks and Privacy",
+   "authors": [
+    "Hassan Touati",
+    "Rodrigo C. de Lamare"
+   ],
+   "abstract": "This paper presents a novel privacy-preserving semantic communication framework that combines Federated Learning (FL) with Knowledge-Enhanced Networks (KE-NET) for distributed wireless systems. Unlike centralized semantic communication approaches that require data aggregation, our method enables multiple clients to collaboratively train a knowledge-enhanced model while keeping their data and knowledge graphs private. We develop a multi-objective federated optimization strategy that balances semantic fidelity, knowledge integration, channel robustness, and reconstruction accuracy. Theoretical analysis reveals that federated aggregation improves effective SNR for $N$ clients through noise averaging. Numerical results with AWGN and Rayleigh fading channels demonstrate that multi-client federated learning consistently outperforms both single-client and centralized baselines across all SNR conditions, with particularly significant gains in low-SNR scenarios.",
+   "published": "2026-11-21",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.28920"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.28920v1",
+    "PDF": "https://arxiv.org/pdf/2611.28920v1"
+   },
+   "added": "2026-11-24T03:58+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": true
+  },
+  {
+   "id": "arxiv:2611.28782",
+   "title": "Joint Client Scheduling and Resource Allocation for Optimal Federated Learning over Wireless Networks",
+   "authors": [
+    "Ahmad Dabaja",
+    "Rachid El-Azouzi"
+   ],
+   "abstract": "Federated learning often relies on partial client participation because full participation is costly in cross-device wireless systems with limited uplink resources, heterogeneous channel conditions, energy constraints, and strict upload deadlines. However, partial participation introduces sampling variance, causing the sampled update to deviate from the full-participation update. Existing optimal client sampling methods reduce this variance but usually rely on simplified client-count budgets, while wireless-aware scheduling methods account for communication constraints but do not directly optimize sampling variance. This paper proposes resource-aware optimal client sampling (RAOCS), a unified variance-minimizing client scheduling framework under uplink resource-block, round deadline, update-information, and energy constraints. The resulting problem admits a capped water-filling solution that balances client update importance, wireless resource cost, and energy feasibility. Experimental results demonstrate that RAOCS achieves accuracy comparable to that of OCS while reducing the average upload time per iteration by more than a factor of 252.",
+   "published": "2026-11-21",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.28782"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.28782v1",
+    "PDF": "https://arxiv.org/pdf/2611.28782v1"
+   },
+   "note": "Accepted and presented at IEEE FLTA 2026",
+   "added": "2026-11-24T03:58+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.28491",
+   "title": "SoK: Splitting the Trigger or Adding Attackers? Disentangling Distributed Backdoor Attacks in Federated Learning",
+   "authors": [
+    "Zhuotao Lian",
+    "Qingkui Zeng",
+    "Weiyu Wang"
+   ],
+   "abstract": "Distributed backdoor attacks split a trigger among several federated learning clients, so that the backdoor appears only in the aggregated model. Since DBA, a line of work has reported that such attacks are stronger, more persistent, and stealthier than a single attacker with the full trigger. We systematize this literature and test this belief. We code nineteen primary studies and fifteen papers that evaluate against DBA. The reported advantage is rarely measured against a complete trigger delivered by the same attackers, and none of the fifteen evaluations tests whether individual pieces remain effective. We then run 875 paired federated runs that separate adding attackers from splitting the trigger. In our image experiments, adding attackers raised attack success in every seed of all 30 cells where we measured it, by 7.5 to 83.4 percentage points on average. Splitting the trigger among the same attackers had a smaller effect, and its sign depended on the piece layout, the allocation, and the attackers' local training. With DBA's compact layout, splitting lowered attack success on CIFAR-10. A larger penalty on small CNNs vanished once the attackers trained longer, and an FCBA-style allocation gained a few points. Widely separated pieces helped on CIFAR-10, its grayscale version, and GTSRB. No model required all pieces. Neural Cleanse suppressed single pieces together with the full trigger, but split backdoors with separated pieces survived it better than complete ones. We derive reporting requirements for attack and defense evaluations.",
+   "published": "2026-11-21",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.28491"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.28491v1",
+    "PDF": "https://arxiv.org/pdf/2611.28491v1"
+   },
+   "added": "2026-11-24T03:58+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
   {
    "id": "10.1109/tdsc.2026.3756097",
    "title": "Path-Aware Structured Perturbation for Backdoor Defense in Federated Learning: A Dynamic Game-Theoretic Framework",
@@ -763,6 +989,31 @@
     "PDF": "https://arxiv.org/pdf/2611.27114v1"
    },
    "added": "2026-11-23T18:18+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.28245",
+   "title": "Development of an Effective Federated Learning-Based Defense System Against Phishing Attacks on Mobile Platforms",
+   "authors": [
+    "Eren Dogan",
+    "Busra Buyuktanir",
+    "Gozde Karatas Baydogmus",
+    "Kazim Yildiz"
+   ],
+   "abstract": "Phishing remains one of the most pervasive and damaging cyber threats, exploiting both technical flaws and human behavior to compromise sensitive data. We present a privacy-preserving, real-time defense that analyzes full webpage source code on mobile platforms. Our system combines a lightweight Convolutional Neural Network (CNN) for end-to-end feature extraction with a Federated Learning (FL) framework that updates models collaboratively on user devices without transferring raw data-supporting regulatory compliance and personalization. Evaluated on a large and diverse dataset, the model attains 86.02\\% accuracy, 90.35\\% precision, 80.64\\% recall, and 92.78\\% ROC-AUC. While some centralized, classical approaches may report higher accuracy, our design emphasizes a practical balance among accuracy, user privacy, and real-time performance on resource-constrained devices. We further demonstrate an end-to-end integration within the open-source Lightning Android browser, achieving real-time detection with low computational overhead. This work shows that privacy-first, AI-driven phishing detection is both feasible and scalable across mobile and IoT settings, delivering robust protection while keeping user data on-device.",
+   "published": "2026-11-20",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.28245"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.28245v1",
+    "PDF": "https://arxiv.org/pdf/2611.28245v1"
+   },
+   "added": "2026-11-24T03:58+00:00",
    "fl": true,
    "tab": "preprint",
    "graph": false
@@ -5145,7 +5396,7 @@
     "Abbas Yazdinejad",
     "Hadis Karimipour"
    ],
-   "abstract": "",
+   "abstract": "Federated learning (FL) is vulnerable to multi-vector poisoning attacks that combine clean-label backdoors, gradient manipulation, and Byzantine coordination to evade detection while corrupting model behavior. Existing defenses, limited to single-layer aggregation rules, fail against adaptive, coordinated adversaries. We present HQRL (Hierarchical Quantum Reinforcement Learning), a novel defense framework that employs a multitier quantum reinforcement learning agent, strategic, tactical, and operational, to detect and mitigate coordinated threats dynamically. Each tier utilizes parameterized quantum circuits trained via Quantum Natural Gradient (QNG) with geo-aware Fisher information, enabling rapid adaptation under NISQ-era constraints. HQRL integrates error mitigation and supports secure aggregation for end-to-end privacy. To ensure deployability, we provide a classical fallback controller mirroring HQRL\u2019s decisions, enabling seamless runtime switching and operational continuity when quantum resources are unavailable. Evaluated on CIFAR-10, FEMNIST, and Shakespeare under multi-vector attacks, HQRL improves defense effectiveness by 14.3%, converges 86 rounds faster, and achieves an 87.4% Bayesian probability of superiority over classical hierarchical baselines. Mechanistic analysis shows a significant correlation between entanglement entropy and robustness (r = 0.533, p < 0.001), suggesting quantum-enhanced threat discrimination. HQRL establishes a new paradigm in resilient FL, demonstrating that quantum-enhanced decision-making can effectively counter sophisticated, multistage adversarial campaigns.",
    "published": "2026-11-09",
    "venue": "IEEE Transactions on Information Forensics and Security",
    "dois": [
@@ -29421,114 +29672,6 @@
    "date_q": 2
   },
   {
-   "id": "10.1038/s44387-026-00149-4",
-   "title": "How do flow matching models memorize and generalize in sample data subspaces",
-   "authors": [
-    "Weiguo Gao",
-    "Ming Li"
-   ],
-   "abstract": "Abstract Real-world data often lie near a low-dimensional structure embedded in a high-dimensional space. In practice, we observe only finitely many samples, which define a sample data subspace that supports tasks such as dimensionality reduction and generation. We study whether generative models can synthesize samples that remain within this subspace. Using Flow Matching models that transport a simple prior to a complex target via a learned velocity field, and treating the data distribution as discrete, we derive analytical expressions for the optimal velocity field under a Gaussian prior. The result shows that generated samples memorize data points and exactly represent the sample data subspace. To generalize to suboptimal scenarios, we introduce the Orthogonal Subspace Decomposition Network, which splits the velocity into subspace and off-subspace components. Our analysis shows the off-subspace component decays while the subspace component generalizes within the sample data subspace, preserving both proximity and diversity.",
-   "published": "2026-08-25",
-   "venue": "npj Artificial Intelligence",
-   "dois": [
-    "10.1038/s44387-026-00149-4"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s44387-026-00149-4",
-    "PDF": "https://www.nature.com/articles/s44387-026-00149-4_reference.pdf"
-   },
-   "score": 8,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-76715-w",
-   "title": "Optimising antibiotic switching via forecasting of patient physiology",
-   "authors": [
-    "Magnus Ross",
-    "Nel Swanepoel",
-    "Akish Luintel",
-    "Emma McGuire",
-    "Ingemar Johansson Cox",
-    "Steve K. Harris",
-    "Vasileios Lampos"
-   ],
-   "abstract": "Timely transition from intravenous to oral antibiotic therapy shortens hospital stays, reduces catheter-related infections, and lowers healthcare costs, yet one in five patients in England remain on intravenous antibiotics despite meeting switching criteria. Clinical decision support systems can improve switching rates, but approaches that learn from historical decisions reproduce the delays and inconsistencies of routine practice. We propose using neural processes to model vital sign trajectories probabilistically, predicting switch-readiness by comparing forecasts against clinical guidelines rather than learning from past actions, and ranking patients to prioritise clinical review. The design yields interpretable outputs, adapts to updated guidelines without retraining, and preserves clinical judgement. Validated on datasets from US intensive care (6333 encounters) and a UK academic hospital group (10,584 encounters), the system selects 2.2-3.2 \u00d7 more relevant patients than random. We show that forecasting patient physiology offers a principled foundation for decision support in antibiotic stewardship.",
-   "published": "2026-08-25",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-76715-w"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-76715-w",
-    "PDF": "https://www.nature.com/articles/s41467-026-76715-w_reference.pdf"
-   },
-   "score": 6,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-74857-5",
-   "title": "Multi-source agent-based modeling to optimize influenza mitigation strategies in Hong Kong",
-   "authors": [
-    "Peng Li-ping",
-    "Yiyang Guo",
-    "Nicole Ngai Yung Tsang",
-    "Xiaotong Huang",
-    "Hau Chi So",
-    "Benjamin John Cowling",
-    "Dkm Ip",
-    "Tim K. Tsang"
-   ],
-   "abstract": "Seasonal influenza control faces challenges from variable vaccine effectiveness and uncertain non-pharmaceutical intervention (NPI) performance. While vaccination remains the primary strategy, its effectiveness varies between vaccine-matched and mismatched seasons. Increased post-COVID-19 NPI acceptance enhances influenza control feasibility, yet optimal combination approaches remain poorly understood. We use an agent-based model to analyze influenza transmission across six seasons in Hong Kong (2009-2013) with varying epidemic characteristics. We integrate surveillance, serological, and school absenteeism data for calibration, enabling accurate estimation of reported and unreported infections. We evaluate age-targeted vaccination, staying home when sick, mask use, and school-based interventions across diverse real-world scenarios. Compared to baseline, child vaccination consistently outperforms other strategies, with targeting those under 12 yielding the greatest population-level attack rate reduction (up to 8.5% relative reduction per 100,000 vaccinated). Among NPIs, 40% mask coverage reduces attack rates by 18%\u201343%, comparable to 25% of symptomatic individuals staying home. During vaccine-mismatched seasons, combining high-coverage mask use and staying home reduces attack rates by 79%\u201384%. High-coverage school-based vaccination is more effective than closures, reducing student attack rates by up to 85% versus 33% for 14-day closures. Our multi-source calibration approach provides robust evidence for prioritizing child vaccination and strategic NPI combinations. Modeling six influenza seasons to evaluate mitigation strategies, this study proposes a signal-responsive policy framework. Findings show child vaccination and mask use curb transmission; their combination is vital during vaccine mismatches.",
-   "published": "2026-08-25",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-74857-5"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-74857-5",
-    "PDF": "https://doi.org/10.1038/s41467-026-74857-5"
-   },
-   "score": 7,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-76673-3",
-   "title": "Predicting acute and chronic diabetes complications among adults newly diagnosed with diabetes: development and validation of dynamic risk prediction models",
-   "authors": [
-    "Rozalina G. McCoy",
-    "Shrinath Patel",
-    "Louis J. Faust",
-    "Herbert C. Heien",
-    "Nan Zhang",
-    "Brian Caffo",
-    "Che Ngufor"
-   ],
-   "abstract": "Diabetes affects one in ten adults worldwide, yet clinicians lack tools to simultaneously predict which complications a given patient is most likely to develop in the near term. Existing risk models typically address single complications, were developed in specialized cohorts, and use heterogeneous time horizons, limiting their utility for individualized clinical decision-making. Here, we show that machine learning models trained on nationwide U.S. administrative claims data for 400,400 adults with newly diagnosed type 1 or type 2 diabetes can accurately predict the monthly risk of nine acute and chronic complications (cardiovascular disease, cerebrovascular disease, peripheral vascular disease, nephropathy, neuropathy, retinopathy, and hypoglycemic and hyperglycemic crises) with predictions that update dynamically as new clinical data become available. Using Regularized Logistic Regression (GLMnet) and Extreme Gradient Boosting (XGBoost) with walk-forward temporal validation, we demonstrate strong discrimination in external validation against an independent electronic health record cohort (areas under the receiver operating characteristic curve 0.77-0.85 across complications for the best-performing model). The Diabetes Complications Risk Calculator therefore provides encounter-specific near-term risk estimates for multiple diabetes complications using routinely available clinical data, offering a potential framework for personalized risk stratification that could support shared decision-making and population health management across healthcare settings. The generalizability of the Diabetes Complications Risk Calculator to other cohorts will need to be tested.",
-   "published": "2026-08-25",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-76673-3"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-76673-3",
-    "PDF": "https://www.nature.com/articles/s41467-026-76673-3_reference.pdf"
-   },
-   "score": 7,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
    "id": "10.1109/tnsm.2026.3727228",
    "title": "Federated Semi-Supervised and Semi-Asynchronous Learning for Anomaly Detection in IoT Networks",
    "authors": [
@@ -50692,7 +50835,7 @@
     "Bander A. Alzahrani",
     "Shehzad Ashraf Chaudhry"
    ],
-   "abstract": "",
+   "abstract": "The rapid expansion of the Internet of Medical Things (IoMT) has transformed healthcare delivery by enabling real-time monitoring, advanced diagnostics, and efficient data sharing. However, current systems in large-scale, decentralized environments face significant challenges in privacy, security, trust, and interoperability. This paper presents a Federated Learning framework for a consumer-centric IoMT system that provides secure, resilient data exchange against AI-enabled attacks through privacy-preserving learning, decentralized authentication, and hardware-based trust. It integrates trusted execution environments (TEEs), blockchain-based trust management, and ciphertext-policy attribute-based encryption (CP-ABE) to enable secure collaboration without exposing raw data. We provide a security proof in the Real-or-Random (RoR) model and conduct a comprehensive performance analysis covering computation, communication, storage, smart contract processing, and throughput. Experimental results show a 40% reduction in authentication latency, a 27% decrease in computational overhead, a 98% drop in energy use, and a 35% increase in throughput compared to existing schemes. These findings demonstrate that the proposed framework offers high scalability, robust security, and privacy protection, making it ideal for the next-generation healthcare ecosystem.",
    "published": "2026-02-06",
    "venue": "IEEE Transactions on Consumer Electronics",
    "dois": [
