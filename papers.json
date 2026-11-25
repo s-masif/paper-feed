@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T03:58+00:00",
+ "updated": "2026-11-25T02:32+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -317,7 +317,9 @@
   "10.1109/tce.2026.3756741": "2026-11-24",
   "10.1109/tvt.2026.3756839": "2026-11-24",
   "10.1109/tetci.2026.3749286": "2026-11-24",
-  "10.1109/cvaa71532.2026.11782352": "2026-11-24"
+  "10.1109/cvaa71532.2026.11782352": "2026-11-24",
+  "10.1109/tcc.2026.3757203": "2026-11-25",
+  "10.1109/tmc.2026.3757144": "2026-11-25"
  },
  "ieee_xplore_checked": "2026-11-16",
  "ieee_swept_ids": [
@@ -432,9 +434,84 @@
   "S97130795",
   "S98183460"
  ],
- "crossref_created": "2026-11-24",
+ "crossref_created": "2026-11-25",
  "crossref_version": 2,
  "papers": [
+  {
+   "id": "arxiv:2611.31804",
+   "title": "Federated Policy Gradient for Dynamic Consensus: Gradient Dominance and Topological Bounds",
+   "authors": [
+    "Maryam Babazadeh"
+   ],
+   "abstract": "This paper presents a federated optimization framework for dynamic consensus in homogeneous multi-agent systems. The underlying problem is challenged by the communication graph's spectral properties, which induce spatial heterogeneity and complicate decentralized control even when the dynamics of the agents are completely known. The problem is addressed in this paper by bridging distributed control theory with federated policy gradients. Accordingly, a comprehensive optimization landscape for dynamic consensus is established through a modal decomposition formulation. Specifically, a parameterized suboptimality bound is characterized that explicitly decouples the true aggregate policy gradient from the network covariance mismatch. Building on this formulation, sufficient conditions based on the graph's Laplacian spectrum are derived to recover exact gradient dominance, which guarantees convergence to the global consensus policy and establishes a lower bound on the achievable dominance coefficient. Furthermore, a Federated model-free consensus algorithm is proposed that utilizes zeroth-order exploration alongside a bisection-based discount factor annealing mechanism, successfully eliminating the need for an initial stabilizing policy. This approach achieves linear global convergence for policy optimization subroutines while maintaining strictly bounded outer iterations until dynamic consensus is achieved. Through extensive simulation studies and comparative feasibility analyses across diverse network topologies, it is demonstrated that the proposed federated approach consistently outperforms existing model-based and data-driven separation-based techniques.",
+   "published": "2026-11-24",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.31804"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.31804v1",
+    "PDF": "https://arxiv.org/pdf/2611.31804v1"
+   },
+   "added": "2026-11-25T02:32+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tcc.2026.3757203",
+   "title": "Prune and Distill to Thrive: Lightweight Driver Distraction Behavior Recognition Based on Federated Vehicular Edge Clouds",
+   "authors": [
+    "Yishan Chen",
+    "Bing Li",
+    "Mengfan Teng",
+    "Runshan Xie",
+    "Qing Xu",
+    "Guanjie Cheng"
+   ],
+   "abstract": "",
+   "published": "2026-11-24",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Cloud Computing",
+   "dois": [
+    "10.1109/tcc.2026.3757203"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tcc.2026.3757203"
+   },
+   "added": "2026-11-25T02:32+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tmc.2026.3757144",
+   "title": "COVE-FL: Robust Covert AirComp-Enabled Federated Edge Learning Via Artificial Noise",
+   "authors": [
+    "Chen Dong",
+    "Bowei Cheng",
+    "Haiming Jin",
+    "Weiting Zhang",
+    "Yizhong Liu",
+    "Chenhao Ying",
+    "Yuan Luo"
+   ],
+   "abstract": "",
+   "published": "2026-11-24",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Mobile Computing",
+   "dois": [
+    "10.1109/tmc.2026.3757144"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tmc.2026.3757144"
+   },
+   "added": "2026-11-25T02:32+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
   {
    "id": "10.1109/tdsc.2026.3756699",
    "title": "Towards Breaking the Impossibility: Collusion-Resistant Verifiable Aggregation Without Trusted Setup for Federated Learning",
@@ -582,6 +659,202 @@
    "added": "2026-11-24T03:58+00:00",
    "fl": true,
    "tab": "conf",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.31527",
+   "title": "ECLIPSE: Embedding-Centered Foundation-Model Federated Knowledge Transfer for Data-Free Edge Intelligence",
+   "authors": [
+    "S. Kawa Atapour",
+    "S. Jamal Seyedmohammadi",
+    "Maryam Hosseini",
+    "S. Mohammad Sheikholeslami",
+    "Jamshid Abouei",
+    "Konstantinos Plataniotis",
+    "Arash Mohammadi"
+   ],
+   "abstract": "Foundation Models (FMs) are envisioned to become an integral component of intelligent federated edge networks because of their strong representation and generalization capabilities. However, their integration into resource-constrained and privacy-sensitive edge environments remains challenging. This challenge is particularly pronounced in data-free settings, where no shared, public, or server-accessible reference dataset is available to establish a common reference space for aligning distributed knowledge. To address this challenge, we propose ECLIPSE, which is an embedding-centered FM-based federated knowledge transfer framework developed for data-free edge intelligence. ECLIPSE enables edge intelligence capitalizing on a server-hosted FM without sharing raw data, local models, or a public reference dataset. It establishes a shared embedding reference space through which edge devices encode their local task knowledge. Only the resulting embeddings are transmitted to the server for alignment and aggregation. Using the aggregated embeddings, the server constructs a task-aware surrogate dataset through an embedding-guided generative process. This surrogate dataset is then used to adapt the server-hosted FM to the downstream task. The adapted FM is subsequently distilled into a lightweight global model and distributed to the edge devices. This process allows edge devices to benefit from both distributed task knowledge and the generalization capabilities of the FM. Experimental results across diverse classification datasets show that ECLIPSE outperforms conventional Federated Learning (FL) and data-free Federated Knowledge-Transfer (FKT) baselines. It also achieves competitive performance compared with databased approaches. Furthermore, the framework remains robust under statistical and model heterogeneity across different data distributions and local architectures.",
+   "published": "2026-11-23",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.31527"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.31527v1",
+    "PDF": "https://arxiv.org/pdf/2611.31527v1"
+   },
+   "added": "2026-11-25T02:32+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.31331",
+   "title": "Trustworthy Edge AI: Security, Privacy, and Resilience for Distributed Intelligence",
+   "authors": [
+    "Jaydip Sen",
+    "Subhasis Dasgupta"
+   ],
+   "abstract": "This chapter examines the principles and emerging research directions for building secure, privacy-preserving, and resilient Edge Artificial Intelligence (Edge AI) systems. As intelligence shifts from centralized clouds to distributed edge environments, challenges arise in ensuring data integrity, privacy, and reliable operation under adversarial and uncertain conditions. The chapter analyzes Edge AI architectures, emphasizing the expanded attack surface due to heterogeneous devices, resource constraints, and dynamic networks. It reviews core security mechanisms, including hardware-rooted trust, zero-trust models, secure communication, and attestation. Privacy-preserving approaches, such as federated learning, secure aggregation, and differential privacy, enable collaborative intelligence without centralized data sharing. Resilience strategies, including fault tolerance, adversarial robustness, and adaptive orchestration, are also explored. Case studies from smart cities, autonomous vehicles, healthcare, and industrial IoT illustrate practical trade-offs. The chapter advocates a holistic, cross-layer design integrating security, privacy, and resilience for trustworthy edge intelligence.",
+   "published": "2026-11-23",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.31331"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.31331v1",
+    "PDF": "https://arxiv.org/pdf/2611.31331v1"
+   },
+   "added": "2026-11-25T02:32+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.30381",
+   "title": "Placing the Control Plane: Cloud-Native Federated Learning Across Batch-Scheduled HPC",
+   "authors": [
+    "Paul J. Wright",
+    "Huw Day",
+    "Ryan K. Daniels",
+    "Simon Li",
+    "Ruairidh MacLeod",
+    "Rob Baxter",
+    "Abdelwahab Kawafi",
+    "Richard Lane",
+    "Christopher Woods",
+    "Sadaf R. Alam"
+   ],
+   "abstract": "The United Kingdom's AI Research Resource (AIRR) opens national supercomputers to a community familiar with always-reachable cloud services. With batch-scheduled HPC, a user requests a time-bounded allocation that is then reclaimed. Federated Learning (FL) exposes this tension, pairing a long-lived control plane with short-lived training. We characterize the resulting placement asymmetry: the coordination server sees only model updates and control metadata, so it can sit on neutral infrastructure, whereas the client control process is bound to the participating site's data and must remain within its trust boundary. The outbound-only connection this implies is also how edge clients connect, though the batch-scheduler mismatch is specific to HPC. We demonstrate a cross-silo federation spanning three independently administered systems (Isambard-AI, Isambard 3, and Zenith) using unmodified production FL frameworks (FLARE-wrapped Flower), measure the cost the client placement incurs, and propose Kubernetes-as-a-service as the in-boundary home for the persistent process.",
+   "published": "2026-11-23",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.30381"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.30381v1",
+    "PDF": "https://arxiv.org/pdf/2611.30381v1"
+   },
+   "note": "Accepted at The 1st International Workshop on Edge-Cloud-HPC Operational Continuum (ECHO), co-located with SC26, Chicago",
+   "added": "2026-11-25T02:32+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.29867",
+   "title": "FL-CsLoc-DH: A Federated Learning-Based Crowdsensing Localization under Dual Heterogeneity",
+   "authors": [
+    "Xin Cheng",
+    "Binxu Wang",
+    "Zixuan Ai",
+    "Yuqing Yang",
+    "Yu He",
+    "Feng Shu",
+    "Guangjie Han"
+   ],
+   "abstract": "Mobile Crowdsensing (MCS) provides a scalable way to collect indoor fingerprints and reduce professional calibration effort. To protect the location privacy of participating clients, Federated Learning (FL) is used so that raw fingerprints and measurement trajectories remain local. However, owing to the open and uncontrollable nature of MCS, participating clients collect fingerprints in different propagation environments and possess unequal labeling availability. These conditions jointly cause data and annotation heterogeneity, which degrades FL-based crowdsensing localization. In this work, we propose FL-CsLoc-DH, a federated semi-supervised learning framework for crowdsensing localization under dual heterogeneity. FL-CsLoc-DH coordinates Two-Stage Noisy Gradient Rejection (TS-NGR), Soft Fisher Confidence Alignment (S-FCA), and Trajectory-Smoothed Model Averaging (T-SMA) throughout localization model learning. TS-NGR suppresses unreliable client updates caused jointly by environment dependent data shifts and noisy pseudo labels. S-FCA limits parameter increments dominated by unlabeled data, thereby alleviating annotation heterogeneity during local training. T-SMA smooths the aggregated global localization model trajectory to reduce drift induced by data heterogeneity. Experiment results show that the three mechanisms provide complementary improvements in localization accuracy under the MCS environment while retaining raw client data locally.",
+   "published": "2026-11-23",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.29867"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.29867v1",
+    "PDF": "https://arxiv.org/pdf/2611.29867v1"
+   },
+   "added": "2026-11-25T02:32+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-79242-w",
+   "title": "LitMOF: An LLM Multi-Agent for Literature-Validated Metal-Organic Frameworks Database Correction and Expansion",
+   "authors": [
+    "Honghui Kim",
+    "Dohoon Kim",
+    "Jihan Kim"
+   ],
+   "abstract": "Metal\u2013organic framework databases have grown rapidly through experimental deposition and large-scale literature extraction, yet recent analyses indicate that nearly half of their entries contain substantial structural errors. These errors propagate through high-throughput screening and machine-learning workflows, limiting the reliability of data-driven materials discovery. Repairing them is difficult because the necessary evidence is scattered across crystallographic files, synthesis descriptions, and the primary literature. Here we present LitMOF, a multi-agent framework driven by large language models that reads the original publication for each structure and cross-validates it against the deposited entry to repair errors. Applying LitMOF to the metal\u2013organic framework subset of the Cambridge Structural Database, we assembled LitMOF-DB, a curated set of 189,567 computation-ready structures that includes 9,277 repaired entries, or 69.1% of the not-computation-ready structures in the latest CoRE MOF database. The system also recovered 8,771 synthesized but undeposited frameworks missing from existing resources. Using direct air capture screening as a case study, we show that structural errors distort predicted adsorption energies and CO 2 /H 2 O selectivity, which misranks materials, produces false positives, and omits high-performing candidates. This work offers a route toward self-correcting scientific databases and toward database curation driven by large language models.",
+   "published": "2026-11-23",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-79242-w"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-79242-w",
+    "PDF": "https://doi.org/10.1038/s41467-026-79242-w"
+   },
+   "score": 7,
+   "added": "2026-11-25T02:32+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s44387-026-00175-2",
+   "title": "QAMNet: Co-designing deep learning with complex-valued computing machines",
+   "authors": [
+    "Marc Gong Bacvanski",
+    "Sri Krishna Vadlamani",
+    "Kfir Sulimany",
+    "Dirk Robert Englund"
+   ],
+   "abstract": "The energy consumption of inference has become critically important with the growing adoption of deep neural networks (DNNs). Analog optical neural networks (ONNs) can reduce the energy of matrix-vector multiplication below that of digital electronics. However, this promise is limited by digital-to-analog (DAC) conversion: even at low bit precision b , encoding the 2 b levels of weights and inputs into the analog domain requires specialized, power-hungry electronics. Quadrature-Amplitude Modulation (QAM), the dominant format in modern telecommunications, encodes information on both the in-phase and quadrature axes of a carrier. A consequence of this two-dimensional signaling is a quadratic O ( N 2 ) \u2192 O ( N ) saving in modulation energy over intensity-only modulation. Inspired by this advantage, we introduce QAMNet, an ONN architecture and hardware that fully utilizes the complex amplitude of light with QAM to achieve superior modulation-energy scaling. Using physics-based simulations of conventional telecommunications equipment, we show that QAMNet accelerates complex-valued DNNs with accuracies indistinguishable from digital hardware. Compared to standard ONNs, QAMNet ONNs: (1) attain higher accuracy above moderate total bit precision, (2) are more accurate above low energy budgets, and (3) are optimal when hardware bit precision is limited.",
+   "published": "2026-11-23",
+   "venue": "npj Artificial Intelligence",
+   "dois": [
+    "10.1038/s44387-026-00175-2"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s44387-026-00175-2",
+    "PDF": "https://doi.org/10.1038/s44387-026-00175-2"
+   },
+   "score": 11,
+   "added": "2026-11-25T02:32+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-79690-4",
+   "title": "A multimodal ultrasound foundation model for diagnosis of unexplained lymphadenopathy",
+   "authors": [
+    "Ran Cao",
+    "Yangyang Zhu",
+    "Zhibin Zhu",
+    "Li Qiu",
+    "Lin Chen",
+    "Fei Ouyang",
+    "Siyue Zhu",
+    "Nannan Zhao",
+    "Tao Jiang",
+    "Yifang Li",
+    "Jinxia Zhang",
+    "Yin Duan",
+    "Juan Song",
+    "Fang Nie",
+    "Dean Ta"
+   ],
+   "abstract": "Unexplained lymphadenopathy (ULA) leads to delayed diagnosis and increases the risk of disease progression due to the absence of specific clinical symptoms and indicative medical history during early stages, thereby increasing reliance on invasive biopsy. Existing ultrasound artificial intelligence approaches mainly use single-modality static images, limiting their generalizability and clinical applicability. Here, we develop and validate a multimodal model integrating B-mode ultrasound, color Doppler flow imaging, ultrasound elastography, contrast-enhanced ultrasound videos, and clinical data for benign-malignant differentiation, etiologic stratification, and metastatic-origin prediction. This observational study includes both retrospective and prospective cohorts and uses a total of 154,740 multimodal keyframe images from 6,549 patients with pathologically confirmed lymphadenopathy across seven Chinese centers and 11 scanner manufacturers. The model shows robust performance across internal, external, device-heterogeneity, and reader study cohorts, outperforms senior radiologists across hierarchical tasks, and improves radiologists\u2019 diagnostic performance across experience levels with model assistance, supporting its potential for noninvasive, efficient, and clinically aligned diagnosis of ULA.",
+   "published": "2026-11-23",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-79690-4"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-79690-4",
+    "PDF": "https://doi.org/10.1038/s41467-026-79690-4"
+   },
+   "score": 12,
+   "added": "2026-11-25T02:32+00:00",
+   "fl": false,
+   "tab": "nature",
    "graph": false
   },
   {
@@ -29402,248 +29675,6 @@
    "fl": true,
    "tab": "ieee-tx",
    "graph": false
-  },
-  {
-   "id": "10.1038/s42256-026-01296-8",
-   "title": "Life-inspired interoceptive artificial intelligence for autonomous and adaptive agents",
-   "authors": [
-    "Sung\u2010Woo Lee",
-    "Younghyun Oh",
-    "Hyunhoe An",
-    "Hyebhin Yoon",
-    "Karl John Friston",
-    "Seok\u2010Jun Hong",
-    "Choong\u2010Wan Woo"
-   ],
-   "abstract": "",
-   "published": "2026-08-26",
-   "venue": "Nature Machine Intelligence",
-   "dois": [
-    "10.1038/s42256-026-01296-8"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s42256-026-01296-8",
-    "PDF": "https://arxiv.org/pdf/2309.05999"
-   },
-   "score": 8,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-76378-7",
-   "title": "Scaling multimodal materials representation learning with synthetic narratives",
-   "authors": [
-    "Yang Jeong Park",
-    "Mayank Kumaran",
-    "Chia-Wei Hsu",
-    "Elsa Olivetti",
-    "Ju Li"
-   ],
-   "abstract": "Artificial intelligence is increasingly applied to inverse materials design, including crystals and molecules. For molecular systems, multimodal models that integrate chemical structures with natural language have enabled flexible, instruction-driven reasoning. However, approaches for crystalline materials remain limited by the scarcity and imbalanced bias of available crystal datasets and the weak semantic supervision provided by peer-reviewed literature. We introduce a contrastive language-crystals model (CLaC), a multimodal contrastive learning framework that aligns crystal structures with natural language, pre-trained on property-conditioned synthetic narratives of crystal structure-text pairs generated by language models. Here we show that, compared with models trained on literature-derived text, this property-grounded synthetic supervision enables semantic alignment unachievable with existing academic corpora. Embedding-space analyses reveal structured associations between language and crystal structures. These results establish a foundation for zero-shot, instruction-driven reasoning in crystalline materials. CLaC is a contrastive language-crystals model that aligns crystal structures with natural language using property-conditioned synthetic narratives, enabling zero-shot, instruction driven reasoning unachievable with literature-derived text alone.",
-   "published": "2026-08-26",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-76378-7"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-76378-7",
-    "PDF": "https://www.nature.com/articles/s41467-026-76378-7_reference.pdf"
-   },
-   "score": 11,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s42256-026-01294-w",
-   "title": "The epistemic debt of generative AI",
-   "authors": [
-    "Irene Unceta",
-    "Paula Sub\u00edas-Beltr\u00e1n",
-    "Oriol Pujol"
-   ],
-   "abstract": "",
-   "published": "2026-08-26",
-   "venue": "Nature Machine Intelligence",
-   "dois": [
-    "10.1038/s42256-026-01294-w"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s42256-026-01294-w"
-   },
-   "score": 8,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s43588-026-01026-5",
-   "title": "Longitudinal alignments and syntheses of multimodal clinical data for personalized medicine with the PULSE framework",
-   "authors": [
-    "Wei Wu",
-    "Gen Li",
-    "Kai Wang",
-    "Hui Xu",
-    "Haodi Xiao",
-    "Changxi Hu",
-    "Sian Liu",
-    "Cheng Tang",
-    "Fei Liu",
-    "Zixing Zou",
-    "B Li",
-    "Jinghang Li",
-    "Charlotte L Zhang",
-    "Hang Wong",
-    "I. Kenneth Chong",
-    "Wenyang Lu",
-    "Zhuo Sun",
-    "Yun Yin",
-    "Alexandre Loupy",
-    "Eric Karl Oermann",
-    "Saleem Al Dajani",
-    "Hao Zhu",
-    "Jonathan S. Gootenberg",
-    "Omar O. Abudayyeh",
-    "Vadim N. Gladyshev",
-    "John E.J. Rasko",
-    "Kang Zhang"
-   ],
-   "abstract": "Multimodal models capable of imputing diverse data used in single-cell biology studies provide potential foundational opportunities in clinical practice. However, patient data uniquely comprise longitudinal mosaic measurements that reflect underlying physiological dynamics and exhibit temporal covariation, demanding a specialized approach. Here we present Patient Unified Longitudinal Signal Engine (PULSE), a longitudinal self-supervised framework that explicitly encodes personalized past states (historical paired modalities) to reconstruct full profiles from subsequent unpaired measurements, thus enhancing current visit multimodal alignment and generation. Applied to the UK Biobank, PULSE accurately generates metabolomic profiles and proteomic profiles from sparse routine blood tests. Compared with the ground truth metabolomic data (251 biomarkers), PULSE-generated profiles outperformed all benchmark methods. Furthermore, the framework accommodates incorporation of retinal images, electronic health records and blood markers with disease prediction: models trained on the generated proteomic profiles achieved areas under the curve of 0.72-0.83 for six common diseases, comparable to that using ground-truth proteomic data. The PULSE framework demonstrates that cross-modal alignment captures the continuous spectrum of disease physiology and extracts robust features that transcend the limitations of traditional binary case-controls.",
-   "published": "2026-08-26",
-   "venue": "Nature Computational Science",
-   "dois": [
-    "10.1038/s43588-026-01026-5"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s43588-026-01026-5",
-    "PDF": "https://www.nature.com/articles/s43588-026-01026-5.pdf"
-   },
-   "score": 12,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-77067-1",
-   "title": "A machine-assisted framework for systematic error analysis in clinical concept extraction",
-   "authors": [
-    "Sunyang Fu",
-    "Qiuhao Lu",
-    "Jaerong Ahn",
-    "Fang Chen",
-    "Hanyun Yin",
-    "Julia Wen",
-    "Zhiyi Yue",
-    "Taylor Harrison",
-    "Jiang Jun",
-    "Xiaoyang Ruan",
-    "Ming Huang",
-    "Andrew Wen",
-    "Liwei Wang",
-    "Min Ji Kwak",
-    "Nahid J. Rianon",
-    "Yanshan Wang",
-    "Ruihong Huang",
-    "Hongfang Liu"
-   ],
-   "abstract": "Error analysis is critical for evaluating and improving clinical natural language processing (NLP) models, yet no standardized framework exists to support systematic error analysis for clinical concept extraction. Here we present MedError, a machine-assisted, human-in-the-loop framework integrating a validated error taxonomy, large language model (LLM)-assisted classification, and a structured annotation workflow. MedError is developed from 1187 unique errors manually curated from 4227 clinical notes across three institutions, spanning 25 error types and 48 clinical concept categories. Here we show that MedError supports both single-site and federated multisite error analysis through three complementary evaluations. First, benchmarking of six proprietary and open-source LLMs shows that automated error classification alone is insufficient without human involvement. Second, MedError-derived error feedback improves NLP extraction performance by 34\u201362% over an unstructured baseline across 11 cognitive status concepts. Third, prospective external validation at two independent institutions demonstrates improved agreement with expert-adjudicated annotations by up to 30% (McNemar exact test, p = 0.035, \u03c6 = 0.38) and reduced annotation time by 26\u201333%, providing a systematic and practical framework for real-world clinical NLP deployment. MedError, a machine-assisted human-in-the-loop framework, improves the standardization, validity, and efficiency of clinical NLP error analysis, supporting more transparent and trustworthy model deployment.",
-   "published": "2026-08-26",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-77067-1"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-77067-1",
-    "PDF": "https://www.nature.com/articles/s41467-026-77067-1_reference.pdf"
-   },
-   "score": 18,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": true,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-77102-1",
-   "title": "Deep learning aging marker from retinal images unveils sex-specific clinical and genetic signatures",
-   "authors": [
-    "Olga Trofimova",
-    "Leah B\u00f6ttger",
-    "Sacha Bors",
-    "Yating Pan",
-    "Bart J. Liefers",
-    "Jose Vargas Quiros",
-    "Victor A. de Vries",
-    "Michael J. Beyeler",
-    "David M. Presby",
-    "Dennis Bontempi",
-    "Janna Hastings",
-    "Caroline C. W. Klaver",
-    "Ciara Bergin",
-    "Bogdan Draganski",
-    "Adham Elwakil",
-    "Gy\u00f6rgyi V. Hamvas",
-    "Ilaria Iuliani",
-    "Ihor Kuras",
-    "Ilenia Meloni",
-    "Sof\u00eda Ort\u00edn Vela",
-    "Ian Quintas",
-    "Marc Schindewolf",
-    "Reinier O. Schlingemann",
-    "Mattia Tomasoni",
-    "Sven Bergmann"
-   ],
-   "abstract": "Retinal fundus images offer a non-invasive window into systemic aging. Here, we fine-tune a foundation model (RETFound) to predict chronological age from color fundus images in 71,343 participants from the UK Biobank, achieving a mean absolute error of 2.85 years. The resulting retinal age gap, i.e. the difference between predicted and chronological age, is associated with cardiometabolic traits, inflammation, cognitive performance, all-cause mortality, dementia, cancer, and incident cardiovascular disease. Genome-wide analyses identify genes related to longevity, metabolism, neurodegeneration, and age-related eye diseases. Sex-stratified models reveal consistent performance but divergent biological signatures: males have stronger links to metabolic syndrome, while in females, both model attention and genetics point to a greater involvement of retinal vasculature. Additional analyses indicate that retinal aging patterns in females vary across the menopausal transition, with postmenopausal females exhibiting higher retinal age gap values and clinical associations that more closely resemble those observed in males. Our study positions the retinal age gap as a biologically relevant and sex-specific phenotype associated with multiple aging-related diseases and outcomes beyond conventional risk factors, including chronological age.",
-   "published": "2026-08-26",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-77102-1"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-77102-1",
-    "PDF": "https://www.nature.com/articles/s41467-026-77102-1_reference.pdf"
-   },
-   "score": 7,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s42256-026-01286-w",
-   "title": "A knowledge-driven framework for predicting single-cell responses for unprofiled drugs",
-   "authors": [
-    "Jinghao Feng",
-    "Ziheng Zhao",
-    "Xiaoman Zhang",
-    "Mingfei Liu",
-    "Jingyi Chen",
-    "Xingran Quan",
-    "Boyang Fu",
-    "Jian Zhang",
-    "Yanfeng Wang",
-    "Ya Zhang",
-    "Weidi Xie"
-   ],
-   "abstract": "Predicting cellular response to chemical perturbations is critical to build virtual cells, yet experimentally profiled compounds cover only a small fraction of this space. Existing models struggle to generalize to unprofiled compounds, as they typically treat drugs as isolated identifiers without encoding their mechanistic relationships. Here, we present MAP, a framework that integrates structured biological knowledge into cellular perturbation modelling and supports zero-shot prediction for small molecules with scarce or absent profiles. (1) We construct MAP-KG, a knowledge graph that unifies 14 public resources, spanning 187,089 drugs, 22,924 genes and 694,246 mechanistic relationships. (2) We propose a knowledge-driven pretraining strategy that aligns molecular structures, protein sequences and textual mechanistic descriptions into a unified embedding space, producing mechanism-aware and transferable gene and compound embeddings. These representations are then coupled with a pretrained single-cell foundation model to condition perturbation response prediction. (3) We evaluate MAP under two zero-shot generalization regimes: unseen cell type\u2013drug combinations and a stricter setting of unprofiled drugs, where it improves the top-50 differentially expressed gene Pearson delta correlation by up to +12.3% and +11.8%, respectively, over the strongest baselines across three benchmarks. We further perform pathway-level functional analysis via gene set enrichment analysis for in silico screening, where MAP predicts mechanism-consistent programmes on unprofiled candidate drugs, and prioritizes four out of five approved anti-cancer drugs in A-549 (non-small-cell lung cancer). Feng et al. introduce MAP, an artificial intelligence framework that integrates biological mechanism knowledge to predict how cells respond to chemical perturbation, improving generalization to untested drugs and prioritizing cancer drug candidates in virtual screening.",
-   "published": "2026-08-26",
-   "venue": "Nature Machine Intelligence",
-   "dois": [
-    "10.1038/s42256-026-01286-w"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s42256-026-01286-w",
-    "PDF": "https://doi.org/10.1038/s42256-026-01286-w"
-   },
-   "score": 8,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": true
   },
   {
    "id": "10.1109/tnse.2026.3727620",
@@ -60953,160 +60984,6 @@
    "links": {
     "Publisher": "https://doi.org/10.1109/tmlcn.2025.3637083",
     "PDF": "https://doi.org/10.1109/tmlcn.2025.3637083"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tnse.2025.3636550",
-   "title": "An Information-Theoretic Analysis for Federated Learning Under Concept Drift",
-   "authors": [
-    "Fu Peng",
-    "Meng Zhang",
-    "Ming Tang"
-   ],
-   "abstract": "Recent studies in federated learning (FL) commonly train models on static datasets. However, real-world data often arrives as streams with shifting distributions, causing performance degradation known as concept drift. This paper analyzes FL performance under concept drift using information theory and proposes an algorithm to mitigate the performance degradation. We model concept drift as a Markov chain and introduce the Stationary Generalization Error to assess a model's capability to capture characteristics of future unseen data. Its upper bound is derived using KL divergence and mutual information. We study three drift patterns (periodic, gradual, and random) and their impact on FL performance. Inspired by this, we propose an algorithm that regularizes the empirical risk minimization approach with KL divergence and mutual information, thereby enhancing long-term performance. We also explore the performance-cost tradeoff by identifying a Pareto front. To validate our approach, we build an FL testbed using Raspberry Pi4 devices. Experimental results corroborate with theoretical findings, confirming that drift patterns significantly affect performance. Our method consistently outperforms existing approaches for these three patterns, demonstrating its effectiveness in adapting concept drift in FL.",
-   "published": "2025-11-24",
-   "venue": "IEEE Transactions on Network Science and Engineering",
-   "dois": [
-    "10.1109/tnse.2025.3636550"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tnse.2025.3636550",
-    "PDF": "https://arxiv.org/pdf/2506.21036"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tmc.2025.3636225",
-   "title": "A Radical Heavy-Ball Method for Gradient Acceleration in Communication-Efficient Mobile Federated Learning",
-   "authors": [
-    "Boyuan Li",
-    "Zijian Li",
-    "Yafei Li",
-    "Mingliang Xu",
-    "Shengbo Chen",
-    "Cong Shen",
-    "Tony Q. S. Quek"
-   ],
-   "abstract": "Federated Learning (FL) is widely used in mobile computing as a communication-efficient distributed machine learning (ML) paradigm; however, it faces challenges such as model convergence to local optima or slow convergence due to the heterogeneity of client data. To mitigate data heterogeneity, the Nesterov Accelerated Gradient (NAG) method demonstrates its effectiveness by predictively updating the gradient to improve system performance. However, the performance of NAG depends heavily on the choice of decay coefficients; larger coefficients have greater acceleration but may lead to an unstable convergence process due to their unreasonable prediction of the descent gradient. To solve the above problems, this paper proposes the first radical heavy ball (RHB) method that combines momentum and NAG. In Stochastic Gradient Descent (SGD), momentum stabilizes the gradient descent process by integrating the historical gradients to update the parameters, and the RHB strategy decouples a single decay coefficient into an NAG component and a momentum component. The RHB introduces a gradient recall after each gradient acceleration by the NAG to strengthen the NAG's perception of the historical gradients, thus stabilizing the gradient descent process. By weighing the historical gradients and the predicted gradient, RHB effectively mitigates the instability of NAG convergence and demonstrates better performance. As a result, the algorithm further mitigates the impact of customer data heterogeneity in FL and can effectively deliver global update information to participants without additional communication costs. We conduct comprehensive experiments in a binary function, single node, and federated model environment to analyze the convergence properties in non-convex loss functions. RHB exhibits better performance and less computational overhead than many existing algorithms.",
-   "published": "2025-11-24",
-   "venue": "IEEE Transactions on Mobile Computing",
-   "dois": [
-    "10.1109/tmc.2025.3636225"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tmc.2025.3636225"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tci.2025.3636749",
-   "title": "Multi-Slice Knowledge-Driven System Matrix Calibration in Magnetic Particle Imaging",
-   "authors": [
-    "Pengyue Guo",
-    "Zechen Wei",
-    "Yu Zeng",
-    "Bingye Wang",
-    "Yidong Liao",
-    "Jiawei Hu",
-    "Lingwen Hou",
-    "Kai Liu",
-    "Ning He",
-    "Qibin Wang",
-    "Lei Li",
-    "Hui Hui",
-    "Yihan Wang",
-    "Shouping Zhu",
-    "Jie Tian"
-   ],
-   "abstract": "Magnetic particle imaging (MPI) is a novel tomographic imaging technique with high sensitivity and high temporal resolution. Reconstruction methods based on the system matrix (SM) enable accurate estimation of the concentration distribution of magnetic nanoparticles. However, SM calibration measurement is highly time-consuming, and the SM needs to be recalibrated whenever the scan parameters, particle types, or even the particle environment change. Although previous studies have proposed methods to accelerate SM calibration, these approaches do not fully exploit the similarity between the two-dimensional (2D) SMs of adjacent slices. In this study, we propose a multi-slice knowledge-driven SM calibration method, MKD-SM, which leverages knowledge obtained from multiple adjacent x-y slices to improve SM calibration accuracy at high downsampling ratios. Specifically, based on the significant similarity of the 2D SMs from adjacent x-y slices, MKD-SM employs a cross-misaligned sampling method to obtain the low-resolution (LR) SM within the field of view (FOV), ensuring that the 2D LR SMs obtained from adjacent slices exhibit complementarity. Additionally, we use a federated affinity fusion method to aggregate the complementary knowledge across multiple adjacent slices and utilize an architecture based on a cascade of CNNs and transformers for high-resolution (HR) SM recovery. Experimental results on the public OpenMPI dataset demonstrate that MKD-SM outperforms existing calibration methods, achieving higher SM calibration accuracy, particularly at high downsampling ratios. Ablation studies confirm the effectiveness of leveraging knowledge from adjacent slices. Furthermore, the proposed method has been successfully applied to an in-house field-free line (FFL) MPI scanner, enabling HR image reconstruction with LR SM measurements.",
-   "published": "2025-11-24",
-   "venue": "IEEE Transactions on Computational Imaging",
-   "dois": [
-    "10.1109/tci.2025.3636749"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tci.2025.3636749"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/twc.2025.3632819",
-   "title": "Task-Agnostic Semantic Communications Relying on Information Bottleneck and Federated Meta-Learning",
-   "authors": [
-    "Hao Wei",
-    "Wen Wang",
-    "Wanli Ni",
-    "Wenjun Xu",
-    "Yongming Huang",
-    "Dusit Tao Niyato",
-    "Ping Zhang"
-   ],
-   "abstract": "As a paradigm shift towards pervasive intelligence, semantic communication (SemCom) has shown great potentials to improve communication efficiency and provide user-centric services by delivering task-oriented semantic meanings. However, the exponential growth in connected devices, data volumes, and communication demands presents significant challenges for practical SemCom design, particularly in resource-constrained wireless networks. In this work, we propose a task-agnostic semantic communication (TASC) framework capable of supporting multimodal data across diverse tasks. To investigate the interplay between communication and intelligent tasks from an information-theoretic perspective, we introduce a distributed multimodal information bottleneck (DMIB) principle, which enables the extraction of minimal sufficient unimodal and multimodal representations by eliminating redundant information while preserving task-relevant semantics. To further reduce the communication overhead, we develop an adaptive semantic feature transmission method under dynamic channel conditions. Then, TASC is trained based on federated meta-learning (FML) to learn a well-initialized model for rapid adaptation and generalization. To gain deep insights, we conduct theoretical analysis and devise resource management to accelerate convergence while minimizing the training latency and energy cost. Moreover, we develop a joint user selection and resource allocation algorithm to address the non-convex problem with theoretical guarantees. Extensive simulation results validate the effectiveness and superiority of the proposed TASC compared to baselines.",
-   "published": "2025-11-24",
-   "venue": "IEEE Transactions on Wireless Communications",
-   "dois": [
-    "10.1109/twc.2025.3632819"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/twc.2025.3632819",
-    "PDF": "https://arxiv.org/pdf/2504.21723"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tmc.2025.3636594",
-   "title": "Efficient and Resilient Packet Recovery for Federated Learning via Approximation",
-   "authors": [
-    "Jungmin Kwon",
-    "Hyunggon Park"
-   ],
-   "abstract": "To alleviate network congestion resulting from packet retransmission in Federated Learning (FL) systems, the User Datagram Protocol (UDP) has been adopted. However, data loss under UDP inevitably degrades FL performance, as learning is sensitive to incomplete model parameters. This paper addresses such degradation by proposing a low-rank approximation\u2013based parameter transmission method for FL. This approach decomposes model parameters at the transmitter to extract dominant singular values, which are essential for accurate approximation of the model parameters at the receiver. Although the selective delivery of singular values and vectors reduces communication overhead, their loss would cause severe performance degradation, making it essential to employ protection mechanisms. Therefore, to protect the extracted singular values and vectors, we use Systematic Network Coding (SysNC). The SysNC with low-rank approximation can recover original information under a packet loss environment, enhancing robustness against partial loss during the transmission of model parameters. Theoretical analysis and experiments confirm its effectiveness. As an example from our experiments, with a packet loss ratio of p = 0.1, the proposed method achieves over 96% of the accuracy observed in the packet loss-free case, while reducing the end-to-end delay for model parameter transmission by approximately 50% compared to a UDP baseline.",
-   "published": "2025-11-24",
-   "venue": "IEEE Transactions on Mobile Computing",
-   "dois": [
-    "10.1109/tmc.2025.3636594"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tmc.2025.3636594"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tcasai.2025.3635066",
-   "title": "A Robust DRAM/MRAM In-Memory Computing Architecture With Analog MVM and Intrinsic Authentication for Edge AI",
-   "authors": [
-    "Seyed Mahdi Memarian",
-    "Amir Bahador",
-    "Mohammad Hossein Moaiyeri",
-    "M. Hassan Najafi"
-   ],
-   "abstract": "The growing complexity of modern computing workloads, particularly in emerging applications such as artificial intelligence, has intensified the need for innovative memory architectures that balance high performance, energy efficiency, reliability, and security compared to conventional memory systems. This paper proposes a secure hybrid DRAM/MRAM memory architecture capable of in-memory computing (IMC) by seamlessly integrating volatile and non-volatile memory technologies. The design leverages DRAM\u2019s fast read/write capabilities alongside MRAM\u2019s scalability and endurance to support real-time and persistent computing tasks. The architecture incorporates fully analog low-power IMC crossbars for efficient matrix-vector multiplication (MVM), eliminating the need for energy-intensive analog-to-digital and digital-to-analog conversions. Additionally, digital components enable nonlinear vector operations, enhancing the system\u2019s functionality for deep neural network (DNN) applications. To ensure robust security for applications such as federated learning or model intellectual property (IP) protection, a Physical Unclonable Function (PUF) based on pre-charged sense amplifiers is also implemented, safeguarding against data tampering and unauthorized access to the network\u2019s trained values stored on the non-volatile part of the system. The detailed post-layout simulations highlight the proposed architecture\u2019s ability to enhance energy efficiency, computational performance, and security, thereby providing a versatile solution for addressing the challenges of next-generation computing.",
-   "published": "2025-11-24",
-   "venue": "IEEE transactions on circuits and systems for artificial intelligence.",
-   "dois": [
-    "10.1109/tcasai.2025.3635066"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tcasai.2025.3635066"
    },
    "added": "2026-11-16T19:07+00:00",
    "fl": true,
