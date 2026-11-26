@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T02:32+00:00",
+ "updated": "2026-11-26T01:47+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -319,7 +319,15 @@
   "10.1109/tetci.2026.3749286": "2026-11-24",
   "10.1109/cvaa71532.2026.11782352": "2026-11-24",
   "10.1109/tcc.2026.3757203": "2026-11-25",
-  "10.1109/tmc.2026.3757144": "2026-11-25"
+  "10.1109/tmc.2026.3757144": "2026-11-25",
+  "10.1109/tc.2026.3756598": "2026-11-26",
+  "10.1109/tcomm.2026.3757400": "2026-11-26",
+  "10.1109/tifs.2026.3757532": "2026-11-26",
+  "10.1109/tmc.2026.3757375": "2026-11-26",
+  "10.1109/tgrs.2026.3750999": "2026-11-26",
+  "10.1109/tifs.2026.3757581": "2026-11-26",
+  "10.1109/tifs.2026.3757646": "2026-11-26",
+  "10.1109/tvt.2026.3756925": "2026-11-26"
  },
  "ieee_xplore_checked": "2026-11-16",
  "ieee_swept_ids": [
@@ -434,9 +442,217 @@
   "S97130795",
   "S98183460"
  ],
- "crossref_created": "2026-11-25",
+ "crossref_created": "2026-11-26",
  "crossref_version": 2,
  "papers": [
+  {
+   "id": "10.1109/tc.2026.3756598",
+   "title": "FedRepre: An Efficient and Scalable Federated Learning Framework with Client Representative Mechanism and Specialized Server Architecture",
+   "authors": [
+    "Yitu Wang",
+    "Minxue Tang",
+    "Hanqiu Chen",
+    "Shiyu Li",
+    "Yiqu Liu",
+    "Qilin Zheng",
+    "Cong Guo",
+    "Jingwei Sun",
+    "Andrew Chang",
+    "Cong Callie Hao",
+    "Hai Helen Li",
+    "Yiran Chen"
+   ],
+   "abstract": "",
+   "published": "2026-11-25",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Computers",
+   "dois": [
+    "10.1109/tc.2026.3756598"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tc.2026.3756598"
+   },
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tcomm.2026.3757400",
+   "title": "Decentralized Online Client Association with Adaptive Training in Hierarchical Federated Learning",
+   "authors": [
+    "Gael S. Mubibya",
+    "Elmahdi Driouch",
+    "Mustapha Kardouchi"
+   ],
+   "abstract": "",
+   "published": "2026-11-25",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Communications",
+   "dois": [
+    "10.1109/tcomm.2026.3757400"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tcomm.2026.3757400"
+   },
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tifs.2026.3757532",
+   "title": "Is the Trigger Essential? A Feature-Based Triggerless Backdoor Attack in Vertical Federated Learning",
+   "authors": [
+    "Yige Liu",
+    "Yiwei Lou",
+    "Che Wang",
+    "Yongzhi Cao",
+    "Hanpin Wang"
+   ],
+   "abstract": "",
+   "published": "2026-11-25",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Information Forensics and Security",
+   "dois": [
+    "10.1109/tifs.2026.3757532"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tifs.2026.3757532"
+   },
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tmc.2026.3757375",
+   "title": "Privacy-Preserving Task Offloading in Marine Edge Computing: A Federated Reinforcement Learning Approach",
+   "authors": [
+    "Shuai Liu",
+    "Jianhao Yu",
+    "Qingfang Jiang",
+    "Wenfeng Li",
+    "Kanglian Zhao"
+   ],
+   "abstract": "",
+   "published": "2026-11-25",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Mobile Computing",
+   "dois": [
+    "10.1109/tmc.2026.3757375"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tmc.2026.3757375"
+   },
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tgrs.2026.3750999",
+   "title": "UAV-Based Federated Learning Incentive Mechanism for Latency-Aware Multimodal Target Tracking",
+   "authors": [
+    "Wanyu Qiu",
+    "Fulin Luo",
+    "Chuan Fu",
+    "Xiao Yang",
+    "Qiankun Zuo"
+   ],
+   "abstract": "",
+   "published": "2026-11-25",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Geoscience and Remote Sensing",
+   "dois": [
+    "10.1109/tgrs.2026.3750999"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tgrs.2026.3750999"
+   },
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tifs.2026.3757581",
+   "title": "Gradient Inversion Attack for Private Text Reconstruction in Federated LoRA Fine-Tuning",
+   "authors": [
+    "Lele Zheng",
+    "Feiyang Yuan",
+    "Ke Cheng",
+    "Tao Zhang",
+    "Yang Cao",
+    "Naikuo Chen",
+    "Yulong Shen"
+   ],
+   "abstract": "",
+   "published": "2026-11-25",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Information Forensics and Security",
+   "dois": [
+    "10.1109/tifs.2026.3757581"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tifs.2026.3757581"
+   },
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tifs.2026.3757646",
+   "title": "FedDME: Federated Decoupled Mixture-of-Experts for Palm Recognition Under Complex Heterogeneity",
+   "authors": [
+    "Shuyi Li",
+    "Jianian Hu",
+    "Bob Zhang",
+    "Wei Jia",
+    "Shanping Yu",
+    "Lifang Wu"
+   ],
+   "abstract": "",
+   "published": "2026-11-25",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Information Forensics and Security",
+   "dois": [
+    "10.1109/tifs.2026.3757646"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tifs.2026.3757646"
+   },
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tvt.2026.3756925",
+   "title": "Staleness-Aware Pruning and Resource Allocation for Wireless Multimodal Federated Learning",
+   "authors": [
+    "Chunfeng Xie",
+    "Zhixiong Chen",
+    "Wenqiang Yi",
+    "Chan-Tong Lam",
+    "Arumugam Nallanathan"
+   ],
+   "abstract": "",
+   "published": "2026-11-25",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Vehicular Technology",
+   "dois": [
+    "10.1109/tvt.2026.3756925"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tvt.2026.3756925"
+   },
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
   {
    "id": "arxiv:2611.31804",
    "title": "Federated Policy Gradient for Dynamic Consensus: Gradient Dominance and Topological Bounds",
@@ -510,6 +726,202 @@
    "added": "2026-11-25T02:32+00:00",
    "fl": true,
    "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.32952",
+   "title": "FedTumor-IoMT: Federated Learning-Aided Brain Tumor Diagnosis on Resource-Constrained Edge IoMT Devices",
+   "authors": [
+    "Pranshu Jena",
+    "Prajnyajit Mohanty",
+    "Umesh C. Pati"
+   ],
+   "abstract": "Joint brain tumor segmentation and classification models are computationally intensive, limiting their training on resource-constrained edge platforms and restricting privacy-preserving Federated Learning FL in the Internet of Medical Things IoMT. Existing approaches either perform both tasks on GPU-equipped workstations or support only classification on edge devices. To address this gap, this work proposes a lightweight multitask FL framework for joint segmentation and classification through local edge training. A shared pretrained LiteMedSAM encoder with TinyViT extracts features for a coordinate-attention-based segmentation decoder and a segmentation-guided classification head, eliminating a separate feature extractor. Selective encoder freezing retains 95\\% trainable parameters while reducing on-device training costs. The proposed framework is experimentally validated on a laboratory testbed of five resource-constrained edge clients using 1,200 T1-weighted MRI samples. It achieves 94.20\\% classification accuracy, 88.53\\% DSC, 83.68\\% IoU, and 99.87\\% ROC-AUC. Its classification accuracy remains within 0.6\\% of the GPU-trained baseline of 95.21\\% across five FL rounds. The attention and feature refinement modules improve DSC and IoU by 3.82\\% and 4.60\\%, respectively, with 0.74 GFLOPs of additional computation. On edge hardware, the framework achieves 46.54 s inference latency, 52.8\\% CPU utilization, and a peak temperature of 65$^\\circ$C without thermal throttling. Its inference latency is observed to be 6.4--10.5 times lower than that of existing frameworks. These results demonstrate the feasibility of privacy-preserving joint brain tumor segmentation and classification on resource-constrained edge platforms.",
+   "published": "2026-11-24",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.32952"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.32952v1",
+    "PDF": "https://arxiv.org/pdf/2611.32952v1"
+   },
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.32509",
+   "title": "Analysis of Federated Graph Neural Networks for Predicting Nuclear Core Properties",
+   "authors": [
+    "Oliver Ko\u017eul",
+    "Mihailo Ili\u0107",
+    "Julia Bartos",
+    "Tuan Tran",
+    "Milo\u0161 Savi\u0107",
+    "Vladimir Kurbalija",
+    "Edo Frederix",
+    "Du\u0161an Jakoveti\u0107"
+   ],
+   "abstract": "Federated learning has grown in popularity owing to the increasing data privacy and safety concerns. It allows multiple parties to collaboratively train a model without exchanging their raw data. As an example of highly sensitive infrastructure of national importance, nuclear reactors benefit from this approach, where---while pooling multiple large datasets from different institutions could improve machine learning solutions---the confidentiality of the datasets is paramount. In this paper, we demonstrate that a graph neural network (GNN) outperforms the convolutional neural network (CNN) baseline in a federated setting for a use case concerning nuclear reactor core optimization. The GNN architecture is better suited for the nuclear reactor geometry as, unlike the CNN, it does not require padding the cylindrical core and does not assume translation invariance. The key finding of this work is that input representation is more important than model size and complexity. More sophisticated federated algorithms were employed, but the improvements derived were of lower magnitude. Experimenting with training corpus volume led to the discovery that greater fuel inventory variance is more beneficial than arrangements of existing cases, which is a direct consequence of data heterogeneity. Going forward, focus will remain on enhancing the input and readout representation.",
+   "published": "2026-11-24",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.32509"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.32509v1",
+    "PDF": "https://arxiv.org/pdf/2611.32509v1"
+   },
+   "note": "Accepted and to be presented at Middle-ware for Autonomous AIoT Systems in the Computing Continuum (MAIOT26)",
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": true
+  },
+  {
+   "id": "arxiv:2611.32174",
+   "title": "A Unified Control Framework for Gradient Inversion Defense in Federated Learning",
+   "authors": [
+    "Lianhai Ren",
+    "Chi Zhang"
+   ],
+   "abstract": "Gradient perturbations are widely recognized as an effective defense against gradient inversion attacks in federated learning, but they are equally known to impair optimization, creating a persistent tension between privacy and utility. In this paper, we show that existing gradient perturbation defenses, despite their different formulations, can be unified under a controlled dynamics framework, providing a cohesive understanding of their optimization behavior and enabling the derivation of universal convergence and safety conditions without relying on case-specific analyses. Leveraging this observation, we propose ``Near Orthogonal Gradient Projection (NODE)'', which injects perturbations only along directions orthogonal to the original gradient so that the defended gradient maintains a fixed cosine similarity with the true gradient. By preserving the first-order descent direction, NODE substantially reduces the optimization cost of strong perturbations while maintaining effective protection against gradient inversion attacks. We theoretically establish convergence guarantees under standard optimization assumptions and further show that, under mild conditions on the gradient distribution, NODE remains effective in preventing inversion attacks. Comprehensive experiments on multiple benchmark datasets, including CIFAR-10, ImageNet, and Chest X-ray, together with a variety of gradient inversion attacks, demonstrate that the proposed framework achieves an improved privacy--utility trade-off over existing defenses across a broad range of training settings.",
+   "published": "2026-11-24",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.32174"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.32174v1",
+    "PDF": "https://arxiv.org/pdf/2611.32174v1"
+   },
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.32019",
+   "title": "PFedHASNet: A Personalized Federated Hybrid Analog-Spike Network for Multi-Subject Motor Imagery EEG Decoding",
+   "authors": [
+    "Peijia Li",
+    "Ruidong Ma",
+    "Xianghong Lin",
+    "Xiangwen Wang",
+    "Guoyong Shi",
+    "Shuai Huang",
+    "Hongqi Li"
+   ],
+   "abstract": "Motor imagery electroencephalography (MI-EEG) data are often collected and stored separately across subjects or institutions, and EEG acquisition and annotation remain costly. Training models solely on individual subject data limits the use of information from other subjects, whereas centralizing raw EEG recordings raises privacy and data governance concerns. Federated learning (FL) enables collaborative model training across distributed clients without sharing raw EEG data, providing a practical approach to leveraging information from multiple subjects. Accordingly, we propose PFedHASNet, a personalized federated hybrid analog-spike network for MI-EEG decoding. The shared encoder integrates continuous-valued temporal features, leaky integrate-and-fire (LIF) spike responses, and channel-wise log-variance statistics through learnable fusion weights. Client-private residual adapters and classifiers perform subject-specific feature refinement and personalized prediction, respectively. Experiments on held-out trials from participating subjects across four public MI-EEG datasets show that PFedHASNet achieves the highest mean client macro-F1 among 18 model configurations in cross-model comparisons, while maintaining competitive decoding performance with a compact client-side model in comparisons using the same backbone. Ablation studies further examine the contributions of hybrid representations and personalization components to decoding performance.",
+   "published": "2026-11-24",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.32019"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.32019v1",
+    "PDF": "https://arxiv.org/pdf/2611.32019v1"
+   },
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": false
+  },
+  {
+   "id": "arxiv:2611.31880",
+   "title": "Multi Agent Reinforcement Learning enhanced Federated Learning for Predicting Remaining Useful Lifetime",
+   "authors": [
+    "Rajarshi Chattopadhyay",
+    "Chen-Khong Tham"
+   ],
+   "abstract": "Remaining useful life (RUL) prediction is central to Prognostics and Health Management (PHM). The growth of industrial IoT has unlocked large multivariate sensor streams and enabled deep models - especially Transformers - for long-horizon sequence learning. However, transformers are parameter-heavy and data-hungry, while operational datasets are often siloed and privacy-sensitive. Federated Learning (FL) addresses this by training across clients without raw data sharing, but in practice many clients connect over lossy wireless links where UDP is preferred for low latency, making model exchange vulnerable to packet drops. We present a cooperative multi-agent reinforcement learning (MARL) framework that adapts FL to lossy channels by selecting per-client layer subsets to transmit and capping retransmissions. This framework is trained with QMIX value-function factorization for scalability. We instantiate the approach with a Graph Convolution Position-Aware Transformer (GCPATr) for RUL forecasting. On the CMAPSS dataset, our MARL-enhanced FL (RL-FL) consistently improves mean square error over standard FL, with the largest gains at high packet loss (e.g., up to 18% improvement on FD003 at 50% loss). These results show that MARL is an effective countermeasure to wireless degradation in FL-based RUL prediction.",
+   "published": "2026-11-24",
+   "date_q": 3,
+   "venue": null,
+   "dois": [
+    "10.48550/arxiv.2611.31880"
+   ],
+   "links": {
+    "arXiv": "http://arxiv.org/abs/2611.31880v1",
+    "PDF": "https://arxiv.org/pdf/2611.31880v1"
+   },
+   "added": "2026-11-26T01:47+00:00",
+   "fl": true,
+   "tab": "preprint",
+   "graph": true
+  },
+  {
+   "id": "10.1038/s41467-026-79791-0",
+   "title": "EcoVAE: a generative deep learning method for global species distribution prediction",
+   "authors": [
+    "Yujing Yan",
+    "Bin Shao",
+    "Jiawei Yan",
+    "Charles \u201cChuck\u201d Davis"
+   ],
+   "abstract": "Anthropogenic pressures on biodiversity necessitate efficient and scalable methods to predict global species distributions. Current species distribution models (SDMs) face challenges with large-scale datasets, complex species associations, and data quality. Here, we introduce EcoVAE, an autoencoder-based generative model that integrates bioclimatic variables with georeferenced occurrences. The model is trained separately for plants, butterflies, and mammals to predict global distributions at both genus and species levels. Through unsupervised learning, EcoVAE captures underlying distribution patterns from large-scale species occurrence data. It achieves high precision and speed, outperforming traditional SDMs in spatial block cross-validation. EcoVAE also reveals signatures of species associations that align with known prey-predator relationships. Taken together, these capacities enable the robust evaluation of global sampling efforts and interpolates distributions in data-limited regions, offering new applications for biodiversity exploration and monitoring.",
+   "published": "2026-11-24",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-79791-0"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-79791-0",
+    "PDF": "https://doi.org/10.1038/s41467-026-79791-0"
+   },
+   "score": 7,
+   "added": "2026-11-26T01:47+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-78734-z",
+   "title": "A spectral-spatial interweaver for hyperdimensional photonic computing",
+   "authors": [
+    "Yun-Long Nie",
+    "Hang Song",
+    "De-Hui Huang",
+    "Yi Xie",
+    "Chao-Qian Li",
+    "Yu-Xuan Fu",
+    "Yixuan Chen",
+    "Xiao-Wen Shang",
+    "Feng Lu",
+    "Chao-Yang Zhang",
+    "Yu-Quan Peng",
+    "Chen-Ming Zhao",
+    "Chun-Yan Jin",
+    "Ya-Sen Yu",
+    "Chen-Shuo Xia",
+    "Yu-Lin Yu",
+    "Hai Yan",
+    "Yong-Xing Zhan",
+    "Jian-Peng Dou",
+    "Xiao-Yun Xu",
+    "Hao Long Tang",
+    "Xian\u2010Min Jin"
+   ],
+   "abstract": "Photonic computing offers high bandwidth, parallelism and energy efficiency for artificial intelligence (AI), yet its scalability remains limited by bulky optical components and immature optoelectronic integration. Here we present HyperON, a thin-film lithium niobate (TFLN) hyperdimensional optical network built around a passive spectral-spatial interweaver and broadband wavelength-parallel modulators. The interweaver combines wavelength multiplexing with spatial replication in a log 2 P -stage network, delivering the full wavelength set to every spatial output without beam-combination loss. By interweaving P spectral channels with K spatial units, HyperON forms a unified P \u00d7 K parallel computing framework, supporting O ( N 2 ) operations with only O ( N ) modulators, improving hardware efficiency and scalability. A 16 \u00d7 16 interweaver shows low-loss, broadband and highly uniform operation across 1523.40-1568.85 nm, with 1.30 dB average loss, 0.196 dB output-port variation and 0.414 dB cross-wavelength variation. The integrated wavelength-parallel modulators retain system-level bandwidths of 53-67 GHz after large-scale routing, while standalone devices exhibit bandwidths beyond 67 GHz. Together, these features enable the fabricated HyperON chip to deliver a projected peak throughput of 32.8 TMAC/s, with estimated energy and area efficiencies of 7.04 TMAC/s/W and 0.163 TMAC/s/mm 2 , respectively. Experimental demonstrations in image convolution, handwritten digit recognition, and 64-mode parallel computing confirm its high speed operation, versatility, and scalability for large-scale AI workloads.",
+   "published": "2026-11-24",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-78734-z"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-78734-z",
+    "PDF": "https://doi.org/10.1038/s41467-026-78734-z"
+   },
+   "score": 7,
+   "added": "2026-11-26T01:47+00:00",
+   "fl": false,
+   "tab": "nature",
    "graph": false
   },
   {
@@ -29486,168 +29898,6 @@
    "graph": false,
    "date_checked": true,
    "date_q": 2
-  },
-  {
-   "id": "10.1038/s41467-026-77230-8",
-   "title": "Automated transition state generation for mechanistic exploration in organic synthesis",
-   "authors": [
-    "Li\u2010Cheng Xu",
-    "Junyi An",
-    "Weiqi Liu",
-    "Yunfei Shi",
-    "Chong\u2010Lei Ji",
-    "Fenglei Cao",
-    "Yuan Qi"
-   ],
-   "abstract": "Accurate generation of intricate 3D molecular structures is a fundamental challenge in computational chemistry. Transition states (TS), the transient structures that dictate reaction kinetics, exemplify this challenge, as their calculation remains a major bottleneck in elucidating reaction mechanisms. While generative AI has shown promise in automating TS generation, existing methods are largely confined to simple systems, struggling with the complex structures like those in transition metal catalysis. Here we show a unified framework for general-purpose TS generation, comprising the UniTS-Lib library of 4,391 high-quality structures spanning 42 elements and diverse chemical transformations, coupled with the UniTS-Gen diffusion model that generates 3D TS configurations from 2D reactant graphs using a custom-designed higher-degree equivariant network. Validation demonstrates UniTS-Gen's superior accuracy and robust generalization to unseen chemical systems. We show that UniTS-Gen provides reliable initial guesses and accelerates discovery by locating kinetically favored conformations. This work provides a scalable and transferable solution for automating mechanistic studies in organic synthesis and beyond.",
-   "published": "2026-08-27",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-77230-8"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-77230-8",
-    "PDF": "https://www.nature.com/articles/s41467-026-77230-8_reference.pdf"
-   },
-   "score": 6,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-77263-z",
-   "title": "Atomistic machine learning with irreducible Cartesian natural tensors",
-   "authors": [
-    "Qun Chen",
-    "A. S. L. Subrahmanyam Pattamatta",
-    "Boyu Wang",
-    "David J. Srolovitz",
-    "Mingjian Wen"
-   ],
-   "abstract": "Atomistic machine learning is a powerful tool for accurate and efficient investigation of material behavior at the atomic scale. While attempts have been made to construct models directly within Cartesian space, they face challenges in providing a systematic framework based on irreducible representations-a core feature of widely used spherical models. Here we propose Cartesian Natural Tensor Networks to overcome these limitations and thus offer a general, symmetry-preserving framework for atomistic machine learning. We present a theory of irreducible representations using Cartesian natural tensors, comprising their construction, their products, and a systematic scheme to decompose and reconstruct high-rank physical tensors. Leveraging this machinery, we develop equivariant machine learning interatomic potentials for materials and molecular systems with performance on par with leading spherical models. It further captures accurate structure-property relationships for tensorial quantities ranging from low-rank dipole moments to high-rank tensors with complex symmetries, such as the elastic constant tensor.",
-   "published": "2026-08-27",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-77263-z"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-77263-z",
-    "PDF": "https://www.nature.com/articles/s41467-026-77263-z_reference.pdf"
-   },
-   "score": 8,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-77130-x",
-   "title": "An AI-powered self-driving microscope for low-cost acute leukemia detection",
-   "authors": [
-    "Ethan S. Yan",
-    "Shenghuan Sun",
-    "Zhanghan Yin",
-    "Ali Kamali",
-    "Jacob G. Van Cleave",
-    "\u0130rem \u015eahver \u0130\u015fg\u00f6r",
-    "Brenda Fried",
-    "Cesar Colorado-Jimenez",
-    "Deepika Dilip",
-    "Jeeyeon Baik",
-    "Allyne Manzo",
-    "Sean Paulsen",
-    "Siddharth Singi",
-    "Scott Drapeau",
-    "\u00d6zg\u00fcr Can Eren",
-    "Joanne K. Chun",
-    "Aijazuddin Syed",
-    "Anthony Cardillo",
-    "Melissa P. Pulitzer",
-    "Maly Fenelus",
-    "David Kim",
-    "Jamal K. Benhamida",
-    "Dianna Ng",
-    "Orly Ardon",
-    "Mikhael Roshal",
-    "Ahmet Do\u01e7an",
-    "Chad Vanderbilt",
-    "Khawaja H. Bilal",
-    "Gregory Mark Goldgof"
-   ],
-   "abstract": "Current artificial intelligence systems for leukemia detection typically rely on costly whole-slide scanners, limiting accessibility in low-resource settings. We present ALLocate, a low-cost, artificial intelligence-powered microscope plugin that enables self-driving microscopy for leukemia detection. ALLocate attaches directly to conventional microscopes and provides automated analysis at a fraction of the cost of a whole-slide scanner. We evaluate its robustness at three levels: region-of-interest identification, cell detection, and end-to-end slide-level diagnosis. The system is trained and evaluated using more than 11,000 annotated regions and 130,000 annotated cells and is further validated using independent multi-institutional cohorts, including 165 physical bone marrow smear slides. ALLocate achieves an area under the receiver operating characteristic curve greater than 0.99 for region-of-interest identification, a mean average precision at 50% intersection over union of 0.90 for cell detection, and 88% accuracy for slide-level diagnosis on glass slides without requiring a whole-slide scanner. These results suggest that ALLocate provides an accurate, generalizable, and cost-effective approach for automated bone marrow smear screening, helping bridge the gap between AI innovation and practical deployment in resource-limited settings where access to specialist expertise may be limited.",
-   "published": "2026-08-27",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-77130-x"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-77130-x",
-    "PDF": "https://www.nature.com/articles/s41467-026-77130-x_reference.pdf"
-   },
-   "score": 12,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-77202-y",
-   "title": "Quantum nonlinearity for optical neural computing",
-   "authors": [
-    "Qingyi Zhou",
-    "Jungmin Kim",
-    "Yutian Tao",
-    "Guoming Huang",
-    "Ming Zhou",
-    "Zewei Shao",
-    "Zongfu Yu"
-   ],
-   "abstract": "Abstract The rapid scaling of deep neural networks comes at the cost of unsustainable power consumption. While optical neural networks offer an alternative, their capabilities remain constrained by the lack of efficient optical nonlinearities. To address this, we propose an optical neural computing architecture by embedding quantum emitters in inverse-designed nanophotonic structures. Due to their saturability, quantum emitters exhibit exceptionally strong nonlinearity compared with conventional materials. Using physics-aware training, we numerically demonstrate that the proposed architecture can solve complex tasks, including nonlinear classification and reinforcement learning, within all-optical neural networks. To enable fair comparison across different platforms, we introduce a framework that quantitatively links nonlinearity to a network\u2019s expressive power. Analysis shows that our quantum activation operates at nW/ \u03bc m 2 intensity, which is seven orders of magnitude below the nonlinearity threshold of conventional optical materials. Looking ahead to large language models, we estimate the nonlinearity-limited optical power, which scales sublinearly with model size. Our results indicate that quantum nanophotonics may provide a route toward sustainable AI inference.",
-   "published": "2026-08-27",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-77202-y"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-77202-y",
-    "PDF": "https://www.nature.com/articles/s41467-026-77202-y_reference.pdf"
-   },
-   "score": 10,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
-  },
-  {
-   "id": "10.1038/s41467-026-76798-5",
-   "title": "Resolving root causes of experiment discrepancies guided by machine learning",
-   "authors": [
-    "Denise Neudecker",
-    "Keegan J. Kelly",
-    "Scott Vander Wiel",
-    "A.D. Carlson",
-    "M.J. Grosskopf",
-    "David A. Brown",
-    "Boris Pritychenko",
-    "N. A. W. Walton",
-    "R. C. Haight"
-   ],
-   "abstract": "Abstract Scientists rely on accurate experimental data to explain nature and then harness this knowledge for applications addressing human needs. However, discrepancies between experiments of the same observable can impede scientific progress if one does not understand the underlying causes. Here, we developed a process that unravels data discrepancies by first using Bayesian machine learning to relate discrepancies to few of many, potentially biasing metadata features that encode experiment procedures. This machine learning output guides human experts to study discrepancy causes by simulating suspicious aspects of historical experiments or designing modern ones to address open questions. The study findings then lead to rejecting or correcting historical data on firm scientific bases. This process is demonstrated for the energy spectrum of neutrons emitted promptly (<1 ns) after fission of 252 Cf, a trusted nuclear physics Standard. It reduces the spread in experimental 252 Cf spectra by up to a factor of 6.",
-   "published": "2026-08-27",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-76798-5"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-76798-5",
-    "PDF": "https://www.nature.com/articles/s41467-026-76798-5_reference.pdf"
-   },
-   "score": 6,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
   },
   {
    "id": "10.1109/tmc.2026.3727683",
@@ -60883,109 +61133,6 @@
     "Publisher": "https://doi.org/10.1109/tai.2025.3637006"
    },
    "added": "2026-11-16T19:41+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tcyb.2025.3632546",
-   "title": "Addressing Client Drift in Federated Learning via Class-Prototype Similarity Distillation and Adaptive Mask",
-   "authors": [
-    "Yunlu Yan",
-    "Chun-Mei Feng",
-    "Mang Ye",
-    "Wangmeng Zuo",
-    "Ping Li",
-    "Rick Siow Mong Goh",
-    "Lei Zhu",
-    "C. L. Philip Chen"
-   ],
-   "abstract": "Federated learning (FL) enables multiple clients to learn collaboratively in a distributed way, allowing for privacy protection. However, the real-world nonindependent and identically distributed (non-IID) data will lead to client drift, which degrades the performance of FL. Interestingly, we find that the logit difference between the local and global models increases as the model is continuously updated, which is the primary factor behind performance degradation. This is mainly due to catastrophic forgetting caused by non-IID data between clients. To alleviate this problem, we propose a new algorithm, named FedCSD, a class-prototype similarity distillation in a federated framework to align the logits of local and global models. FedCSD does not simply transfer global knowledge to local clients, as an insufficiently trained global model cannot provide reliable knowledge, i.e., class similarity information, and its wrong soft labels will mislead the optimization of local models. Concretely, FedCSD leverages the similarity between local logits and the global prototype to refine the global logits, thereby enhancing its class similarity information. Furthermore, FedCSD adopts an adaptive mask to filter out the terrible soft labels of the global models, thereby preventing them from misleading local optimization. Extensive experiments demonstrate the superiority of our method over the state-of-the-art FL approaches in various non-IID settings. Code is publicly available at https://github.com/IAMJackYan/FedCSD.",
-   "published": "2025-11-25",
-   "venue": "IEEE Transactions on Cybernetics",
-   "dois": [
-    "10.1109/tcyb.2025.3632546"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tcyb.2025.3632546",
-    "PDF": "https://arxiv.org/pdf/2308.10162"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tmc.2025.3637064",
-   "title": "FedQuad: Adaptive Layer-Wise LoRA Deployment and Activation Quantization for Federated Fine-Tuning",
-   "authors": [
-    "Jianchun Liu",
-    "Rukuo Li",
-    "Hongli Xu",
-    "Qianpiao Ma",
-    "Jiaming Yan",
-    "Liusheng Huang"
-   ],
-   "abstract": "Federated fine-tuning (FedFT) provides an effective paradigm for fine-tuning large language models (LLMs) in privacy-sensitive scenarios. However, practical deployment remains challenging due to the limited resources on end devices. Existing methods typically utilize parameter-efficient fine-tuning (PEFT) techniques, such as Low-Rank Adaptation (LoRA), to substantially reduce communication overhead. Nevertheless, significant memory usage for activation storage and computational demands from full backpropagation remain major barriers to efficient deployment on resource-constrained end devices. Moreover, substantial resource heterogeneity across devices results in severe synchronization bottlenecks, diminishing the overall fine-tuning efficiency. To address these issues, we propose FedQuad, a novel LoRA-based FedFT framework that adaptively adjusts the LoRA depth (the number of consecutive tunable LoRA layers from the output) according to devices' computational power, while employing activation quantization to reduce memory overhead, thereby enabling efficient deployment on resource-constrained devices. Specifically, FedQuad first identifies the feasible and efficient combinations of LoRA depth and the number of activation quantization layers based on device-specific resource constraints. Subsequently, FedQuad employs a greedy strategy to select the optimal configurations for each device, effectively accommodating system heterogeneity. Extensive experiments demonstrate that FedQuad achieves a 1.4\u20135.3\u00d7 convergence acceleration compared to state-of-the-art baselines when reaching target accuracy, highlighting its efficiency and deployability in resource-constrained and heterogeneous end-device environments.",
-   "published": "2025-11-25",
-   "venue": "IEEE Transactions on Mobile Computing",
-   "dois": [
-    "10.1109/tmc.2025.3637064"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tmc.2025.3637064",
-    "PDF": "https://arxiv.org/pdf/2506.01001"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tai.2025.3636489",
-   "title": "GRACE-FL: Green Resource-Aware Communication-Efficient Federated Learning",
-   "authors": [
-    "Dipanwita Thakur",
-    "Antonella Guzzo",
-    "Giancarlo Fortino",
-    "Sajal K. Das"
-   ],
-   "abstract": "Federated Learning (FL) enables collaborative model training across distributed clients while preserving data privacy, but its deployment on resource-constrained devices is hindered by high communication overhead, inefficient energy usage, and poor convergence under non-IID data distributions. To address these challenges, we propose GRACE-FL: a Green Resource-Aware Communication-Efficient Federated Learning framework that explicitly incorporates device energy capacity into training. Each client adapts its learning rate, number of local epochs, and gradient quantization bit-width based on its available energy, allowing high-capacity devices to sustain more intensive training while low-capacity devices operate with lighter configurations. A novel energy-weighted aggregation strategy ensures that clients with greater energy resources contribute more significantly to the global model while maintaining fairness. Theoretically, we show that GRACE-FL achieves an unbiased gradient estimate and guarantees convergence at a rate of$O ( 1 / \\sqrt{T} )$under standard non-convex assumptions, even in the presence of quantization noise. Extensive experiments demonstrate that GRACE-FL consistently outperforms baseline methods, achieving 20\u201330& energy savings and up to 28& lower communication costs while preserving competitive or superior accuracy under both IID and non-IID settings. Finally, on-device validation with five Raspberry Pi 4B clients and fine-grained energy profiling confirms these gains in practice with SimpleCNN and ResNet-18, GRACE-FL delivers faster convergence, improved fairness, and substantial energy efficiency, paving the way for sustainable and practical FL in real-world edge deployments.",
-   "published": "2025-11-25",
-   "venue": "IEEE Transactions on Artificial Intelligence",
-   "dois": [
-    "10.1109/tai.2025.3636489"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tai.2025.3636489"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tmlcn.2025.3637083",
-   "title": "Personalized Federated Learning With Adaptive Transformer Pruning and Hypernetwork-Driven Personalization in Wireless Networks",
-   "authors": [
-    "Moqbel Hamood",
-    "Abdullatif Mohammed Albaseer",
-    "Hassan M. El-Sallabi",
-    "Mohamed M. Abdallah",
-    "Ala Al\u2010Fuqaha",
-    "Bechir Hamdaoui"
-   ],
-   "abstract": "Deploying transformer models in Personalized Federated Learning (PFL) at the wireless edge faces critical challenges, including high communication overhead, latency, and energy consumption. Existing compression methods, such as pruning and sparsification, typically degrade performance due to the sensitivity of self-attention layers (SALs) to parameter reduction. Also, standard federated averaging (FedAvg) often diminishes personalization by blending crucial client-specific parameters. To overcome these issues, we propose PFL-TPP (Personalized Federated Learning with Transformer Pruning and Personalization). This dual-strategy framework effectively reduces computational and communication burdens while maintaining high model accuracy and personalization. Our approach employs dynamic, learnable threshold pruning on feed-forward layers (FFLs) to eliminate redundant computations. For SALs, we introduce a novel server-side hypernetwork that generates personalized attention parameters from client-specific embeddings, significantly cutting communication overhead without sacrificing personalization. Extensive experiments demonstrate that PFL-TPP achieves up to 82.73% energy savings, 86% reduction in training time, and improved model accuracy compared to standard baselines. These results demonstrate the effectiveness of our proposed approach in enabling scalable, communication-efficient deployment of transformers in real-world PFL scenarios.",
-   "published": "2025-11-25",
-   "venue": "IEEE Transactions on Machine Learning in Communications and Networking",
-   "dois": [
-    "10.1109/tmlcn.2025.3637083"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tmlcn.2025.3637083",
-    "PDF": "https://doi.org/10.1109/tmlcn.2025.3637083"
-   },
-   "added": "2026-11-16T19:07+00:00",
    "fl": true,
    "tab": "ieee-tx",
    "graph": false
