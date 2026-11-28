@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T01:46+00:00",
+ "updated": "2026-11-28T01:28+00:00",
  "conf_done": [
   "ICLR 2025",
   "ICLR 2026",
@@ -330,7 +330,10 @@
   "10.1109/tvt.2026.3756925": "2026-11-26",
   "10.1109/tvt.2026.3757761": "2026-11-27",
   "10.1109/tmc.2026.3758118": "2026-11-27",
-  "10.1109/tifs.2026.3757634": "2026-11-27"
+  "10.1109/tifs.2026.3757634": "2026-11-27",
+  "10.1109/tc.2026.3758371": "2026-11-28",
+  "10.1109/tits.2026.3724947": "2026-11-28",
+  "10.1109/tai.2026.3758161": "2026-11-28"
  },
  "ieee_xplore_checked": "2026-11-16",
  "ieee_swept_ids": [
@@ -445,9 +448,87 @@
   "S97130795",
   "S98183460"
  ],
- "crossref_created": "2026-11-27",
+ "crossref_created": "2026-11-28",
  "crossref_version": 2,
  "papers": [
+  {
+   "id": "10.1109/tc.2026.3758371",
+   "title": "When Federated Learning Meets Partial Label Data",
+   "authors": [
+    "Sen Fu",
+    "Zhengjie Yang",
+    "Wei Bao",
+    "Albert Y. Zomaya"
+   ],
+   "abstract": "",
+   "published": "2026-11-27",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Computers",
+   "dois": [
+    "10.1109/tc.2026.3758371"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tc.2026.3758371"
+   },
+   "added": "2026-11-28T01:28+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tits.2026.3724947",
+   "title": "Adaptive Differential Privacy-Enabled Federated Learning in Intelligent Transportation System",
+   "authors": [
+    "Zounkaraneni Ngoupayou Limbepe",
+    "Keke Gai",
+    "Jing Yu",
+    "Shuo Wang",
+    "Liehuang Zhu",
+    "Weizhi Meng"
+   ],
+   "abstract": "",
+   "published": "2026-11-27",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Intelligent Transportation Systems",
+   "dois": [
+    "10.1109/tits.2026.3724947"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tits.2026.3724947"
+   },
+   "added": "2026-11-28T01:28+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1109/tai.2026.3758161",
+   "title": "FairCon: A Fair Federated Consensus Scheme via Random Parameter Aggregation",
+   "authors": [
+    "Baobao Chai",
+    "Zhongyuan Yu",
+    "Tianqing He",
+    "Hongliang Zhang",
+    "Yao Huang",
+    "Jianyuan Li",
+    "Yang Cao",
+    "Guijuan Wang"
+   ],
+   "abstract": "",
+   "published": "2026-11-27",
+   "date_q": 2,
+   "venue": "IEEE Transactions on Artificial Intelligence",
+   "dois": [
+    "10.1109/tai.2026.3758161"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1109/tai.2026.3758161"
+   },
+   "added": "2026-11-28T01:28+00:00",
+   "fl": true,
+   "tab": "ieee-tx",
+   "graph": false
+  },
   {
    "id": "10.1109/tvt.2026.3757761",
    "title": "FM-FCLF: A Feature-Memory-Based Federated Continual Learning Framework for Edge-Cloud Collaboration in Connected Autonomous Underwater Vehicle Networks",
@@ -519,6 +600,89 @@
    "added": "2026-11-27T01:46+00:00",
    "fl": true,
    "tab": "ieee-tx",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s42256-026-01334-5",
+   "title": "Accelerating inverse materials design using generative diffusion models with reinforcement learning",
+   "authors": [
+    "Junwu Chen",
+    "Jeff Guo",
+    "Edvin Fako",
+    "Philippe Schwaller"
+   ],
+   "abstract": "Diffusion models promise to accelerate materials design by directly generating novel structures with desired properties, but existing approaches such as conditional generation typically require expensive and substantial labelled data (>10,000) and lack adaptability. Here we present MatInvent, a general and efficient reinforcement learning workflow that optimizes diffusion models for goal-directed crystal generation. By formulating equivariant denoising as a multistep decision-making problem, MatInvent leverages policy gradient with reward-weighted Kullback\u2013Leibler regularization, including experience replay and diversity filters to enhance optimization efficiency and sample diversity. For single-objective designs, MatInvent rapidly converges to target values within 60 iterations (~1,000 property evaluations) across electronic, magnetic, mechanical, thermal and physicochemical properties. Furthermore, MatInvent achieves robust optimization in design tasks with multiple conflicting properties, successfully proposing low-supply-chain-risk magnets and high- \u03ba dielectrics. Compared with state-of-the-art methods, MatInvent exhibits comparable or superior generation performance under specified property constraints while markedly reducing the demand for property computation. Compatible with diverse diffusion model architectures and property constraints, MatInvent could offer broad applicability in materials discovery.",
+   "published": "2026-11-26",
+   "venue": "Nature Machine Intelligence",
+   "dois": [
+    "10.1038/s42256-026-01334-5"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s42256-026-01334-5",
+    "PDF": "https://www.nature.com/articles/s42256-026-01334-5.pdf"
+   },
+   "score": 10,
+   "added": "2026-11-28T01:28+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s42256-026-01332-7",
+   "title": "A measurement noise scaling law for cellular representation learning",
+   "authors": [
+    "gokul gowri",
+    "Igor Sadalski",
+    "Dan Raviv",
+    "Peng Yin",
+    "Jonathan Rosenfeld",
+    "Allon Moshe Klein"
+   ],
+   "abstract": "Large genomic and imaging datasets can be used to train models that learn meaningful representations of cellular systems. Across domains, model performance improves predictably with dataset size and compute budget, providing a basis for allocating data and computation. Scientific data, however, are also limited by noise arising from factors such as molecular undersampling, sequencing errors and image resolution. Here we introduce mutual information with auxiliary signals as a metric of representation model performance and study its scaling with noise. By fitting more than 2,000 representation learning models across three data modalities (gene expression, sequence and image data), we show that noise defines a distinct axis along which performance improves. Noise scaling follows a logarithmic law. We derive the law from a model of noise propagation, and use it to define noise sensitivity and model capacity as benchmarking metrics. We show that protein-sequence representations tolerate error rates in modern sequencing data, whereas single-cell transcriptomic models remain noise limited at current measurement signal-to-noise ratio levels. Within transcriptomic cell-state representation learning models, we find that transformer-based models are more noise robust but less performant than variational autoencoders. Noise scaling metrics may support future model evaluation and experimental design.",
+   "published": "2026-11-26",
+   "venue": "Nature Machine Intelligence",
+   "dois": [
+    "10.1038/s42256-026-01332-7"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s42256-026-01332-7",
+    "PDF": "https://www.nature.com/articles/s42256-026-01332-7.pdf"
+   },
+   "score": 9,
+   "added": "2026-11-28T01:28+00:00",
+   "fl": false,
+   "tab": "nature",
+   "graph": false
+  },
+  {
+   "id": "10.1038/s41467-026-79499-1",
+   "title": "Development and clinical validation of a multimodal AI framework to predict persistent fever during antibiotic therapy in hospitalized patients with cancer",
+   "authors": [
+    "Gernot Pucher",
+    "Kevin Kopp",
+    "Aman Deep",
+    "Anna-Maria Stark",
+    "Marcel Wiesweg",
+    "Martin Schuler",
+    "Felix Nensa",
+    "Hans Christian Reinhardt",
+    "H. Christian Reinhardt",
+    "Christopher Martin Sauer"
+   ],
+   "abstract": "Among hospitalized cancer patients, persistent fever despite intravenous antibiotics often triggers treatment escalation and additional diagnostics. Earlier identification of patients at low risk for ongoing fever could support more selective decision-making. We developed and compared multimodal AI frameworks to predict persistent fever at the 48\u201372-hour reassessment window. Models integrated structured variables, time-series, notes, and chest imaging. Models were developed in a University Hospital Essen cohort and evaluated using holdout validation, two pooled regional hospitals, and MIMIC-IV ICU. A feature-level tabularized multimodal TabPFN model showed consistent discrimination, with AUC 0.84 (95% CI, 0.81\u20130.86) in cross-validation, 0.82 (95% CI, 0.77\u20130.87) in holdout validation, and 0.78 (95% CI, 0.74\u20130.81) in MIMIC-IV; other multimodal strategies showed comparable but more variable performance. Performance was primarily driven by temperature dynamics, while chest-radiograph imaging provided no incremental predictive value. In a clinician validation study, the multimodal model outperformed clinicians (Trial 1 balanced accuracy: 0.77 vs 0.60; Trial 2: 0.79 vs 0.57), while clinician balanced accuracy reached 0.71 (95% CI 0.67\u20130.75) in the AI-assisted condition, suggesting potential benefit of AI support. Overall, multimodal AI demonstrates potential to support 48-hour antibiotic reassessment and stewardship-oriented decision-making, although further prospective studies are needed.",
+   "published": "2026-11-26",
+   "venue": "Nature Communications",
+   "dois": [
+    "10.1038/s41467-026-79499-1"
+   ],
+   "links": {
+    "Publisher": "https://doi.org/10.1038/s41467-026-79499-1",
+    "PDF": "https://www.nature.com/articles/s41467-026-79499-1.pdf"
+   },
+   "score": 10,
+   "added": "2026-11-28T01:28+00:00",
+   "fl": false,
+   "tab": "nature",
    "graph": false
   },
   {
@@ -29911,30 +30075,6 @@
    "tab": "preprint",
    "graph": true,
    "date_q": 3
-  },
-  {
-   "id": "10.1038/s41467-026-77338-x",
-   "title": "Navigating regulatory fragmentation in the convergence of synthetic biology, artificial intelligence, and automation",
-   "authors": [
-    "Ross K. J. McLennan",
-    "Paul S. Freemont",
-    "Isak S. Pretorius"
-   ],
-   "abstract": "The convergence of synthetic biology, artificial intelligence (AI), and automation (SynBioxAI) creates research activities that simultaneously engage biosecurity, AI governance, export control, and data sovereignty frameworks \u2013 none of which are designed for convergent science. We conduct a comprehensive cross-jurisdictional analysis of this regulatory landscape across sixteen nations, identifying critical ambiguities where novel SynBioxAI objects fall between established regulatory categories. Through seven realistic collaboration scenarios, we demonstrate that regulatory friction is multiplicative rather than additive. We propose the SynBioxAI Regulatory Interoperability Toolkit (RIOT): a practical, seven-lens institutional framework that gives research institutions the capacity to navigate regulatory divergence efficiently and transparently. The convergence of synthetic biology, AI, and automation creates new challenges for regulatory frameworks. In this Perspective, the authors analyse national regulations and propose the SynBioxAI regulatory interoperability toolkit to give research institutes the capacity to navigate divergent regulatory landscapes.",
-   "published": "2026-08-29",
-   "venue": "Nature Communications",
-   "dois": [
-    "10.1038/s41467-026-77338-x"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1038/s41467-026-77338-x",
-    "PDF": "https://www.nature.com/articles/s41467-026-77338-x.pdf"
-   },
-   "score": 11,
-   "added": "2026-11-13T20:41+00:00",
-   "fl": false,
-   "tab": "nature",
-   "graph": false
   },
   {
    "id": "10.1109/tccn.2026.3727975",
@@ -61008,104 +61148,6 @@
    "links": {
     "Publisher": "https://doi.org/10.1109/tpds.2025.3638693",
     "PDF": "https://doi.org/10.1109/tpds.2025.3638693"
-   },
-   "added": "2026-11-16T19:41+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tcss.2025.3630162",
-   "title": "Federated Recommendation Model Integrating Social Relationships and Knowledge Graph",
-   "authors": [
-    "Junhua Gu",
-    "Lisi Zhang",
-    "Cheng Liu",
-    "Suqi Zhang",
-    "Qiqi Liu"
-   ],
-   "abstract": "Integrating social relationships and knowledge graph (KG) in centralized recommendations is an effective method to mitigate data sparsity and cold-start problems. However, current research has only attempted to include either social relationships or a KG in federated recommendation systems (FedRS), failing to utilize all available user and item information. Motivated by this, this article proposes a federated recommendation model by integrating both social relationships and KG. However, directly applying these two strategies to FedRS could lead to privacy leakage and increased communication overhead. To address this, this work encrypts user embeddings of clients using homomorphic encryption before uploading them to the server and adds pseudo-friends and pseudo-items when uploading user social and interaction lists to prevent privacy leakage. Then, the server distributes friend embeddings and pretrained entity and relationship embeddings to clients based on the social and interaction lists, reducing communication overhead. Finally, clients employ the graph attention network to integrate social relationships and KG to improve the accuracy of the recommendation. Experiments on two real datasets demonstrate that our federated recommendation model achieves improvements of 1.8%, 2.1% in area under curve and 3.3%, 1.9% in F1 score over the last federated recommendation methods.",
-   "published": "2025-11-27",
-   "venue": "IEEE Transactions on Computational Social Systems",
-   "dois": [
-    "10.1109/tcss.2025.3630162"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tcss.2025.3630162"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": true
-  },
-  {
-   "id": "10.1109/tmc.2025.3637775",
-   "title": "SeFUL: A Selective Federated Unlearning Framework for Client Data Heterogeneity in Intelligent Wireless Networks",
-   "authors": [
-    "Yujun Cheng",
-    "Weiting Zhang",
-    "Tao Zheng",
-    "Enfang Cui",
-    "Xu Ma",
-    "Haijun Zhang"
-   ],
-   "abstract": "As sixth-generation (6 G) networks evolve towards AI-native architectures, Federated Learning (FL) is becoming a cornerstone for enabling intelligent services by leveraging distributed data from diverse sources such as Integrated Sensing and Communication (ISAC) devices and edge clients. However, a critical challenge lies in efficiently handling data removal requests, mandated by regulations like the \u201cright to be forgotten\u201d. This problem is significantly exacerbated by the extreme data heterogeneity ( non-IID) inherent across diverse 6 G devices and the communication constraints of wireless networks. To address these challenges, this paper proposes SeFUL, a novel two-stage federated unlearning framework tailored for the security and privacy demands of 6 G systems. SeFUL first proactively mitigates data heterogeneity by partitioning clients into clusters based on their data distribution similarity. Subsequently, a lightweight, information-theoretic unlearning strategy is deployed. This method surgically erases information by optimizing a composite loss function which, in the latent space, pushes the feature representations of forgotten data away from their original class cluster and towards samples from other classes, while reinforcing knowledge from the retain set. Comprehensive experiments on benchmark datasets demonstrate that SeFUL achieves unlearning performance on par with the gold standard of complete model retraining. It successfully reduces forget-set accuracy to nearly random guess levels while preserving high retain-set accuracy, significantly outperforming existing state-of-the-art methods. Furthermore, Membership Inference Attacks (MIAs) confirm that SeFUL effectively reduces privacy risks to a level statistically indistinguishable from a fully retrained model, validating its efficacy as a robust privacy-preserving mechanism.",
-   "published": "2025-11-27",
-   "venue": "IEEE Transactions on Mobile Computing",
-   "dois": [
-    "10.1109/tmc.2025.3637775"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tmc.2025.3637775"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tmlcn.2025.3637784",
-   "title": "PFL-GAN: Client Heterogeneity Meets Generative Models in Personalized Federated Learning",
-   "authors": [
-    "Achintha Wijesinghe",
-    "Songyang Zhang",
-    "Zhi Jun Ding"
-   ],
-   "abstract": "Recent advances in generative artificial intelligence (AI) have led to rising interest in federated learning (FL) based on generative adversarial network (GAN) models. GAN-based FL shows promises in many communication and network applications, such as edge computing and the Internet of Things. In the context of FL, GANs can capture the underlying client data structure, and regenerate samples resembling the original data distribution without compromising data privacy. Although most existing GAN-based FL works focus on training a global model, some scenarios exist where personalized FL (PFL) can be more desirable when incorporating client data heterogeneity in terms of distinct data distributions, feature spaces, and labels. To cope with client heterogeneity in GAN-based FL, we propose a novel GAN sharing and aggregation strategy for PFL that can efficiently characterize client heterogeneity in different settings. More specifically, our proposed PFL-GAN first learns the similarities among clients before implementing a weighted collaborative data aggregation. Our empirical results through rigorous experimentation on several well-known datasets demonstrate the effectiveness of PFL-GAN.",
-   "published": "2025-11-27",
-   "venue": "IEEE Transactions on Machine Learning in Communications and Networking",
-   "dois": [
-    "10.1109/tmlcn.2025.3637784"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tmlcn.2025.3637784",
-    "PDF": "https://doi.org/10.1109/tmlcn.2025.3637784"
-   },
-   "added": "2026-11-16T19:07+00:00",
-   "fl": true,
-   "tab": "ieee-tx",
-   "graph": false
-  },
-  {
-   "id": "10.1109/tai.2025.3636492",
-   "title": "FedFlex: Protecting Shared Features in Vertical Federated Learning via Differential Privacy",
-   "authors": [
-    "Yuxi Mi",
-    "Hongquan Liu",
-    "Yewei Xia",
-    "Yiheng Sun",
-    "Yateng Tang",
-    "Jihong Guan",
-    "Shuigeng Zhou"
-   ],
-   "abstract": "Vertical Federated Learning (VFL) is a privacypreserving distributed learning paradigm that enables multiple parties to collaboratively train a model by sharing features derived from their local datasets. However, even without direct data sharing, these shared features can inadvertently expose sensitive information, rendering them susceptible to adversarial attacks such as reconstruction and inference. This paper introduces FedFlex, a novel VFL framework designed to safeguard sensitive information within shared features. While many existing approaches employ differential privacy (DP) to protect features by adding noise, they often compromise either model accuracy or protection generality. FedFlex addresses these shortcomings through a two-step integration of VFL and DP. Initially, it achieves generic protection by adding a task-agnostic amount of noise. Subsequently, it adaptively adjusts the scale and distribution of the features to be shared in a trainable manner, thereby enhancing model accuracy under the added noise. Experimental results demonstrate that FedFlex is resilient to prevalent privacy attacks and offers a superior balance between privacy and accuracy compared to prior methods.",
-   "published": "2025-11-27",
-   "venue": "IEEE Transactions on Artificial Intelligence",
-   "dois": [
-    "10.1109/tai.2025.3636492"
-   ],
-   "links": {
-    "Publisher": "https://doi.org/10.1109/tai.2025.3636492"
    },
    "added": "2026-11-16T19:41+00:00",
    "fl": true,
